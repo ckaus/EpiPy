@@ -3,7 +3,7 @@ A Tool for fitting SIR models. The supported models are:
 
  - [ ] SIR
 
-This is tool is being developed under the [MIT license][1] for the course [Softwareprojekt Mobilkommunikation][2] at the [Freie Universität Berlin][2]. 
+This is tool is being developed under the [MIT license][1] for the course [Softwareprojekt Mobilkommunikation][2] at the [Freie Universität Berlin][3]. 
 
 ## Installation
 ------------
