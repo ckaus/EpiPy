@@ -1,5 +1,5 @@
 # EpiPy
-A Tool for fitting SIR models. The supported models are:
+A Tool for fitting epidemic models. The supported models are:
 
  - [ ] SIR
 
