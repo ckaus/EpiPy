@@ -9,9 +9,20 @@ This is tool is being developed under the [MIT license][1] for the course [Softw
 
  1. Download the project: 
     `$ git clone git@github.com:ckaus/EpiPy.git`
+ 2. Install the libraries:
+    `$ sudo pip install -r requirements.txt`
+    Note: you need `pip` on your computer
+ 3. Go to your terminal and open the pspql bash:
+    `$ sudo -u postgres psql postgres`
+ 4. Create a new database
+    `$ postgres=# CREATE DATABASE epiDB OWNER postgres;`
+ 5. Change the password for user postgres in psql bash:
+    `$ ALTER USER Postgres WITH PASSWORD 'postgres';`
+    Note: the user and password must be same like in the `config.cfg`
 
 ## Requirements
  * Python 2.7.9
+ * psycopg2
 
 ## Introduction
 
