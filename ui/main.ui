@@ -6,137 +6,101 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>805</width>
-    <height>476</height>
+    <width>885</width>
+    <height>547</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QWidget" name="plotWidget" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>400</width>
-        <height>400</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>668</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <zorder>optionPlotWidget</zorder>
-     </widget>
-    </item>
-    <item>
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>59</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QWidget" name="optionPlotWidget" native="true">
-      <layout class="QGridLayout" name="gridLayout">
-       <item row="7" column="0">
-        <widget class="QTreeWidget" name="fileTreeWidget">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>125</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <column>
-          <property name="text">
-           <string notr="true">1</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QComboBox" name="modelComboBox">
-         <item>
-          <property name="text">
-           <string>SI</string>
-          </property>
+     <layout class="QHBoxLayout" name="topLayout">
+      <item>
+       <widget class="QWidget" name="plotWidget" native="true">
+        <property name="minimumSize">
+         <size>
+          <width>640</width>
+          <height>480</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>668</width>
+          <height>16777215</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="optionPlotWidget" native="true">
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="5" column="0">
+          <widget class="QLabel" name="fittingInfoLabel">
+           <property name="text">
+            <string>Fitting Information</string>
+           </property>
+          </widget>
          </item>
-         <item>
-          <property name="text">
-           <string>IR</string>
-          </property>
+         <item row="3" column="0">
+          <widget class="QLabel" name="betaLabel">
+           <property name="text">
+            <string>Beta</string>
+           </property>
+          </widget>
          </item>
-         <item>
-          <property name="text">
-           <string>SIR</string>
-          </property>
+         <item row="6" column="0" colspan="3">
+          <widget class="QPlainTextEdit" name="fittingInfoTextEdit"/>
          </item>
-        </widget>
-       </item>
-       <item row="3" column="0">
-        <widget class="QLabel" name="betaLabel">
-         <property name="text">
-          <string>Beta</string>
-         </property>
-        </widget>
-       </item>
-       <item row="6" column="0" colspan="3">
-        <widget class="QPlainTextEdit" name="fittingInfoTextEdit"/>
-       </item>
-       <item row="4" column="0">
-        <widget class="QLabel" name="gammaLabel">
-         <property name="text">
-          <string>Gamma</string>
-         </property>
-        </widget>
-       </item>
-       <item row="3" column="2">
-        <widget class="QLineEdit" name="betaLineEdit"/>
-       </item>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="advanceBtn">
-         <property name="text">
-          <string>Advance</string>
-         </property>
-        </widget>
-       </item>
-       <item row="5" column="0">
-        <widget class="QLabel" name="fittingInfoLabel">
-         <property name="text">
-          <string>Fitting Information</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="2">
-        <widget class="QLineEdit" name="gammaLineEdit"/>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>408</height>
-       </size>
-      </property>
-     </spacer>
+         <item row="3" column="2">
+          <widget class="QLineEdit" name="betaLineEdit"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="gammaLabel">
+           <property name="text">
+            <string>Gamma</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="2">
+          <widget class="QLineEdit" name="gammaLineEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QComboBox" name="modelComboBox">
+           <item>
+            <property name="text">
+             <string>Choose a model</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SI</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>IR</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>SIR</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QPushButton" name="advanceBtn">
+           <property name="text">
+            <string>Advance</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -145,7 +109,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>805</width>
+     <width>885</width>
      <height>25</height>
     </rect>
    </property>
