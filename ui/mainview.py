@@ -13,17 +13,10 @@ class MainView(QtGui.QMainWindow):
         self.initUI()
 
     def initUI(self):
-        # minumim width / length
-        minW=640
-        minL=480
-        # maxmimum width / length
-        maxW=1600 
-        maxL=900
-        self.setMinimumSize(QtCore.QSize(minW, minL))
-        self.setMaximumSize(QtCore.QSize(maxW, maxL))
+        self.setMinimumSize(QtCore.QSize(640, 480))
+        self.setMaximumSize(QtCore.QSize(1600, 900))
         self.setWindowTitle('EpiPy')
         self.initMenuBar()
-
         # main widget
         self.centralwidget = QtGui.QWidget(self)
         self.mainLayout = QtGui.QHBoxLayout(self.centralwidget)
