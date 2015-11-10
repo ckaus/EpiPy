@@ -12,7 +12,8 @@ This is tool is being developed under the [MIT license][1] for the course [Softw
 
 ## Installation
 ```bash
-apt-get install python-qt4
+apt-get intall python-qt4
+git clone git@github.com:ckaus/EpiPy.git
 ```
 ## Introduction
 
