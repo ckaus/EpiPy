@@ -3,7 +3,9 @@
 from PyQt4 import QtCore, QtGui
 
 class SidebarWidget(QtGui.QGroupBox):
-
+    """
+    This widget contains options and fitting information of the graph(s).
+    """
     def __init__(self):
         super(SidebarWidget, self).__init__('Options')
         self.initUI()

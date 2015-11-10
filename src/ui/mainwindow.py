@@ -5,7 +5,9 @@ from plotwidget import PlotWidget
 from sidebarwidget import SidebarWidget
 
 class MainWindow(QtGui.QMainWindow):
-
+	"""
+	Main window of EpiPy.
+	"""
     def __init__(self):
         super(MainWindow, self).__init__()
         self.initUI()

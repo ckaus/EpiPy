@@ -3,7 +3,9 @@
 from PyQt4 import QtCore, QtGui
 
 class PlotWidget(QtGui.QGroupBox):
-
+	"""
+	This widget display several graphs.
+	"""
     def __init__(self):
         super(PlotWidget, self).__init__('Graph')
         self.initUI()
