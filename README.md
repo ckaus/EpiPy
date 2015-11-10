@@ -8,9 +8,12 @@ This is tool is being developed under the [MIT license][1] for the course [Softw
 
 ## Requirements
  * Python 2.7.9
- * matplotlib
- * [Tkinter][4]
+ * PyQt 4
 
+## Installation
+```bash
+apt-get install python-qt4
+```
 ## Introduction
 
 ## What's new
