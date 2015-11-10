@@ -10,7 +10,12 @@ This tool is developed under the [MIT license][1] for the course [Softwareprojek
 
 ## Installation
 ```bash
-apt-get intall python-qt4
+sudo apt-get intall python-qt4
+
+git clone git@github.com:pyqtgraph/pyqtgraph.git
+cd pyqtgraph/
+sudo python setup.py install
+
 git clone git@github.com:ckaus/EpiPy.git
 ```
 ## Introduction
