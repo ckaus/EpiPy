@@ -1,8 +1,5 @@
 # EpiPy
-A Tool for fitting epidemic models. The supported models are:
-
- - [ ] SI
- - [ ] SIR
+A Tool for fitting epidemic models.
 
 This tool is developed under the [MIT license][1] for the course [Softwareprojekt Mobilkommunikation][2] at the [Freie Universität Berlin][3]. 
 
