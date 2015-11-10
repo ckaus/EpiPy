@@ -16,6 +16,26 @@ apt-get intall python-qt4
 git clone git@github.com:ckaus/EpiPy.git
 ```
 ## Introduction
+.
+├── LICENSE
+├── README.md
+└── src
+    ├── main.py
+    ├── ui
+    │   ├── graphview.pyc
+    │   ├── __init__.py
+    │   ├── __init__.pyc
+    │   ├── mainwindow.py
+    │   ├── mainwindow.pyc
+    │   ├── plotview.pyc
+    │   ├── plotwidget.py
+    │   ├── plotwidget.pyc
+    │   ├── sidebarview.pyc
+    │   ├── sidebarwidget.py
+    │   └── sidebarwidget.pyc
+    └── utils
+        ├── __init__.py
+        └── logger.py
 
 ## What's new
  * 2015-10-13: Project start
