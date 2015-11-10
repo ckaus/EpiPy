@@ -4,7 +4,7 @@ A Tool for fitting epidemic models. The supported models are:
  - [ ] SI
  - [ ] SIR
 
-This is tool is being developed under the [MIT license][1] for the course [Softwareprojekt Mobilkommunikation][2] at the [Freie Universität Berlin][3]. 
+This tool is being developed under the [MIT license][1] for the course [Softwareprojekt Mobilkommunikation][2] at the [Freie Universität Berlin][3]. 
 
 ## Requirements
  * Python 2.7.9
