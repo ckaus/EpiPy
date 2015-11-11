@@ -26,6 +26,11 @@ $ make html
 ```
 ## Introduction
 
+You can start EpiPy in terminal:
+```bash
+python src/main.py
+```
+
 ## What's new
  * 2015-10-13: Project start
  * 2015-11-10: First GUI
