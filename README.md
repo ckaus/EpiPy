@@ -10,13 +10,19 @@ This tool is developed under the [MIT license][1] for the course [Softwareprojek
 
 ## Installation
 ```bash
-sudo apt-get intall python-qt4
+$ sudo apt-get intall python-qt4
 
-git clone git@github.com:pyqtgraph/pyqtgraph.git
-cd pyqtgraph/
-sudo python setup.py install
+$ git clone git@github.com:pyqtgraph/pyqtgraph.git
+$ cd pyqtgraph/
+$ sudo python setup.py install
 
-git clone git@github.com:ckaus/EpiPy.git
+$ git clone git@github.com:ckaus/EpiPy.git
+```
+
+You can build the documentation using sphinx:
+```bash
+$ cd docs
+$ make html
 ```
 ## Introduction
 
