@@ -1,5 +1,5 @@
 # EpiPy
-A Tool for fitting epidemic models. For more informations, take a look into our [wiki][1].
+A Tool for fitting epidemic models. For more information, take a look into our [wiki][1].
 
 ## Requirements
  * Python 2.7.9
