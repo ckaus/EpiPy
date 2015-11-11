@@ -20,8 +20,8 @@ $ git clone git@github.com:ckaus/EpiPy.git
 You can start EpiPy in terminal: `$ python src/main.py`
 
 ## Documentation
-You can build the documentation using [Sphinx][3] `$ make doc/make html`
+You can build the documentation using [Sphinx][3]: `$ make doc/make html`
 
 [1]: https://github.com/ckaus/EpiPy/wiki "wiki"
 [2]: http://pyqtgraph.org/ "PyQtGraph"
-[2]: http://sphinx-doc.org/ "Sphinx"
+[3]: http://sphinx-doc.org/ "Sphinx"
