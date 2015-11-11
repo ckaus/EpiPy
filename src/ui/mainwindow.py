@@ -8,26 +8,26 @@ class MainWindow(QtGui.QMainWindow):
 	"""
 	Main window of EpiPy.
 	"""
-    def __init__(self):
-        super(MainWindow, self).__init__()
-        self.initUI()
+	def __init__(self):
+		super(MainWindow, self).__init__()
+		self.initUI()
 
-    def initUI(self):
-        self.setMinimumSize(QtCore.QSize(640, 480))
-        self.setMaximumSize(QtCore.QSize(1600, 900))
-        self.setWindowTitle('EpiPy')
-        self.initMenuBar()
-        # main widget
-        self.centralwidget = QtGui.QWidget(self)
-        self.mainLayout = QtGui.QHBoxLayout(self.centralwidget)
-        # plot widget (left)
-        self.mainLayout.addWidget(PlotWidget())
-        # sidebar widget (right)
-        self.mainLayout.addWidget(SidebarWidget())
-        self.setCentralWidget(self.centralwidget)
-        self.show()
+	def initUI(self):
+		self.setMinimumSize(QtCore.QSize(640, 480))
+		self.setMaximumSize(QtCore.QSize(1600, 900))
+		self.setWindowTitle('EpiPy')
+		self.initMenuBar()
+		# main widget
+		self.centralwidget = QtGui.QWidget(self)
+		self.mainLayout = QtGui.QHBoxLayout(self.centralwidget)
+		# plot widget (left)
+		self.mainLayout.addWidget(PlotWidget())
+		# sidebar widget (right)
+		self.mainLayout.addWidget(SidebarWidget())
+		self.setCentralWidget(self.centralwidget)
+		self.show()
 
-    def initMenuBar(self):
+	def initMenuBar(self):
 		menubar = self.menuBar()
 		# File
 		fileMenu = menubar.addMenu('&File')
@@ -90,23 +90,23 @@ class MainWindow(QtGui.QMainWindow):
 		fileMenu.addAction(aboutAction)
 		
 	# dummy functions
-    def newFile(self):
-    	print 'open new file'
-    def openFile(self):
-    	print 'open file'
-    def openFolder(self):
-    	print 'open folder'
-    def save(self):
-    	print 'save'
-    def saveAs(self):
-    	print 'save as'
-    def export(self):
-    	print 'export'
-    def exit(self):
-    	print 'exit'
-    def showsidebar(self):
-    	print 'show side bar'
-    def hidesidebar(self):
-    	print 'hide side bar'
-    def about(self):
-    	print 'about'
+	def newFile(self):
+		print 'open new file'
+	def openFile(self):
+		print 'open file'
+	def openFolder(self):
+		print 'open folder'
+	def save(self):
+		print 'save'
+	def saveAs(self):
+		print 'save as'
+	def export(self):
+		print 'export'
+	def exit(self):
+		print 'exit'
+	def showsidebar(self):
+		print 'show side bar'
+	def hidesidebar(self):
+		print 'hide side bar'
+	def about(self):
+		print 'about'
