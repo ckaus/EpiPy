@@ -21,7 +21,7 @@ $ git clone git@github.com:ckaus/EpiPy.git
 
 You can build the documentation using sphinx:
 ```bash
-$ cd docs
+$ cd doc
 $ make html
 ```
 ## Introduction
