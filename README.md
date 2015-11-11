@@ -19,7 +19,7 @@ $ sudo python setup.py install
 $ git clone git@github.com:ckaus/EpiPy.git
 ```
 
-You can build the documentation using sphinx:
+You can build the documentation using [Sphinx][5]:
 ```bash
 $ cd doc
 $ make html
@@ -34,3 +34,4 @@ $ make html
 [2]: http://www.mi.fu-berlin.de/inf/groups/ag-tech/teaching/2015-16_WS/P_19308912_Softwareprojekt_Mobilkommunikation/index.html "Course"
 [3]: http://www.fu-berlin.de/en/index.html "FU Berlin"
 [4]: http://pyqtgraph.org/ "PyQtGraph"
+[5]: http://sphinx-doc.org/ "Sphinx"
