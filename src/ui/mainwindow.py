@@ -21,9 +21,13 @@ class MainWindow(MainWindowBase, MainWindowUI):
     	self.saveAsAction.triggered.connect(self.saveAs)
     	self.exportAction.triggered.connect(self.export)
     	self.exitAction.triggered.connect(self.close)
-    	self.showSidebarAction.triggered.connect(self.showSidebar)
+        self.showFullscreenAction.triggered.connect(self.showFullscreen)
+        self.exitFullscreenAction.triggered.connect(self.exitFullscreen)
+        self.exitFullscreenAction.setVisible(False)
+        self.showSidebarAction.triggered.connect(self.showSidebar)
     	self.hideSidebarAction.triggered.connect(self.hideSidebar)
-    	self.aboutAction.triggered.connect(self.showAbout)
+    	self.showSidebarAction.setVisible(False)
+        self.aboutAction.triggered.connect(self.showAbout)
 
     def openFile(self):
     	print "open file"
@@ -33,14 +37,22 @@ class MainWindow(MainWindowBase, MainWindowUI):
     	print "save as"
     def export(self):
     	print "export"
+    def showFullscreen(self):
+        self.showFullscreenAction.setVisible(False)
+        self.exitFullscreenAction.setVisible(True)
+        self.showFullScreen()
+    def exitFullscreen(self):
+        self.showFullscreenAction.setVisible(True)
+        self.exitFullscreenAction.setVisible(False)
+        self.showNormal()
     def showSidebar(self):
     	self.sidebarGroupBox.setVisible(True)
-    	self.showSidebarAction.setDisabled(True)
-    	self.hideSidebarAction.setEnabled(True)
+    	self.showSidebarAction.setVisible(False)
+    	self.hideSidebarAction.setVisible(True)
     def hideSidebar(self):
     	self.sidebarGroupBox.setVisible(False)
-    	self.showSidebarAction.setDisabled(False)
-    	self.hideSidebarAction.setEnabled(False)
+    	self.showSidebarAction.setVisible(True)
+    	self.hideSidebarAction.setVisible(False)
     def showAbout(self):
     	aboutDialog = AboutDialog(self)
         aboutDialog.show()

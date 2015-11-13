@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>734</width>
+    <width>774</width>
     <height>480</height>
    </rect>
   </property>
@@ -14,111 +14,113 @@
    <string>EpiPy</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
-     <widget class="QWidget" name="plotWidget" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>448</width>
-        <height>0</height>
-       </size>
+     <widget class="QSplitter" name="splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_2"/>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="sidebarGroupBox">
-      <property name="maximumSize">
-       <size>
-        <width>480</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Options</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QComboBox" name="modelComboBox">
-           <item>
-            <property name="text">
-             <string>Choose a model</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>SIR</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>SI</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>IR</string>
-            </property>
-           </item>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="advanceButton">
-           <property name="text">
-            <string>Advance</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="parametetGroupBox">
-         <property name="title">
-          <string>Paramteter</string>
-         </property>
-         <layout class="QFormLayout" name="formLayout_2">
-          <item row="0" column="0">
-           <widget class="QLabel" name="betaLabel">
-            <property name="text">
-             <string>Beta</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QLineEdit" name="betaLineEdit"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="gammaLabel">
-            <property name="text">
-             <string>Gamma</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1">
-           <widget class="QLineEdit" name="gammaLineEdit"/>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="infoGroupBox">
-         <property name="title">
-          <string>Fitting Information</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout">
+      <widget class="QWidget" name="plotWidget" native="true">
+       <property name="minimumSize">
+        <size>
+         <width>488</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="sidebarGroupBox">
+       <property name="maximumSize">
+        <size>
+         <width>480</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Options</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QPlainTextEdit" name="infoTextEdit">
-            <property name="readOnly">
-             <bool>true</bool>
+           <widget class="QComboBox" name="modelComboBox">
+            <item>
+             <property name="text">
+              <string>Choose a model</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SIR</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>SI</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>IR</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="advanceButton">
+            <property name="text">
+             <string>Advance</string>
             </property>
            </widget>
           </item>
          </layout>
-        </widget>
-       </item>
-      </layout>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="parametetGroupBox">
+          <property name="title">
+           <string>Paramteter</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout_2">
+           <item row="0" column="0">
+            <widget class="QLabel" name="betaLabel">
+             <property name="text">
+              <string>Beta</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="betaLineEdit"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="gammaLabel">
+             <property name="text">
+              <string>Gamma</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="gammaLineEdit"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="infoGroupBox">
+          <property name="title">
+           <string>Fitting Information</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout">
+           <item>
+            <widget class="QPlainTextEdit" name="infoTextEdit">
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -128,7 +130,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>734</width>
+     <width>774</width>
      <height>24</height>
     </rect>
    </property>
@@ -149,6 +151,8 @@
     <property name="title">
      <string>View</string>
     </property>
+    <addaction name="showFullscreenAction"/>
+    <addaction name="exitFullscreenAction"/>
     <addaction name="showSidebarAction"/>
     <addaction name="hideSidebarAction"/>
    </widget>
@@ -221,6 +225,21 @@
   <action name="aboutAction">
    <property name="text">
     <string>About EpiPy</string>
+   </property>
+  </action>
+  <action name="showFullscreenAction">
+   <property name="text">
+    <string>Show Fullscreen</string>
+   </property>
+  </action>
+  <action name="actionNormalscreen">
+   <property name="text">
+    <string>Normalscreen</string>
+   </property>
+  </action>
+  <action name="exitFullscreenAction">
+   <property name="text">
+    <string>Exit Fullscreen</string>
    </property>
   </action>
  </widget>
