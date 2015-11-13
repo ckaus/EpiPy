@@ -43,4 +43,4 @@ class MainWindow(MainWindowBase, MainWindowUI):
     	self.hideSidebarAction.setEnabled(False)
     def showAbout(self):
     	aboutDialog = AboutDialog(self)
-    	aboutDialog.show
+        aboutDialog.show()
