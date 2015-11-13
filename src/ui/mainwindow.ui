@@ -105,7 +105,7 @@
        <item>
         <widget class="QGroupBox" name="infoGroupBox">
          <property name="title">
-          <string>Fitting Inforamtion</string>
+          <string>Fitting Information</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
