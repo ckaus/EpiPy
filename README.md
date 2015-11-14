@@ -12,13 +12,13 @@ A Tool for fitting epidemic models.
 ## Start EpiPy
 `$ python src/main.py`
 
-You can build the documentation using [Sphinx][3]:
-```bash
-$ cd doc
-$ make doc/make html
-```
 ## Documentation
-[wiki][1]
+* Project [wiki][1]
+* Source by using [Sphinx][3]:
+  ```bash
+  $ cd doc
+  $ make doc/make html
+  ```
 
 ## License
 [MIT license][1]
