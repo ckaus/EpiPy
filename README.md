@@ -15,10 +15,8 @@ A Tool for fitting epidemic models.
 ## Documentation
 * Project [wiki][1]
 * Source by using [Sphinx][3]:
-  ```bash
-  $ cd doc
-  $ make doc/make html
-  ```
+  * `$ cd doc`
+  * `$ make html`
 
 ## License
 [MIT license][1]
