@@ -110,6 +110,40 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QPushButton" name="saveButton">
+               <property name="toolTip">
+                <string>Save text</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="searchLineEdit">
+               <property name="placeholderText">
+                <string>search</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="clearButton">
+               <property name="toolTip">
+                <string>Clear text</string>
+               </property>
+               <property name="whatsThis">
+                <string>Clear text</string>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
             <widget class="QPlainTextEdit" name="infoTextEdit">
              <property name="readOnly">
               <bool>true</bool>
