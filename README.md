@@ -14,7 +14,7 @@ A Tool for fitting epidemic models.
 
 ## Documentation
 * Project [wiki][1]
-* Source by using [Sphinx][3]:
+* Sources by using [Sphinx][3]:
   * `$ cd doc`
   * `$ make html`
 
