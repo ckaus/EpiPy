@@ -12,6 +12,8 @@ A Tool for fitting epidemic models.
 ## Start EpiPy
 `$ python src/main.py`
 
+## Literatur
+* https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AAAbHY9DkdnRPuZo-vePaO1Fa?dl=0
 ## Documentation
 * Project [wiki][1]
 * Sources by using [Sphinx][3]:
