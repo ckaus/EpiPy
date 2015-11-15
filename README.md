@@ -13,7 +13,8 @@ A Tool for fitting epidemic models.
 `$ python src/main.py`
 
 ## Literatur
-* [Papers][5]
+ * [Papers][5]
+
 ## Documentation
 * Project [wiki][1]
 * Sources by using [Sphinx][3]:
