@@ -12,6 +12,9 @@ A Tool for fitting epidemic models.
 ## Start EpiPy
 `$ python src/main.py`
 
+## Literatur
+ * [Papers][5]
+
 ## Documentation
 * Project [wiki][1]
 * Sources by using [Sphinx][3]:
@@ -25,3 +28,4 @@ A Tool for fitting epidemic models.
 [2]: http://pyqtgraph.org/ "PyQtGraph"
 [3]: http://sphinx-doc.org/ "Sphinx"
 [4]: https://github.com/ckaus/EpiPy/blob/master/LICENSE "MIT license"  
+[5]: https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AAAbHY9DkdnRPuZo-vePaO1Fa?dl=0
