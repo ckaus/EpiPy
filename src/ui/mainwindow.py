@@ -3,7 +3,7 @@
 import os
 from PyQt4 import uic, QtCore, QtGui
 from aboutdialog import AboutDialog
-from utils import logger
+#from utils import logger
 
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
@@ -39,19 +39,19 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.searchLineEdit.returnPressed.connect(self.searchInfoText)
 
     def openFile(self):
-    	logger.info("open file")
+    	# logger.info("open file")
         self.infoTextEdit.appendPlainText(logger.info("open file"))
     
     def save(self):
-    	logger.info("save")
+    	# logger.info("save")
         self.infoTextEdit.appendPlainText(logger.info("save"))
     
     def saveAs(self):
-    	logger.info("save as")
+    	# logger.info("save as")
         self.infoTextEdit.appendPlainText(logger.info("save as"))
     
     def export(self):
-    	logger.info("export")
+    	# logger.info("export")
         self.infoTextEdit.appendPlainText(logger.info("export"))
     
     def showFullscreen(self):
