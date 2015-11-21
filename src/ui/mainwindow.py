@@ -40,19 +40,19 @@ class MainWindow(MainWindowBase, MainWindowUI):
 
     def openFile(self):
     	logger.info("open file")
-        self.infoTextEdit.appendPlainText(logger.info("open file"))
+        self.infoTextEdit.appendPlainText("open file")
     
     def save(self):
     	logger.info("save")
-        self.infoTextEdit.appendPlainText(logger.info("save"))
+        self.infoTextEdit.appendPlainText("save")
     
     def saveAs(self):
     	logger.info("save as")
-        self.infoTextEdit.appendPlainText(logger.info("save as"))
+        self.infoTextEdit.appendPlainText("save as")
     
     def export(self):
     	logger.info("export")
-        self.infoTextEdit.appendPlainText(logger.info("export"))
+        self.infoTextEdit.appendPlainText("export")
     
     def showFullscreen(self):
         self.showFullscreenAction.setVisible(False)
@@ -78,4 +78,4 @@ class MainWindow(MainWindowBase, MainWindowUI):
     	AboutDialog(self).show()
     
     def searchInfoText(self):
-        self.infoTextEdit.appendPlainText(logger.info("search"))
+        self.infoTextEdit.appendPlainText("search")

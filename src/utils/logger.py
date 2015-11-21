@@ -20,17 +20,11 @@ def error(msg):
 	print '[%s%s%s] class:%s in %s() on line %s\n\tMessage: %s'\
 	% (_Color.ERROR, 'ERROR', _Color.NORMAL, clasz,func, line, msg)
 	
-	return '[%s] class:%s in %s() on line %s\n\tMessage: %s'\
-	% ('ERROR', clasz, func, line, msg)
-
 def info(msg):
 	print '[%s%s%s] %s' % (_Color.INFO, 'INFO', _Color.NORMAL, msg)
-	return '[%s] %s' % ('INFO', msg)
 
 def success(msg):
 	print '[%s%s%s] %s' % (_Color.SUCCESS, 'SUCCESS', _Color.NORMAL, msg)
-	return '[%s%s%s] %s' % ('SUCCESS', msg)
 
 def warning(msg):
 	print '[%s%s%s] %s' % (_Color.WARNING, 'WARNING', _Color.NORMAL,msg)
-	return '[%s%s%s] %s' % ('WARNING', msg)
