@@ -60,29 +60,39 @@ def eq_system(population, beta, gamma, t):
 
 # SIR = spi.odeint(eq_system, population, t_interval)
 
+"""
 i = 0
-
-# error function y - y^
-
-def sumerror_sir(b, g):
-    y = spi.odeint(eq_system, population, t_interval, (b, g))  # returns np ndarray
-    # convert to pandas dataframe = y2
-    y2 = pd.DataFrame(np.float_(y[0:,0:]), index=np.arange(t_start, t_end), columns=['S','I','R'])
-    sqd_error = (y2 - dataframe)**2
-    print sqd_error
-    return sqd_error['I'].sum()
-
-# print type(error_model(eq_system))
-print sumerror_sir(2, 0.3)
 
 # first 3 records
 temp = dataframe[i:i+3]
+"""
 
 
-#result = spo.minimize(sumerror_sir, np.array([0.5, 1]), args=(0.5))
-#print result
+# error function y - y^
+def sumerror_sir(x):
+    beta = x[0]
+    gamma = x[1]
+    y = spi.odeint(eq_system, population, t_interval, (beta, gamma))  # returns np ndarray
+    # convert to pandas dataframe = y2
+    y2 = pd.DataFrame(np.float_(y[0:,0:]), index=np.arange(t_start, t_end), columns=['S','I','R'])
+    sqd_error = (y2 - dataframe)**2
+    #print sqd_error
+    return sqd_error['I'].sum()
 
-i = i+3
+# print type(error_model(eq_system))
+# print sumerror_sir([2, 0.3])
+
+
+x0 = [beta, gamma]
+
+# optimize function: minimizes the sum of squared errors 
+# result = the optimised [beta, gamma] values
+result = spo.minimize(sumerror_sir, x0, method='nelder-mead').x
+print result
+
+# minimum error
+print sumerror_sir(result)
+
 
 """
 #Splitting out the curves for S, I and R from each other, in case they need
