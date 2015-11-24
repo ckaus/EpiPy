@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import sipconfig
+
 import sys
 from PyQt4 import QtCore, QtGui, uic
 from ui import MainWindow
