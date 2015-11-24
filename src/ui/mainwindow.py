@@ -5,6 +5,10 @@ from PyQt4 import uic, QtCore, QtGui
 from aboutdialog import AboutDialog
 from utils import logger
 
+from algorithm import model
+import pyqtgraph as pg
+import numpy as np
+
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
 MainWindowUI, MainWindowBase = uic.loadUiType(
@@ -14,7 +18,17 @@ class MainWindow(MainWindowBase, MainWindowUI):
     def __init__(self):
     	MainWindowBase.__init__(self)
     	self.setupUi(self)
-    	self.showSidebar()
+    	
+        # ====plot==========
+        # plot
+        pw = pg.PlotWidget(title="SIR Model")
+        pw.plot(y=model.compute(model.sir)[:,1],pen="k" ,symbol='o')
+        pw.setWindowTitle('pyqtgraph example: customPlot')
+        pw.setBackground(QtGui.QColor(255, 255, 255))
+        self.splitter.insertWidget(0,pw)
+        # ==================
+        
+        self.showSidebar()
         # menu
         # connect menu components with functions
         self.openFileAction.triggered.connect(self.openFile)
@@ -37,7 +51,8 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.clearButton.clicked.connect(self.infoTextEdit.clear)
         self.saveButton.setIcon(QtGui.QIcon("../resources/save.png"))
         self.searchLineEdit.returnPressed.connect(self.searchInfoText)
-
+        
+        
     def openFile(self):
     	logger.info("open file")
         self.infoTextEdit.appendPlainText("open file")

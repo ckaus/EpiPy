@@ -5,7 +5,7 @@ A Tool for fitting epidemic models.
  * Python 2.7.9
  * PyQt 4
  * [PyQtGraph][2] 0.9.10
-
+ * SciPy >= 0.14.0-2
 ## Installation
 `$ git clone git@github.com:ckaus/EpiPy.git`
 
