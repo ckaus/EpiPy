@@ -48,13 +48,5 @@ def compute(model, time=np.arange(0.0, 71.0, 1)):
     return spi.odeint(model, (S0, I0, 0.0), time)
 
 if __name__ == '__main__':
-    sum_target = 0.3
-    # build sir model
     sir_model = compute(sir,np.arange(0.0,len(dataset),1))
-    # iterate through dataset and calculate the difference between
-    # expected Infected value and dataset value at position i
-    for i in range(len(dataset)):
-        sum_of_sq = math.pow(dataset[i] - sir_model[i,1],2)
-        if sum_of_sq > sum_target:    
-            # optimze infected value of sir model
-            print sum_of_sq
+    print sir_model
