@@ -32,16 +32,3 @@ def compute(model, time=np.arange(0.0, 71.0, 1)):
     S0=1-1e-6 # 0.999999
     I0=1e-6 # -3.28171817154
     return spi.odeint(model, (S0, I0, 0.0), time)
-
-
-# RES = compute(sir)
-
-# #Ploting
-# pl.plot(RES[:,0], '-bs', label='Susceptibles')  # I change -g to g--  # RES[:,0], '-g',
-# pl.plot(RES[:,2], '-g^', label='Recovereds')  # RES[:,2], '-k',
-# pl.plot(RES[:,1], '-ro', label='Infectious')
-# pl.legend(loc=0)
-# pl.title('SIR epidemic without births or deaths')
-# pl.xlabel('Time')
-# pl.ylabel('Susceptibles, Recovereds, and Infectious')
-# pl.show()
