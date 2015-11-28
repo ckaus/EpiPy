@@ -20,6 +20,7 @@ import pandas as pd
 import scipy.integrate as spi
 import scipy.optimize as spo
 # import csv
+import pylab
 
 
 # Load data using csv
@@ -36,12 +37,14 @@ print dataframe.head()
 print dataframe.tail()
 
 # Parameter Values
-S0 = 0.99999
-I0 = 0.00001
+
+S0 = 0.999999
+I0 = 0.000001
 R0 = 0.0
 population = (S0, I0, R0)
-beta = 0.9
-gamma = 0.5
+
+beta = 0.5
+gamma = 0.1
 t_end = len(dataframe.index) + 1
 t_start = 1
 t_step = 1  # how to decide how much step????
@@ -58,7 +61,7 @@ def eq_system(population, beta, gamma, t):
     Eqs[2] = gamma*population[1]
     return Eqs
 
-# SIR = spi.odeint(eq_system, population, t_interval)
+#SIR = spi.odeint(eq_system, population, t_interval (0.5), (0,1))
 
 """
 i = 0
@@ -76,49 +79,40 @@ def sumerror_sir(x):
     # convert to pandas dataframe = y2
     y2 = pd.DataFrame(np.float_(y[0:,0:]), index=np.arange(t_start, t_end), columns=['S','I','R'])
     sqd_error = (y2 - dataframe)**2
-    #print sqd_error
     return sqd_error['I'].sum()
 
 # print type(error_model(eq_system))
 # print sumerror_sir([2, 0.3])
 
+"""
+def con(x):
+	return
 
-x0 = [beta, gamma]
+cons = {'type':'ineq', 'fun': con}
+"""
 
-# optimize function: minimizes the sum of squared errors 
+
+x0 = np.array([beta, gamma])
+
+# impt for positive results
+bnds = tuple((0,100) for x in x0)
+
+# optimize function: minimizes the sum of squared errors
 # result = the optimised [beta, gamma] values
-result = spo.minimize(sumerror_sir, x0, method='nelder-mead').x
+result = spo.minimize(sumerror_sir, x0, method='slsqp', bounds=bnds).x
 print result
 
 # minimum error
 print sumerror_sir(result)
 
+# Plot the result
+# data
+pylab.plot(t_interval, dataframe['I'])
+# fitted graph
+fit = spi.odeint(eq_system, population, t_interval, (result[0], result[1]))
+fitdf = pd.DataFrame(np.float_(fit[0:,0:]), index=np.arange(t_start, t_end), columns=['S','I','R'])
+# print fitdf
+pylab.plot(t_interval, fitdf['I'])
 
-"""
-#Splitting out the curves for S, I and R from each other, in case they need
-#to be used seperately
-S=(SIR[:,0])
-I=(SIR[:,1])
-R=(SIR[:,2])
+pylab.show()
 
-#Create a new array of the same length to be used as the x-axis for a plot
-x=arange(len(SIR),dtype=float)
-
-#Scale x-axis array by the step size
-for i in x:
-    x[i]=(x[i]*t_step)
-
-#Stack S, I and R with the x-axis
-SIR_plot= vstack([S,I,R,x])
-
-#Graph!
-fig= figure()
-ax = fig.add_subplot(111)
-plot(SIR_plot[3],SIR_plot[0],'g--',SIR_plot[3],SIR_plot[1],'r-',SIR_plot[3],SIR_plot[2],'-.b',linewidth=3)
-xlabel("Time (days)")
-ylabel("Percent of Population")
-title("Zombie SIR Epidemic")
-grid(True)
-legend(("Survivors", "Zombies", "Dead"), shadow=True, fancybox=True)
-show()
-"""
