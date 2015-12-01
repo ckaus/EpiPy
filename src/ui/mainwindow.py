@@ -3,9 +3,8 @@
 import os
 from PyQt4 import uic, QtCore, QtGui
 from aboutdialog import AboutDialog
-# from utils import logger
+from algorithm import sir_model
 
-from algorithm import model
 import pyqtgraph as pg
 import numpy as np
 
@@ -22,7 +21,12 @@ class MainWindow(MainWindowBase, MainWindowUI):
         # ====plot==========
         # plot
         pw = pg.PlotWidget(title="SIR Model")
-        pw.plot(y=model.compute(model.sir)[:,1],pen="k" ,symbol='o')
+        S0=1-1e-6 # 0.999999
+        I0=1e-6 # -3.28171817154
+        R0=0
+        time = np.arange(0.0,71,1)
+        pw.plot(y=sir_model.build((S0,I0,R0), sir_model.simple, time)[:,1], 
+            pen="k" ,symbol='o')
         pw.setWindowTitle('pyqtgraph example: customPlot')
         pw.setBackground(QtGui.QColor(255, 255, 255))
         self.splitter.insertWidget(0,pw)
