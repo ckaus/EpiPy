@@ -94,7 +94,7 @@ def build(sir_values, model, time):
 #     pl.show()
 
 #     # =====================
-#     # with_birts_deaths with t = 60 years
+#     # with_births_deaths with t = 60 years
 #     # =====================
 #     S0=0.1
 #     I0=1e-4
