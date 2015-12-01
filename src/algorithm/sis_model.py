@@ -11,6 +11,8 @@ def simple(sis_values, time):
     I = initial number of infected
 
     time = observe time
+    https://me.ucsb.edu/~moehlis/APC514/tutorials/tutorial_seasonal/node2.html
+    gamma = alpha
     """
     s = sis_values[0] 
     i = sis_values[1]

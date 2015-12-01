@@ -13,6 +13,8 @@ def simple(seir_values,time):
     I = initial number of infected
     
     time = observe time
+    https://me.ucsb.edu/~moehlis/APC514/tutorials/tutorial_seasonal/node4.html
+    sigma=alpha
     """
 	s = seir_values[0]
 	e = seir_values[1]
@@ -26,8 +28,8 @@ def simple(seir_values,time):
 
 	seir=np.zeros((3))    
 	seir[0] = mu - beta * s * i - mu * s
-	seir[1] = beta * s * i - sigma * e - mu * e
-	seir[2] = sigma * e - gamma * i - mu * i
+	seir[1] = beta * s * i - ( mu + sigma ) *  e
+	seir[2] = sigma * e - ( mu + gamma ) * i
 	return seir
 
 def build(seir_values, model, time):
