@@ -10,3 +10,6 @@ def ode(N, t, beta, gamma, k):
     Eqs[2] = gamma*N[1]
     return Eqs
 
+## define initial parameters
+def param():
+    return [0.75, 0.75]
