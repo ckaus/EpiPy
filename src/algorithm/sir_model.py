@@ -26,7 +26,7 @@ def simple(sir_values, time):
     res[2] = gamma * i
     return res
 
-def with_birts_deaths(sir_values, time):
+def with_births_deaths(sir_values, time):
     """
     sir_values [S,I,R], where
     S = initial number of suspectable
@@ -100,7 +100,7 @@ def build(sir_values, model, time):
 #     I0=1e-4
 #     R0=1-S0-I0
 #     time = np.arange(0.0,60*365,1) 
-#     sir_model = build((S0,I0,R0), with_birts_deaths, time)
+#     sir_model = build((S0,I0,R0), with_births_deaths, time)
 #     # note: y axis is for 60 years!
 #     pl.plot(time,sir_model[:,1])
 #     pl.xlabel('Time')
