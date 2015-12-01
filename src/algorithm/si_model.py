@@ -28,7 +28,5 @@ S = Lambda('S', lambda SI=SI: SI[0])
 I = Lambda('I', lambda SI=SI: SI[1])
 
 # data likelihood
-# Poisson = http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.poisson.html
-#           https://en.wikipedia.org/wiki/Poisson_distribution
 A = Poisson('A', mu=S, value=susceptible_data, observed=True)
 B = Poisson('B', mu=I, value=infected_data, observed=True)

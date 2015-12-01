@@ -3,7 +3,7 @@
 import os
 from PyQt4 import uic, QtCore, QtGui
 from aboutdialog import AboutDialog
-from utils import logger
+# from utils import logger
 
 from algorithm import model
 import pyqtgraph as pg

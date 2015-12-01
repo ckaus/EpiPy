@@ -2,51 +2,123 @@
 
 import numpy as np
 import scipy.integrate as spi
-import math
+import pylab as pl
 
-# only infected values
-dataset = [1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 4, 5, 5,
-            6, 7, 7, 7, 8, 8, 9, 9, 9, 9, 10, 10, 
-            13, 14, 13, 10, 10, 10, 11, 10, 10, 10, 11, 
-            10, 10, 10, 8, 8, 7, 8, 10, 9, 11, 11, 12, 12, 
-            14, 14, 12, 13, 17, 19, 17, 16, 17, 18, 20, 19, 16, 
-            16, 15, 14, 15, 15, 16, 17, 17, 17, 18, 17, 17, 18, 
-            19, 21, 21, 23, 26, 26, 25, 26, 31, 31, 30, 36, 39, 
-            48, 48, 51, 57, 56, 61, 67, 68, 66, 67, 67, 66, 64, 60, 
-            57, 55, 56, 57, 53, 52, 50, 49, 49, 48, 45, 44, 43, 44, 
-            43, 40, 37, 39, 40, 41, 41, 38, 34, 35, 33, 32, 32, 29, 28, 
-            11, 12, 12, 12, 12, 12, 12, 13, 13, 12, 12, 10, 10, 11, 9, 10, 
-            9, 8, 6, 6, 6, 6, 4, 3, 3, 4, 4, 4, 1, 1, 0]
-
-beta=1.4247
-gamma=0.14286
-
-def sir(parameters, time):
-    """"
+def simple(sir_values, time):
+    """
+    sir_values [S,I,R], where
+    S = initial number of suspectable
+    I = initial number of infected
+    R = initial number of recovered
     
-    This function generates the sir model.
-    
-    :param parameters: a array where [0] = S, [1] = I, [2] = default 
-    :param time: a sequence of time points for which to solve for parameters.
-    :returns: array of points for S, I, R
+    time = observe time
     """
-    sir_v = np.zeros((3))
-    sir_v[0] = - beta * parameters[0] * parameters[1]
-    sir_v[1] = beta * parameters[0] * parameters[1] - gamma * parameters[1]
-    sir_v[2] = gamma * parameters[1]
-    return sir_v
+    s = sir_values[0]
+    i = sir_values[1]
+    r = sir_values[2]
 
-def compute(model, time=np.arange(0.0, 71.0, 1)):
+    beta=1.4247 # transmission rate between S and I + probability of transmission
+    gamma=0.14286 # recovery rate
+
+    res = np.zeros((3))
+    res[0] = - beta * s * i
+    res[1] = beta * s * i - gamma * i
+    res[2] = gamma * i
+    return res
+
+def with_birts_deaths(sir_values, time):
     """
-    :param model: the basic model
-    :param time: time range of basic model
-    :returns: (x,y) for S, I, R
+    sir_values [S,I,R], where
+    S = initial number of suspectable
+    I = initial number of infected
+    R = initial number of recovered
+    
+    time = observe time
     """
+    s = sir_values[0]
+    i = sir_values[1]
+    r = sir_values[2]
+
+    mu=1/(70*365.0) # death rate, birth rate
+    beta=520/365.0 # transmission rate between S and I + probability of transmission
+    gamma=1/7.0 # recovery rate
+    
+    res = np.zeros((3))
+    res[0] = mu - beta * s * i - mu * s
+    res[1] = beta * s * i - gamma * i - mu * i
+    res[2] = gamma * i - mu * r
+    return res
+
+def disease_induced_mortality(sir_values, time):
+    """
+    sir_values [S,I,R], where
+    S = initial number or density of susceptible individuals
+    I = initial number or density of infectious individuals
+    R = sum of recovered
+
+    time = observe time
+    """
+    s = sir_values[0]
+    i = sir_values[1]
+    r = sir_values[2]
+
+    rho=0.5 # mortality probability before recovering.
+    mu=1/(70*365.0) # death rate from natural causes
+    beta=520/365.0 # transmission rate between S and I + probability of transmission
+    gamma=1/7.0 # recovery rate
+    
+    res=np.zeros((3))
+    res[0] = mu - beta * s * i - mu * s
+    res[1] = beta * s * i - (gamma + mu) * i/(1-rho)
+    res[2] = gamma * i - mu * r
+    return res
+
+def build(sir_values, model, time):
     # initial values
-    S0=1-1e-6 # 0.999999
-    I0=1e-6 # -3.28171817154
-    return spi.odeint(model, (S0, I0, 0.0), time)
+    S0 = sir_values[0]
+    I0 = sir_values[1]
+    R0 = sir_values[2]
+    return spi.odeint(model, (S0, I0, R0), time)
 
-if __name__ == '__main__':
-    sir_model = compute(sir,np.arange(0.0,len(dataset),1))
-    print sir_model
+# if __name__ == '__main__':
+#     # =====================
+#     # simple sir with t = 71 days
+#     # =====================
+#     S0=1-1e-6 # 0.999999
+#     I0=1e-6 # -3.28171817154
+#     R0=0
+#     time = np.arange(0.0,71,1)
+#     sir_model = build((S0,I0,R0), simple, time)
+#     pl.plot(time,sir_model[:,1])
+#     pl.xlabel('Time')
+#     pl.show()
+
+#     # =====================
+#     # with_birts_deaths with t = 60 years
+#     # =====================
+#     S0=0.1
+#     I0=1e-4
+#     R0=1-S0-I0
+#     time = np.arange(0.0,60*365,1) 
+#     sir_model = build((S0,I0,R0), with_birts_deaths, time)
+#     # note: y axis is for 60 years!
+#     pl.plot(time,sir_model[:,1])
+#     pl.xlabel('Time')
+#     pl.show()
+    
+    # =====================
+    # disease_induced_mortality
+    # =====================
+    # S0=0.2
+    # I0=1e-4
+    # R0=1-S0-I0
+    # INP = (S0,I0,R0)
+    # time = np.arange(0.0, 1e5, 1.0)
+    # sir_model = build((S0,I0,R0), disease_induced_mortality, time)
+
+    # pl.plot(sir_model[:,2], '-k', label='Recovereds')
+    # pl.plot(sum((sir_model[:,0],sir_model[:,1],sir_model[:,2])), '--k', label='Total Population')
+    # pl.xlabel('Time')
+    # pl.legend(loc=0)
+    # pl.ylabel('Recovereds\nTotal Population')
+    # pl.show()
