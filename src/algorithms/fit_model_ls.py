@@ -3,36 +3,52 @@ from scipy import integrate
 import pylab as py
 import numpy as np
 import csv
-import sir
+from model import *
 
 class LeastSquaresFit:
 
     # Set initial population conditions
-    def setInitPop(self):
-        I0 = self.dataI[0]*self.k
-        S0 = 1 - I0
-        N = [S0, I0, 0]
+    def getInitPop(self):
+        I = self.dataI[0]
+        # select the right model
+        if self.model=="sir":
+            N = sir.pop(I,self.k)
+        elif self.model=="seir":
+            N = seir.pop(I,self.k)
+        else:
+            #raise NameError(self.model, 'is not a supported model')
+            print ('ERROR: "' + self.model + '" is not a supported model')
+            exit(-1)
         return N
         
     def getInitParam(self):
         if self.model=="sir":
             param = sir.param()
+        if self.model=="seir":
+            param = seir.param()
         return param
+
+    def setODE(self):
+        if self.model=="sir":
+            self.ode = sir.ode
+        if self.model=="seir":
+            self.ode = seir.ode
 
     def __init__(self, model, data):
     # number of training data = n
         self.n = 15
+        self.model = model
         self.timetotal = data['Time']
         self.timetrain = self.timetotal[:self.n]
         self.originaldataI = data['I']
         self.dataI = self.originaldataI[:self.n]
         self.k = 1.0/sum(self.dataI)
-        self.N0 = self.setInitPop()
-        self.model = model
+        self.N0 = self.getInitPop()
     
         # Set initial parameter values
         self.paramInit = self.getInitParam()
         self.paramInit.append(self.k)
+        self.setODE()
 
 
     # Scale out to original scale
@@ -46,13 +62,9 @@ class LeastSquaresFit:
     # Get the sum of squared errors of I (for least squares method)
     def SSE(self, model):
 
-        # select the right model
-        if model=="sir":
-            ode = sir.ode
-
         def result(x):
 
-            Nt = integrate.odeint(ode, self.N0, self.timetrain, args=tuple(x))
+            Nt = integrate.odeint(self.ode, self.N0, self.timetrain, args=tuple(x))
 
             INt = [row[1] for row in Nt]
             INt = np.divide(INt, self.k)
@@ -80,9 +92,10 @@ class LeastSquaresFit:
     # main
     def run(self):
         param = self.fit(self.paramInit)
+        print param
 
         # Get the fitted model
-        Nt = integrate.odeint(sir.ode, self.N0, self.timetotal, args=tuple(param))
+        Nt = integrate.odeint(self.ode, self.N0, self.timetotal, args=tuple(param))
         Nt = self.scale_out(Nt)
 
         # Get the second column of data corresponding to I
@@ -97,7 +110,7 @@ class LeastSquaresFit:
 
 if __name__ == "__main__":
     
-    model = "sir"
+    model = "seir"
     data = {"Time": [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140, 147, 154, 161],
             "I": [ 113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4400, 3570, 2300, 1900, 2200, 1700, 1170, 830, 750, 770, 520, 550, 380 ]}
     

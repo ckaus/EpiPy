@@ -13,3 +13,9 @@ def ode(N, t, beta, gamma, k):
 ## define initial parameters
 def param():
     return [0.75, 0.75]
+    
+def pop(I, k):
+    I0 = I*k
+    S0 = 1 - I0
+    N = [S0, I0, 0]
+    return N
