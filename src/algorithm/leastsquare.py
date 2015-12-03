@@ -43,6 +43,7 @@ class Leastsquare(object):
 		"""
 		This function fits a epidemic data set with a model.
 		"""
+		
 		# Set initial parameter values
 		param_init = self.model.param_init()
 		param_init.append(self.k)
