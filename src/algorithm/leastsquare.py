@@ -43,7 +43,7 @@ class Leastsquare(object):
 		"""
 		This function fits a epidemic data set with a model.
 		"""
-		
+
 		# Set initial parameter values
 		param_init = self.model.param_init()
 		param_init.append(self.k)
@@ -63,6 +63,7 @@ class Leastsquare(object):
 		:param model: a epidemic model
 		:returns: a measure of the discrepancy between the data and an estimation model
 		"""
+		
 		def result(x):
 			Nt = integrate.odeint(self.ode, self.N0, self.time_train, args=tuple(x))
 			INt = [row[1] for row in Nt]
