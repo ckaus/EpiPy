@@ -5,24 +5,33 @@ from scipy import integrate
 import pylab as py
 import numpy as np
 
-class Leastsquare:
+class Leastsquare(object):
 	def __init__(self, model, data, n):
-		if 'Time' not in data:
-			print 'ERROR: data field Time not found.'
-			return 0
-		elif 'Infected' not in data:
-			print 'ERROR: data field Infected not found.'
-			return 0
-		elif len(data['Time']) != len(data['Infected']):
-			print 'ERROR: data field Time not matching data field Infected'
-			return 0
+		"""
+		This class fit a given model by using least square method.
+		
+		:param model: a epidemic model
+		:param data: the data set for fitting
+		:type data: the *Dictionary* contains, Time and an epidemic data set
+		:param n: ??? count of train data set ???
+		:type n: int 
+		:returns: a *Leastsquare* instance
+		:raises: *ValueError* if Time or epidemic data set values not matching
+		"""
+
+		if "Time" not in data:
+			raise ValueError("'Time' data not found")
+		if "Infected" not in data:
+			raise ValueError("'Infected' data not found")
+		if len(data["Time"]) != len(data["Infected"]):
+			raise ValueError("'Time' data not matching 'Infected' data")
 		
 		self.model = model
 		self.data = data
-		self.ode = model.ode
-		self.time_total = self.data['Time']
-		self.time_train = self.data['Time'][:n]
-		self.data_infected = self.data['Infected']
+		self.ode = model.simple
+		self.time_total = self.data["Time"]
+		self.time_train = self.data["Time"][:n]
+		self.data_infected = self.data["Infected"]
 		# train data
 		self.data_infected_train = self.data_infected[:n]
 		# normalize train data
@@ -31,11 +40,14 @@ class Leastsquare:
 		self.N0 = self.model.pop(self.data_infected_train[0], self.k)
 		
 	def run(self):
+		"""
+		This function fits a epidemic data set with a model.
+		"""
 		# Set initial parameter values
 		param_init = self.model.param_init()
 		param_init.append(self.k)
 		# fitting
-		param = minimize(self.sse(self.model), param_init, method='nelder-mead').x
+		param = minimize(self.sse(self.model), param_init, method="nelder-mead").x
 		# get the fitted model
 		Nt = integrate.odeint(self.ode, self.N0, self.time_total, args=tuple(param))
 		# scale out
@@ -44,7 +56,12 @@ class Leastsquare:
 		return [row[1] for row in Nt]
 	
 	def sse(self, model):
-		''' (S) of (S)quare (E)rror'''
+		"""
+		This function calculate the squared errors of prediction.
+
+		:param model: a epidemic model
+		:returns: a measure of the discrepancy between the data and an estimation model
+		"""
 		def result(x):
 			Nt = integrate.odeint(self.ode, self.N0, self.time_train, args=tuple(x))
 			INt = [row[1] for row in Nt]
@@ -53,17 +70,3 @@ class Leastsquare:
 			# square the difference
 			return np.dot(difference, difference)
 		return result
-
-# example
-import sir_model
-data = {'Time': [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140, 147, 154, 161],
-		'Infected': [ 113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4400, 3570, 2300, 1900, 2200, 1700, 1170, 830, 750, 770, 520, 550, 380 ]}    
-
-lsq = Leastsquare(sir_model, data, 15)
-result = lsq.run()
-
-# Plot data and fit
-py.clf()
-py.plot(lsq.time_total, lsq.data_infected, 'o')
-py.plot(lsq.time_total, result)
-py.show()

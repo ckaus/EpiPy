@@ -1,4 +1,4 @@
-## SI model
+# -*- coding: utf-8 -*-
 
 from pymc import *
 from numpy import *

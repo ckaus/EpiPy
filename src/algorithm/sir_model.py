@@ -4,7 +4,7 @@ import numpy as np
 import scipy.integrate as spi
 import pylab as pl
 
-def simple(sir_values, time):
+def simple(sir_values, time, beta, gamma, k):
     """
     sir_values [S,I,R], where
     S = initial number of suspectable
@@ -17,14 +17,20 @@ def simple(sir_values, time):
     i = sir_values[1]
     r = sir_values[2]
 
-    beta=1.4247 # transmission rate between S and I + probability of transmission
-    gamma=0.14286 # recovery rate
-
     res = np.zeros((3))
     res[0] = - beta * s * i
     res[1] = beta * s * i - gamma * i
     res[2] = gamma * i
     return res
+
+def pop(I, k):
+    I0 = I*k
+    S0 = 1 - I0
+    N = [S0, I0, 0]
+    return N
+
+def param_init():
+    return [0.75, 0.75] 
 
 def with_births_deaths(sir_values, time):
     """
