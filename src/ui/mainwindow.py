@@ -3,7 +3,6 @@
 import os
 from PyQt4 import uic, QtCore, QtGui
 from aboutdialog import AboutDialog
-from algorithm import sir_model
 
 import pyqtgraph as pg
 import numpy as np
@@ -26,8 +25,8 @@ class MainWindow(MainWindowBase, MainWindowUI):
         ls_data = csvmanager.read("data1.csv")
         lsq = Leastsquare(model, ls_data, 60)
         result = lsq.run()
-        pw.plot(y=lsq.data_infected, pen="k")
-        pw.plot(y=result, symbol='o')
+        pw.plot(y=lsq.data_infected, symbol='o')
+        pw.plot(y=result, pen="k")
         pw.setWindowTitle('pyqtgraph example: customPlot')
         pw.setBackground(QtGui.QColor(255, 255, 255))
         self.splitter.insertWidget(0,pw)
