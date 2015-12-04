@@ -3,17 +3,14 @@
 """This file contains fitting methods."""
 
 import pylab as pl
+from utils import csvmanager
 
 def leastquare_example():
 	"""Example for using leastsquare method"""
 	
-	from leastsquare import Leastsquare
-	import sir_model as model
-
-	ls_data = {"Time": [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140, 147, 154, 161],
-	"Infected": [ 113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4400, 3570, 2300, 1900, 2200, 1700, 1170, 830, 750, 770, 520, 550, 380 ]}    
-
-	lsq = Leastsquare(model, ls_data, 15)
+	from algorithm import Leastsquare, sir_model as model
+	ls_data = csvmanager.read("data1.csv")
+	lsq = Leastsquare(model, ls_data, 60)
 	result = lsq.run()
 
 	# Plot data and fit

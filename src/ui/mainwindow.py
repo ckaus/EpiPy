@@ -7,6 +7,8 @@ from algorithm import sir_model
 
 import pyqtgraph as pg
 import numpy as np
+from algorithm import Leastsquare, sir_model as model
+from utils import csvmanager
 
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
@@ -21,12 +23,11 @@ class MainWindow(MainWindowBase, MainWindowUI):
         # ====plot==========
         # plot
         pw = pg.PlotWidget(title="SIR Model")
-        S0=1-1e-6 # 0.999999
-        I0=1e-6 # -3.28171817154
-        R0=0
-        time = np.arange(0.0,71,1)
-        pw.plot(y=sir_model.build((S0,I0,R0), sir_model.simple, time)[:,1], 
-            pen="k" ,symbol='o')
+        ls_data = csvmanager.read("data1.csv")
+        lsq = Leastsquare(model, ls_data, 60)
+        result = lsq.run()
+        pw.plot(y=lsq.data_infected, pen="k")
+        pw.plot(y=result, symbol='o')
         pw.setWindowTitle('pyqtgraph example: customPlot')
         pw.setBackground(QtGui.QColor(255, 255, 255))
         self.splitter.insertWidget(0,pw)
