@@ -24,7 +24,7 @@ def mcmc_example():
 	
 	from pymc import MCMC, AdaptiveMetropolis
 	# load the model
-	import si_model as model
+	from algorithm import si_model as model
 	reload(model)  # this reload streamlines interactive debugging
 
 	# fit the model with mcmc    
