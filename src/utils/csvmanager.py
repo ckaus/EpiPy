@@ -33,7 +33,7 @@ def read(file_name='', seperator=";", column=[]):
 		reader = csv.reader(file, delimiter=seperator)
 		header = reader.next()
 	
-		if len(column) > 0: # read only given column
+		if len(column) > 0: # read only given column(s)
 			# header
 			for c in column:
 				if c in header:
@@ -42,7 +42,7 @@ def read(file_name='', seperator=";", column=[]):
 			for row in reader:
 				for c in column:
 					result[c].append(row[header.index(c)])
-		else: # read all column
+		else: # read all column(s)
 			# header
 			for h in header:
 				result[h] = []
