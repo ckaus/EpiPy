@@ -33,9 +33,9 @@ class Leastsquare(object):
 		self.time_train = self.data["Time"][:n]
 		self.data_infected = self.data["Infected"]
 		# train data
+		self.data_infected_train = []
 		if isinstance(self.data_infected[0],str):
 			# casting to float, because csv data are strings
-			self.data_infected_train = []
 			for i in range(0,n):
 				self.data_infected_train.append(float(self.data_infected[i]))
 		else:
