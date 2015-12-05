@@ -7,35 +7,42 @@ import logger
 current_dir =  os.path.abspath(os.path.dirname(__file__))
 resources_dir = os.path.abspath(current_dir + "/../../resources/data")
 
-def read(file_name, seperator=";", col=[]):
+def read(file_name='', seperator=";", column=[]):
 	"""
 	This function reads a csv file.
 	
 	:param file_name: a file name
 	:param type: str
-	:param: col: readable coloumn(s)
+	:param seperator: a delimiter
+	:param type: str
+	:param: column: readable column(s)
 	:param type: list
 
 	:returns: the content as *Dictionary*
 	:raises: *Error* if csv file cannot read
+
+	Example:
+	data = csvmanager.read(
+			file_name='liberia_data/2014-06-16.csv',
+			seperator=',',
+			column=['National','Date'])
 	"""
-	
-	file = open(resources_dir+"/"+file_name, "rb")
-	reader = csv.reader(file, delimiter=seperator)
 	result = {}
-	header = reader.next()
-	
 	try:
-		if len(col) > 0: # read only given coloumns
+		file = open(resources_dir+"/"+file_name, "rb")
+		reader = csv.reader(file, delimiter=seperator)
+		header = reader.next()
+	
+		if len(column) > 0: # read only given column
 			# header
-			for c in col:
+			for c in column:
 				if c in header:
 					result[c] = []
 			# content
 			for row in reader:
-				for c in col:
+				for c in column:
 					result[c].append(row[header.index(c)])
-		else: # read all coloumns
+		else: # read all column
 			# header
 			for h in header:
 				result[h] = []
