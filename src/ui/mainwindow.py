@@ -6,7 +6,8 @@ from aboutdialog import AboutDialog
 
 import pyqtgraph as pg
 import numpy as np
-from algorithm import Leastsquare, sir_model as model
+from algorithm import Leastsquare
+from model import sir
 from utils import csvmanager
 
 filePath = os.path.abspath(__file__)
@@ -22,8 +23,8 @@ class MainWindow(MainWindowBase, MainWindowUI):
         # ====plot==========
         # plot
         pw = pg.PlotWidget(title="SIR Model")
-        ls_data = csvmanager.read("data1.csv")
-        lsq = Leastsquare(model, ls_data, 60)
+        ls_data = csvmanager.read(file_name="data1.csv")
+        lsq = Leastsquare(sir, ls_data, 60)
         result = lsq.run()
         pw.plot(y=lsq.data_infected, symbol='o')
         pw.plot(y=result, pen="k")

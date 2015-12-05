@@ -23,6 +23,8 @@ def read(file_name='', seperator=";", column=[]):
 
 	Example:
 	
+	from utils import csvmanager
+	
 	data = csvmanager.read(
 			file_name='liberia_data/2014-06-16.csv',
 			seperator=',',

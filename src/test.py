@@ -4,13 +4,15 @@
 
 import pylab as pl
 from utils import csvmanager
+from algorithm import Leastsquare
+from model import sir, seir, si
+from pymc import MCMC, AdaptiveMetropolis
 
-def leastquare_example():
-	"""Example for using leastsquare method"""
 	
-	from algorithm import Leastsquare, sir_model as model
-	ls_data = csvmanager.read("data1.csv")
-	lsq = Leastsquare(model, ls_data, 60)
+def leastquare_example(model, file_name, n=60):
+	"""Example for using leastsquare method"""
+	ls_data = csvmanager.read(file_name=file_name)
+	lsq = Leastsquare(model, ls_data, n)
 	result = lsq.run()
 
 	# Plot data and fit
@@ -22,9 +24,6 @@ def leastquare_example():
 def mcmc_example():
 	"""Example of using MCMC method"""
 	
-	from pymc import MCMC, AdaptiveMetropolis
-	# load the model
-	from algorithm import si_model as model
 	reload(model)  # this reload streamlines interactive debugging
 
 	# fit the model with mcmc    
@@ -43,5 +42,5 @@ def mcmc_example():
 	pl.show()
 
 if __name__ == '__main__':
-	leastquare_example()
+	leastquare_example(sir,"data1.csv", 60)
 	# mcmc_example()

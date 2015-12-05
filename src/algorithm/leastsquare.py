@@ -22,7 +22,8 @@ class Leastsquare(object):
 		
 		import pylab as pl
 		from utils import csvmanager
-		from algorithm import Leastsquare, sir_model as sir
+		from algorithm import Leastsquare
+		from model import sir
 		
 		data = csvmanager.read(file_name="data1.csv")
 		lsq = Leastsquare(sir, data, 60)
@@ -46,15 +47,15 @@ class Leastsquare(object):
 		self.ode = model.simple
 		self.time_total = self.data["Time"]
 		self.time_train = self.data["Time"][:n]
+		# original infected data
 		self.data_infected = self.data["Infected"]
 		# train data
 		self.data_infected_train = []
 		if isinstance(self.data_infected[0],str):
-			# casting to float, because csv data are strings
-			for i in range(0,n):
-				self.data_infected_train.append(float(self.data_infected[i]))
-		else:
-			self.data_infected_train = self.data_infected[:n]
+			# cast to float, because csv data are normaly strings
+			for i in range(0, len(self.data_infected)):
+				self.data_infected[i] = float(self.data_infected[i])
+		self.data_infected_train = self.data_infected[:n]
 		# normalize train data
 		self.k = 1.0/sum(self.data_infected_train)
 		# normalized classes for t = 0
