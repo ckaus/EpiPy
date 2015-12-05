@@ -17,6 +17,21 @@ class Leastsquare(object):
 		:type n: int 
 		:returns: a *Leastsquare* instance
 		:raises: *ValueError* if Time or epidemic data set values not matching
+		
+		Example:
+		
+		import pylab as pl
+		from utils import csvmanager
+		from algorithm import Leastsquare, sir_model as sir
+		
+		data = csvmanager.read(file_name="data1.csv")
+		lsq = Leastsquare(sir, data, 60)
+		result = lsq.run()
+		# Plot data and fit
+		pl.clf()
+		pl.plot(lsq.time_total, lsq.data_infected, "o")
+		pl.plot(lsq.time_total, result)
+		pl.show()
 		"""
 
 		if "Time" not in data:

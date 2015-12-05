@@ -22,6 +22,7 @@ def read(file_name='', seperator=";", column=[]):
 	:raises: *Error* if csv file cannot read
 
 	Example:
+	
 	data = csvmanager.read(
 			file_name='liberia_data/2014-06-16.csv',
 			seperator=',',
