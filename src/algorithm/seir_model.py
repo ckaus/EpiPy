@@ -4,6 +4,7 @@ import scipy.integrate as spi
 import numpy as np
 import pylab as pl
 
+# doesnt work
 def simple(sir_values, time, beta, gamma, sigma, mu, k):
 	"""
     seir_values [S,E,I], where
