@@ -36,7 +36,7 @@ class LeastSquaresFit:
 
     def __init__(self, model, data):
     # number of training data = n
-        self.n = 15
+        self.n = int(len(data['Time'])*(0.9))
         self.model = model
         self.timetotal = data['Time']
         self.timetrain = self.timetotal[:self.n]
@@ -110,8 +110,8 @@ class LeastSquaresFit:
 
 if __name__ == "__main__":
     
-    model = "seir"
-    data = {"Time": [0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140, 147, 154, 161],
-            "I": [ 113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4400, 3570, 2300, 1900, 2200, 1700, 1170, 830, 750, 770, 520, 550, 380 ]}
+    model = "sir"
+    data = {"Time": np.array([0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140, 147, 154, 161]),
+            "I": np.array([ 113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4400, 3570, 2300, 1900, 2200, 1700, 1170, 830, 750, 770, 520, 550, 380 ])}
     
     LeastSquaresFit(model, data).run()

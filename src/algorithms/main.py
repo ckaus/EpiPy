@@ -2,12 +2,12 @@ import csv
 import numpy as np
 import fit_model_ls 
 
-originaldata = np.loadtxt('../../resources/googleflugermany.csv', delimiter=',', skiprows=1)[0:50]
-#print originaldata
+originaldata = np.loadtxt('../../resources/data1.csv', delimiter=';', skiprows=1)[:,2]
+print originaldata
 timetotal = np.array(range(len(originaldata)))
 
-model = "seir"
+model = "sir"
 data = {"Time": timetotal,
             "I": originaldata}
-    
+
 fit_model_ls.LeastSquaresFit(model, data).run()

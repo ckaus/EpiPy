@@ -1,6 +1,5 @@
 import numpy as np
 
-
 ## define ODE equations
 def ode(N, t, beta, gamma, k):
      # Creating an array of equations
