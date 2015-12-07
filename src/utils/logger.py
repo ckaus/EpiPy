@@ -17,7 +17,7 @@ def error(msg):
 	line = inspect.stack()[1][2]
 	func = inspect.stack()[1][3]
 	
-	print '[%s%s%s] class:%s in %s() on line %s\n\tMessage: %s'\
+	print '[%s%s%s] Class: %s in %s() on line %s\n\tMessage: %s'\
 	% (_Color.ERROR, 'ERROR', _Color.NORMAL, clasz,func, line, msg)
 	
 def info(msg):
