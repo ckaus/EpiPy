@@ -41,8 +41,10 @@ class CSV_File_Object(object):
 		:returns: the converted content
 
 		Example:
-			cfo = CSV_File_Object(file_name="/liberia_data/2014-06-16.csv", seperator=",", model="SIR")
-			csv_manager = CSV_Manager(cfo).read(origin_fields=["Date", "National"], result_fields=["Time", "Infected"])
+			from utils import csvmanager
+			
+			cfo = csvmanager.CSV_File_Object(file_name="/liberia_data/2014-06-16.csv", seperator=",", model="SIR")
+			csv_manager = csvmanager.CSV_Manager(cfo).read(origin_fields=["Date", "National"], result_fields=["Time", "Infected"])
 			print csv_manager.content_to_float(["Infected"])
 		"""
 		_content = self.content
@@ -113,8 +115,10 @@ class CSV_Manager(object):
 		:returns: a *CSV_File_Object* instance
 
 		Example:
-			cfo = CSV_File_Object(file_name="/liberia_data/2014-06-16.csv", seperator=",", model="SIR")
-			csv_manager = CSV_Manager(cfo).read(origin_fields=["Date", "National"], result_fields=["Time", "Infected"])
+			from utils import csvmanager
+			
+			cfo = csvmanager.CSV_File_Object(file_name="/liberia_data/2014-06-16.csv", seperator=",", model="SIR")
+			csv_manager = csvmanager.CSV_Manager(cfo).read(origin_fields=["Date", "National"], result_fields=["Time", "Infected"])
 			print csv_manager.content
 		"""
 		result = {}
