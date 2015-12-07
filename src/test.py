@@ -13,13 +13,14 @@ def leastquare_example(model, file_name, n=60):
 	"""Example for using leastsquare method"""
 	ls_data = csvmanager.read(file_name=file_name,
 			template=csvmanager.Template.SIR,
-			header_fields=["Time","Suspectable", "Infected", "Recovered"])
+			header_fields=["Time","Infected"])
+	ls_data["Record"] = ls_data.pop("Infected")
 	lsq = Leastsquare(model, ls_data, n)
 	result = lsq.run()
 
 	# Plot data and fit
 	pl.clf()
-	pl.plot(lsq.time_total, lsq.data_infected, "o")
+	pl.plot(lsq.time_total, lsq.data_record, "o")
 	pl.plot(lsq.time_total, result)
 	pl.show()
 

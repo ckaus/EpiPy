@@ -25,41 +25,45 @@ class Leastsquare(object):
 		from algorithm import Leastsquare
 		from model import sir
 		
-		data = csvmanager.read(file_name="data1.csv")
-		lsq = Leastsquare(sir, data, 60)
+		ls_data = csvmanager.read(file_name=file_name,
+			template=csvmanager.Template.SIR,
+			header_fields=["Time","Infected"])
+		ls_data["Record"] = ls_data.pop("Infected")
+		lsq = Leastsquare(model, ls_data, n)
 		result = lsq.run()
+		
 		# Plot data and fit
 		pl.clf()
-		pl.plot(lsq.time_total, lsq.data_infected, "o")
+		pl.plot(lsq.time_total, lsq.data_record, "o")
 		pl.plot(lsq.time_total, result)
 		pl.show()
 		"""
 
 		if "Time" not in data:
-			raise ValueError("'Time' data not found")
-		if "Infected" not in data:
-			raise ValueError("'Infected' data not found")
-		if len(data["Time"]) != len(data["Infected"]):
-			raise ValueError("'Time' data not matching 'Infected' data")
+			raise ValueError("'Time' not found")
+		if "Record" not in data:
+			raise ValueError("'Data not found")
+		if len(data["Time"]) != len(data["Record"]):
+			raise ValueError("'Time' not matching 'Record'")
 		
 		self.model = model
 		self.data = data
 		self.ode = model.simple
 		self.time_total = self.data["Time"]
 		self.time_train = self.data["Time"][:n]
-		# original infected data
-		self.data_infected = self.data["Infected"]
+		# original record data
+		self.data_record = self.data["Record"]
 		# train data
-		self.data_infected_train = []
-		if isinstance(self.data_infected[0],str):
+		self.data_record_train = []
+		if isinstance(self.data_record[0],str):
 			# cast to float, because csv data are normaly strings
-			for i in range(0, len(self.data_infected)):
-				self.data_infected[i] = float(self.data_infected[i])
-		self.data_infected_train = self.data_infected[:n]
+			for i in range(0, len(self.data_record)):
+				self.data_record[i] = float(self.data_record[i])
+		self.data_record_train = self.data_record[:n]
 		# normalize train data
-		self.k = 1.0/sum(self.data_infected_train)
+		self.k = 1.0/sum(self.data_record_train)
 		# normalized classes for t = 0
-		self.N0 = self.model.pop(self.data_infected_train[0], self.k)
+		self.N0 = self.model.pop(self.data_record_train[0], self.k)
 		
 	def run(self):
 		"""
@@ -90,7 +94,7 @@ class Leastsquare(object):
 			Nt = integrate.odeint(self.ode, self.N0, self.time_train, args=tuple(x))
 			INt = [row[1] for row in Nt]
 			INt = np.divide(INt, self.k)
-			difference = self.data_infected_train - INt
+			difference = self.data_record_train - INt
 			# square the difference
 			return np.dot(difference, difference)
 		return result

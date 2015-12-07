@@ -26,9 +26,10 @@ class MainWindow(MainWindowBase, MainWindowUI):
         ls_data = csvmanager.read(file_name='data1.csv',
             template=csvmanager.Template.SIR,
             header_fields=["Time","Suspectable", "Infected", "Recovered"])
+        ls_data["Record"] = ls_data.pop("Infected")
         lsq = Leastsquare(sir, ls_data, 60)
         result = lsq.run()
-        pw.plot(y=lsq.data_infected, symbol='o')
+        pw.plot(y=lsq.data_record, symbol='o')
         pw.plot(y=result, pen="k")
         pw.setWindowTitle('pyqtgraph example: customPlot')
         pw.setBackground(QtGui.QColor(255, 255, 255))
