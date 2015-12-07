@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""This file contains the least sqaure method for fitting a model."""
+
 from scipy.optimize import minimize
 from scipy import integrate
 import pylab as py
@@ -25,13 +27,14 @@ class Leastsquare(object):
 		from algorithm import Leastsquare
 		from model import sir
 		
-		ls_data = csvmanager.read(file_name=file_name,
-			template=csvmanager.Template.SIR,
-			header_fields=["Time","Infected"])
+		cfo = csvmanager.CSV_File_Object(file_name="/data1.csv", seperator=";", model=sir)
+		cm = csvmanager.CSV_Manager(cfo).read(origin_fields=["Time","I"], result_fields=["Time", "Infected"])
+		ls_data = cm.content
+		# least square use record instead of infected, recovered, ...
 		ls_data["Record"] = ls_data.pop("Infected")
-		lsq = Leastsquare(model, ls_data, n)
+		lsq = Leastsquare(sir, ls_data, 60)
 		result = lsq.run()
-		
+
 		# Plot data and fit
 		pl.clf()
 		pl.plot(lsq.time_total, lsq.data_record, "o")

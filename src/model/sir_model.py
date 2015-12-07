@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""This file contains the SIR-Model."""
+
 import numpy as np
 import scipy.integrate as spi
 import pylab as pl

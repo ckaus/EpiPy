@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""This file contains functionality for reading a CSV file."""
+
 import os.path
 import csv
 import logger

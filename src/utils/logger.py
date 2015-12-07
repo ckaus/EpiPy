@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""This file contains functionality for loggin information."""
+
 import inspect
 
 class _Color:

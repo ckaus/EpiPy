@@ -8,7 +8,6 @@ from algorithm import Leastsquare
 from model import sir, seir, si
 from pymc import MCMC, AdaptiveMetropolis
 
-	
 def leastquare_example(model, file_name, n=60):
 	"""Example for using leastsquare method"""
 
