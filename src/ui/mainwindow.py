@@ -23,7 +23,9 @@ class MainWindow(MainWindowBase, MainWindowUI):
         # ====plot==========
         # plot
         pw = pg.PlotWidget(title="SIR Model")
-        ls_data = csvmanager.read(file_name="data1.csv")
+        ls_data = csvmanager.read(file_name='data1.csv',
+            template=csvmanager.Template.SIR,
+            header_fields=["Time","Suspectable", "Infected", "Recovered"])
         lsq = Leastsquare(sir, ls_data, 60)
         result = lsq.run()
         pw.plot(y=lsq.data_infected, symbol='o')
