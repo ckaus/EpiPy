@@ -22,7 +22,6 @@ def _check_header_fields(header, template):
 	:param type: list of str
 	:param template: a CSV template
 	:param type: *Template*
-
 	:raises: *Error* if header fields not match template
 	
 	:returns True if the header match the template header: 
