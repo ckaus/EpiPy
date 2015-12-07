@@ -92,7 +92,7 @@ class Leastsquare(object):
 		:param model: a epidemic model
 		:returns: a measure of the discrepancy between the data and an estimation model
 		"""
-
+		
 		def result(x):
 			Nt = integrate.odeint(self.ode, self.N0, self.time_train, args=tuple(x))
 			INt = [row[1] for row in Nt]

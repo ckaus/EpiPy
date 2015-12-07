@@ -18,6 +18,7 @@ class CSV_File_Object(object):
 	:param type: str
 	:returns: a *CSV_File_Object* instance
 	"""
+
 	def __init__(self, file_name, seperator, model):
 		current_dir =  os.path.abspath(os.path.dirname(__file__))
 		self.path = os.path.abspath(current_dir + "/../../resources/data")+file_name
@@ -42,11 +43,12 @@ class CSV_File_Object(object):
 
 		Example:
 			from utils import csvmanager
-			
+
 			cfo = csvmanager.CSV_File_Object(file_name="/liberia_data/2014-06-16.csv", seperator=",", model="SIR")
 			csv_manager = csvmanager.CSV_Manager(cfo).read(origin_fields=["Date", "National"], result_fields=["Time", "Infected"])
 			print csv_manager.content_to_float(["Infected"])
 		"""
+
 		_content = self.content
 		for key, value in self.content.iteritems():
 			if key in header:
@@ -67,6 +69,7 @@ class CSV_Manager(object):
 	:param type: *CSV_File_Object*
 	:returns: a *CSV_Manager* instance
 	"""
+
 	def __init__(self, csv_file_object):
 		self.cfo = csv_file_object
 
@@ -82,6 +85,7 @@ class CSV_Manager(object):
 		:param type: *Dict*
 		:returns: the converted data set
 		"""
+
 		# change origin header to template header
 		for i in range(0, len(to_header)):
 			data[to_header[i]] = data.pop(from_header[i])
@@ -97,8 +101,8 @@ class CSV_Manager(object):
 		:param type: *Dict*
 		:raises: Error if headers not match
 		:returns: bool if headers match
-
 		"""
+
 		if len(origin_fields) == 0 or len(result_fields) == 0 or len(origin_fields) != len(result_fields):
 			logger.error("Origin header %s does not matching result fields %s" % (origin_fields, result_fields))
 			return False
@@ -121,6 +125,7 @@ class CSV_Manager(object):
 			csv_manager = csvmanager.CSV_Manager(cfo).read(origin_fields=["Date", "National"], result_fields=["Time", "Infected"])
 			print csv_manager.content
 		"""
+
 		result = {}
 
 		if not self._check_fields(origin_fields, result_fields):
