@@ -11,7 +11,9 @@ from pymc import MCMC, AdaptiveMetropolis
 	
 def leastquare_example(model, file_name, n=60):
 	"""Example for using leastsquare method"""
-	ls_data = csvmanager.read(file_name=file_name)
+	ls_data = csvmanager.read(file_name=file_name,
+			template=csvmanager.Template.SIR,
+			header_fields=["Time","Suspectable", "Infected", "Recovered"])
 	lsq = Leastsquare(model, ls_data, n)
 	result = lsq.run()
 
