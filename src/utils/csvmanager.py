@@ -6,54 +6,78 @@ import logger
 
 current_dir =  os.path.abspath(os.path.dirname(__file__))
 resources_dir = os.path.abspath(current_dir + "/../../resources/data")
-
-def read(file_name='', seperator=";", column=[]):
+	
+class Template:
+	"""Valid CSV templates"""
+	from collections import OrderedDict
+	# python sort dictionary keys, thats why I use OrderedDict
+	# http://stackoverflow.com/questions/1867861/python-dictionary-keep-keys-values-in-same-order-as-declared
+	SIR = OrderedDict([("Time", []), ("Suspectable", []), ("Infected", []), ("Recovered", [])])
+	
+def _check_header_fields(header, template):
 	"""
-	This function reads a csv file.
+	This function checks if the header match the template.
+	
+	:param header: a CSV header
+	:param type: list of str
+	:param template: a CSV template
+	:param type: *Template*
+
+	:returns True if the header match the template header: 
+	"""
+
+	for h in header:
+		if h not in template.keys():
+			logger.error('Given header field %s not exist in template: %s'
+				% (h, template))
+			return False
+	return True
+	
+def read(file_name, template, header_fields, seperator=';'):
+	"""
+	This function reads a CSV file.
 	
 	:param file_name: a file name
 	:param type: str
+	:param template: a CSV template
+	:param type: *Template*
+	:param: header_fields: header fields must match *Template*
+	:param type: list of str
 	:param seperator: a delimiter
 	:param type: str
-	:param: column: readable column(s)
-	:param type: list
-
-	:returns: the content as *Dictionary*
+	:returns: the content of CSV as *Dictionary*
 	:raises: *Error* if csv file cannot read
-
+			or header fields not match template
 	Example:
-	
-	from utils import csvmanager
-	
-	data = csvmanager.read(
-			file_name='liberia_data/2014-06-16.csv',
-			seperator=',',
-			column=['National','Date'])
+
+	data = csvmanager.read(file_name='data1.csv', 
+			template=csvmanager.Template.SIR, 
+			seperator=';', 
+			header_fields=["Time","Recovered"])
 	"""
+
 	result = {}
 	try:
+		# read input file
 		file = open(resources_dir+"/"+file_name, "rb")
 		reader = csv.reader(file, delimiter=seperator)
+		result = {}
 		header = reader.next()
-	
-		if len(column) > 0: # read only given column(s)
-			# header
-			for c in column:
-				if c in header:
-					result[c] = []
-			# content
-			for row in reader:
-				for c in column:
-					result[c].append(row[header.index(c)])
-		else: # read all column(s)
+		
+		if len(header_fields) > 0:
+			# use given header fields as header
+			header = header_fields
+
+		if _check_header_fields(header,template):
 			# header
 			for h in header:
 				result[h] = []
 			# content 
+			reader.next() # jump to content of csv
 			for row in reader:
-				# match content with header
-				for h, v in zip(header, row):
-					result[h].append(v)
+				for h in header:
+					# match content with header
+					result[h].append(row[template.keys().index(h)])
+		return result
 	except csv.Error as e:
 		logger.error("Can not read file %s, %s" % (filename,  e))
-	return result
