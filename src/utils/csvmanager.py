@@ -23,6 +23,8 @@ def _check_header_fields(header, template):
 	:param template: a CSV template
 	:param type: *Template*
 
+	:raises: *Error* if header fields not match template
+	
 	:returns True if the header match the template header: 
 	"""
 
@@ -47,7 +49,7 @@ def read(file_name, template, header_fields, seperator=';'):
 	:param type: str
 	:returns: the content of CSV as *Dictionary*
 	:raises: *Error* if csv file cannot read
-			or header fields not match template
+	
 	Example:
 
 	data = csvmanager.read(file_name='data1.csv', 
