@@ -11,9 +11,11 @@ from pymc import MCMC, AdaptiveMetropolis
 	
 def leastquare_example(model, file_name, n=60):
 	"""Example for using leastsquare method"""
-	ls_data = csvmanager.read(file_name=file_name,
-			template=csvmanager.Template.SIR,
-			header_fields=["Time","Infected"])
+
+	cfo = csvmanager.CSV_File_Object(file_name=file_name, seperator=";", model=model)
+	cm = csvmanager.CSV_Manager(cfo).read(origin_fields=["Time","I"], result_fields=["Time", "Infected"])
+	ls_data = cm.content
+	# least square use record instead of infected, recovered, ...
 	ls_data["Record"] = ls_data.pop("Infected")
 	lsq = Leastsquare(model, ls_data, n)
 	result = lsq.run()
@@ -45,5 +47,5 @@ def mcmc_example():
 	pl.show()
 
 if __name__ == '__main__':
-	leastquare_example(sir,"data1.csv", 60)
+	leastquare_example(sir,"/data1.csv", 60)
 	# mcmc_example()

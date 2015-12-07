@@ -23,10 +23,12 @@ class MainWindow(MainWindowBase, MainWindowUI):
         # ====plot==========
         # plot
         pw = pg.PlotWidget(title="SIR Model")
-        ls_data = csvmanager.read(file_name='data1.csv',
-            template=csvmanager.Template.SIR,
-            header_fields=["Time","Suspectable", "Infected", "Recovered"])
+        cfo = csvmanager.CSV_File_Object(file_name="/data1.csv", seperator=";", model=sir)
+        cm = csvmanager.CSV_Manager(cfo).read(origin_fields=["Time","I"], result_fields=["Time", "Infected"])
+        ls_data = cm.content
+        # least square use record instead of infected, recovered, ...
         ls_data["Record"] = ls_data.pop("Infected")
+        
         lsq = Leastsquare(sir, ls_data, 60)
         result = lsq.run()
         pw.plot(y=lsq.data_record, symbol='o')
