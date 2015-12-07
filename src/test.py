@@ -47,5 +47,5 @@ def mcmc_example():
 	pl.show()
 
 if __name__ == '__main__':
-	leastquare_example(sir,"/data1.csv", 60)
+	leastquare_example(sir,"/data1.csv", 60) # bug, file name need backslash, otherwise it doesnt work.
 	# mcmc_example()
