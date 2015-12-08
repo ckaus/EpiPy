@@ -11,7 +11,8 @@ A Tool for fitting epidemic models.
 `$ git clone git@github.com:ckaus/EpiPy.git`
 
 ## Start EpiPy
-`$ python src/main.py`
+`$ cd EpiPy/src`
+`$ python main.py`
 
 ## Literatur
  * [Papers][5]
