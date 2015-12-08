@@ -12,6 +12,7 @@ A Tool for fitting epidemic models.
 
 ## Start EpiPy
 `$ cd EpiPy/src`
+
 `$ python main.py`
 
 ## Literatur
