@@ -16,7 +16,7 @@ def error(msg):
 	This function print an error.
 
 	:param msg: a messages
-	:param type: str
+	:type msg: str
 	"""
 	clasz = inspect.stack()[1][1]
 	line = inspect.stack()[1][2]
@@ -30,7 +30,7 @@ def info(msg):
 	This function print an information.
 
 	:param msg: a messages
-	:param type: str
+	:type msg: str
 	"""
 	print '[%s%s%s] %s' % (_Color.INFO, 'INFO', _Color.NORMAL, msg)
 
@@ -39,7 +39,7 @@ def success(msg):
 	This function print a success.
 
 	:param msg: a messages
-	:param type: str
+	:type msg: str
 	"""
 	print '[%s%s%s] %s' % (_Color.SUCCESS, 'SUCCESS', _Color.NORMAL, msg)
 
@@ -48,6 +48,6 @@ def warning(msg):
 	This function print a warning.
 
 	:param msg: a messages
-	:param type: str
+	:type msg: str
 	"""
 	print '[%s%s%s] %s' % (_Color.WARNING, 'WARNING', _Color.NORMAL,msg)
