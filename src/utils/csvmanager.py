@@ -21,7 +21,7 @@ class CSV_File_Object(object):
 
 	def __init__(self, file_name, seperator, model):
 		current_dir =  os.path.abspath(os.path.dirname(__file__))
-		self.path = os.path.abspath(current_dir + "/../../resources/data")+file_name
+		self.path = os.path.abspath(current_dir + "/../../resources/data")+"/"+file_name
 		self.name = file_name
 		self.seperator = seperator
 		self.content = {}
