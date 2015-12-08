@@ -45,7 +45,6 @@ def pop(I, k):
     :param k: normalize train data
     :type k: float
     """
-    print k
     I0 = I*k
     S0 = 1 - I0
     N = [S0, I0, 0]
