@@ -6,13 +6,19 @@
 Welcome to EpiPy's documentation!
 =================================
 
+EpiPy is a Tool for fitting epidemic models.
+
+This tool is developed under the MIT license for the course Softwareprojekt Mobilkommunikation at the Freie Universität Berlin.
+
 Contents:
 
 .. toctree::
    :maxdepth: 2
    
-   utils
    algorithm
+   model
+   ui
+   utils
 
 
 
