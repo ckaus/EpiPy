@@ -8,8 +8,7 @@ import pylab as py
 import numpy as np
 
 class Leastsquare(object):
-	def __init__(self, model, data, n):
-		"""
+	"""
 		This class fit a given model by using least square method.
 		
 		:param model: a epidemic model
@@ -21,27 +20,35 @@ class Leastsquare(object):
 		:raises: *ValueError* if Time or epidemic data set values not matching
 		
 		Example:
-		
-		import pylab as pl
-		from utils import csvmanager
-		from algorithm import Leastsquare
-		from model import sir
-		
-		cfo = csvmanager.CSV_File_Object(file_name="/data1.csv", seperator=";", model=sir)
-		cm = csvmanager.CSV_Manager(cfo).read(origin_fields=["Time","I"], result_fields=["Time", "Infected"])
-		ls_data = cm.content
-		# least square use record instead of infected, recovered, ...
-		ls_data["Record"] = ls_data.pop("Infected")
-		lsq = Leastsquare(sir, ls_data, 60)
-		result = lsq.run()
+		::
 
-		# Plot data and fit
-		pl.clf()
-		pl.plot(lsq.time_total, lsq.data_record, "o")
-		pl.plot(lsq.time_total, result)
-		pl.show()
+			import pylab as pl
+			from utils import csvmanager
+			from algorithm import Leastsquare
+			from model import sir
+		
+			cfo = csvmanager.CSV_File_Object(
+					file_name="/data1.csv",
+					seperator=";",
+					model=sir)
+
+			cm = csvmanager.CSV_Manager(cfo).read(
+					origin_fields=["Time","I"],
+					result_fields=["Time", "Infected"])
+
+			ls_data = cm.content
+			# least square use record instead of infected, recovered, ...
+			ls_data["Record"] = ls_data.pop("Infected")
+			lsq = Leastsquare(sir, ls_data, 60)
+			result = lsq.run()
+
+			# Plot data and fit
+			pl.clf()
+			pl.plot(lsq.time_total, lsq.data_record, "o")
+			pl.plot(lsq.time_total, result)
+			pl.show()
 		"""
-
+	def __init__(self, model, data, n):
 		if "Time" not in data:
 			raise ValueError("'Time' not found")
 		if "Record" not in data:

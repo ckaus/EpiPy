@@ -40,12 +40,21 @@ class CSV_File_Object(object):
 		:param header: the header list
 		:param type: list
 		:returns: the converted content
-
+		
 		Example:
+		::
+
 			from utils import csvmanager
 
-			cfo = csvmanager.CSV_File_Object(file_name="/liberia_data/2014-06-16.csv", seperator=",", model="SIR")
-			csv_manager = csvmanager.CSV_Manager(cfo).read(origin_fields=["Date", "National"], result_fields=["Time", "Infected"])
+			cfo = csvmanager.CSV_File_Object(
+					file_name="/liberia_data/2014-06-16.csv",
+					seperator=",",
+					model="SIR")
+
+			csv_manager = csvmanager.CSV_Manager(cfo).read(
+					origin_fields=["Date", "National"],
+					result_fields=["Time", "Infected"])
+
 			print csv_manager.content_to_float(["Infected"])
 		"""
 
@@ -119,10 +128,19 @@ class CSV_Manager(object):
 		:returns: a *CSV_File_Object* instance
 
 		Example:
+		::
+
 			from utils import csvmanager
 			
-			cfo = csvmanager.CSV_File_Object(file_name="/liberia_data/2014-06-16.csv", seperator=",", model="SIR")
-			csv_manager = csvmanager.CSV_Manager(cfo).read(origin_fields=["Date", "National"], result_fields=["Time", "Infected"])
+			cfo = csvmanager.CSV_File_Object(
+					file_name="/liberia_data/2014-06-16.csv",
+					seperator=",",
+					model="SIR")
+
+			csv_manager = csvmanager.CSV_Manager(cfo).read(
+					origin_fields=["Date", "National"],
+					result_fields=["Time", "Infected"])
+
 			print csv_manager.content
 		"""
 

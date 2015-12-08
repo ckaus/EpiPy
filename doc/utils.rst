@@ -1,29 +1,20 @@
 utils package
 =============
 
-Submodules
+Descrption ...
+
+csvmanager
 ----------
-
-utils.logger module
--------------------
-
-.. automodule:: utils.logger
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-utils.csvmanager module
------------------------
 
 .. automodule:: utils.csvmanager
     :members:
     :undoc-members:
     :show-inheritance:
 
-Module contents
----------------
+logger
+------
 
-.. automodule:: utils
+.. automodule:: utils.logger
     :members:
     :undoc-members:
     :show-inheritance:
