@@ -1,21 +1,12 @@
 algorithm package
 =================
 
-Submodules
-----------
+This module includes several algorithm for fitting a model.
 
-algorithm.leastsquare module
-----------------------------
+leastsquare
+-----------
 
 .. automodule:: algorithm.leastsquare
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-Module contents
----------------
-
-.. automodule:: algorithm
     :members:
     :undoc-members:
     :show-inheritance:
