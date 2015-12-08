@@ -12,6 +12,13 @@ utils.logger module
     :undoc-members:
     :show-inheritance:
 
+utils.csvmanager module
+-----------------------
+
+.. automodule:: utils.csvmanager
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 Module contents
 ---------------
