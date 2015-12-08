@@ -1,7 +1,7 @@
 utils package
 =============
 
-Descrption ...
+This package includes useful functions like logging, manage csv files.
 
 csvmanager
 ----------

@@ -11,11 +11,11 @@ class CSV_File_Object(object):
 	This class represents a CSV Object.
 
 	:param file_name: the file name
-	:param type: str
+	:type file_name: str
 	:param seperator: the CSV delimiter
-	:param type: str
-	:param mode: the using *Model*
-	:param type: str
+	:type seperator: str
+	:model: the using *Model*
+	:type model: str
 	:returns: a *CSV_File_Object* instance
 	"""
 
@@ -38,7 +38,7 @@ class CSV_File_Object(object):
 		possibilty of converting.
 
 		:param header: the header list
-		:param type: list
+		:type header: list
 		:returns: the converted content
 		
 		Example:
@@ -75,7 +75,7 @@ class CSV_Manager(object):
 	This class represents a manager for reading CSV files.
 
 	:param csv_file_object: a *CSV_File_Object* which contains main information
-	:param type: *CSV_File_Object*
+	:type csv_file_object: *CSV_File_Object*
 	:returns: a *CSV_Manager* instance
 	"""
 
@@ -87,11 +87,11 @@ class CSV_Manager(object):
 		This function convert a given header of a data set to another header.
 
 		:param data: the data set which represents the CSV
-		:param type: *Dict*
+		:type data: *Dict*
 		:param from_header: the origin header of the data set
-		:param type: *Dict*
+		:type from_header: *Dict*
 		:param to_header: the result header of the data set
-		:param type: *Dict*
+		:type to_header: *Dict*
 		:returns: the converted data set
 		"""
 
@@ -105,9 +105,9 @@ class CSV_Manager(object):
 		This function check whether the origin header is equals the result header.
 
 		:param origin_fields: the origin header
-		:param type: *Dict*
+		:type origin: *Dict*
 		:param result_fields: the result header
-		:param type: *Dict*
+		:type result: *Dict*
 		:raises: Error if headers not match
 		:returns: bool if headers match
 		"""
@@ -122,8 +122,9 @@ class CSV_Manager(object):
 		This function read a csv file by given header.
 
 		:param origin_fields: the origin header fields
-		:param type: list
+		:type origin_fields: list
 		:param result_fields: the result header fields
+		:type result_fields: list
 		:raises: *csv.Error* if CSV file is not readable
 		:returns: a *CSV_File_Object* instance
 

@@ -44,7 +44,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'EpiPy'
-copyright = u'2015, CK'
+copyright = u'2015, Albert Mkhitaryan - Christian Kaus - Yena Rhee'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the

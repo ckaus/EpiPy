@@ -8,13 +8,24 @@ import pylab as pl
 
 def simple(sir_values, time, beta, gamma, k):
     """
-    sir_values [S,I,R], where
-    S = initial number of suspectable
-    I = initial number of infected
-    R = initial number of recovered
-    
-    time = observe time
+    This function represents the SIR Model.
+
+    :param sir_values: the input sir values, where 
+        S = initial number of suspectable,
+        I = initial number of infected,
+        R = initial number of recovered
+    :type sir_values: list
+    :param time: the observe time
+    :type time: int
+    :param beta: the transmission rate between S and I = probability of transmission
+    :type beta: float
+    :param gamma: the recovery rate between I and R = probability of transmission
+    :type gamma: float
+    :param k: minimization of scalar function by using the initial parameter (SIR) and  Nelder-Mead algorithm
+    :type k: float
+    :returns: sir values based on time
     """
+
     s = sir_values[0]
     i = sir_values[1]
     r = sir_values[2]
@@ -26,29 +37,44 @@ def simple(sir_values, time, beta, gamma, k):
     return res
 
 def pop(I, k):
+    """
+    This function returns the initial parameter for SIR Model.
+
+    :param I: initial number of infected
+    :type I: int
+    :param k: normalize train data
+    :type k: float
+    """
+    print k
     I0 = I*k
     S0 = 1 - I0
     N = [S0, I0, 0]
     return N
 
 def param_init():
+    """
+    This function returns the initial parameter (beta/gamma) for SIR Model.
+    """
     return [0.75, 0.75] 
 
 def with_births_deaths(sir_values, time):
     """
-    sir_values [S,I,R], where
-    S = initial number of suspectable
-    I = initial number of infected
-    R = initial number of recovered
-    
-    time = observe time
+    This function represents the SIR Model with birth and death.
+
+    :param sir_values: the input sir values, where 
+        S = initial number of suspectable,
+        I = initial number of infected,
+        R = initial number of recovered
+    :type sir_values: list
+    :param time: the observe time
+    :type time: int
     """
     s = sir_values[0]
     i = sir_values[1]
     r = sir_values[2]
 
     mu=1/(70*365.0) # death rate, birth rate
-    beta=520/365.0 # transmission rate between S and I + probability of transmission
+    beta=520/365.0 # the transmission rate between S and I
     gamma=1/7.0 # recovery rate
     
     res = np.zeros((3))
@@ -59,12 +85,15 @@ def with_births_deaths(sir_values, time):
 
 def disease_induced_mortality(sir_values, time):
     """
-    sir_values [S,I,R], where
-    S = initial number or density of susceptible individuals
-    I = initial number or density of infectious individuals
-    R = sum of recovered
+    This function represents the SIR Model with disease_induced_mortality.
 
-    time = observe time
+    :param sir_values: the input sir values, where 
+        S = initial number of suspectable,
+        I = initial number of infected,
+        R = initial number of recovered
+    :type sir_values: list
+    :param time: the observe time
+    :type time: int
     """
     s = sir_values[0]
     i = sir_values[1]
@@ -72,7 +101,7 @@ def disease_induced_mortality(sir_values, time):
 
     rho=0.5 # mortality probability before recovering.
     mu=1/(70*365.0) # death rate from natural causes
-    beta=520/365.0 # transmission rate between S and I + probability of transmission
+    beta=520/365.0 # transmission rate between S and I
     gamma=1/7.0 # recovery rate
     
     res=np.zeros((3))
@@ -81,12 +110,12 @@ def disease_induced_mortality(sir_values, time):
     res[2] = gamma * i - mu * r
     return res
 
-def build(sir_values, model, time):
-    # initial values
-    S0 = sir_values[0]
-    I0 = sir_values[1]
-    R0 = sir_values[2]
-    return spi.odeint(model, (S0, I0, R0), time)
+# def build(sir_values, model, time):
+#     # initial values
+#     S0 = sir_values[0]
+#     I0 = sir_values[1]
+#     R0 = sir_values[2]
+#     return spi.odeint(model, (S0, I0, R0), time)
 
 # if __name__ == '__main__':
 #     # =====================

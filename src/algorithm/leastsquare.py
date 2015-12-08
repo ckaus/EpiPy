@@ -12,8 +12,9 @@ class Leastsquare(object):
 		This class fit a given model by using least square method.
 		
 		:param model: a epidemic model
-		:param data: the data set for fitting
-		:type data: the *Dictionary* contains, Time and an epidemic data set
+		:type model: model file
+		:param data: the data set for fitting, contains Time and an epidemic data set
+		:type data: *Dictionary*
 		:param n: ??? count of train data set ???
 		:type n: int 
 		:returns: a *Leastsquare* instance
@@ -97,6 +98,7 @@ class Leastsquare(object):
 		This function calculate the squared errors of prediction.
 
 		:param model: a epidemic model
+		:type model: model file
 		:returns: a measure of the discrepancy between the data and an estimation model
 		"""
 		
