@@ -60,7 +60,7 @@
           <item>
            <widget class="QPushButton" name="advanceButton">
             <property name="text">
-             <string>Advance</string>
+             <string>Advanced</string>
             </property>
            </widget>
           </item>
