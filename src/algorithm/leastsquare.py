@@ -21,7 +21,6 @@ class Leastsquare(object):
 		:raises: *ValueError* if Time or epidemic data set values not matching
 		
 		Example:
-		TEST
 		::
 
 			import pylab as pl
