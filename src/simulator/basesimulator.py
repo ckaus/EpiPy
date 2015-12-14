@@ -2,10 +2,11 @@
 
 """This file contains the abstract class for creating a simulator."""
 
+import sys
+import pylab as pl
 from abc import abstractmethod, ABCMeta
 from utils import csvmanager
 from algorithm import Leastsquare
-import sys
 
 class BaseSimulator():
 	"""
@@ -72,14 +73,12 @@ class BaseSimulator():
 		counter = 0
 		result_list = {}
 		for i in range(start_t, end_t, steps):
-			counter+=1
+			counter+=1+steps
 			lsq = Leastsquare(self.model, self.data, i)
 			lsq.run()
-			result_list[i] = calc_func(self, lsq)
-			print '%\r',counter*(100*steps)/end_t,
-			sys.stdout.flush()		
+			result_list[i] = calc_func(self, lsq)		
 		return result_list
 
-	def plot(self):
-		logger.error("Not implemented error")
-		raise NotImplementedError
+	def plot_graph(self, graph):
+		pl.plot(graph[0], graph[1], 'o')
+		pl.show()

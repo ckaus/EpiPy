@@ -29,9 +29,8 @@ def leastquare_example(model, file_name, n=60):
 
 def sse_simulator():
 	ssesim = SSESimulator()
-	result = ssesim.simulation()
-	print result
-	
+	ssesim.simulation()
+
 if __name__ == '__main__':
 	sse_simulator()
 	# leastquare_example(sir,"data1.csv", 60) # bug, file name need backslash, otherwise it doesnt work.

@@ -32,6 +32,15 @@ class SSESimulator(BaseSimulator):
 			return sum(lsq.errors)
 			
 		# execute simulation
-		result = self.run(1,30,5,calculation)
+		result = self.run(30,60,3,calculation)
+		
+		# build graph for plotting result
+		graph = [[],[]]
+		for k,v in result.iteritems():
+			graph[0].append(k)
+			graph[1].append(v)
+		
 		logger.success("Simulation 1")
+		# plot graph
+		self.plot_graph(graph)
 		return result
