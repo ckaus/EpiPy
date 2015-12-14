@@ -70,10 +70,8 @@ class BaseSimulator():
 		:returns: dict, where key = timestamp and value = calculation result
 		"""
 
-		counter = 0
 		result_list = {}
 		for i in range(start_t, end_t, steps):
-			counter+=1+steps
 			lsq = Leastsquare(self.model, self.data, i)
 			lsq.run()
 			result_list[i] = calc_func(self, lsq)		
