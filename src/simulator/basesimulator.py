@@ -66,7 +66,7 @@ class BaseSimulator():
 		:type steps: int
 		:param calc_func: a function who is execute by each iteration step
 		:tpye calc_func: function
-		:returns: dict, where key = time stamp and value = calculation result
+		:returns: dict, where key = timestamp and value = calculation result
 		"""
 
 		counter = 0
