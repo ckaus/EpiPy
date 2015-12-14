@@ -1,11 +1,30 @@
 # -*- coding: utf-8 -*-
 
+"""This file contains the abstract class for creating a simulator."""
+
 from abc import abstractmethod, ABCMeta
 from utils import csvmanager
 from algorithm import Leastsquare
 import sys
 
 class BaseSimulator():
+	"""
+	This class represents an abstract simulator.
+
+	Example:
+	::
+		from basesimulator import BaseSimulator
+
+		class XYZSimulator(BaseSimulator):
+			def __init__(self):
+				BaseSimulator.__init__(self)
+				self.name = "XYZ Simulator"
+				self.model = sir
+				self.data = None
+			
+			def simulation(self):
+				...
+	"""
 	def __init__(self):
 		__metaclass__ = ABCMeta
 		
@@ -49,11 +68,12 @@ class BaseSimulator():
 		:tpye calc_func: function
 		:returns: dict, where key = time stamp and value = calculation result
 		"""
+
 		counter = 0
 		result_list = {}
 		for i in range(start_t, end_t, steps):
 			counter+=1
-			lsq = Leastsquare(self.mode, self.data, i)
+			lsq = Leastsquare(self.model, self.data, i)
 			lsq.run()
 			result_list[i] = calc_func(self, lsq)
 			print '%\r',counter*(100*steps)/end_t,

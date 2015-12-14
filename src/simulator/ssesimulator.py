@@ -8,7 +8,7 @@ class SSESimulator(BaseSimulator):
 	def __init__(self):
 		BaseSimulator.__init__(self)
 		self.name = "SSE Simulator"
-		self.mode = sir
+		self.model = sir
 		self.data = None
 
 	def simulation(self):
