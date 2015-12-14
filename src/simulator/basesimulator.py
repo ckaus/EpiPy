@@ -36,6 +36,7 @@ class BaseSimulator():
 	def read_csv(self, file_name, seperator, origin_fields, result_fields):
 		"""
 		This function read a csv file.
+		
 		:param file_name: the file name
 		:type file_name: str
 		:param seperator: the delimiter
@@ -59,6 +60,7 @@ class BaseSimulator():
 	def run(self, start_t, end_t, steps, calc_func):
 		"""
 		This function start the simulation based on given calculation function.
+
 		:param start_t: iteration start time
 		:type start_t: int
 		:param end_t: iteration end time
