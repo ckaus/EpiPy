@@ -26,7 +26,7 @@ class SSESimulator(BaseSimulator):
 					["Time","I"], 
 					["Time", "Record"]).content
 
-		# calculation
+		# calculate the sum of all sse
 		def calculation(self, lsq):
 			# some more calculations ...
 			return sum(lsq.errors)

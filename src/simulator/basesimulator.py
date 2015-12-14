@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from abc import abstractmethod, ABCMeta
-from utils import logger, csvmanager
+from utils import csvmanager
 from algorithm import Leastsquare
 import sys
 
@@ -14,6 +14,19 @@ class BaseSimulator():
 		pass
 		
 	def read_csv(self, file_name, seperator, origin_fields, result_fields):
+		"""
+		This function read a csv file.
+		:param file_name: the file name
+		:type file_name: str
+		:param seperator: the delimiter
+		:type seperator: str
+		:param origin_fields: the origin header fields
+		:type origin_fields: list
+		:param result_fields: the result header fields
+		:type result_fields: list
+		:returns: a *CSV_File_Object*
+		"""
+
 		cfo = csvmanager.CSV_File_Object(
 				file_name=file_name,
 				seperator=seperator,
@@ -24,6 +37,18 @@ class BaseSimulator():
 		return csv_data
 
 	def run(self, start_t, end_t, steps, calc_func):
+		"""
+		This function start the simulation based on given calculation function.
+		:param start_t: iteration start time
+		:type start_t: int
+		:param end_t: iteration end time
+		:type end_t: int
+		:param steps: iteration steps
+		:type steps: int
+		:param calc_func: a function who is execute by each iteration step
+		:tpye calc_func: function
+		:returns: dict, where key = time stamp and value = calculation result
+		"""
 		counter = 0
 		result_list = {}
 		for i in range(start_t, end_t, steps):
