@@ -75,6 +75,7 @@ class Leastsquare(object):
 		self.k = 1.0/sum(self.data_record_train)
 		# normalized classes for t = 0
 		self.N0 = self.model.pop(self.data_record_train[0], self.k)
+		self.errors = []
 		
 	def run(self):
 		"""
@@ -91,7 +92,7 @@ class Leastsquare(object):
 		# scale out
 		Nt = np.divide(Nt, self.k)
 		# Get the second column of data corresponding to I
-		return Nt[:,1]
+		self.fit = Nt[:,1]
 	
 	def sse(self, model):
 		"""
@@ -108,5 +109,7 @@ class Leastsquare(object):
 			INt = np.divide(INt, self.k)
 			difference = self.data_record_train - INt
 			# square the difference
-			return np.dot(difference, difference)
+			diff = np.dot(difference, difference)
+			self.errors.append(diff)
+			return diff
 		return result

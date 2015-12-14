@@ -27,13 +27,12 @@ def leastquare_example(model, file_name, n=60):
 	pl.show()
 
 
-def sse_simulator(file_path):
+def sse_simulator():
 	ssesim = SSESimulator()
-	result = ssesim.run(file_path)
-	logger.info("Result: %s" % result)
+	result = ssesim.run()
 
 if __name__ == '__main__':
-	sse_simulator("data1.csv")
+	sse_simulator()
 	# leastquare_example(sir,"data1.csv", 60) # bug, file name need backslash, otherwise it doesnt work.
 
 
