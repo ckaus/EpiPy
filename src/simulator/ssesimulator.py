@@ -9,18 +9,29 @@ class SSESimulator(BaseSimulator):
 		BaseSimulator.__init__(self)
 		self.name = "SSE Simulator"
 		self.mode = sir
+		self.data = None
 
-	def run(self):
-		logger.info("Start Simulation 1")
-		error_list = {}
-		csv_obj = self.read_csv(
+	def simulation(self):
+		logger.info("Start Simulation")
+		return self.simulation_1()
+		
+
+	def simulation_1(self):
+		logger.info("Simulation 1")
+		
+		# data set
+		self.data = self.read_csv(
 					"data1.csv",
 					";",
 					["Time","I"], 
-					["Time", "Record"])
-		
-		for i in range(1,30,2):
-			lsq = self._run_lsq(sir, csv_obj.content, i)
-			error_list[i] = lsq.errors
-		logger.success("End Simulation 1")
-		return error_list		
+					["Time", "Record"]).content
+
+		# calculation
+		def calculation(self, lsq):
+			# some more calculations ...
+			return sum(lsq.errors)
+			
+		# execute simulation
+		result = self.run(1,30,5,calculation)
+		logger.success("Simulation 1")
+		return result

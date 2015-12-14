@@ -3,13 +3,14 @@
 from abc import abstractmethod, ABCMeta
 from utils import logger, csvmanager
 from algorithm import Leastsquare
+import sys
 
 class BaseSimulator():
 	def __init__(self):
 		__metaclass__ = ABCMeta
 		
 	@abstractmethod
-	def run(self):
+	def simulation(self):
 		pass
 		
 	def read_csv(self, file_name, seperator, origin_fields, result_fields):
@@ -22,10 +23,17 @@ class BaseSimulator():
 					result_fields=result_fields)
 		return csv_data
 
-	def _run_lsq(self, model, data, train_data_range):
-		lsq_obj = Leastsquare(model, data, train_data_range)
-		lsq_obj.run()
-		return lsq_obj
+	def run(self, start_t, end_t, steps, calc_func):
+		counter = 0
+		result_list = {}
+		for i in range(start_t, end_t, steps):
+			counter+=1
+			lsq = Leastsquare(self.mode, self.data, i)
+			lsq.run()
+			result_list[i] = calc_func(self, lsq)
+			print '%\r',counter*(100*steps)/end_t,
+			sys.stdout.flush()		
+		return result_list
 
 	def plot(self):
 		logger.error("Not implemented error")
