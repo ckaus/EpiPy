@@ -93,6 +93,7 @@ class Leastsquare(object):
 		Nt = np.divide(Nt, self.k)
 		# Get the second column of data corresponding to I
 		self.fit = Nt[:,1]
+		return self.fit
 	
 	def sse(self, model):
 		"""

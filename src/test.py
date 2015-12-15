@@ -32,8 +32,8 @@ def sse_simulator():
 	ssesim.simulation()
 
 if __name__ == '__main__':
-	sse_simulator()
-	# leastquare_example(sir,"data1.csv", 60) # bug, file name need backslash, otherwise it doesnt work.
+	# sse_simulator()
+	leastquare_example(sir,"data1.csv", 60) # bug, file name need backslash, otherwise it doesnt work.
 
 
 # from pymc import MCMC, AdaptiveMetropolis
