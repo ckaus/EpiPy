@@ -8,7 +8,7 @@ import pyqtgraph as pg
 import numpy as np
 from algorithm import Leastsquare
 from model import sir
-from utils import csvmanager
+from utils import csvmanager, logger
 
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
