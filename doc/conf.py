@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # EpiPy documentation build configuration file, created by
-# sphinx-quickstart on Wed Nov 11 01:15:40 2015.
+# sphinx-quickstart on Tue Dec  8 09:10:01 2015.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -18,7 +18,7 @@ import os
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
-sys.path.insert(0, os.path.abspath('../src'))
+sys.path.insert(0, os.path.abspath('../src/'))
 
 # -- General configuration ------------------------------------------------
 
@@ -44,7 +44,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'EpiPy'
-copyright = u'2015, CK, YNR'
+copyright = u'2015, Albert Mkhitaryan - Christian Kaus - Yena Rhee'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -127,7 +127,7 @@ html_theme = 'default'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-#html_static_path = ['_static']
+html_static_path = ['_static']
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -197,7 +197,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'EpiPy.tex', u'EpiPy Documentation',
-   u'CK, YNR', 'manual'),
+   u'CK', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -227,7 +227,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'epipy', u'EpiPy Documentation',
-     [u'CK, YNR'], 1)
+     [u'CK'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -241,7 +241,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'EpiPy', u'EpiPy Documentation',
-   u'CK, YNR', 'EpiPy', 'One line description of project.',
+   u'CK', 'EpiPy', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -256,3 +256,11 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+def skip(app, what, name, obj, skip, options):
+    if name == "__init__":
+        return False
+    return skip
+
+def setup(app):
+    app.connect("autodoc-skip-member", skip)
