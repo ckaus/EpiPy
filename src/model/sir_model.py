@@ -54,7 +54,7 @@ def param_init():
     """
     This function returns the initial parameter (beta/gamma) for SIR Model.
     """
-    return [0.75, 0.75] 
+    return [0.9, 0.1] 
 
 def with_births_deaths(sir_values, time):
     """

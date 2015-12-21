@@ -8,7 +8,7 @@ from simulator import SSESimulator
 
 """This file contains test functionalites."""
 
-def leastquare_example(model, file_name, n=60):
+def leastquare_example(model, file_name):
 	"""
 	Example for using leastsquare method
 	"""
@@ -17,8 +17,9 @@ def leastquare_example(model, file_name, n=60):
 	ls_data = cm.content
 	# least square use record instead of infected, recovered, ...
 	ls_data["Record"] = ls_data.pop("Infected")
-	lsq = Leastsquare(model, ls_data, n)
-	result = lsq.run()
+	ls_data["Time"] = ls_data["Time"]
+	lsq = Leastsquare(ls_data)
+	result = lsq.fit(model)
 
 	# Plot data and fit
 	pl.clf()
@@ -26,15 +27,16 @@ def leastquare_example(model, file_name, n=60):
 	pl.plot(lsq.time_total, result)
 	pl.show()
 
-
-def sse_simulator():
-	ssesim = SSESimulator()
-	ssesim.simulation()
+from algorithm import Ransac
 
 if __name__ == '__main__':
-	# sse_simulator()
-	leastquare_example(sir,"data1.csv", 60) # bug, file name need backslash, otherwise it doesnt work.
-
+	from utils import csvmanager
+	cfo = csvmanager.CSV_File_Object(file_name='data1.csv', seperator=";", model=sir)
+	cm = csvmanager.CSV_Manager(cfo).read(origin_fields=["Time","I"], result_fields=["Time", "Infected"])
+	ls_data = cm.content
+	# least square use record instead of infected, recovered, ...
+	ls_data["Record"] = ls_data.pop("Infected")
+	ransac = Ransac(sir, ls_data, 1, 100, 1.0)
 
 # from pymc import MCMC, AdaptiveMetropolis
 # def mcmc_example():

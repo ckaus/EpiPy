@@ -3,6 +3,7 @@
 from basesimulator import BaseSimulator
 from utils import logger
 from model import sir
+import numpy
 
 class SSESimulator(BaseSimulator):
 	def __init__(self):
@@ -11,12 +12,12 @@ class SSESimulator(BaseSimulator):
 		self.model = sir
 		self.data = None
 
-	def simulation(self):
+	def simulation(self, with_plot=True):
 		logger.info("Start Simulation")
-		return self.simulation_1()
+		return self.simulation_1(with_plot)
 		
 
-	def simulation_1(self):
+	def simulation_1(self, with_plot):
 		logger.info("Simulation 1")
 		
 		# data set
@@ -28,19 +29,22 @@ class SSESimulator(BaseSimulator):
 
 		# calculate the sum of all sse
 		def calculation(self, lsq):
-			# some more calculations ...
-			return sum(lsq.errors)
+			return mean(lsq.errors)
 			
 		# execute simulation
-		result = self.run(30,60,3,calculation)
+		result = self.run(30,80,2,calculation)
 		
-		# build graph for plotting result
-		graph = [[],[]]
-		for k,v in result.iteritems():
-			graph[0].append(k)
-			graph[1].append(v)
+		if with_plot:
+			# build graph for plotting result
+			graph = [[],[]]
+			for k,v in result.iteritems():
+				graph[0].append(k)
+				graph[1].append(v)
+			self.plot_graph(graph)
+		else:
+			# print '--'
+			print result
 		
 		logger.success("Simulation 1")
 		# plot graph
-		self.plot_graph(graph)
 		return result
