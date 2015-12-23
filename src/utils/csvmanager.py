@@ -29,9 +29,8 @@ class CSV_Manager:
 				from utils import csvmanager
 
 				content = csvmanager.CSV_Manager().read(
-					file_name="/liberia_data/2014-06-16.csv",
-					seperator=",", origin_fields=["Date", "National"],
-					result_fields=["Time", "Infected"])
+					file_name="data1.csv",
+					seperator=";", column=["Time", "I"])
 
 				print content
 		"""
