@@ -6,8 +6,7 @@ from aboutdialog import AboutDialog
 
 import pyqtgraph as pg
 import numpy as np
-from algorithm import Leastsquare
-from model import sir
+from model import SIR
 from utils import csvmanager, logger
 
 filePath = os.path.abspath(__file__)
@@ -20,19 +19,20 @@ class MainWindow(MainWindowBase, MainWindowUI):
     	MainWindowBase.__init__(self)
     	self.setupUi(self)
     	
-        # ====plot==========
-        # plot
-        pw = pg.PlotWidget(title="SIR Model")
-        cfo = csvmanager.CSV_File_Object(file_name="data1.csv", seperator=";", model=sir)
-        cm = csvmanager.CSV_Manager(cfo).read(origin_fields=["Time","I"], result_fields=["Time", "Infected"])
-        ls_data = cm.content
-        # least square use record instead of infected, recovered, ...
-        ls_data["Record"] = ls_data.pop("Infected")
+        content = csvmanager.CSV_Manager().read(
+            file_name="data1.csv",
+            seperator=";", column=["Time", "I"])
         
-        lsq = Leastsquare(sir, ls_data, 60)
-        result = lsq.run()
-        pw.plot(y=lsq.data_record, symbol='o')
-        pw.plot(y=result, pen="k")
+        ydata = np.array(content['I'], dtype=float)
+        xdata = np.array(content['Time'], dtype=float)
+
+        sir = SIR(xdata, ydata)
+        fitted = sir.fit()
+
+        # ====plot==========
+        pw = pg.PlotWidget(title="SIR Model")
+        pw.plot(x=xdata, y=ydata, symbol='o')
+        pw.plot(x=xdata, y=fitted, pen="k")
         pw.setWindowTitle('pyqtgraph example: customPlot')
         pw.setBackground(QtGui.QColor(255, 255, 255))
         self.splitter.insertWidget(0,pw)

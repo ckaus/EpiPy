@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import si_model as si
-import sir_model as sir
-import sis_model as sis
-import seir_model as seir
+from sir import SIR
 
-__all__ = ['si','sir','sis','seir']
+__all__ = ['SIR']
