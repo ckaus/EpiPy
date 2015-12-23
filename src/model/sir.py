@@ -2,6 +2,8 @@
 
 # http://stackoverflow.com/questions/34422410/fitting-sir-model-based-on-least-squares/34425290#34425290
 
+import  scipy.optimize
+from utils import logger
 """This file contains the SIR-Model."""
 
 class SIR(object):
