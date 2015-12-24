@@ -1,5 +1,3 @@
 # Folder for data sets of epidemic outbreaks
-
-* Data for the 2014 Global Ebola
-  * Source: https://github.com/cmrivers/ebola
-    * liberia_data
+* https://github.com/cmrivers/ebola
+* http://opendata.stackexchange.com/questions/3484/2014-ebola-outbreak-dataset
