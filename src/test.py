@@ -26,7 +26,6 @@ def read(file_name, seperator, column):
 # ======================================
 # Example 1
 data_set_1 = read(file_name="data1.csv", seperator=";", column=["Time", "I"])
-
 ydata = np.array(data_set_1["I"], dtype=float)
 xdata = np.array(data_set_1["Time"], dtype=float)
 plot(xdata,ydata)
