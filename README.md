@@ -12,7 +12,8 @@ A Tool for fitting epidemic models.
 
 ### Linux
 
-Download and install the package of [PyQtGraph][2] and [SciPy][http://www.scipy.org/install.html#linux-packages]. After that, execute in your terminal the following command for installing PyQt4 `$sudo apt-get install python-qt4 python-gi-cairo`.
+* Download and install the package of [PyQtGraph][2] and [SciPy][7].
+* Execute `$sudo apt-get install python-qt4 python-gi-cairo`.
 
 ## Start EpiPy
 ```
@@ -37,4 +38,5 @@ $ python main.py
 [3]: http://www.scipy.org/install.html "SciPy"
 [4]: http://sphinx-doc.org/ "Sphinx"
 [5]: https://github.com/ckaus/EpiPy/blob/master/LICENSE "MIT license"  
-[6]: https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AAAbHY9DkdnRPuZo-vePaO1Fa?dl=0
+[6]: https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AAAbHY9DkdnRPuZo-vePaO1Fa?dl=0 "Paper"
+[7]: http://www.scipy.org/install.html#linux-packages "Scipy Linux"
