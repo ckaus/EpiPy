@@ -12,7 +12,7 @@ A Tool for fitting epidemic models.
 
 ### Linux
 
-* Download and install the package of [PyQtGraph][2] and [SciPy][7].
+* Download and install the packages of [PyQtGraph][2] and [SciPy][7].
 * Execute `$ sudo apt-get install python-qt4 python-gi-cairo`.
 
 ## Start EpiPy
