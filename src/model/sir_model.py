@@ -5,6 +5,7 @@
 import numpy as np
 import scipy.integrate as spi
 import pylab as pl
+import random
 
 def simple(sir_values, time, beta, gamma, k):
     """
@@ -54,7 +55,7 @@ def param_init():
     """
     This function returns the initial parameter (beta/gamma) for SIR Model.
     """
-    return [0.75, 0.75] 
+    return [random.uniform(0.1, 0.9),random.uniform(0.1, 0.9)]
 
 def with_births_deaths(sir_values, time):
     """
