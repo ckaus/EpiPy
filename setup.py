@@ -16,8 +16,8 @@ setup(
     license = "MIT",
     keywords = "epidemic models",
     url = "",
-    packages=['src', 'resources',
-            'src.utils', 'src.model', 'src.ui'],
+    packages=['epipy',
+            'epipy.utils', 'epipy.model', 'epipy.ui'],
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Environment :: Console",
@@ -30,5 +30,5 @@ setup(
         "Topic :: Tool",
         "License :: MIT",
     ],
-    entry_points = {'console_scripts': ['epipy = src.test',],},
+    entry_points = {'console_scripts': ['epipy = epipy.src.test',],},
 )
