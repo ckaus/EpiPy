@@ -2,6 +2,7 @@
 A Tool for fitting epidemic models.
 
 # Project Structure
+```
 .
 ├── doc - Contains the documentation
 ├── epipy - Contains the sources
@@ -10,6 +11,7 @@ A Tool for fitting epidemic models.
 ├── requirements.txt - Contains the necessary libraries
 ├── scripts - Contains installation and remove scripts
 └── setup.py - Installation script is using by `scripts/install.sh`
+```
 
 ## Installation
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
