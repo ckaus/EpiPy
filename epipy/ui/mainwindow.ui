@@ -101,6 +101,10 @@
                <property name="text">
                 <string/>
                </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../resources/pictures/save.png</normaloff>../resources/pictures/save.png</iconset>
+               </property>
               </widget>
              </item>
              <item>

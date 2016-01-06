@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import sys
+import sys,os
 from PyQt4 import QtCore, QtGui, uic
 from epipy.ui.mainwindow import MainWindow
 

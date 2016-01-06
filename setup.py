@@ -1,5 +1,15 @@
+#!/usr/bin/env python
+
 import os
-from setuptools import setup, find_packages
+import sys
+
+try:
+    from setuptools import setup, find_packages
+except ImportError:
+    raise ImportError("Install setup tools")
+
+if sys.version_info[:2] > (2, 7):
+    raise RuntimeError("Python version 2.6, 2.7 required.")
 
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -11,22 +21,28 @@ setup(
     description = ("A Tool for fitting epidemic models."),
     license = "MIT",
     keywords = "epidemic models",
-    url = "",
+    url = "https://github.com/ckaus/EpiPy",
     packages=find_packages(exclude=["tests"]),
-    # add all non python files
-    package_data={'epipy': ['ui/*','resources/data/*','resources/pictures/*']},
     long_description=read('README'),
+    dependency_links=['https://github.com/numpy/numpy', 'https://github.com/scipy/scipy', 'https://github.com/pyqtgraph/pyqtgraph'],
     classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Environment :: Console",
-        "Environment :: GUI",
-        "Intended Audience :: Scientists",
-        "Intended Audience :: Developers",
-        "Operating System :: MacOS :: MacOS X",
-        "Operating System :: Debian",
-        "Programming Language :: Python",
-        "Topic :: Tool",
-        "License :: MIT",
+    """\
+    Development Status :: 3 - Alpha
+    Environment :: Console
+    Environment :: GUI
+    Intended Audience :: Science/Research
+    Intended Audience :: Developers
+    License :: MIT
+    Natural Language :: English
+    Programming Language :: Python
+    Programming Language :: Python :: 2
+    Programming Language :: Python :: 2.6
+    Programming Language :: Python :: 2.7
+    Topic :: Scientific/Engineering
+    Topic :: Tool
+    Operating System :: Unix
+    Operating System :: MacOS
+    """
     ],
     entry_points = {'console_scripts': ['epipy = epipy.main',],},
 )

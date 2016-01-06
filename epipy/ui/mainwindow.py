@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
+# # -*- coding: utf-8 -*-
 
-import os
+import os, sys
 from PyQt4 import uic, QtCore, QtGui
 from aboutdialog import AboutDialog
 
@@ -58,9 +58,9 @@ class MainWindow(MainWindowBase, MainWindowUI):
         # disable first item of model box in option groupbox
     	self.modelComboBox.setItemData(0, QtCore.QVariant(0),QtCore.Qt.UserRole -1)
     	# fitting information groupbox
-        self.clearButton.setIcon(QtGui.QIcon("../resources/pictures/clear.png"))
+        self.clearButton.setIcon(QtGui.QIcon("/../resources/pictures/clear.png"))
         self.clearButton.clicked.connect(self.infoTextEdit.clear)
-        self.saveButton.setIcon(QtGui.QIcon("../resources/pictures/save.png"))
+        self.saveButton.setIcon(QtGui.QIcon("/../resources/pictures/save.png"))
         self.searchLineEdit.returnPressed.connect(self.searchInfoText)
         
         
