@@ -27,8 +27,7 @@ Start EpiPy via terminal: `$ epipy`
 ## License
 [MIT license][4]
 
-[1]: https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AAAbHY9DkdnRPuZo-vePaO1Fa?dl=0 
+[1]: https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AAAbHY9DkdnRPuZo-vePaO1Fa?dl=0 "Paper"
 [2]: https://github.com/ckaus/EpiPy/wiki "wiki"
 [3]: http://sphinx-doc.org/ "Sphinx"
 [4]: https://github.com/ckaus/EpiPy/blob/master/LICENSE "MIT license"  
-"Paper"
