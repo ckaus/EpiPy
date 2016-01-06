@@ -23,7 +23,7 @@ setup(
     keywords = "epidemic models",
     url = "https://github.com/ckaus/EpiPy",
     packages=find_packages(exclude=["tests"]),
-    install_requires={'epipy': ['ui/*','resources/data/*','resources/pictures/*']},
+    package_data={'epipy': ['ui/*','resources/data/*','resources/pictures/*']},
     long_description=read('README'),
     classifiers=[
     """\
