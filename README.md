@@ -4,7 +4,7 @@ A Tool for fitting epidemic models.
 ## Installation
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
 2. Navigate to install/remove scripts: `$ cd EpiPy/scripts/`
-3. Comment out the installation instruction in `install.sh` for your operating system 
+3. Comment out the installation instructions in `install.sh` for your operating system 
 4. Run: `$ sh install.sh`
 
 ## Remove
