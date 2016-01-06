@@ -1,7 +1,7 @@
 # EpiPy
 A Tool for fitting epidemic models.
 
-# Project Structure
+## Project Structure
 ```
 .
 ├── doc - Contains the documentation
