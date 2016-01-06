@@ -1,6 +1,16 @@
 # EpiPy
 A Tool for fitting epidemic models.
 
+# Project Structure
+.
+├── doc - Contains the documentation
+├── epipy - Contains the sources
+├── LICENSE
+├── README.md - Description File 
+├── requirements.txt - Contains the necessary libraries
+├── scripts - Contains installation and remove scripts
+└── setup.py - Installation script is using by `scripts/install.sh`
+
 ## Installation
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
 2. Navigate to install/remove scripts: `$ cd EpiPy/scripts/`
