@@ -36,7 +36,7 @@ class CSV_Manager:
 		"""
 
 		current_dir =  os.path.abspath(os.path.dirname(__file__))
-		path = os.path.abspath(current_dir + "/../../resources/data")+"/"+file_name
+		path = os.path.abspath(current_dir + "/../resources/data")+"/"+file_name
 		result = {}
 		try:
 			# read input file

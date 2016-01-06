@@ -6,8 +6,9 @@ from aboutdialog import AboutDialog
 
 import pyqtgraph as pg
 import numpy as np
-from model import SIR
-from utils import csvmanager, logger
+from epipy.model.sir import SIR
+from epipy.utils import logger
+from epipy.utils import CSV_Manager
 
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
@@ -19,7 +20,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
     	MainWindowBase.__init__(self)
     	self.setupUi(self)
     	
-        content = csvmanager.CSV_Manager().read(
+        content = CSV_Manager().read(
             file_name="data1.csv",
             seperator=";", column=["Time", "I"])
         

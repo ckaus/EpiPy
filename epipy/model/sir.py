@@ -4,7 +4,7 @@
 # http://stackoverflow.com/questions/34422410/fitting-sir-model-based-on-least-squares/34425290#34425290
 
 from scipy import integrate, optimize
-from src.utils import logger
+from epipy.utils import logger
 
 class SIR(object):
 
