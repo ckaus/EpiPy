@@ -25,7 +25,7 @@ setup(
     packages=find_packages(exclude=["tests"]),
     package_data={'epipy': ['ui/*','resources/data/*','resources/pictures/*']},
     long_description=read('README'),
-    dependency_links=['https://github.com/numpy/numpy', 'https://github.com/scipy/scipy', 'https://github.com/pyqtgraph/pyqtgraph'],
+    dependency_links=['numpy', 'scipy', 'pyqtgraph'],
     classifiers=[
     """\
     Development Status :: 3 - Alpha
