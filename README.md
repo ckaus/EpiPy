@@ -13,13 +13,16 @@ A Tool for fitting epidemic models.
 └── setup.py - Installation script is using by `scripts/install.sh`
 ```
 
-## Installation
+## Installation (Unix)
+*The installation steps are tested on Debian 8.2 and Mac OS X 10.11.2*
+
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
 2. Navigate to install/remove scripts: `$ cd EpiPy/scripts/`
 3. Comment out the installation instructions in `install.sh` for your operating system 
 4. Run: `$ sh install.sh`
 
-## Remove
+## Remove (Unix)
+*The installation steps are tested on Debian 8.2 and Mac OS X 10.11.2*
 1. Navigate to install/remove scripts: `$ cd EpiPy/scripts/`
 2. Comment out the remove instructions in `remove.sh` for your operating system
 3. Run: `$ sh remove.sh`
