@@ -24,7 +24,7 @@ setup(
     url = "https://github.com/ckaus/EpiPy",
     packages=find_packages(exclude=["tests"]),
     package_data={'epipy': ['ui/*','resources/data/*','resources/pictures/*']},
-    long_description=read('README'),
+    long_description=read('README.md'),
     classifiers=[
     """\
     Development Status :: 3 - Alpha
