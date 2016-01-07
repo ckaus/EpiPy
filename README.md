@@ -23,6 +23,7 @@ A Tool for fitting epidemic models.
 
 ## Remove (Unix)
 *The installation steps are tested on Debian 8.2 and Mac OS X 10.11.2*
+
 1. Navigate to install/remove scripts: `$ cd EpiPy/scripts/`
 2. Comment out the remove instructions in `remove.sh` for your operating system
 3. Run: `$ sh remove.sh`
