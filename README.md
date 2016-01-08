@@ -19,6 +19,8 @@ A Tool for fitting epidemic models.
 3. Comment out the installation instructions in `install.sh` for your operating system 
 4. Run: `$ sh install.sh`
 
+*Note:* Debian based operating systems needs `pkg-config` to install `matplotlib`.
+
 ## Remove
 1. Navigate to install/remove scripts: `$ cd EpiPy/scripts/`
 2. Comment out the remove instructions in `remove.sh` for your operating system
