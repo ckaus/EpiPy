@@ -2,7 +2,7 @@
 A Tool for fitting epidemic models. For more information see [wiki][1]
 
 ## Requirements
-Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4`
+Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4
 
 *Note:* Debian based operating systems need `pkg-config` to install `matplotlib`.
 
