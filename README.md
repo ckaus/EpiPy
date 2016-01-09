@@ -2,7 +2,7 @@
 A Tool for fitting epidemic models. For more information see [wiki][1]
 
 ## Requirements
-Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4`
+Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4
 
 *Note:* Debian based operating systems need `pkg-config` to install `matplotlib`.
 
@@ -13,28 +13,27 @@ Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4`
 ├── epipy - Contains the sources
 ├── LICENSE
 ├── README.md - Description File 
-└── setup.py - Installation script is using by `scripts/install.sh`
+└── setup.py - Installation script
 ```
 
 ## Installation
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
-2. Navigate to `EpiPy/epipy/`.
+2. Navigate to `EpiPy/`.
 3. Install EpiPy as *root*:
-3.1 (Developer) `$ pip install -e .`
-3.2 (User) `$ pip install .`
+	* (Developer) `$ pip install -e .`
+	* (User) `$ pip install .`
 
-EpiPy is now available over the terminal with `$ epipy`
+EpiPy is now available in terminal `$ epipy` .
 
 ## Remove
-1. Navigate to `EpiPy/epipy/`
-2. Remove EpiPy as *root*
-2.1 (Developer)
-  * Remove project path in file: `/usr/local/lib/python2.7/dist-packages/easy-install.pth`
-  * `$ rm /usr/local/lib/python2.7/dist-packages/EpiPy.egg-link`
-  * `$ rm /usr/local/bin/epipy` 
-2.2 (User)
-  * `$ pip uninstall epipy
-  * `$ rm /usr/local/bin/epipy`
+Remove EpiPy as *root*
+* (Developer)
+	* Remove project path in file: `/usr/local/lib/python2.7/dist-packages/easy-install.pth`
+	* `$ rm /usr/local/lib/python2.7/dist-packages/EpiPy.egg-link`
+	* `$ rm /usr/local/bin/epipy`
+* (User)
+	* `$ pip uninstall epipy`
+ 	* `$ rm /usr/local/bin/epipy`
 
 ## Literatur
  * [Papers][1]
