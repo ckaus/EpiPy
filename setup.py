@@ -6,17 +6,17 @@ import sys
 try:
     from setuptools import setup, find_packages
 except ImportError:
-    raise ImportError("Install setup tools")
+    sys.exit("Install setup tools")
 
 try:
     import pyqtgraph
 except ImportError:
-    raise ImportError("Install pyqtgraph")
+    sys.exit("Install pyqtgraph")
 
 try:
     import PyQt4
 except ImportError:
-    raise ImportError("Install PyQt4")    
+    sys.exit("Install PyQt4")    
 
 if sys.version_info[:2] > (2, 7):
     raise RuntimeError("Python version 2.6, 2.7 required.")
@@ -55,5 +55,5 @@ setup(
     Operating System :: MacOS
     """
     ],
-    entry_points = {'console_scripts': ['epipy = epipy.main:main',],},
+    entry_points = {'console_scripts': ['epipy = epipy.main',],},
 )
