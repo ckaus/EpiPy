@@ -31,7 +31,8 @@ EpiPy is now available over the terminal with `$ epipy`
 2.1 (Developer)
   * Remove project path in file: `/usr/local/lib/python2.7/dist-packages/easy-install.pth`
   * `$ rm /usr/local/lib/python2.7/dist-packages/EpiPy.egg-link`
-  * `$ rm /usr/local/bin/epipy` 
+  * `$ rm /usr/local/bin/epipy`
+
 2.2 (User)
   * `$ pip uninstall epipy
   * `$ rm /usr/local/bin/epipy`
