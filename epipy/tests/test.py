@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from utils import csvmanager
-from model.sir import SIR
+from epipy.utils import csvmanager
+from epipy.model.sir import SIR
 import numpy as np
 import matplotlib.pyplot as plt
 
