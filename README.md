@@ -23,7 +23,7 @@ Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4
 	* (Developer) `$ pip install -e .`
 	* (User) `$ pip install .`
 
-EpiPy is now available over the terminal with `$ epipy`
+EpiPy is now available in terminal `$ epipy`
 
 ## Remove
 1. Navigate to `EpiPy/epipy/`
