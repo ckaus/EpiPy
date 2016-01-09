@@ -6,17 +6,17 @@ import sys
 try:
     from setuptools import setup, find_packages
 except ImportError:
-    sys.exit("Install setup tools")
+    ImportError("Install setup tools")
 
 try:
     import pyqtgraph
 except ImportError:
-    sys.exit("Install pyqtgraph")
+    raise ImportError("Install pyqtgraph")
 
 try:
     import PyQt4
 except ImportError:
-    sys.exit("Install PyQt4")    
+    ImportError("Install PyQt4")    
 
 if sys.version_info[:2] > (2, 7):
     raise RuntimeError("Python version 2.6, 2.7 required.")
