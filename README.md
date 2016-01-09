@@ -13,7 +13,7 @@ Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4
 ├── epipy - Contains the sources
 ├── LICENSE
 ├── README.md - Description File 
-└── setup.py - Installation script is using by `scripts/install.sh`
+└── setup.py - Installation script
 ```
 
 ## Installation
