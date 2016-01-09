@@ -18,7 +18,7 @@ Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4
 
 ## Installation
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
-2. Navigate to `EpiPy/epipy/`.
+2. Navigate to `EpiPy/`.
 3. Install EpiPy as *root*:
 	* (Developer) `$ pip install -e .`
 	* (User) `$ pip install .`
