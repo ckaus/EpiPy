@@ -12,7 +12,12 @@ try:
     import pyqtgraph
 except ImportError:
     raise ImportError("Install pyqtgraph")
-    
+
+try:
+    import PyQt4
+except ImportError:
+    raise ImportError("Install PyQt4")    
+
 if sys.version_info[:2] > (2, 7):
     raise RuntimeError("Python version 2.6, 2.7 required.")
 
@@ -30,7 +35,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     long_description=read('README.md'),
-    required_packages=['PyQt4', 'matplotlib', 'scipy'],
+    install_requires=['matplotlib', 'scipy'],
     classifiers=[
     """\
     Development Status :: 3 - Alpha
