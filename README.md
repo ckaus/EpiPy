@@ -20,8 +20,8 @@ Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4`
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
 2. Navigate to `EpiPy/epipy/`.
 3. Install EpiPy as *root*:
-3.1. (Developer) `$ pip install -e .`
-3.2. (User) `$ pip install .`
+	* (Developer) `$ pip install -e .`
+	* (User) `$ pip install .`
 
 EpiPy is now available over the terminal with `$ epipy`
 
