@@ -8,6 +8,11 @@ try:
 except ImportError:
     raise ImportError("Install setup tools")
 
+try:
+    import pyqtgraph
+except ImportError:
+    raise ImportError("Install pyqtgraph")
+    
 if sys.version_info[:2] > (2, 7):
     raise RuntimeError("Python version 2.6, 2.7 required.")
 
@@ -22,9 +27,10 @@ setup(
     license = "MIT",
     keywords = "epidemic models",
     url = "https://github.com/ckaus/EpiPy",
-    packages=find_packages(exclude=["tests"]),
-    package_data={'epipy': ['ui/*','resources/data/*','resources/pictures/*']},
+    packages=find_packages(),
+    include_package_data=True,
     long_description=read('README.md'),
+    required_packages=['PyQt4', 'matplotlib', 'scipy'],
     classifiers=[
     """\
     Development Status :: 3 - Alpha
@@ -44,5 +50,5 @@ setup(
     Operating System :: MacOS
     """
     ],
-    entry_points = {'console_scripts': ['epipy = epipy.main',],},
+    entry_points = {'console_scripts': ['epipy = epipy.main:main',],},
 )
