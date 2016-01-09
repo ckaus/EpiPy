@@ -26,14 +26,13 @@ Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4
 EpiPy is now available in terminal `$ epipy` .
 
 ## Remove
-1. Navigate to `EpiPy/epipy/`
-2. Remove EpiPy as *root*
-	* (Developer)
-		* Remove project path in file: `/usr/local/lib/python2.7/dist-packages/easy-install.pth`
-		* `$ rm /usr/local/lib/python2.7/dist-packages/EpiPy.egg-link`
-		* `$ rm /usr/local/bin/epipy`
- * (User)
- 	* `$ pip uninstall epipy`
+Remove EpiPy as *root*
+* (Developer)
+	* Remove project path in file: `/usr/local/lib/python2.7/dist-packages/easy-install.pth`
+	* `$ rm /usr/local/lib/python2.7/dist-packages/EpiPy.egg-link`
+	* `$ rm /usr/local/bin/epipy`
+* (User)
+	* `$ pip uninstall epipy`
  	* `$ rm /usr/local/bin/epipy`
 
 ## Literatur
