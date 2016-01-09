@@ -2,9 +2,9 @@
 A Tool for fitting epidemic models. For more information see [wiki][1]
 
 ## Requirements
-Python 2.7, `matplotlib`, `scipy`, `pyqtgraph`, PyQt4
+Python 2.7, `numpy`, `matplotlib`, [SciPy][4], `pyqtgraph`, PyQt4
 
-*Note:* Debian based operating systems need `pkg-config` to install `matplotlib`.
+*Note:* Debian based operating systems need probably `pkg-config`.
 
 ## Project Structure
 ```
@@ -33,7 +33,6 @@ Remove EpiPy as *root*
 	* `$ rm /usr/local/bin/epipy`
 * (User)
 	* `$ pip uninstall epipy`
- 	* `$ rm /usr/local/bin/epipy`
 
 ## Literatur
  * [Papers][1]
@@ -51,3 +50,4 @@ Remove EpiPy as *root*
 [2]: https://github.com/ckaus/EpiPy/wiki "wiki"
 [3]: http://sphinx-doc.org/ "Sphinx"
 [4]: https://github.com/ckaus/EpiPy/blob/master/LICENSE "MIT license"
+[5]: http://www.scipy.org/install.html "SciPy"
