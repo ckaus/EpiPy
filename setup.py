@@ -6,17 +6,27 @@ import sys
 try:
     from setuptools import setup, find_packages
 except ImportError:
-    ImportError("Install setup tools")
-
-try:
-    import pyqtgraph
-except ImportError:
-    raise ImportError("Install pyqtgraph")
+    raise ImportError("Install setup tools")
 
 try:
     import PyQt4
 except ImportError:
-    ImportError("Install PyQt4")    
+    raise ImportError("Install PyQt4")    
+
+try:
+    import numpy
+except ImportError:
+    raise ImportError("Install Numpy")    
+
+try:
+    import matplotlib
+except ImportError:
+    raise ImportError("Install matplotlib")    
+
+try:
+    import scipy
+except ImportError:
+    raise ImportError("Install scipy")    
 
 if sys.version_info[:2] > (2, 7):
     raise RuntimeError("Python version 2.6, 2.7 required.")
@@ -35,7 +45,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     long_description=read('README.md'),
-    install_requires=['matplotlib', 'scipy'],
+    install_requires=['pyqtgraph'],
     classifiers=[
     """\
     Development Status :: 3 - Alpha
