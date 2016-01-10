@@ -28,7 +28,7 @@ Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
 EpiPy is now available in terminal `$ epipy` .
 
 ### Windows
-1. We recommend to use [WinPython 2.7][6], which includes all [required packages][7].
+1. We recommend [WinPython 2.7][6], which includes all [required packages][7].
 2. Open your `WinPython Command Prompt` and navigate to `EpiPy/`.
 3. Install EpiPy:
 	* (Developer) `$ pip install -e .`
