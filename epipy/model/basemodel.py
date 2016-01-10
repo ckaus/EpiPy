@@ -3,13 +3,17 @@
 from abc import abstractmethod, ABCMeta
 from scipy import optimize
 from epipy.utils import logger
+from numpy import ndarray
 
 class BaseModel():
 	"""
 	This class defines an abstract epidemic model.
 	"""
-	def __init__(self):
+	def __init__(self, xdata, ydata):
 		__metaclass__ = ABCMeta
+		self.N = 1 # normalized population
+		self.xdata = xdata # time
+		self.ydata = ydata # samples
 
 	@abstractmethod
 	def init_param(self, ydata, N): pass
@@ -20,8 +24,19 @@ class BaseModel():
 	@abstractmethod
 	def fit_odeint(x, *param): pass
 
-	def fit(self, debug=0):
-		popt, pcov = optimize.curve_fit(self.fit_odeint, self.xdata, self.ydata)
+	def fit(self, model_class=0, debug=0):
+		self.model_class = model_class
+		if type(self.ydata[0]) is not ndarray:
+			# calculate init param for modelling
+			self.N0 = self.init_param()
+			# use for fitting given samples
+			self._ydata = self.ydata
+		else:
+			# use init param of given samples for modelling
+			self.N0 = self.ydata[:,0]
+			# use for fitting only specific sample based on model class
+			self._ydata = self.ydata[self.model_class,:]
+		popt, pcov = optimize.curve_fit(self.fit_odeint, self.xdata, self._ydata)
 		result = self.fit_odeint(self.xdata, *popt)
 		if debug:
 			logger.info("Fitting SIR Model by using func=curve_fit.")
