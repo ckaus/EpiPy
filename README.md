@@ -3,8 +3,8 @@ A Tool for fitting epidemic models. For more information see [wiki][1].
 
 ## Screenshots
 
-![Debian](https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AADw-ZKe7qzrzeQGffRxd5ADa/epipy_alpha_debian.png?dl=0)
-![Windows](https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AADCSW2vCT03tSgLlOg3F_Z7a/epipy_alpha_windows.png?dl=0)
+![Debian](https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AADw-ZKe7qzrzeQGffRxd5ADa/epipy_alpha_debian.png)
+![Windows](https://www.dropbox.com/sh/3gtnm32uq6nn0cu/AADCSW2vCT03tSgLlOg3F_Z7a/epipy_alpha_windows.png)
 
 ## Requirements
 Python 2.7, `numpy`, `matplotlib`, [SciPy][4], `pyqtgraph`, PyQt4
