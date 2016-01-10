@@ -52,8 +52,8 @@ Remove EpiPy as *root*
 
 ## Screenshots
 
-![Debian](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_debian.png)
-![Windows](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_windows.png)
+![Debian](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_debian.png "Debian")
+![Windows](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_windows.png "Window")
 
 ## Literatur
  * [Papers][1]
