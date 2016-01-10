@@ -16,7 +16,7 @@ Python 2.7, `numpy`, `matplotlib`, [SciPy][4], `pyqtgraph`, PyQt4
 └── setup.py - Installation script
 ```
 
-## Installation
+## Install
 Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
 
 ### Unix
@@ -36,7 +36,7 @@ EpiPy is now available in terminal `$ epipy` .
 
 EpiPy is now available in terminal `$ epipy` .
 
-## Remove
+## Uninstall
 
 ### Unix
 Remove EpiPy as *root*
