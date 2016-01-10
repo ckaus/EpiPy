@@ -16,7 +16,7 @@ Python 2.7, `numpy`, `matplotlib`, [SciPy][4], `pyqtgraph`, PyQt4
 └── setup.py - Installation script
 ```
 
-## Install
+## Installation
 Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
 
 ### Unix
