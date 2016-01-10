@@ -1,11 +1,6 @@
 # EpiPy
 A Tool for fitting epidemic models. For more information see [wiki][1].
 
-## Screenshots
-
-![Debian](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_debian.png)
-![Windows](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_windows.png)
-
 ## Requirements
 Python 2.7, `numpy`, `matplotlib`, [SciPy][4], `pyqtgraph`, PyQt4
 
@@ -54,6 +49,11 @@ Remove EpiPy as *root*
 
 ### Windows
 (Developer/User): Open your `WinPython Command Prompt` and execute `$ pip uninstall epipy`.
+
+## Screenshots
+
+![Debian](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_debian.png)
+![Windows](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_windows.png)
 
 ## Literatur
  * [Papers][1]
