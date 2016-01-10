@@ -31,8 +31,8 @@ def read(file_name, seperator, column):
 data_set_1 = read(file_name="data1.csv", seperator=";", column=["Time", "S","I","R"])
 ydata = np.array([data_set_1["S"],data_set_1["I"],data_set_1["R"]], dtype=float)
 xdata = np.array(data_set_1["Time"], dtype=float)
-result = fit(xdata,ydata, model_class=1)
-plot(xdata, ydata[1,:], result)
+result = fit(xdata,ydata, model_class=2)
+plot(xdata, ydata[2,:], result)
 # ======================================
 # Example 2 - infected data
 xdata_2 = np.array([0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140, 147, 154, 161])
