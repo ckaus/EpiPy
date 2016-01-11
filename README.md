@@ -7,7 +7,7 @@ Python 2.7, NumPy, matplotlib, SciPy, PyQt4
 *Note:* Debian based operating systems need probably `pkg-config`.
 
 ## Installation
-Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`
+Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
 
 ### Unix
 Make sure you have installed all [requirements](#requirements).
