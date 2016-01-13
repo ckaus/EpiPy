@@ -15,7 +15,7 @@ class SIRwbad(BaseModel):
 		return S0, I0, R0
 
 	def model(self, y, x, beta, gamma, mu):
-		S = -beta * y[0] * y[1] / self.N + mu * (self.N - y[1])
+		S = -beta * y[0] * y[1] / self.N + mu * (self.N - y[0])
 		I = beta * y[0] * y[1] / self.N - gamma * y[1] - mu * y[1]
 		R = gamma * y[1] - mu * y[2] 
 		return S, I, R

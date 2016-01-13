@@ -37,29 +37,23 @@ def read(file_name, seperator, column):
 # sir = SIR(xdata_2, ydata_2)
 # result = sir.fit()
 # plot(xdata_2, ydata_2, result)
-
 # ==================================
 # Example 2
 xdata_2 = np.array([0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140, 147, 154, 161],dtype=float)
 ydata_2 = np.array(normalize([ 113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4400, 3570, 2300, 1900, 2200, 1700, 1170, 830, 750, 770, 520, 550, 380 ]), dtype=float)
 
 # SIR
-sir = SIR(xdata_2, ydata_2)
+# sir = SIR(xdata_2, ydata_2)
 # plot(xdata_2, ydata_2, sir.fit())
 # plot(xdata_2, ydata_2, sir.fit(beta=0.20559662, gamma=0.11329991))
 
 # SIRwbad - with births and deaths
 # sirwbad = SIRwbad(xdata_2, ydata_2)
 # plot(xdata_2, ydata_2, sirwbad.fit())
-# plot(xdata_2, ydata_2, sirwbad.fit(beta=1.81425334, gamma=3.73004208, mu=0.38672365))
+# plot(xdata_2, ydata_2, sirwbad.fit(beta=0.22931843, gamma=0.12404889, mu=0.00879885))
 
 # SIS
 # sis = SIS(xdata_2, ydata_2)
 # plot(xdata_2, ydata_2, sis.fit())
 # plot(xdata_2, ydata_2, sis.fit(beta=0.20559639, gamma=0.11329984))
-
-# SIRwbad - with births and deaths
-# siswbad = SISwbad(xdata_2, ydata_2)
-# plot(xdata_2, ydata_2, siswbad.fit())
-# plot(xdata_2, ydata_2, siswbad.fit(beta=1.39484056, gamma=0.60160268, mu=0.65790318))
 # ==================================

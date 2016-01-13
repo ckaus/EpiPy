@@ -28,6 +28,7 @@ class BaseModel():
 	def fit(self, **kwargs):
 		if len(kwargs) is 0:
 			popt, pcov = optimize.curve_fit(self.fit_odeint, self.xdata, self.ydata)
+			print popt
 			return self.fit_odeint(self.xdata, *popt)
 		else:
 			return self.fit_odeint(self.xdata, **kwargs)
