@@ -3,12 +3,14 @@
 import os, sys
 from PyQt4 import uic, QtCore, QtGui
 from aboutdialog import AboutDialog
+from customviewbox import CustomViewBox
 
 import pyqtgraph as pg
 import numpy as np
 from epipy.model.sir import SIR
 from epipy.utils import logger
 from epipy.utils import CSV_Manager
+from customviewbox import CustomViewBox
 
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
@@ -31,12 +33,13 @@ class MainWindow(MainWindowBase, MainWindowUI):
         fitted = sir.fit()
 
         # ====plot==========
-        pw = pg.PlotWidget(title="SIR Model")
-        pw.plot(x=xdata, y=ydata, symbol='o')
-        pw.plot(x=xdata, y=fitted, pen="k")
-        pw.setWindowTitle('pyqtgraph example: customPlot')
-        pw.setBackground(QtGui.QColor(255, 255, 255))
-        self.splitter.insertWidget(0,pw)
+        self.pw = pg.PlotWidget(title="EpiPy", viewBox=CustomViewBox(), enableMenu=False)
+        self.pw.plot(x=xdata, y=ydata, symbol='o')
+        self.pw.plot(x=xdata, y=fitted, pen="k")
+        self.pw.setWindowTitle('pyqtgraph example: customPlot')
+        self.pw.setBackground(QtGui.QColor(255, 255, 255))
+        
+        self.splitter.insertWidget(0,self.pw)
         # ==================
         
         self.showSidebar()
@@ -62,8 +65,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.clearButton.clicked.connect(self.infoTextEdit.clear)
         self.saveButton.setIcon(QtGui.QIcon("/../resources/pictures/save.png"))
         self.searchLineEdit.returnPressed.connect(self.searchInfoText)
-        
-        
+
     def openFile(self):
     	logger.info("open file")
         self.infoTextEdit.appendPlainText("open file")
