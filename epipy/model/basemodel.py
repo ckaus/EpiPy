@@ -18,15 +18,15 @@ class BaseModel():
 	def init_param(self, ydata, N): pass
 
 	@abstractmethod
-	def model(self, y, x, *param): pass
+	def model(self, y, x, *args): pass
 
 	@abstractmethod
-	def fit_odeint(x, *param): pass
+	def fit_odeint(x, *args): pass
 
-	def fit(self, *param):
-		if len(param) is 0:
+	def fit(self, **kwargs):
+		if len(kwargs) is 0:
 			popt, pcov = optimize.curve_fit(self.fit_odeint, self.xdata, self.ydata)
 			return self.fit_odeint(self.xdata, *popt)
 		else:
-			return self.fit_odeint(self.xdata, *param)
+			return self.fit_odeint(self.xdata, **kwargs)
 		
