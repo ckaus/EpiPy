@@ -4,5 +4,7 @@ from sir import SIR
 from sirwbad import SIRwbad
 from sis import SIS
 from siswbad import SISwbad
+from sirs import SIRS
 
-__all__=['SIR', 'SISwbad', 'SIS', 'SISwbad']
+
+__all__= ['SIR', 'SIRwbad', 'SIS', 'SIRS', 'SISwbad']

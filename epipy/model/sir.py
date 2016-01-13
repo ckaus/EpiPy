@@ -11,7 +11,7 @@ class SIR(BaseModel):
 	def init_param(self):
 		I0 = self.ydata[0]
 		S0 = self.N - I0
-		R0 = 0.0
+		R0 = 1 - S0 - I0
 		return S0, I0, R0
 
 	def model(self, y, x, beta, gamma):
