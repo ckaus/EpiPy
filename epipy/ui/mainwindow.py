@@ -28,7 +28,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         xdata = np.array(content['Time'], dtype=float)
 
         sir = SIR(xdata, ydata)
-        fitted = sir.fit(model_class=1)
+        fitted = sir.fit()
 
         # ====plot==========
         pw = pg.PlotWidget(title="SIR Model")
