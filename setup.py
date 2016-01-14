@@ -4,50 +4,52 @@ import os
 import sys
 
 try:
-    from setuptools import setup, find_packages
+	from setuptools import setup, find_packages
 except ImportError:
-    raise ImportError("Install setup tools")
+	raise ImportError("Install setup tools")
 
 try:
-    import PyQt4
+	import PyQt4
 except ImportError:
-    raise ImportError("Install PyQt4")    
+	raise ImportError("Install PyQt4")
 
 try:
-    import numpy
+	import numpy as np
 except ImportError:
-    raise ImportError("Install Numpy")    
+	raise ImportError("Install Numpy")
 
 try:
-    import matplotlib
+	import matplotlib
 except ImportError:
-    raise ImportError("Install matplotlib")    
+	raise ImportError("Install matplotlib")
 
 try:
-    import scipy
+	import scipy
 except ImportError:
-    raise ImportError("Install scipy")    
+	raise ImportError("Install scipy")
 
 if sys.version_info[:2] > (2, 7):
-    raise RuntimeError("Python version 2.6, 2.7 required.")
+	raise RuntimeError("Python version 2.6, 2.7 required.")
+
 
 def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+	return open(os.path.join(os.path.dirname(__file__), fname)).read()
+
 
 setup(
-    name = "EpiPy",
-    version = "0.1",
-    author = "ckaus",
-    description = ("A Tool for fitting epidemic models."),
-    license = "MIT",
-    keywords = "epidemic models",
-    url = "https://github.com/ckaus/EpiPy",
-    packages=find_packages(exclude=["tests"]),
-    package_data={"epipy": ["ui/*", "resources/data/*", "resources/pictures/*"]},
-    long_description=read('README.md'),
-    install_requires=['pyqtgraph'],
-    classifiers=[
-    """\
+		name="EpiPy",
+		version="0.1",
+		author="ckaus",
+		description="A Tool for fitting epidemic models.",
+		license="MIT",
+		keywords="epidemic models",
+		url="https://github.com/ckaus/EpiPy",
+		packages=find_packages(exclude=["tests"]),
+		package_data={"epipy": ["ui/*", "resources/data/*", "resources/pictures/*"]},
+		long_description=read('README.md'),
+		install_requires=['pyqtgraph'],
+		classifiers=[
+			"""\
     Development Status :: 3 - Alpha
     Environment :: Console
     Environment :: GUI
@@ -64,6 +66,6 @@ setup(
     Operating System :: Unix
     Operating System :: MacOS
     """
-    ],
-    entry_points = {'console_scripts': ['epipy = epipy.main',],},
+		],
+		entry_points={'console_scripts': ['epipy = epipy.main', ],},
 )

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from csvmanager import CSV_Manager
+from csvmanager import CSVManager
 
-__all__=["CSV_Manager"]
+__all__ = ["CSVManager"]

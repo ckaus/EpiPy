@@ -1,34 +1,32 @@
 # # -*- coding: utf-8 -*-
 
-import os, sys
-from PyQt4 import uic, QtCore, QtGui
-from aboutdialog import AboutDialog
-from customviewbox import CustomViewBox
-
-import pyqtgraph as pg
 import numpy as np
-from epipy.model.sir import SIR
-from epipy.utils import logger
-from epipy.utils import CSV_Manager
+import os
+import pyqtgraph as pg
+from PyQt4 import uic, QtCore, QtGui
+
 from customviewbox import CustomViewBox
+from epipy.model.sir import SIR
+from epipy.utils import CSVManager
+from epipy.utils import logger
 
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
-MainWindowUI, MainWindowBase = uic.loadUiType(
-    os.path.join(folderPath, "mainwindow.ui"))
+MainWindowUI, MainWindowBase = uic.loadUiType(os.path.join(folderPath, "mainwindow.ui"))
+
 
 class MainWindow(MainWindowBase, MainWindowUI):
     def __init__(self):
-    	MainWindowBase.__init__(self)
-    	self.setupUi(self)
+        MainWindowBase.__init__(self)
+        self.setupUi(self)
 
-        self.aboutDialog = uic.loadUi(os.path.join(folderPath,'aboutdialog.ui'))
+        self.aboutDialog = uic.loadUi(os.path.join(folderPath, 'aboutdialog.ui'))
         self.aboutDialog.closeButton.clicked.connect(self.aboutDialog.close)
 
-        self.optionsgb = uic.loadUi(os.path.join(folderPath,'optionsgroupbox.ui'))
-        self.sirgb = uic.loadUi(os.path.join(folderPath,'sirgroupbox.ui'))
-        self.infogb = uic.loadUi(os.path.join(folderPath,'infogroupbox.ui'))
-        
+        self.optionsgb = uic.loadUi(os.path.join(folderPath, 'optionsgroupbox.ui'))
+        self.sirgb = uic.loadUi(os.path.join(folderPath, 'sirgroupbox.ui'))
+        self.infogb = uic.loadUi(os.path.join(folderPath, 'infogroupbox.ui'))
+
         self.infogb.clearBtn.clicked.connect(self.clearFittingInfo)
 
         self.optionsgb.layout().addRow(self.sirgb)
@@ -36,17 +34,15 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.leftwidget.layout().addWidget(self.infogb)
         self.splitter.insertWidget(1, self.leftwidget)
 
-        content = CSV_Manager().read(
-            file_name="data1.csv",
-            seperator=";", column=["Time", "I"])
-        
+        content = CSVManager().read(file_name="data1.csv", seperator=";", column=["Time", "I"])
+
         ydata = np.array(content['I'], dtype=float)
         xdata = np.array(content['Time'], dtype=float)
-        sir = SIR(xdata, ydata)
-        fitted = sir.fit()
-        self.sirgb.betaSpinBox.setValue(sir.popt[0]) # beta
-        self.sirgb.gammaSpinBox.setValue(sir.popt[1]) # gamma
-        self.infogb.infoPlainTextEdit.appendPlainText("pcov="+str(sir.pcov))
+        sir = SIR()
+        fitted = sir.fit(xdata, ydata)
+        # self.sirgb.betaSpinBox.setValue(sir.popt[0])  # beta
+        # self.sirgb.gammaSpinBox.setValue(sir.popt[1])  # gamma
+        # self.infogb.infoPlainTextEdit.appendPlainText("pcov=" + str(sir.pcov))
 
         # ====plot==========
         self.pw = pg.PlotWidget(title="SIR", viewBox=CustomViewBox(), enableMenu=False)
@@ -54,7 +50,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.pw.plot(x=xdata, y=fitted, pen="k")
         self.pw.setWindowTitle('pyqtgraph example: customPlot')
         self.pw.setBackground(QtGui.QColor(255, 255, 255))
-        self.splitter.insertWidget(0,self.pw)
+        self.splitter.insertWidget(0, self.pw)
         # ==================
         # menu
         # connect menu components with functions
@@ -72,50 +68,51 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.aboutAction.triggered.connect(self.showAbout)
         # side bar
         # disable first item of model box in option groupbox
-    	self.optionsgb.modelComboBox.setItemData(0, QtCore.QVariant(0),QtCore.Qt.UserRole -1)
-    	# fitting information groupbox
+        self.optionsgb.modelComboBox.setItemData(0, QtCore.QVariant(0), QtCore.Qt.UserRole - 1)
+
+    # fitting information groupbox
 
     def openFile(self):
-    	logger.info("open file")
+        logger.info("open file")
         self.infogb.infoPlainTextEdit.appendPlainText("open file")
-    
+
     def save(self):
-    	logger.info("save")
+        logger.info("save")
         self.infogb.infoPlainTextEdit.appendPlainText("save")
-    
+
     def saveAs(self):
-    	logger.info("save as")
+        logger.info("save as")
         self.infogb.infoPlainTextEdit.appendPlainText("save as")
-    
+
     def export(self):
-    	logger.info("export")
+        logger.info("export")
         self.infogb.infoPlainTextEdit.appendPlainText("export")
-    
+
     def showFullscreen(self):
         self.showFullscreenAction.setVisible(False)
         self.exitFullscreenAction.setVisible(True)
         self.showFullScreen()
-    
+
     def exitFullscreen(self):
         self.showFullscreenAction.setVisible(True)
         self.exitFullscreenAction.setVisible(False)
         self.showNormal()
-    
+
     def showSidebar(self):
-    	self.leftwidget.setVisible(True)
-    	self.showSidebarAction.setVisible(False)
-    	self.hideSidebarAction.setVisible(True)
-    
+        self.leftwidget.setVisible(True)
+        self.showSidebarAction.setVisible(False)
+        self.hideSidebarAction.setVisible(True)
+
     def hideSidebar(self):
-    	self.leftwidget.setVisible(False)
-    	self.showSidebarAction.setVisible(True)
-    	self.hideSidebarAction.setVisible(False)
-    
+        self.leftwidget.setVisible(False)
+        self.showSidebarAction.setVisible(True)
+        self.hideSidebarAction.setVisible(False)
+
     def showAbout(self):
-    	self.aboutDialog.show()
+        self.aboutDialog.show()
 
     def clearFittingInfo(self):
-        reply = QtGui.QMessageBox.question(self, 'Message', "Are you sure to clear the fitting information?", 
-            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
+        reply = QtGui.QMessageBox.question(self, 'Message', "Are you sure to clear the fitting information?",
+                                           QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
         if reply == QtGui.QMessageBox.Yes:
             self.infogb.infoPlainTextEdit.clear()
