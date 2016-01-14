@@ -11,6 +11,7 @@ from epipy.model.sir import SIR
 from epipy.utils import logger
 from epipy.utils import CSV_Manager
 from customviewbox import CustomViewBox
+from sirgroupbox import Ui_SIRGroupBox
 
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
@@ -21,19 +22,30 @@ class MainWindow(MainWindowBase, MainWindowUI):
     def __init__(self):
     	MainWindowBase.__init__(self)
     	self.setupUi(self)
-    	
+
+        self.optionsgb = uic.loadUi(os.path.join(folderPath,'optionsgroupbox.ui'))
+        self.sirgb = uic.loadUi(os.path.join(folderPath,'sirgroupbox.ui'))
+        self.infogb = uic.loadUi(os.path.join(folderPath,'infogroupbox.ui'))
+
+        self.optionsgb.layout().addRow(self.sirgb)
+        self.leftwidget.layout().addWidget(self.optionsgb)
+        self.leftwidget.layout().addWidget(self.infogb)
+        self.splitter.insertWidget(1, self.leftwidget)
+
         content = CSV_Manager().read(
             file_name="data1.csv",
             seperator=";", column=["Time", "I"])
         
         ydata = np.array(content['I'], dtype=float)
         xdata = np.array(content['Time'], dtype=float)
-
         sir = SIR(xdata, ydata)
         fitted = sir.fit()
+        self.sirgb.betaSpinBox.setValue(sir.popt[0]) # beta
+        self.sirgb.gammaSpinBox.setValue(sir.popt[1]) # gamma
+        self.infogb.infoPlainTextEdit.appendPlainText("pcov="+str(sir.pcov))
 
         # ====plot==========
-        self.pw = pg.PlotWidget(title="EpiPy", viewBox=CustomViewBox(), enableMenu=False)
+        self.pw = pg.PlotWidget(title="SIR", viewBox=CustomViewBox(), enableMenu=False)
         self.pw.plot(x=xdata, y=ydata, symbol='o')
         self.pw.plot(x=xdata, y=fitted, pen="k")
         self.pw.setWindowTitle('pyqtgraph example: customPlot')
@@ -41,8 +53,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
         
         self.splitter.insertWidget(0,self.pw)
         # ==================
-        
-        self.showSidebar()
         # menu
         # connect menu components with functions
         self.openFileAction.triggered.connect(self.openFile)
@@ -59,28 +69,24 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.aboutAction.triggered.connect(self.showAbout)
         # side bar
         # disable first item of model box in option groupbox
-    	self.modelComboBox.setItemData(0, QtCore.QVariant(0),QtCore.Qt.UserRole -1)
+    	self.optionsgb.modelComboBox.setItemData(0, QtCore.QVariant(0),QtCore.Qt.UserRole -1)
     	# fitting information groupbox
-        self.clearButton.setIcon(QtGui.QIcon("/../resources/pictures/clear.png"))
-        self.clearButton.clicked.connect(self.infoTextEdit.clear)
-        self.saveButton.setIcon(QtGui.QIcon("/../resources/pictures/save.png"))
-        self.searchLineEdit.returnPressed.connect(self.searchInfoText)
 
     def openFile(self):
     	logger.info("open file")
-        self.infoTextEdit.appendPlainText("open file")
+        self.infogb.infoPlainTextEdit.appendPlainText("open file")
     
     def save(self):
     	logger.info("save")
-        self.infoTextEdit.appendPlainText("save")
+        self.infogb.infoPlainTextEdit.appendPlainText("save")
     
     def saveAs(self):
     	logger.info("save as")
-        self.infoTextEdit.appendPlainText("save as")
+        self.infogb.infoPlainTextEdit.appendPlainText("save as")
     
     def export(self):
     	logger.info("export")
-        self.infoTextEdit.appendPlainText("export")
+        self.infogb.infoPlainTextEdit.appendPlainText("export")
     
     def showFullscreen(self):
         self.showFullscreenAction.setVisible(False)
@@ -93,17 +99,14 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.showNormal()
     
     def showSidebar(self):
-    	self.sidebarGroupBox.setVisible(True)
+    	self.leftwidget.setVisible(True)
     	self.showSidebarAction.setVisible(False)
     	self.hideSidebarAction.setVisible(True)
     
     def hideSidebar(self):
-    	self.sidebarGroupBox.setVisible(False)
+    	self.leftwidget.setVisible(False)
     	self.showSidebarAction.setVisible(True)
     	self.hideSidebarAction.setVisible(False)
     
     def showAbout(self):
     	AboutDialog(self).show()
-    
-    def searchInfoText(self):
-        self.infoTextEdit.appendPlainText("search")
