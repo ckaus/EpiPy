@@ -11,7 +11,6 @@ from epipy.model.sir import SIR
 from epipy.utils import logger
 from epipy.utils import CSV_Manager
 from customviewbox import CustomViewBox
-from sirgroupbox import Ui_SIRGroupBox
 
 filePath = os.path.abspath(__file__)
 folderPath = os.path.dirname(filePath)
@@ -23,9 +22,14 @@ class MainWindow(MainWindowBase, MainWindowUI):
     	MainWindowBase.__init__(self)
     	self.setupUi(self)
 
+        self.aboutDialog = uic.loadUi(os.path.join(folderPath,'aboutdialog.ui'))
+        self.aboutDialog.closeButton.clicked.connect(self.aboutDialog.close)
+
         self.optionsgb = uic.loadUi(os.path.join(folderPath,'optionsgroupbox.ui'))
         self.sirgb = uic.loadUi(os.path.join(folderPath,'sirgroupbox.ui'))
         self.infogb = uic.loadUi(os.path.join(folderPath,'infogroupbox.ui'))
+        
+        self.infogb.clearBtn.clicked.connect(self.clearFittingInfo)
 
         self.optionsgb.layout().addRow(self.sirgb)
         self.leftwidget.layout().addWidget(self.optionsgb)
@@ -50,7 +54,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.pw.plot(x=xdata, y=fitted, pen="k")
         self.pw.setWindowTitle('pyqtgraph example: customPlot')
         self.pw.setBackground(QtGui.QColor(255, 255, 255))
-        
         self.splitter.insertWidget(0,self.pw)
         # ==================
         # menu
@@ -109,4 +112,10 @@ class MainWindow(MainWindowBase, MainWindowUI):
     	self.hideSidebarAction.setVisible(False)
     
     def showAbout(self):
-    	AboutDialog(self).show()
+    	self.aboutDialog.show()
+
+    def clearFittingInfo(self):
+        reply = QtGui.QMessageBox.question(self, 'Message', "Are you sure to clear the fitting information?", 
+            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
+        if reply == QtGui.QMessageBox.Yes:
+            self.infogb.infoPlainTextEdit.clear()

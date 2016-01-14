@@ -14,7 +14,7 @@
    <string>GroupBox</string>
   </property>
   <property name="title">
-   <string>Information</string>
+   <string>Fitting Information</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

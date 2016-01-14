@@ -33,7 +33,7 @@
       </font>
      </property>
      <property name="text">
-      <string/>
+      <string>EpiPy 1.0</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -63,7 +63,7 @@
       <number>1</number>
      </property>
      <property name="text">
-      <string/>
+      <string>A Tool for fitting epidemic models.&lt;br /&gt;Source: &lt;a href=&quot;https://github.com/ckaus/EpiPy&quot;&gt;GitHub&lt;/a&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
