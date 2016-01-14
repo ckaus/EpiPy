@@ -4,12 +4,11 @@ from basemodel import BaseModel
 from scipy import integrate
 
 class SIS(BaseModel):
-	def __init__(self, xdata, ydata):
-		BaseModel.__init__(self, xdata, ydata)
-		self.N0 = self.init_param()
-
-	def init_param(self):
-		I0 = self.ydata[0]
+	def __init__(self):
+		BaseModel.__init__(self)
+		
+	def init_param(self, y0):
+		I0 = y0
 		S0 = self.N - I0
 		return S0, I0
 
@@ -20,3 +19,21 @@ class SIS(BaseModel):
 
 	def fit_odeint(self, x, beta, gamma):
 		return integrate.odeint(self.model, self.N0, x, args=(beta, gamma))[:,1]
+
+class SISwbad(SIS):
+	def __init__(self):
+		SIS.__init__(self)
+		
+	def init_param(self, y0):
+		I0 = y0
+		S0 = self.N - I0
+		return S0, I0
+
+	def model(self, y, x, beta, gamma, mu):
+		S, I = SIS.model(self, y, x, beta, gamma)
+		S = S + mu * (self.N - y[0]) + gamma * y[1]
+		I = I - mu * y[1]
+		return S, I
+
+	def fit_odeint(self, x, beta, gamma, mu):
+		return integrate.odeint(self.model, self.N0, x, args=(beta, gamma, mu))[:,1]

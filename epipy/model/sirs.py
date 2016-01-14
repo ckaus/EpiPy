@@ -4,12 +4,11 @@ from basemodel import BaseModel
 from scipy import integrate
 
 class SIRS(BaseModel):
-	def __init__(self, xdata, ydata):
-		BaseModel.__init__(self, xdata, ydata)
-		self.N0 = self.init_param()
+	def __init__(self):
+		BaseModel.__init__(self)
 
-	def init_param(self):
-		I0 = self.ydata[0]
+	def init_param(self, y0):
+		I0 = y0
 		S0 = self.N - I0
 		R0 = 1 - S0 - I0
 		return S0, I0, R0

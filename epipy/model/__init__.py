@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from sir import SIR
-from sirwbad import SIRwbad
-from sis import SIS
-from siswbad import SISwbad
+from sir import SIR, SIRwbad
+from sis import SIS, SISwbad
 from sirs import SIRS
 
-__all__= ['SIR', 'SIRwbad', 'SIS', 'SIRS', 'SISwbad']
+__all__= ['SIR', 'SIRwbad', 'SIS', 'SISwbad', 'SIRS']
