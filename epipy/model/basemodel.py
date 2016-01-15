@@ -13,6 +13,8 @@ class BaseModel(object):
 
     def __init__(self):
         __metaclass__ = ABCMeta
+        self.N = None
+        self.N0 = None
 
     @abstractmethod
     def model(self, y, x, **param): pass

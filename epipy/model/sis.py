@@ -14,7 +14,7 @@ class SIS(BaseModel):
         return S0, I0
 
     def model(self, y, x, beta, gamma):
-        S = -beta * y[0] * y[1] / self.N
+        S = -beta * y[0] * y[1] / self.N + gamma * y[1]
         I = beta * y[0] * y[1] / self.N - gamma * y[1]
         return S, I
 
@@ -33,7 +33,7 @@ class SISwbad(SIS):
 
     def model(self, y, x, beta, gamma, mu):
         S, I = SIS.model(self, y, x, beta, gamma)
-        S = S + mu * (self.N - y[0]) + gamma * y[1]
+        S = S + mu * (self.N - y[0])
         I = I - mu * y[1]
         return S, I
 
