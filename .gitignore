@@ -23,7 +23,7 @@ var/
 .installed.cfg
 *.egg
 scripts/files.txt
-.idea/*
+*.idea/*
 vcs.xml
 
 # PyInstaller
