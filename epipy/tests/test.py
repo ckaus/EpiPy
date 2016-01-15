@@ -57,8 +57,8 @@ testutils.plot_with_data("With optimize(): no parameters", xdata_2, ydata_2, y0,
 # ======================================================================================================================
 beta = 0.20559692
 gamma = 0.11330003
-mu = 0
-f = 0.01
+mu = 0.001
+f = 0.001
 
 y0 = sir.fit(xdata_2, ydata_2, beta=beta, gamma=gamma)
 y1 = sis.fit(xdata_2, ydata_2, beta=beta, gamma=gamma)
