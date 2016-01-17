@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SIRGroupBox</class>
- <widget class="QGroupBox" name="SIRGroupBox">
+ <class>sirGroupBox</class>
+ <widget class="QGroupBox" name="sirGroupBox">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -24,7 +24,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QLabel" name="betaLabel">
+    <widget class="QLabel" name="beta_label">
      <property name="text">
       <string>Beta</string>
      </property>
@@ -41,7 +41,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="gammaLabel">
+    <widget class="QLabel" name="gamma_label">
      <property name="text">
       <string>Gamma</string>
      </property>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>196</height>
+    <height>205</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="betaLabel">
+    <widget class="QLabel" name="beta_label">
      <property name="text">
       <string>Beta</string>
      </property>
@@ -35,14 +35,14 @@
     </widget>
    </item>
    <item row="0" column="2">
-    <widget class="QLabel" name="gammaLabel">
+    <widget class="QLabel" name="gamma_label">
      <property name="text">
       <string>Gamma</string>
      </property>
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QDoubleSpinBox" name="betaSpinBox">
+    <widget class="QDoubleSpinBox" name="beta_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>
@@ -52,7 +52,7 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="muLabel">
+    <widget class="QLabel" name="mu_label">
      <property name="text">
       <string>Mu</string>
      </property>

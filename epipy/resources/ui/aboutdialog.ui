@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AboutDialog</class>
- <widget class="QDialog" name="AboutDialog">
+ <class>aboout_dialog</class>
+ <widget class="QDialog" name="aboout_dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -108,7 +108,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="closeButton">
+      <widget class="QPushButton" name="close_btn">
        <property name="text">
         <string>Close</string>
        </property>

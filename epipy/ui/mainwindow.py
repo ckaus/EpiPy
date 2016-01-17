@@ -1,122 +1,106 @@
-# # -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 import numpy as np
 import os
 import pyqtgraph as pg
 from PyQt4 import uic, QtCore, QtGui
 
-from customviewbox import CustomViewBox
+from epipy.ui.customviewbox import CustomViewBox
 from epipy.model import sir
 from epipy.utils import csvmanager
 from epipy.utils import logger
 
-filePath = os.path.abspath(__file__)
-folderPath = os.path.dirname(filePath)
-MainWindowUI, MainWindowBase = uic.loadUiType(os.path.join(folderPath, "mainwindow.ui"))
+from epipy.ui.optionsgroupbox import OptionsGroupBox
+from epipy.ui.infogroupbox import InfoGroupBox
+from epipy.ui.aboutdialog import AboutDialog
+
+dir_name = os.path.dirname
+folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')
+MainWindowUI, MainWindowBase = uic.loadUiType(os.path.join(folder_path, "mainwindow.ui"))
 
 
 class MainWindow(MainWindowBase, MainWindowUI):
     def __init__(self):
         MainWindowBase.__init__(self)
         self.setupUi(self)
+        self.current_model_gb = None
+        self.current_advanced_dialog = None
 
-        self.aboutDialog = uic.loadUi(os.path.join(folderPath, 'aboutdialog.ui'))
-        self.aboutDialog.closeButton.clicked.connect(self.aboutDialog.close)
+        # some components
+        self.about_dialog = AboutDialog()
 
-        self.optionsgb = uic.loadUi(os.path.join(folderPath, 'optionsgroupbox.ui'))
-        self.sirgb = uic.loadUi(os.path.join(folderPath, 'sirsimplegroupbox.ui'))
-        self.infogb = uic.loadUi(os.path.join(folderPath, 'infogroupbox.ui'))
-        self.advanceddialog = uic.loadUi(os.path.join(folderPath, 'advanceddialog.ui'))
-
-        self.infogb.clearBtn.clicked.connect(self.clearFittingInfo)
-        self.optionsgb.advancedBtn.clicked.connect(self.showAdvancedBtnBox)
-
-        self.optionsgb.layout().addRow(self.sirgb)
-        self.leftwidget.layout().addWidget(self.optionsgb)
-        self.leftwidget.layout().addWidget(self.infogb)
-        self.splitter.insertWidget(1, self.leftwidget)
-
-        content = csvmanager.read(file_name="data1.csv", seperator=";", column=["Time", "I"])
-
-        ydata = np.array(content['I'], dtype=float)
-        xdata = np.array(content['Time'], dtype=float)
-        fitted = sir.Simple().fit(xdata, ydata, 1)
-        # self.sirgb.betaSpinBox.setValue(sir.popt[0])  # beta
-        # self.sirgb.gammaSpinBox.setValue(sir.popt[1])  # gamma
-        # self.infogb.infoPlainTextEdit.appendPlainText("pcov=" + str(sir.pcov))
-
-        # ====plot==========
-        self.pw = pg.PlotWidget(title="SIR", viewBox=CustomViewBox(), enableMenu=False)
-        self.pw.plot(x=xdata, y=ydata, symbol='o')
-        self.pw.plot(x=xdata, y=fitted, pen="k")
-        self.pw.setWindowTitle('pyqtgraph example: customPlot')
-        self.pw.setBackground(QtGui.QColor(255, 255, 255))
-        self.splitter.insertWidget(0, self.pw)
         # ==================
         # menu
-        # connect menu components with functions
-        self.openFileAction.triggered.connect(self.openFile)
+        self.openFileAction.triggered.connect(self.open_file)
         self.saveAction.triggered.connect(self.save)
-        self.saveAsAction.triggered.connect(self.saveAs)
+        self.saveAsAction.triggered.connect(self.save_as)
         self.exportAction.triggered.connect(self.export)
         self.exitAction.triggered.connect(self.close)
-        self.showFullscreenAction.triggered.connect(self.showFullscreen)
-        self.exitFullscreenAction.triggered.connect(self.exitFullscreen)
+        self.showFullscreenAction.triggered.connect(self.show_fullscreen)
+        self.exitFullscreenAction.triggered.connect(self.exit_fullscreen)
         self.exitFullscreenAction.setVisible(False)
-        self.showSidebarAction.triggered.connect(self.showSidebar)
-        self.hideSidebarAction.triggered.connect(self.hideSidebar)
+        self.showSidebarAction.triggered.connect(self.show_sidebar)
+        self.hideSidebarAction.triggered.connect(self.hide_sidebar)
         self.showSidebarAction.setVisible(False)
-        self.aboutAction.triggered.connect(self.showAbout)
+        self.aboutAction.triggered.connect(self.show_about)
+
+        # ===================
+        # blank plot
+        self.pw = pg.PlotWidget(title="", viewBox=CustomViewBox(), enableMenu=False)
+        self.pw.setBackground(QtGui.QColor(255, 255, 255))
+        self.splitter.insertWidget(0, self.pw)
+
+        # ===================
         # side bar
-        # disable first item of model box in option groupbox
-        self.optionsgb.modelComboBox.setItemData(0, QtCore.QVariant(0), QtCore.Qt.UserRole - 1)
+        self.options_group_box = OptionsGroupBox()
+        self.info_group_box = InfoGroupBox()
 
-    # fitting information groupbox
+        self.side_bar_widget.layout().addWidget(self.options_group_box)
+        self.side_bar_widget.layout().addWidget(self.info_group_box)
+        self.splitter.insertWidget(1, self.side_bar_widget)
 
-    def openFile(self):
+    def open_file(self):
         logger.info("open file")
-        self.infogb.infoPlainTextEdit.appendPlainText("open file")
+        self.info_group_box.info_plain_text_edit.appendPlainText("open file")
 
     def save(self):
         logger.info("save")
-        self.infogb.infoPlainTextEdit.appendPlainText("save")
+        self.info_group_box.info_plain_text_edit.appendPlainText("save")
 
-    def saveAs(self):
+    def save_as(self):
         logger.info("save as")
-        self.infogb.infoPlainTextEdit.appendPlainText("save as")
+        self.info_group_box.info_plain_text_edit.appendPlainText("save as")
 
     def export(self):
         logger.info("export")
-        self.infogb.infoPlainTextEdit.appendPlainText("export")
+        self.info_group_box.info_plain_text_edit.appendPlainText("export")
 
-    def showFullscreen(self):
+    def show_fullscreen(self):
         self.showFullscreenAction.setVisible(False)
         self.exitFullscreenAction.setVisible(True)
         self.showFullScreen()
 
-    def exitFullscreen(self):
+    def exit_fullscreen(self):
         self.showFullscreenAction.setVisible(True)
         self.exitFullscreenAction.setVisible(False)
         self.showNormal()
 
-    def showSidebar(self):
-        self.leftwidget.setVisible(True)
+    def show_sidebar(self):
+        self.side_bar_widget.setVisible(True)
         self.showSidebarAction.setVisible(False)
         self.hideSidebarAction.setVisible(True)
 
-    def hideSidebar(self):
-        self.leftwidget.setVisible(False)
+    def hide_sidebar(self):
+        self.side_bar_widget.setVisible(False)
         self.showSidebarAction.setVisible(True)
         self.hideSidebarAction.setVisible(False)
 
-    def showAbout(self):
-        self.aboutDialog.show()
+    def show_about(self):
+        self.about_dialog.show()
 
-    def clearFittingInfo(self):
-        reply = QtGui.QMessageBox.question(self, 'Message', "Are you sure to clear the fitting information?",
-                                           QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
-        if reply == QtGui.QMessageBox.Yes:
-            self.infogb.infoPlainTextEdit.clear()
-
-    def showAdvancedBtnBox(self):
-        self.advanceddialog.show()
+    def plot(self, xdata, ydata, fitdata, title):
+        self.pw = pg.PlotWidget(title=title, viewBox=CustomViewBox(), enableMenu=False)
+        self.pw.plot(x=xdata, y=ydata, symbol='o')
+        self.pw.plot(x=xdata, y=fitdata, pen="k")
+        self.pw.setBackground(QtGui.QColor(255, 255, 255))
+        self.splitter.insertWidget(0, pw)

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>sir_advanced_dialog</class>
+ <widget class="QDialog" name="sir_advanced_dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>408</width>
+    <width>436</width>
     <height>97</height>
    </rect>
   </property>
@@ -15,9 +15,9 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="radioBtnLayout">
      <item>
-      <widget class="QRadioButton" name="simpleRadioBtn">
+      <widget class="QRadioButton" name="simple_radio_btn">
        <property name="text">
         <string>Simple</string>
        </property>
@@ -27,14 +27,14 @@
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="wbadRadioBtn">
+      <widget class="QRadioButton" name="wbad_radion_btn">
        <property name="text">
         <string>With births and deaths</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="vaccineRadioBtn">
+      <widget class="QRadioButton" name="vaccine_radio_btn">
        <property name="text">
         <string>Vaccine</string>
        </property>
@@ -43,7 +43,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QDialogButtonBox" name="buttonBox">
+    <widget class="QDialogButtonBox" name="button_box">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -57,9 +57,9 @@
  <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>Dialog</receiver>
+   <receiver>sir_advanced_dialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -73,9 +73,9 @@
    </hints>
   </connection>
   <connection>
-   <sender>buttonBox</sender>
+   <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>Dialog</receiver>
+   <receiver>sir_advanced_dialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

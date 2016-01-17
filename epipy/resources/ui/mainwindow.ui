@@ -20,7 +20,7 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="leftwidget" native="true">
+      <widget class="QWidget" name="side_bar_widget" native="true">
        <property name="maximumSize">
         <size>
          <width>333</width>
