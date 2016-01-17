@@ -6,8 +6,8 @@ import pyqtgraph as pg
 from PyQt4 import uic, QtCore, QtGui
 
 from customviewbox import CustomViewBox
-from epipy.model.sir import SIR
-from epipy.utils import CSVManager
+from epipy.model import sir
+from epipy.utils import csvmanager
 from epipy.utils import logger
 
 filePath = os.path.abspath(__file__)
@@ -34,12 +34,11 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.leftwidget.layout().addWidget(self.infogb)
         self.splitter.insertWidget(1, self.leftwidget)
 
-        content = CSVManager().read(file_name="data1.csv", seperator=";", column=["Time", "I"])
+        content = csvmanager.read(file_name="data1.csv", seperator=";", column=["Time", "I"])
 
         ydata = np.array(content['I'], dtype=float)
         xdata = np.array(content['Time'], dtype=float)
-        sir = SIR()
-        fitted = sir.fit(xdata, ydata)
+        fitted = sir.Simple().fit(xdata, ydata, 1)
         # self.sirgb.betaSpinBox.setValue(sir.popt[0])  # beta
         # self.sirgb.gammaSpinBox.setValue(sir.popt[1])  # gamma
         # self.infogb.infoPlainTextEdit.appendPlainText("pcov=" + str(sir.pcov))
