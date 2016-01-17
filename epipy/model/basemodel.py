@@ -2,39 +2,29 @@
 
 from abc import abstractmethod, ABCMeta
 from scipy import optimize
+import inspect
 
 
 class BaseModel(object):
-    """
-    This class defines an abstract epidemic model class.
-    An epidemic model is a simplified means of describing
-    the transmission of communicable disease through individuals.
-    """
-
     def __init__(self):
         __metaclass__ = ABCMeta
         self.N = None
         self.N0 = None
 
-    @abstractmethod
-    def model(self, y, x, **param): pass
-
-    def base_model(self, I0, N, time, **param):
+    def get_model(self, xdata, y0, N=None, **param):
         self.N = N
-        self.N0 = self.init_param(I0)
-        return self.fit_odeint(time, **param)
+        self.N0 = self.init_param(y0)
+        return self.fit_model(xdata, **param)
+
+    def fit(self, xdata, ydata, N=None, **param):
+        self.N = N
+        self.N0 = self.init_param(ydata[0])
+        if not param:
+            param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
+            clasz = inspect.stack()[1][1]
+            print "Best param for %s: %s" % (self.__class__.__name__, param)
+            return self.fit_model(xdata, *param)
+        return self.fit_model(xdata, **param)
 
     @abstractmethod
     def init_param(self, y0): pass
-
-    @abstractmethod
-    def fit_odeint(self, x, **param): pass
-
-    def fit(self, xdata, ydata, **param):
-        self.N = 1
-        self.N0 = self.init_param(ydata[0])
-        if not param:
-            # estimate best param (rates) values
-            param, pcov = optimize.curve_fit(self.fit_odeint, xdata, ydata)
-            return self.fit_odeint(xdata, *param)
-        return self.fit_odeint(xdata, **param)
