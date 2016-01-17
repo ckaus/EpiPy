@@ -17,10 +17,10 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>SIR Parameter</string>
+   <string>SIR - Simple</string>
   </property>
   <property name="title">
-   <string>SIR Parameter</string>
+   <string>Simple</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>

@@ -24,10 +24,12 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.aboutDialog.closeButton.clicked.connect(self.aboutDialog.close)
 
         self.optionsgb = uic.loadUi(os.path.join(folderPath, 'optionsgroupbox.ui'))
-        self.sirgb = uic.loadUi(os.path.join(folderPath, 'sirgroupbox.ui'))
+        self.sirgb = uic.loadUi(os.path.join(folderPath, 'sirsimplegroupbox.ui'))
         self.infogb = uic.loadUi(os.path.join(folderPath, 'infogroupbox.ui'))
+        self.advanceddialog = uic.loadUi(os.path.join(folderPath, 'advanceddialog.ui'))
 
         self.infogb.clearBtn.clicked.connect(self.clearFittingInfo)
+        self.optionsgb.advancedBtn.clicked.connect(self.showAdvancedBtnBox)
 
         self.optionsgb.layout().addRow(self.sirgb)
         self.leftwidget.layout().addWidget(self.optionsgb)
@@ -115,3 +117,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
                                            QtGui.QMessageBox.Yes | QtGui.QMessageBox.No, QtGui.QMessageBox.No)
         if reply == QtGui.QMessageBox.Yes:
             self.infogb.infoPlainTextEdit.clear()
+
+    def showAdvancedBtnBox(self):
+        self.advanceddialog.show()
