@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import testutils
 from epipy.utils import csvmanager
 from epipy.model import sir, sirs, seir
 import numpy as np
@@ -28,7 +29,7 @@ ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4
 # Compare Simple, Vaccine
 # http://www.public.asu.edu/~hnesse/classes/sir.html?Alpha=0.3&Beta=0.1&initialS=100&initialI=1&initialR=0&iters=100
 
-# I0 = 0.3
+# I0 = [0.3]
 # beta = 0.5
 # gamma = 0.1
 # N = 5
@@ -37,22 +38,22 @@ ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4
 # f = 0
 # time = np.arange(1, 120 + 1, 1)
 #
-# res1 = sir_simple.get_model(time, I0, N=N, beta=beta, gamma=gamma)
-# res2 = sir_vaccine.get_model(time, I0, N=N, beta=beta, gamma=gamma, nu=nu)
-# res3 = sir_wbad.get_model(time, I0, N=N, beta=beta, gamma=gamma, mu=mu)
+# res1 = sir_simple.fit(time, I0, N=N, beta=beta, gamma=gamma)
+# res2 = sir_vaccine.fit(time, I0, N=N, beta=beta, gamma=gamma, nu=nu)
+# res3 = sir_wbad.fit(time, I0, N=N, beta=beta, gamma=gamma, mu=mu)
 #
 # testutils.plot('SIR Base Model', xdata=time, ydata=[res1, res2, res3],
 #                labels=['Simple', 'Vaccine', 'With Births And Deaths'])
-# res4 = sirs_simple.get_model(time, I0, N=N, beta=beta, gamma=gamma, mu=mu)
-# res5 = sirs_wbad.get_model(time, I0, N=N, beta=beta, gamma=gamma, mu=mu, f=f)
+# res4 = sirs_simple.fit(time, I0, N=N, beta=beta, gamma=gamma, mu=mu)
+# res5 = sirs_wbad.fit(time, I0, N=N, beta=beta, gamma=gamma, mu=mu, f=f)
 #
 # testutils.plot('SIRS Base Model', xdata=time, ydata=[res4,res5],
 #                labels=['Simple', 'With Births And Deaths'])
-
-
-# -----------------------------------
-# Compare: http://www.public.asu.edu/~hnesse/classes/seir.html?
-# E0 = 1
+#
+#
+# # -----------------------------------
+# # Compare: http://www.public.asu.edu/~hnesse/classes/seir.html?
+# E0 = [1]
 # beta = 0.9
 # gamma = 0.1
 # sigma = 0.1
@@ -60,7 +61,7 @@ ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4
 # nu = 0
 # time = np.arange(1, 120 + 1, 1)
 # N = 101
-# res6 = seir_simple.get_model(time, E0, N=101, beta=beta, gamma=gamma, sigma=sigma, mu=mu)
+# res6 = seir_simple.fit(time, E0, N=101, beta=beta, gamma=gamma, sigma=sigma, mu=mu)
 # testutils.plot('SEIR Base Model', xdata=time, ydata=[res6], labels=['Simple'])
 
 
