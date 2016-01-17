@@ -26,6 +26,7 @@ def plot_with_data(title, xdata=[], ydata=[], results=[], labels=[]):
 
     plt.show()
 
+
 def plot(title, xdata, ydata=[], labels=[]):
     fig = plt.figure()
     fig.suptitle(title)

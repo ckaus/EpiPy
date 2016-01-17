@@ -15,11 +15,11 @@ class _Color:
 
 def error(msg):
     """
-	This function print an error.
+    This function print an error.
 
-	:param msg: a messages
-	:type msg: str
-	"""
+    :param msg: a messages
+    :type msg: str
+    """
     clasz = inspect.stack()[1][1]
     line = inspect.stack()[1][2]
     func = inspect.stack()[1][3]
@@ -30,29 +30,29 @@ def error(msg):
 
 def info(msg):
     """
-	This function print an information.
+    This function print an information.
 
-	:param msg: a messages
-	:type msg: str
-	"""
+    :param msg: a messages
+    :type msg: str
+    """
     print '[%s%s%s] %s' % (_Color.INFO, 'INFO', _Color.NORMAL, msg)
 
 
 def success(msg):
     """
-	This function print a success.
+    This function print a success.
 
-	:param msg: a messages
-	:type msg: str
-	"""
+    :param msg: a messages
+    :type msg: str
+    """
     print '[%s%s%s] %s' % (_Color.SUCCESS, 'SUCCESS', _Color.NORMAL, msg)
 
 
 def warning(msg):
     """
-	This function print a warning.
+    This function print a warning.
 
-	:param msg: a messages
-	:type msg: str
-	"""
+    :param msg: a messages
+    :type msg: str
+    """
     print '[%s%s%s] %s' % (_Color.WARNING, 'WARNING', _Color.NORMAL, msg)

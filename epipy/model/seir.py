@@ -21,7 +21,7 @@ class Simple(SEIR):
         SEIR.__init__(self)
 
     def model(self, y, x, beta, gamma, sigma, mu):
-        S = mu * (self.N - y[0]) - ( beta * y[0] * y[2] / self.N)
+        S = mu * (self.N - y[0]) - (beta * y[0] * y[2] / self.N)
         E = beta * y[0] * y[2] / self.N - (mu + sigma) * y[1]
         I = sigma * y[1] - (mu + gamma) * y[2]
         R = gamma * y[2] - mu * y[3]
