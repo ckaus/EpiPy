@@ -2,7 +2,7 @@
 
 import os, sys
 from PyQt4 import uic, QtCore, QtGui
-from epipy.ui.sirgroupbox import SIRGroupBox
+from epipy.ui.sirgroupbox import SIRGroupBox, SIRwbadGroupBox, SIRvaccineGroupBox
 from epipy.ui.advanceddialog import SIRAdvancedDialog
 
 dir_name = os.path.dirname
@@ -24,15 +24,17 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
 
     def add_model_param_gb(self, model_name):
         if self.current_group_box:
-            self.current_group_box.hide()
+            self.current_group_box.deleteLater()
         if model_name == QtCore.QString('SIR'):
-            # self.current_model_group_box = SIRGroupBox()
             self.current_group_box = SIRGroupBox()
-            self.layout().addRow(self.current_group_box)
-            self.advanced_btn.setEnabled(True)
+        elif model_name == QtCore.QString('SIRwbad'):
+            self.current_group_box = SIRwbadGroupBox()
+        elif model_name == QtCore.QString('SIRvaccine'):
+            self.current_group_box = SIRvaccineGroupBox()
+
+        self.layout().addRow(self.current_group_box)
+        self.advanced_btn.setEnabled(True)
 
     def show_advanced_dialog(self):
-        self.current_advanced_dialog = SIRAdvancedDialog()
+        self.current_advanced_dialog = SIRAdvancedDialog(self)
         self.current_advanced_dialog.show()
-        print "Show advanced dialog"
-

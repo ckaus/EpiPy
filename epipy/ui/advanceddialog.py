@@ -10,7 +10,16 @@ SIRAdvancedDialogUI, SIRAdvancedDialogBase = uic.loadUiType(os.path.join(folder_
 
 
 class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
-    def __init__(self):
+    def __init__(self, option_group_box):
         SIRAdvancedDialogBase.__init__(self)
         self.setupUi(self)
+        self.option_group_box = option_group_box
+        self.button_box.accepted.connect(self.set_selected_radio_btn)
 
+    def set_selected_radio_btn(self):
+        if self.simple_radio_btn.isChecked():
+            self.option_group_box.add_model_param_gb(QtCore.QString('SIR'))
+        elif self.wbad_radio_btn.isChecked():
+            self.option_group_box.add_model_param_gb(QtCore.QString('SIRwbad'))
+        elif self.vaccine_radio_btn.isChecked():
+            self.option_group_box.add_model_param_gb(QtCore.QString('SIRvaccine'))

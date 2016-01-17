@@ -15,7 +15,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="radioBtnLayout">
+    <layout class="QHBoxLayout" name="radio_btn_layout">
      <item>
       <widget class="QRadioButton" name="simple_radio_btn">
        <property name="text">
@@ -27,7 +27,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="wbad_radion_btn">
+      <widget class="QRadioButton" name="wbad_radio_btn">
        <property name="text">
         <string>With births and deaths</string>
        </property>

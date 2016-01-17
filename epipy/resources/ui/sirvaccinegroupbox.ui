@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>sirwbadGroupBox</class>
- <widget class="QGroupBox" name="sirwbadGroupBox">
+ <class>sirvaccineGroupBox</class>
+ <widget class="QGroupBox" name="sirvaccineGroupBox">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,10 +11,10 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SIR - with births and deaths</string>
+   <string>SIR - Vaccine</string>
   </property>
   <property name="title">
-   <string>With births and deaths</string>
+   <string>SIR - Vaccine</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -28,6 +28,9 @@
     <widget class="QDoubleSpinBox" name="gammaSpinBox">
      <property name="decimals">
       <number>5</number>
+     </property>
+     <property name="minimum">
+      <double>0.000000000000000</double>
      </property>
      <property name="singleStep">
       <double>0.000001000000000</double>
@@ -52,14 +55,14 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="mu_label">
+    <widget class="QLabel" name="nu_label">
      <property name="text">
-      <string>Mu</string>
+      <string>Nu</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QDoubleSpinBox" name="muSpinBox">
+    <widget class="QDoubleSpinBox" name="nu_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>
