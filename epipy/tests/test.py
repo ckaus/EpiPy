@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import testutils
-from epipy.utils import csvmanager
-from epipy.model import sir, sirs, seir
 import numpy as np
+
+import testutils
+from epipy.model import sir, sirs, seir
+from epipy.utils import csvmanager
 
 sir_simple = sir.Simple()
 sir_vaccine = sir.Vaccine()
@@ -47,12 +48,11 @@ ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4
 # res4 = sirs_simple.fit(time, I0, N=N, beta=beta, gamma=gamma, mu=mu)
 # res5 = sirs_wbad.fit(time, I0, N=N, beta=beta, gamma=gamma, mu=mu, f=f)
 #
-# testutils.plot('SIRS Base Model', xdata=time, ydata=[res4,res5],
+# testutils.plot('SIRS Base Model', xdata=time, ydata=[res4, res5],
 #                labels=['Simple', 'With Births And Deaths'])
-#
-#
-# # -----------------------------------
-# # Compare: http://www.public.asu.edu/~hnesse/classes/seir.html?
+
+# -----------------------------------
+# Compare: http://www.public.asu.edu/~hnesse/classes/seir.html?
 # E0 = [1]
 # beta = 0.9
 # gamma = 0.1
@@ -64,7 +64,6 @@ ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4
 # res6 = seir_simple.fit(time, E0, N=101, beta=beta, gamma=gamma, sigma=sigma, mu=mu)
 # testutils.plot('SEIR Base Model', xdata=time, ydata=[res6], labels=['Simple'])
 
-
 # ======================================================================================================================
 # find optimize parameters
 # ======================================================================================================================
@@ -72,13 +71,13 @@ ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4
 # res2 = sir_vaccine.fit(xdata, ydata, N=1)
 # res3 = sir_wbad.fit(xdata, ydata, N=1)
 # testutils.plot_with_data('With Optimize()', xdata=xdata, ydata=ydata, results=[res1, res2, res3],
-#                          labels=['Simple','Vaccine', 'With Births And Deaths'])
-
+#                          labels=['Simple', 'Vaccine', 'With Births And Deaths'])
+#
 # res4 = sirs_simple.fit(xdata, ydata, N=1)
 # res5 = sirs_wbad.fit(xdata, ydata, N=1)
 # testutils.plot_with_data('With Optimize() - SIRS', xdata=xdata, ydata=ydata, results=[res4, res5],
 #                          labels=['Simple', 'With Births And Deaths'])
-
+#
 # res6 = seir_simple.fit(xdata_2, ydata_2, N=10000)
 # testutils.plot_with_data('With Optimize() - SEIR', xdata=xdata_2, ydata=ydata_2, results=[res6],
 #                          labels=['Simple'])
@@ -102,7 +101,6 @@ ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4
 #                          results=[res1, res2, res3, res4, res5],
 #                          labels=['SIR Simple(b,g)', 'SIR Vac(b,g,n)', 'SIR Wbad(b,g,m)',
 #                                  'SIRS Simple(b,g,m)', 'SIRS Wbad(b,g,m,f)'])
-# #
 #
 # N = 10000
 # beta = 0.9
