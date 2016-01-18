@@ -2,8 +2,9 @@
 
 import os
 from PyQt4 import uic
-from epipy.ui.sirgroupbox import SIRsimpleGroupBox, SIRwbadGroupBox, SIRvaccineGroupBox
+
 from epipy.ui.seirgroupbox import SEIRsimpleGroupBox
+from epipy.ui.sirgroupbox import SIRsimpleGroupBox, SIRwbadGroupBox, SIRvaccineGroupBox
 from epipy.ui.sirsgroupbox import SIRSsimpleGroupBox, SIRSwbadGroupBox
 
 dir_name = os.path.dirname

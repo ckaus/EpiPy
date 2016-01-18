@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 
-import os
 import numpy as np
+import os
 import pyqtgraph as pg
 from PyQt4 import uic, QtGui
 
+from epipy.model import sir
 from epipy.ui.aboutdialog import AboutDialog
 from epipy.ui.customviewbox import CustomViewBox
 from epipy.ui.infogroupbox import InfoGroupBox
 from epipy.ui.optionsgroupbox import OptionsGroupBox
 from epipy.utils import logger
-from epipy.model import sir
-from epipy.utils import csvmanager
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')
@@ -55,7 +54,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
                             1700, 1170, 830, 750, 770, 520, 550, 380], dtype=float)
         # ======================
 
-        data_set_2 = {'Time': xdata_2 , 'I': ydata_2}
+        data_set_2 = {'Time': xdata_2, 'I': ydata_2}
 
         ydata = np.array(data_set_2["I"], dtype=float)
         xdata = np.array(data_set_2["Time"], dtype=float)

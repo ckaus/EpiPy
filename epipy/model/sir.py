@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from basemodel import BaseModel
 from scipy import integrate
+
+from basemodel import BaseModel
 
 
 class SIR(BaseModel):
