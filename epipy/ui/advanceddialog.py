@@ -3,6 +3,7 @@
 import os
 from PyQt4 import uic
 
+from epipy.model import sir, seir, sirs
 from epipy.ui.seirgroupbox import SEIRsimpleGroupBox
 from epipy.ui.sirgroupbox import SIRsimpleGroupBox, SIRwbadGroupBox, SIRvaccineGroupBox
 from epipy.ui.sirsgroupbox import SIRSsimpleGroupBox, SIRSwbadGroupBox
@@ -24,10 +25,13 @@ class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
             self.option_group_box.add_model_parameter_group_box(SIRsimpleGroupBox())
+            self.option_group_box.model = sir.Simple()
         elif self.wbad_radio_btn.isChecked():
             self.option_group_box.add_model_parameter_group_box(SIRwbadGroupBox())
+            self.option_group_box.model = sir.WithBirthsAndDeaths()
         elif self.vaccine_radio_btn.isChecked():
             self.option_group_box.add_model_parameter_group_box(SIRvaccineGroupBox())
+            self.option_group_box.model = sir.Vaccine()
 
 
 class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
@@ -40,6 +44,7 @@ class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
             self.option_group_box.add_model_parameter_group_box(SEIRsimpleGroupBox())
+            self.option_group_box.model = seir.Simple()
 
 
 class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
@@ -52,5 +57,7 @@ class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
             self.option_group_box.add_model_parameter_group_box(SIRSsimpleGroupBox())
+            self.option_group_box.model = sirs.Simple()
         elif self.wbad_radio_btn.isChecked():
             self.option_group_box.add_model_parameter_group_box(SIRSwbadGroupBox())
+            self.option_group_box.model = sirs.WithBirthsAndDeaths()

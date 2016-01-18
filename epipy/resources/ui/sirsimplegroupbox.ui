@@ -33,7 +33,7 @@
    <item>
     <widget class="QDoubleSpinBox" name="beta_spin_box">
      <property name="decimals">
-      <number>5</number>
+      <number>6</number>
      </property>
      <property name="singleStep">
       <double>0.000001000000000</double>
@@ -50,7 +50,7 @@
    <item>
     <widget class="QDoubleSpinBox" name="gamma_spin_box">
      <property name="decimals">
-      <number>5</number>
+      <number>6</number>
      </property>
      <property name="singleStep">
       <double>0.000001000000000</double>

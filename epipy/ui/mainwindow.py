@@ -11,6 +11,9 @@ from epipy.ui.customviewbox import CustomViewBox
 from epipy.ui.infogroupbox import InfoGroupBox
 from epipy.ui.optionsgroupbox import OptionsGroupBox
 from epipy.utils import logger
+from epipy.utils import csvmanager
+
+import numpy as np
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')
@@ -43,9 +46,14 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.about_action.triggered.connect(self.show_about)
 
         # ===================
-        # sample plot
+        # Data 1
         # ======================
         # data_set_1 = csvmanager.read(file_name="data1.csv", seperator=";", column=["Time", "I"])
+        # ydata_1 = np.array(data_set_1["I"], dtype=float)
+        # xdata_1 = np.array(data_set_1["Time"], dtype=float)
+        # result_1 = sir.Simple().fit(xdata=xdata_1, ydata=ydata_1, N=1)
+        # ======================
+        # Data 2
         # ======================
         xdata_2 = np.array([0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140,
                             147, 154, 161], dtype=float)
@@ -56,28 +64,28 @@ class MainWindow(MainWindowBase, MainWindowUI):
 
         data_set_2 = {'Time': xdata_2, 'I': ydata_2}
 
-        ydata = np.array(data_set_2["I"], dtype=float)
-        xdata = np.array(data_set_2["Time"], dtype=float)
-        result = sir.Simple().fit(xdata=xdata, ydata=ydata, N=10000)
-
-        cv = CustomViewBox()
-        self.pw = pg.PlotWidget(title="SIR", viewBox=cv, enableMenu=False)
-        self.pw.setBackground(QtGui.QColor(255, 255, 255))
-
-        plot_1 = self.pw.plot(x=xdata, y=ydata, symbol='o')
-        plot_2 = self.pw.plot(x=xdata, y=result, pen='b')
+        ydata_2 = np.array(data_set_2["I"], dtype=float)
+        xdata_2 = np.array(data_set_2["Time"], dtype=float)
+        population = 10000
+        self.current_data_set = xdata_2, ydata_2, population
+        # ===================
+        # plot widget
+        custom_view_box = CustomViewBox()
+        pw = pg.PlotWidget(viewBox=custom_view_box, enableMenu=False)
+        self.splitter.insertWidget(0, pw)
+        pw.setBackground(QtGui.QColor(255, 255, 255))
+        self.plot_1 = pw.plot(symbol='o')
+        self.plot_2 = pw.plot(pen='b')
         legend1 = pg.LegendItem()
-        legend1.addItem(plot_1, "Data")
-        legend1.addItem(plot_2, "Fit")
-        legend1.setParentItem(cv)
+        legend1.addItem(self.plot_1, "Data")
+        legend1.addItem(self.plot_2, "Fit")
+        legend1.setParentItem(custom_view_box)
         legend1.anchor((0, 0), (0.4, 0))
 
-        self.pw.setBackground(QtGui.QColor(255, 255, 255))
-        self.splitter.insertWidget(0, self.pw)
 
         # ===================
         # side bar
-        self.options_group_box = OptionsGroupBox()
+        self.options_group_box = OptionsGroupBox(self)
         self.info_group_box = InfoGroupBox()
 
         self.side_bar_widget.layout().addWidget(self.options_group_box)
@@ -123,9 +131,19 @@ class MainWindow(MainWindowBase, MainWindowUI):
     def show_about(self):
         self.about_dialog.show()
 
-    def plot(self, xdata, ydata, fit_data, title):
-        self.pw = pg.PlotWidget(title=title, viewBox=CustomViewBox(), enableMenu=False)
-        self.pw.plot(x=xdata, y=ydata, symbol='o')
-        self.pw.plot(x=xdata, y=fit_data, pen="k")
-        self.pw.setBackground(QtGui.QColor(255, 255, 255))
-        self.splitter.insertWidget(0, self.pw)
+    def fit(self, **param):
+        xdata = self.current_data_set[0]
+        ydata = self.current_data_set[1]
+        population = self.current_data_set[2]
+        result = self.options_group_box.model.fit(xdata, ydata, N=population, **param)
+        self.update_plot(ydata, result)
+
+    def update_plot(self, ydata, fit_data):
+        self.plot_1.setData(x=self.current_data_set[0], y=self.current_data_set[1])
+        self.plot_2.setData(x=self.current_data_set[0], y=fit_data)
+
+    def update_parameters(self, param):
+        self.fit(**param)
+
+
+

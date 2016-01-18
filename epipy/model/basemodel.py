@@ -26,6 +26,7 @@ class BaseModel(object):
             print "Quality of Fit:", reg_line_values[2]
             print "p=value: ", reg_line_values[3]
             return fit
+        print param
         return self.fit_model(xdata, **param)
 
     @abstractmethod
