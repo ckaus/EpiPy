@@ -25,7 +25,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QDoubleSpinBox" name="gammaSpinBox">
+    <widget class="QDoubleSpinBox" name="beta_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>
@@ -45,7 +45,7 @@
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QDoubleSpinBox" name="beta_spin_box">
+    <widget class="QDoubleSpinBox" name="gamma_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>

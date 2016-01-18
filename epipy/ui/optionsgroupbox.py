@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import os, sys
-from PyQt4 import uic, QtCore, QtGui
-from epipy.ui.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog
-from epipy.ui.sirgroupbox import SIRsimpleGroupBox
-from epipy.ui.seirgroupbox import SEIRsimpleGroupBox
-from epipy.ui.sirsgroupbox import SIRSsimpleGroupBox
+import os
+from PyQt4 import uic, QtCore
 
+from epipy.ui.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog
+from epipy.ui.seirgroupbox import SEIRsimpleGroupBox
+from epipy.ui.sirgroupbox import SIRsimpleGroupBox
+from epipy.ui.sirsgroupbox import SIRSsimpleGroupBox
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')

@@ -3,8 +3,9 @@
 """This file contains functionality for reading a CSV file."""
 
 import csv
-import logger
 import os.path
+
+import logger
 
 
 def read(file_name="", seperator=";", column=[]):

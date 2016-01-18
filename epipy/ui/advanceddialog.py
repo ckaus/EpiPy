@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import os, sys
-from PyQt4 import uic, QtCore, QtGui
+import os
+from PyQt4 import uic
 from epipy.ui.sirgroupbox import SIRsimpleGroupBox, SIRwbadGroupBox, SIRvaccineGroupBox
 from epipy.ui.seirgroupbox import SEIRsimpleGroupBox
 from epipy.ui.sirsgroupbox import SIRSsimpleGroupBox, SIRSwbadGroupBox

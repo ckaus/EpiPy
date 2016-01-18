@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import os, sys
-from PyQt4 import uic, QtCore, QtGui
-
+import os
+from PyQt4 import uic
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')

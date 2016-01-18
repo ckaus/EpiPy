@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>sirwbadGroupBox</class>
- <widget class="QGroupBox" name="sirwbadGroupBox">
+ <class>sir_wbad_group_box</class>
+ <widget class="QGroupBox" name="sir_wbad_group_box">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -25,7 +25,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QDoubleSpinBox" name="gammaSpinBox">
+    <widget class="QDoubleSpinBox" name="beta_spin_box_2">
      <property name="decimals">
       <number>5</number>
      </property>
@@ -42,7 +42,7 @@
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QDoubleSpinBox" name="beta_spin_box">
+    <widget class="QDoubleSpinBox" name="gamma_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>
@@ -59,7 +59,7 @@
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QDoubleSpinBox" name="muSpinBox">
+    <widget class="QDoubleSpinBox" name="mu_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>

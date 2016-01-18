@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>sirvaccine_group_box</class>
- <widget class="QGroupBox" name="sirvaccine_group_box">
+ <class>sir_vaccine_group_box</class>
+ <widget class="QGroupBox" name="sir_vaccine_group_box">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -25,7 +25,7 @@
     </widget>
    </item>
    <item row="0" column="1">
-    <widget class="QDoubleSpinBox" name="gammaSpinBox">
+    <widget class="QDoubleSpinBox" name="beta_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>
@@ -45,7 +45,7 @@
     </widget>
    </item>
    <item row="0" column="3">
-    <widget class="QDoubleSpinBox" name="beta_spin_box">
+    <widget class="QDoubleSpinBox" name="gamma_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>

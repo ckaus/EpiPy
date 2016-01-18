@@ -24,7 +24,7 @@
     <enum>QLayout::SetFixedSize</enum>
    </property>
    <item>
-    <widget class="QLabel" name="topLabel">
+    <widget class="QLabel" name="top_abel">
      <property name="font">
       <font>
        <pointsize>13</pointsize>
@@ -41,7 +41,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="bottomLabel">
+    <widget class="QLabel" name="bottom_label">
      <property name="font">
       <font>
        <family>Sans</family>
@@ -80,7 +80,7 @@
     </widget>
    </item>
    <item>
-    <spacer name="verticalSpacer">
+    <spacer name="vertical_spacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -93,9 +93,9 @@
     </spacer>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontal_layout">
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="horizontal_spacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

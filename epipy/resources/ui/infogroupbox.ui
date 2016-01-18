@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>infoGroupBox</class>
- <widget class="QGroupBox" name="infoGroupBox">
+ <class>info_group_box</class>
+ <widget class="QGroupBox" name="info_group_box">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -18,7 +18,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout"/>
+    <layout class="QHBoxLayout" name="horizontal_layout"/>
    </item>
    <item>
     <widget class="QPlainTextEdit" name="info_plain_text_edit">
