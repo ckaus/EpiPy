@@ -4,12 +4,12 @@ import os
 from PyQt4 import uic
 
 from epipy.model import sir, seir, sirs
-from epipy.ui.seirgroupbox import SEIRsimpleGroupBox
-from epipy.ui.sirgroupbox import SIRsimpleGroupBox, SIRwbadGroupBox, SIRvaccineGroupBox
-from epipy.ui.sirsgroupbox import SIRSsimpleGroupBox, SIRSwbadGroupBox
+from epipy.ui.view.seirgroupbox import SEIRsimpleGroupBox
+from epipy.ui.view.sirgroupbox import SIRsimpleGroupBox, SIRwbadGroupBox, SIRvaccineGroupBox
+from epipy.ui.view.sirsgroupbox import SIRSsimpleGroupBox, SIRSwbadGroupBox
 
 dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')
+folder_path = os.path.join(dir_name(dir_name(dir_name(__file__))), 'resources/ui')
 SIRAdvancedDialogUI, SIRAdvancedDialogBase = uic.loadUiType(os.path.join(folder_path, "siradvanceddialog.ui"))
 SIRSAdvancedDialogUI, SIRSAdvancedDialogBase = uic.loadUiType(os.path.join(folder_path, "sirsadvanceddialog.ui"))
 SEIRAdvancedDialogUI, SEIRAdvancedDialogBase = uic.loadUiType(os.path.join(folder_path, "seiradvanceddialog.ui"))
@@ -24,19 +24,13 @@ class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.options_controller.update(self,
-                                           SIRsimpleGroupBox(),
-                                           sir.Simple())
+            self.options_controller.update(self, SIRsimpleGroupBox(), sir.Simple())
 
         elif self.wbad_radio_btn.isChecked():
-            self.options_controller.update(self,
-                                           SIRwbadGroupBox(),
-                                           sir.WithBirthsAndDeaths())
+            self.options_controller.update(self, SIRwbadGroupBox(), sir.WithBirthsAndDeaths())
 
         elif self.vaccine_radio_btn.isChecked():
-            self.options_controller.update(self,
-                                           SIRvaccineGroupBox(),
-                                           sir.Vaccine())
+            self.options_controller.update(self, SIRvaccineGroupBox(), sir.Vaccine())
 
 
 class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
@@ -48,7 +42,7 @@ class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.options_controller.update(self, SIERsimpleGroupBox(), seir.Simple())
+            self.options_controller.update(self, SEIRsimpleGroupBox(), seir.Simple())
 
 
 class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
@@ -60,10 +54,6 @@ class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.options_controller.update(self,
-                                           SIRSsimpleGroupBox(),
-                                           sirs.Simple())
+            self.options_controller.update(self, SIRSsimpleGroupBox(), sirs.Simple())
         elif self.wbad_radio_btn.isChecked():
-            self.options_controller.update(self,
-                                           SIRSwbadGroupBox(),
-                                           sirs.WithBirthsAndDeaths())
+            self.options_controller.update(self, SIRSwbadGroupBox(), sirs.WithBirthsAndDeaths())

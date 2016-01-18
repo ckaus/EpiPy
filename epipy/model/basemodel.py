@@ -9,6 +9,8 @@ class BaseModel(object):
         __metaclass__ = ABCMeta
         self.N = None
         self.N0 = None
+        self.best_fit = None
+        self.quality_of_fit = None
 
     def calculate_regression_line(self, x, y):
         # Calculates regression line. Mostly for Quality of fit(a float between 0 and 1).
@@ -20,13 +22,21 @@ class BaseModel(object):
         self.N0 = self.init_param(ydata[0])
         if not param:
             param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
-            print "Best param for %s: %s" % (self.__class__.__name__, param)
+            self.best_fit = param
             fit = self.fit_model(xdata, *param)
             reg_line_values = self.calculate_regression_line(ydata, fit)
-            print "Quality of Fit:", reg_line_values[2]
-            print "p=value: ", reg_line_values[3]
+            self.quality_of_fit = reg_line_values[2]
             return fit
-        return self.fit_model(xdata, **param)
+        self.best_fit = self.fit_model(xdata, **param)
+        return self.best_fit
 
     @abstractmethod
     def init_param(self, y0): pass
+
+    def __repr__(self):
+        return '<object=%s - Population=%s - Initial Parameter=%s - >' % (
+            self.__class__.__name__, self.N, self.N0)
+
+    def __str__(self):
+        return '%s - %s\nBest Fit: %s\nQuality Of Fit: %s' \
+               % (self.__name__, self.__class__.__name__, self.best_fit, self.quality_of_fit)

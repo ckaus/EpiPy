@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import os
+import pyqtgraph as pg
 from PyQt4 import uic, QtGui
 
-import pyqtgraph as pg
-
-from epipy.ui.aboutdialog import AboutDialog
-from epipy.ui.customviewbox import CustomViewBox
-from epipy.ui.infogroupbox import InfoGroupBox
-from epipy.ui.optionsgroupbox import OptionsGroupBox
+from epipy.ui.view.aboutdialog import AboutDialog
+from epipy.ui.view.customviewbox import CustomViewBox
+from epipy.ui.view.infogroupbox import InfoGroupBox
+from epipy.ui.view.optionsgroupbox import OptionsGroupBox
 
 dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')
+folder_path = os.path.join(dir_name(dir_name(dir_name(__file__))), 'resources/ui')
 MainWindowUI, MainWindowBase = uic.loadUiType(os.path.join(folder_path, "mainwindow.ui"))
 
 

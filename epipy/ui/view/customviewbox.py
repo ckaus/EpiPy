@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 import pyqtgraph as pg
 from pyqtgraph.Qt import QtCore
 

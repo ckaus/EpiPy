@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from epipy.ui.mainmodel import MainModel
-from epipy.ui.optionscontroller import OptionsController
-from epipy.utils import logger
 import numpy as np
+
+from epipy.ui.controller.optionscontroller import OptionsController
+from epipy.ui.model.mainmodel import MainModel
+from epipy.ui.model.fitmodel import FitModel
+from epipy.utils import logger
 
 
 class MainViewController(object):
@@ -97,7 +99,10 @@ class MainViewController(object):
         self.main_view.plot_1.setData(x=x_data, y=y_data)
         self.main_view.plot_2.setData(x=x_data, y=fit_data)
         info_group_box = self.main_view.info_group_box
-        info_group_box.info_plain_text_edit.appendPlainText("%s" % self.main_model)
+        fit_model = FitModel()
+        fit_model.main_model = self.main_model
+        fit_model.options_model = self.options_controller.options_model
+        info_group_box.info_plain_text_edit.appendPlainText("%s" % fit_model)
 
     def run(self):
         self.main_view.show()

@@ -3,8 +3,9 @@
 import sys
 from PyQt4 import QtGui
 
-from epipy.ui.mainviewcontroller import MainViewController
-from epipy.ui.mainwindow import MainWindow
+from epipy.ui.controller.mainviewcontroller import MainViewController
+
+from epipy.ui.view.mainwindow import MainWindow
 
 """
 EpiPy start point.

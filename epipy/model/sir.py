@@ -8,6 +8,7 @@ from basemodel import BaseModel
 class SIR(BaseModel):
     def __init__(self):
         BaseModel.__init__(self)
+        self.__name__ = 'SIR'
 
     def init_param(self, y0):
         I0 = y0

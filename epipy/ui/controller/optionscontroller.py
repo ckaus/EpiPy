@@ -1,10 +1,11 @@
-from epipy.ui.optionsmodel import OptionsModel
-from epipy.model import sir, seir, sirs
-from epipy.ui.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog
-from epipy.ui.seirgroupbox import SEIRsimpleGroupBox
-from epipy.ui.sirgroupbox import SIRsimpleGroupBox
-from epipy.ui.sirsgroupbox import SIRSsimpleGroupBox
 from PyQt4 import QtCore, QtGui
+
+from epipy.model import sir, seir, sirs
+from epipy.ui.model.optionsmodel import OptionsModel
+from epipy.ui.view.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog
+from epipy.ui.view.seirgroupbox import SEIRsimpleGroupBox
+from epipy.ui.view.sirgroupbox import SIRsimpleGroupBox
+from epipy.ui.view.sirsgroupbox import SIRSsimpleGroupBox
 
 
 class OptionsController(object):
@@ -12,12 +13,14 @@ class OptionsController(object):
         self.options_view = options_view
         self.main_view_controller = main_view_controller
         self.options_model = None
+        self.options_view.advanced_btn.setEnabled(False)
 
         self.options_view.advanced_btn.clicked.connect(self.show_advanced_dialog)
         self.options_view.model_combo_box.currentIndexChanged['QString'].connect(
                 self.init_model_param_group_box)
 
     def init_model_param_group_box(self, selected_item):
+        self.options_view.advanced_btn.setEnabled(True)
         if selected_item == QtCore.QString('SIR'):
             self.update(SIRAdvancedDialog(self),
                         SIRsimpleGroupBox(),
@@ -49,19 +52,20 @@ class OptionsController(object):
         for i in range(0, layout.count()):
             widget = layout.itemAt(i).widget()
             if (widget != 0) and (type(widget) is QtGui.QLabel):
-                self.options_model.add_parameter(widget.text())
+                self.options_model.parameters.append((str(widget.text()).lower()))
             elif (widget != 0) and (type(widget) is QtGui.QDoubleSpinBox):
                 self.options_model.add_spin_box(widget)
-                self.options_model.add_parameter_value(widget.value())
                 widget.valueChanged.connect(self.notify_main_window)
 
     def notify_main_window(self):
         # prepare parameters based on labels and spin boxes
         values = []
         for spin_box in self.options_model.spin_boxes:
-            values.append(spin_box.value())
+            value = spin_box.value()
+            self.options_model.parameters_values.append(value)
+            values.append(value)
         options_parameters = self.options_model.parameters
-        options_parameters = [str(item).lower() for item in options_parameters]
+        # options_parameters = [str(item).lower() for item in options_parameters]
         param = dict(zip(options_parameters, values))
         self.main_view_controller.update(**param)
 
