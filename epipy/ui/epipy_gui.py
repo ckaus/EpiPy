@@ -9,7 +9,6 @@ import sys
 import matplotlib
 from path import path
 
-from customviewbox import CustomViewBox
 import epipy.model
 from epipy.utils import csvmanager
 from epipy.utils import logger
@@ -115,7 +114,7 @@ class MainWindow(QtGui.QDialog):
         self.fitButton.clicked.connect(self.updateFit)
         
         # Default graph
-        self.graph = pg.PlotWidget(title="Graph of Fit", viewBox=CustomViewBox(), enableMenu=False)
+        self.graph = pg.PlotWidget(title="Graph of Fit", enableMenu=False)
         self.verticalLayout_1.insertWidget(0, self.graph)
         header = ["Time", "I"]
         data = {"Time": np.array([0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140, 147, 154,
