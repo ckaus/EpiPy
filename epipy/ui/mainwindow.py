@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import numpy as np
 import pyqtgraph as pg
 from PyQt4 import uic, QtGui
 
@@ -9,6 +10,8 @@ from epipy.ui.customviewbox import CustomViewBox
 from epipy.ui.infogroupbox import InfoGroupBox
 from epipy.ui.optionsgroupbox import OptionsGroupBox
 from epipy.utils import logger
+from epipy.model import sir
+from epipy.utils import csvmanager
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')
@@ -41,8 +44,35 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.about_action.triggered.connect(self.show_about)
 
         # ===================
-        # blank plot
-        self.pw = pg.PlotWidget(title="", viewBox=CustomViewBox(), enableMenu=False)
+        # sample plot
+        # ======================
+        # data_set_1 = csvmanager.read(file_name="data1.csv", seperator=";", column=["Time", "I"])
+        # ======================
+        xdata_2 = np.array([0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, 91, 98, 105, 112, 119, 126, 133, 140,
+                            147, 154, 161], dtype=float)
+
+        ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4400, 3570, 2300, 1900, 2200,
+                            1700, 1170, 830, 750, 770, 520, 550, 380], dtype=float)
+        # ======================
+
+        data_set_2 = {'Time': xdata_2 , 'I': ydata_2}
+
+        ydata = np.array(data_set_2["I"], dtype=float)
+        xdata = np.array(data_set_2["Time"], dtype=float)
+        result = sir.Simple().fit(xdata=xdata, ydata=ydata, N=10000)
+
+        cv = CustomViewBox()
+        self.pw = pg.PlotWidget(title="SIR", viewBox=cv, enableMenu=False)
+        self.pw.setBackground(QtGui.QColor(255, 255, 255))
+
+        plot_1 = self.pw.plot(x=xdata, y=ydata, symbol='o')
+        plot_2 = self.pw.plot(x=xdata, y=result, pen='b')
+        legend1 = pg.LegendItem()
+        legend1.addItem(plot_1, "Data")
+        legend1.addItem(plot_2, "Fit")
+        legend1.setParentItem(cv)
+        legend1.anchor((0, 0), (0.4, 0))
+
         self.pw.setBackground(QtGui.QColor(255, 255, 255))
         self.splitter.insertWidget(0, self.pw)
 
