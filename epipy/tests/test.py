@@ -67,11 +67,11 @@ ydata_2 = np.array([113, 60, 70, 140, 385, 2900, 4600, 5400, 5300, 6350, 5350, 4
 # ======================================================================================================================
 # find optimize parameters
 # ======================================================================================================================
-res1 = sir_simple.fit(xdata, ydata, N=1)
-res2 = sir_vaccine.fit(xdata, ydata, N=1)
-res3 = sir_wbad.fit(xdata, ydata, N=1)
-testutils.plot_with_data('With Optimize()', xdata=xdata, ydata=ydata, results=[res1, res2, res3],
-                         labels=['Simple', 'Vaccine', 'With Births And Deaths'])
+# res1 = sir_simple.fit(xdata_2, ydata_2, N=10000)
+# res2 = sir_vaccine.fit(xdata_2, ydata_2, N=10000)
+# res3 = sir_wbad.fit(xdata_2, ydata_2, N=10000)
+# testutils.plot_with_data('With Optimize()', xdata=xdata_2, ydata=ydata_2, results=[res1, res2, res3],
+#                          labels=['Simple', 'Vaccine', 'With Births And Deaths'])
 #
 # res4 = sirs_simple.fit(xdata, ydata, N=1)
 # res5 = sirs_wbad.fit(xdata, ydata, N=1)

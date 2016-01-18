@@ -138,4 +138,5 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.plot_2.setData(x=self.current_data_set[0], y=fit_data)
 
     def update_parameters(self, param):
+        # SIR Simple beta=0.13577472  gamma=0.02448539
         self.fit(**param)
