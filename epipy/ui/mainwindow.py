@@ -104,7 +104,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
     def show_fullscreen(self):
         self.show_fullscreen_action.setVisible(False)
         self.exit_fullscreen_action.setVisible(True)
-        self.show_fullScreen()
+        self.showFullScreen()
 
     def exit_fullscreen(self):
         self.show_fullscreen_action.setVisible(True)
