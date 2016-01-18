@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from epipy.utils import csvmanager
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+
+from epipy.utils import csvmanager
 
 
 def normalize(vector):
