@@ -16,48 +16,42 @@ SEIRAdvancedDialogUI, SEIRAdvancedDialogBase = uic.loadUiType(os.path.join(folde
 
 
 class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
-    def __init__(self, option_group_box):
+    def __init__(self, options_controller):
         SIRAdvancedDialogBase.__init__(self)
         self.setupUi(self)
-        self.option_group_box = option_group_box
+        self.options_controller = options_controller
         self.button_box.accepted.connect(self.set_selected_radio_btn)
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.option_group_box.add_model_parameter_group_box(SIRsimpleGroupBox())
-            self.option_group_box.model = sir.Simple()
+            self.options_controller.update(self, SIRsimpleGroupBox(), sir.Simple())
         elif self.wbad_radio_btn.isChecked():
-            self.option_group_box.add_model_parameter_group_box(SIRwbadGroupBox())
-            self.option_group_box.model = sir.WithBirthsAndDeaths()
+            self.options_controller.update(self, SIRwbadGroupBox(), sir.WithBirthsAndDeaths())
         elif self.vaccine_radio_btn.isChecked():
-            self.option_group_box.add_model_parameter_group_box(SIRvaccineGroupBox())
-            self.option_group_box.model = sir.Vaccine()
+            self.options_controller.update(self, SIRvaccineGroupBox(), sir.Vaccine())
 
 
 class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
-    def __init__(self, option_group_box):
+    def __init__(self, options_controller):
         SEIRAdvancedDialogBase.__init__(self)
         self.setupUi(self)
-        self.option_group_box = option_group_box
+        self.options_controller = options_controller
         self.button_box.accepted.connect(self.set_selected_radio_btn)
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.option_group_box.add_model_parameter_group_box(SEIRsimpleGroupBox())
-            self.option_group_box.model = seir.Simple()
+            self.options_controller.update(self, SIERsimpleGroupBox(), seir.Simple())
 
 
 class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
-    def __init__(self, option_group_box):
+    def __init__(self, options_controller):
         SIRSAdvancedDialogBase.__init__(self)
         self.setupUi(self)
-        self.option_group_box = option_group_box
+        self.options_controller = options_controller
         self.button_box.accepted.connect(self.set_selected_radio_btn)
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.option_group_box.add_model_parameter_group_box(SIRSsimpleGroupBox())
-            self.option_group_box.model = sirs.Simple()
+            self.options_controller.update(self, SIRSsimpleGroupBox(), sirs.Simple())
         elif self.wbad_radio_btn.isChecked():
-            self.option_group_box.add_model_parameter_group_box(SIRSwbadGroupBox())
-            self.option_group_box.model = sirs.WithBirthsAndDeaths()
+            self.options_controller.update(self, SIRSwbadGroupBox(), sirs.WithBirthsAndDeaths())
