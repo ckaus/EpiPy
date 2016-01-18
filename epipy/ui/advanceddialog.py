@@ -24,11 +24,19 @@ class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.options_controller.update(self, SIRsimpleGroupBox(), sir.Simple())
+            self.options_controller.update(self,
+                                           SIRsimpleGroupBox(),
+                                           sir.Simple())
+
         elif self.wbad_radio_btn.isChecked():
-            self.options_controller.update(self, SIRwbadGroupBox(), sir.WithBirthsAndDeaths())
+            self.options_controller.update(self,
+                                           SIRwbadGroupBox(),
+                                           sir.WithBirthsAndDeaths())
+
         elif self.vaccine_radio_btn.isChecked():
-            self.options_controller.update(self, SIRvaccineGroupBox(), sir.Vaccine())
+            self.options_controller.update(self,
+                                           SIRvaccineGroupBox(),
+                                           sir.Vaccine())
 
 
 class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
@@ -52,6 +60,10 @@ class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.options_controller.update(self, SIRSsimpleGroupBox(), sirs.Simple())
+            self.options_controller.update(self,
+                                           SIRSsimpleGroupBox(),
+                                           sirs.Simple())
         elif self.wbad_radio_btn.isChecked():
-            self.options_controller.update(self, SIRSwbadGroupBox(), sirs.WithBirthsAndDeaths())
+            self.options_controller.update(self,
+                                           SIRSwbadGroupBox(),
+                                           sirs.WithBirthsAndDeaths())

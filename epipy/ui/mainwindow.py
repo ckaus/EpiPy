@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
-import numpy as np
 import os
-import pyqtgraph as pg
 from PyQt4 import uic, QtGui
+
+import pyqtgraph as pg
 
 from epipy.ui.aboutdialog import AboutDialog
 from epipy.ui.customviewbox import CustomViewBox
 from epipy.ui.infogroupbox import InfoGroupBox
 from epipy.ui.optionsgroupbox import OptionsGroupBox
-from epipy.utils import logger
+
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')
 MainWindowUI, MainWindowBase = uic.loadUiType(os.path.join(folder_path, "mainwindow.ui"))
@@ -23,7 +23,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.current_advanced_dialog = None
         # some components
         self.about_dialog = AboutDialog()
-        
 
         # ===================
         # plot widget
@@ -40,9 +39,9 @@ class MainWindow(MainWindowBase, MainWindowUI):
         legend1.anchor((0, 0), (0.4, 0))
         # ===================
         # side bar
-        self.options_group_box = OptionsGroupBox(self)
+        self.options_group_box = OptionsGroupBox()
         self.side_bar_widget.layout().addWidget(self.options_group_box)
-        
+
         self.info_group_box = InfoGroupBox()
 
         self.side_bar_widget.layout().addWidget(self.options_group_box)
