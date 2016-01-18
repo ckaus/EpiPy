@@ -23,14 +23,18 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.aboutDialog = uic.loadUi(os.path.join(folderPath, 'aboutdialog.ui'))
         self.aboutDialog.closeButton.clicked.connect(self.aboutDialog.close)
 
-        self.optionsgb = uic.loadUi(os.path.join(folderPath, 'optionsgroupbox.ui'))
+        #self.optionsgb = uic.loadUi(os.path.join(folderPath, 'optionsgroupbox.ui'))
+        self.optionsgb = QtGui.QGroupBox()
         self.sirgb = uic.loadUi(os.path.join(folderPath, 'sirsimplegroupbox.ui'))
         self.infogb = uic.loadUi(os.path.join(folderPath, 'infogroupbox.ui'))
         self.advanceddialog = uic.loadUi(os.path.join(folderPath, 'advanceddialog.ui'))
 
         self.infogb.clearBtn.clicked.connect(self.clearFittingInfo)
-        self.optionsgb.advancedBtn.clicked.connect(self.showAdvancedBtnBox)
+        #self.optionsgb.advancedBtn.clicked.connect(self.showAdvancedBtnBox)
 
+        self.modelscb = QtGui.QComboBox()
+        self.optionsgb.layout().addWidget(self.modelscb)
+        
         self.optionsgb.layout().addRow(self.sirgb)
         self.leftwidget.layout().addWidget(self.optionsgb)
         self.leftwidget.layout().addWidget(self.infogb)
@@ -75,6 +79,18 @@ class MainWindow(MainWindowBase, MainWindowUI):
 
     def openFile(self):
         logger.info("open file")
+        """
+        content = csvmanager.read(file_name="data1.csv", seperator=";", column=["Time", "I"])
+        ydata = np.array(content['I'], dtype=float)
+        self.pw = pg.PlotWidget(title="SIR", viewBox=CustomViewBox(), enableMenu=False)
+        self.pw.plot(x=xdata, y=ydata, symbol='o')
+        """
+        # window
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file', '~')
+        print fname
+        #content = csvmanager.read(file_name=fname, seperator=";", column=["Time", "I"])
+
+        
         self.infogb.infoPlainTextEdit.appendPlainText("open file")
 
     def save(self):

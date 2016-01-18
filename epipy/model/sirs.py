@@ -19,6 +19,10 @@ class Simple(SIRS):
     def __init__(self):
         SIRS.__init__(self)
 
+    @staticmethod
+    def param():
+        return ["beta", "gamma", "mu"]
+
     def model(self, y, x, beta, gamma, mu):
         S = -beta * y[0] * y[1] / self.N + mu * y[2]
         I = beta * y[0] * y[1] / self.N - gamma * y[1]

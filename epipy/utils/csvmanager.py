@@ -22,7 +22,8 @@ def read(file_name="", seperator=";", column=[]):
     """
 
     current_dir = os.path.abspath(os.path.dirname(__file__))
-    path = os.path.abspath(current_dir + "/../resources/data") + "/" + file_name
+    #path = os.path.abspath(current_dir + "/../resources/data") + "/" + file_name
+    path = file_name
     result = {}
     try:
         # read input file
@@ -30,6 +31,8 @@ def read(file_name="", seperator=";", column=[]):
         reader = csv.reader(_file, delimiter=seperator)
         header = reader.next()
         # header
+        if not column:
+            column = header
         for h in column:
             result[h] = []
         # content

@@ -19,6 +19,11 @@ class SEIR(BaseModel):
 class Simple(SEIR):
     def __init__(self):
         SEIR.__init__(self)
+        
+    @staticmethod
+    def param():
+        return ["beta", "gamma", "sigma", "mu"]
+    
 
     def model(self, y, x, beta, gamma, sigma, mu):
         S = mu * (self.N - y[0]) - ( beta * y[0] * y[2] / self.N)
