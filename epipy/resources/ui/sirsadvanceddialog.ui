@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>sir_advanced_dialog</class>
- <widget class="QDialog" name="sir_advanced_dialog">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>436</width>
-    <height>97</height>
+    <width>400</width>
+    <height>83</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SIR Advanced</string>
+   <string>Dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -36,13 +36,6 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="vaccine_radio_btn">
-       <property name="text">
-        <string>Vaccine</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
@@ -62,7 +55,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>accepted()</signal>
-   <receiver>sir_advanced_dialog</receiver>
+   <receiver>Dialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -78,7 +71,7 @@
   <connection>
    <sender>button_box</sender>
    <signal>rejected()</signal>
-   <receiver>sir_advanced_dialog</receiver>
+   <receiver>Dialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

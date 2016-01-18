@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>sirvaccine_group_box</class>
- <widget class="QGroupBox" name="sirvaccine_group_box">
+ <class>seir_simple_group_box</class>
+ <widget class="QGroupBox" name="seir_simple_group_box">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>338</width>
+    <width>347</width>
     <height>104</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SIR - Vaccine</string>
+   <string>SEIR - Simple</string>
   </property>
   <property name="title">
-   <string>Vaccine</string>
+   <string>Simple</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -55,19 +55,33 @@
     </widget>
    </item>
    <item row="1" column="0">
-    <widget class="QLabel" name="nu_label">
+    <widget class="QLabel" name="sigma_label">
      <property name="text">
-      <string>Nu</string>
+      <string>Sigma</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
-    <widget class="QDoubleSpinBox" name="nu_spin_box">
+    <widget class="QDoubleSpinBox" name="sigma_spin_box">
      <property name="decimals">
       <number>5</number>
      </property>
      <property name="singleStep">
       <double>0.000001000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Mu</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QDoubleSpinBox" name="mu_spin_box">
+     <property name="decimals">
+      <number>5</number>
      </property>
     </widget>
    </item>
