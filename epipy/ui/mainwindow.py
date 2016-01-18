@@ -5,15 +5,11 @@ import os
 import pyqtgraph as pg
 from PyQt4 import uic, QtGui
 
-from epipy.model import sir
 from epipy.ui.aboutdialog import AboutDialog
 from epipy.ui.customviewbox import CustomViewBox
 from epipy.ui.infogroupbox import InfoGroupBox
 from epipy.ui.optionsgroupbox import OptionsGroupBox
 from epipy.utils import logger
-from epipy.utils import csvmanager
-
-import numpy as np
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(dir_name(__file__)), 'resources/ui')
@@ -82,7 +78,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
         legend1.setParentItem(custom_view_box)
         legend1.anchor((0, 0), (0.4, 0))
 
-
         # ===================
         # side bar
         self.options_group_box = OptionsGroupBox(self)
@@ -144,6 +139,3 @@ class MainWindow(MainWindowBase, MainWindowUI):
 
     def update_parameters(self, param):
         self.fit(**param)
-
-
-
