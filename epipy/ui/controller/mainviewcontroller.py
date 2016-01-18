@@ -3,8 +3,8 @@
 import numpy as np
 
 from epipy.ui.controller.optionscontroller import OptionsController
-from epipy.ui.model.mainmodel import MainModel
 from epipy.ui.model.fitmodel import FitModel
+from epipy.ui.model.mainmodel import MainModel
 from epipy.utils import logger
 
 
