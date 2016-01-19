@@ -33,7 +33,13 @@
    <item>
     <widget class="QDoubleSpinBox" name="beta_spin_box">
      <property name="decimals">
-      <number>6</number>
+      <number>8</number>
+     </property>
+     <property name="minimum">
+      <double>-99.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>99.000000000000000</double>
      </property>
      <property name="singleStep">
       <double>0.000001000000000</double>
@@ -50,7 +56,13 @@
    <item>
     <widget class="QDoubleSpinBox" name="gamma_spin_box">
      <property name="decimals">
-      <number>6</number>
+      <number>8</number>
+     </property>
+     <property name="minimum">
+      <double>-99.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>99.000000000000000</double>
      </property>
      <property name="singleStep">
       <double>0.000001000000000</double>

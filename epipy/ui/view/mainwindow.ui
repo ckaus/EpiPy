@@ -14,20 +14,16 @@
    <string>EpiPy</string>
   </property>
   <widget class="QWidget" name="central_widget">
-   <layout class="QHBoxLayout" name="horizontalLayout_3">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QSplitter" name="splitter">
+     <widget class="QSplitter" name="v_splitter">
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QWidget" name="side_bar_widget" native="true">
-       <property name="maximumSize">
-        <size>
-         <width>333</width>
-         <height>16777215</height>
-        </size>
+      <widget class="QSplitter" name="h_splitter">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_2"/>
       </widget>
      </widget>
     </item>
@@ -39,7 +35,7 @@
      <x>0</x>
      <y>0</y>
      <width>774</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">

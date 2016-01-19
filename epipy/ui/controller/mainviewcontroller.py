@@ -2,18 +2,21 @@
 
 import numpy as np
 
+from epipy.ui.controller.infocontroller import InfoController
 from epipy.ui.controller.optionscontroller import OptionsController
 from epipy.ui.model.fitmodel import FitModel
 from epipy.ui.model.mainmodel import MainModel
+from epipy.ui.view.mainwindow import MainWindow
 from epipy.utils import logger
 
 
 class MainViewController(object):
-    def __init__(self, main_view):
-        self.main_view = main_view
+    def __init__(self):
+        self.main_view = MainWindow()
         self.main_model = MainModel()
-        self.options_controller = OptionsController(self, self.main_view.options_group_box)
 
+        self.options_controller = OptionsController(self)
+        self.info_controller = InfoController(self)
         data = self.get_data()
         self.main_model.set_data_set(*data)
 
@@ -77,12 +80,12 @@ class MainViewController(object):
         self.main_view.showNormal()
 
     def show_sidebar(self):
-        self.main_view.side_bar_widget.setVisible(True)
+        self.main_view.h_splitter.widget(1).setVisible(True)
         self.main_view.show_sidebar_action.setVisible(False)
         self.main_view.hide_sidebar_action.setVisible(True)
 
     def hide_sidebar(self):
-        self.main_view.side_bar_widget.setVisible(False)
+        self.main_view.h_splitter.widget(1).setVisible(False)
         self.main_view.show_sidebar_action.setVisible(True)
         self.main_view.hide_sidebar_action.setVisible(False)
 
@@ -98,11 +101,10 @@ class MainViewController(object):
         self.main_model.fit_data = fit_data
         self.main_view.plot_1.setData(x=x_data, y=y_data)
         self.main_view.plot_2.setData(x=x_data, y=fit_data)
-        info_group_box = self.main_view.info_group_box
         fit_model = FitModel()
         fit_model.main_model = self.main_model
         fit_model.options_model = self.options_controller.options_model
-        info_group_box.info_plain_text_edit.appendPlainText("%s" % fit_model)
+        self.info_controller.update_information(fit_model)
 
     def run(self):
         self.main_view.show()

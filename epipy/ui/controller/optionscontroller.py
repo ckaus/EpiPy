@@ -3,21 +3,23 @@ from PyQt4 import QtCore, QtGui
 from epipy.model import sir, seir, sirs
 from epipy.ui.model.optionsmodel import OptionsModel
 from epipy.ui.view.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog
+from epipy.ui.view.optionsgroupbox import OptionsGroupBox
 from epipy.ui.view.seirgroupbox import SEIRsimpleGroupBox
 from epipy.ui.view.sirgroupbox import SIRsimpleGroupBox
 from epipy.ui.view.sirsgroupbox import SIRSsimpleGroupBox
 
 
 class OptionsController(object):
-    def __init__(self, main_view_controller, options_view):
-        self.options_view = options_view
-        self.main_view_controller = main_view_controller
+    def __init__(self, parent):
+        self.options_view = OptionsGroupBox()
+        self.parent = parent
         self.options_model = None
         self.options_view.advanced_btn.setEnabled(False)
 
         self.options_view.advanced_btn.clicked.connect(self.show_advanced_dialog)
         self.options_view.model_combo_box.currentIndexChanged['QString'].connect(
                 self.init_model_param_group_box)
+        self.parent.main_view.h_splitter.insertWidget(1, self.options_view)
 
     def init_model_param_group_box(self, selected_item):
         self.options_view.advanced_btn.setEnabled(True)
@@ -58,6 +60,7 @@ class OptionsController(object):
                 widget.valueChanged.connect(self.notify_main_window)
 
     def notify_main_window(self):
+        self.options_model.parameters_values = []
         # prepare parameters based on labels and spin boxes
         values = []
         for spin_box in self.options_model.spin_boxes:
@@ -67,7 +70,7 @@ class OptionsController(object):
         options_parameters = self.options_model.parameters
         # options_parameters = [str(item).lower() for item in options_parameters]
         param = dict(zip(options_parameters, values))
-        self.main_view_controller.update(**param)
+        self.parent.update(**param)
 
     def show_advanced_dialog(self):
         self.options_model.advanced_dialog.show()
