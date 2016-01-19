@@ -22,7 +22,7 @@
      <item>
       <widget class="QPushButton" name="save_btn">
        <property name="text">
-        <string/>
+        <string>Save</string>
        </property>
        <property name="icon">
         <iconset>
@@ -46,7 +46,7 @@
      <item>
       <widget class="QPushButton" name="clear_btn">
        <property name="text">
-        <string/>
+        <string>Clear</string>
        </property>
        <property name="icon">
         <iconset>

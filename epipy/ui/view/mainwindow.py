@@ -10,7 +10,7 @@ from epipy.ui.view.infogroupbox import InfoGroupBox
 from epipy.ui.view.optionsgroupbox import OptionsGroupBox
 
 dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(dir_name(dir_name(__file__))), 'resources/ui')
+folder_path = os.path.join(dir_name(__file__), '')
 MainWindowUI, MainWindowBase = uic.loadUiType(os.path.join(folder_path, "mainwindow.ui"))
 
 
