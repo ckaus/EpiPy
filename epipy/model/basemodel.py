@@ -12,23 +12,25 @@ class BaseModel(object):
         self.best_fit = None
         self.quality_of_fit = None
 
-    def calculate_regression_line(self, x, y):
-        # Calculates regression line. Mostly for Quality of fit(a float between 0 and 1).
-        slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
+    def fit_info(self, ydata_1, ydata_2):
+        """ Return R^2 and p-value of linear regression between x and y
+            where x and y are array-like."""
+        slope, intercept, r_value, p_value, std_err = stats.linregress(
+                ydata_1, ydata_2)
         return slope, intercept, r_value ** 2, p_value, std_err
 
     def fit(self, xdata, ydata, N=None, **param):
         self.N = N
         self.N0 = self.init_param(ydata[0])
+
         if not param:
             param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
             self.best_fit = param
-            fit = self.fit_model(xdata, *param)
-            reg_line_values = self.calculate_regression_line(ydata, fit)
-            self.quality_of_fit = reg_line_values[2]
-            return fit
-        self.best_fit = self.fit_model(xdata, **param)
-        return self.best_fit
+            fitted = self.fit_model(xdata, *param)
+            return (fitted, param) + self.fit_info(ydata, fitted)
+
+        fitted = self.fit_model(xdata, **param)
+        return (fitted, param) + self.fit_info(ydata, fitted)
 
     @abstractmethod
     def init_param(self, y0): pass

@@ -4,6 +4,7 @@ import numpy as np
 
 from epipy.ui.controller.infocontroller import InfoController
 from epipy.ui.controller.optionscontroller import OptionsController
+from epipy.ui.controller.inputcontroller import InputController
 from epipy.ui.model.fitmodel import FitModel
 from epipy.ui.model.mainmodel import MainModel
 from epipy.ui.view.mainwindow import MainWindow
@@ -17,7 +18,9 @@ class MainViewController(object):
 
         self.options_controller = OptionsController(self)
         self.info_controller = InfoController(self)
+        self.input_controller =InputController(self)
         data = self.get_data()
+        print data
         self.main_model.set_data_set(*data)
 
         self.main_view.open_file_action.triggered.connect(self.open_file)
