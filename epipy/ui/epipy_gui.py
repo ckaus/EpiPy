@@ -10,7 +10,7 @@ import matplotlib
 from path import path
 
 import epipy.model
-from epipy.utils import csvmanager
+from epipy.utils import csvmanager, dateconverter
 from epipy.utils import logger
 from PyQt4.QtGui import QMessageBox
 from numpy import nan, array, ma, arange
@@ -79,6 +79,48 @@ class ParametersModel(QtCore.QAbstractTableModel):
         return False
 
 
+class InformationModel(QtCore.QAbstractTableModel):
+    def __init__(self, items, parent=None):
+        QtCore.QAbstractTableModel.__init__(self, parent)
+        self.items = items
+        self.parm_names = items.keys()
+        self.parm_values = items.values()
+
+    def rowCount(self, idx=QtCore.QModelIndex()):
+        return len(self.parm_names)
+
+    def columnCount(self, idx=QtCore.QModelIndex()):
+        return 2
+
+    def headerData(self, section, orientation, role=Qt.DisplayRole):
+        if role != Qt.DisplayRole:
+            return
+        if orientation == Qt.Horizontal:
+            if section == 0:
+                return "Name"
+            elif section == 1:
+                return "Value"
+
+    def flags(self, index):
+        if index.column() == 0:
+            return Qt.ItemIsEnabled
+        elif index.column() == 1:
+            return Qt.ItemIsEnabled
+        return Qt.NoItemFlags
+
+    def data(self, index, role=Qt.DisplayRole):
+        r = index.row()
+        c = index.column()
+        if 0 <= r < len(self.parm_names) and 0 <= c < 2:
+            if c == 0:
+                if role == Qt.DisplayRole:
+                    return self.parm_names[r]
+            elif c == 1:
+                if role == Qt.DisplayRole:
+                    return "%g" % (self.parm_values[r],)
+                elif role == Qt.EditRole:
+                    return "%g" % (self.parm_values[r],)
+
 class MainWindow(QtGui.QDialog):
     def __init__(self, *args, **kwords):
         QtGui.QDialog.__init__(self, *args, **kwords)
@@ -103,6 +145,7 @@ class MainWindow(QtGui.QDialog):
         #self._scale = None
         self._header = None
         self._write = False
+        self._formatDate = False
         self.setData(None, None)
         list_model = sorted(epipy.model.names())
         self.models.clear()
@@ -112,7 +155,7 @@ class MainWindow(QtGui.QDialog):
         self.models.currentIndexChanged.connect(self.updateParameters)
         
         self.fitButton.clicked.connect(self.updateFit)
-        
+
         # Default graph
         self.graph = pg.PlotWidget(title="Graph of Fit", enableMenu=False)
         self.verticalLayout_1.insertWidget(0, self.graph)
@@ -124,7 +167,6 @@ class MainWindow(QtGui.QDialog):
         self.setData(header, data)
         self.updateFit()
         
-
     @pyqtSignature("")
     def on_selectInputFile_clicked(self):
         filename = QtGui.QFileDialog.getOpenFileName(self, "Open CSV file",
@@ -139,7 +181,6 @@ class MainWindow(QtGui.QDialog):
         if filename:
             self.output = filename
 
-    
     @pyqtSignature("const QString&")
     def on_fieldXbox_currentIndexChanged(self, txt):
         self.fieldX = txt
@@ -178,7 +219,13 @@ class MainWindow(QtGui.QDialog):
                 pass
                 
     input = property(_getInput, _setInput)
-    
+
+    @pyqtSignature("bool")
+    def on_formatDate_toggled(self):
+        if self.formatDate.isChecked():
+            self._formatDate = True
+        else:
+            self._formatDate = False
     
     def setData(self, header, data):
         if header is None or data is None:
@@ -209,7 +256,6 @@ class MainWindow(QtGui.QDialog):
                 self.outputFile.setText(self._output)
                 
     output = property(_getOutput, _setOutput)
-
 
     def _getHeader(self):
         return self._header
@@ -253,17 +299,33 @@ class MainWindow(QtGui.QDialog):
         else:
             model = self._modelObject
             param_model = self.input_param_model
-            xdata = array(self._data[str(self._fieldX)], dtype=int)
-            ydata = array(self._data[str(self._fieldY)], dtype=float)
+            xdata0 = self._data[str(self._fieldX)]
+            ydata0 = self._data[str(self._fieldY)]
+
+            if self._formatDate:
+                xdata0 = dateconverter.convert(xdata0)
+
+            xdata = array(xdata0, dtype=int)
+            ydata = array(ydata0, dtype=float)
             print xdata
             print ydata
-            fitted = model.Simple().fit(xdata, ydata, 1)
-            
+
+            fitted, param, rsquared, pvalue = model.Simple().fit(xdata, ydata, 1)
+            self._fittingInfo = dict(zip(model.Simple().param(), param.tolist()))
+            self._fittingInfo["R squared"] = rsquared 
+            self._fittingInfo["P-value"] = pvalue
+            self.updateInfo()
+
             self.graph.clear()
             self.graph.plot(x=xdata, y=ydata, symbol='o')
             self.graph.plot(x=xdata, y=fitted, pen="k")
             self.graph.setWindowTitle('pyqtgraph')
             self.graph.setBackground(QtGui.QColor(255, 255, 255))
+
+    def updateInfo(self):
+        if self._fittingInfo is not None:
+            self.info_model = InformationModel(self._fittingInfo, parent=self)
+            self.information.setModel(self.info_model)
             
 
 def main():

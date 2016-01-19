@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from abc import abstractmethod, ABCMeta
-from scipy import optimize
+from scipy import optimize, stats
 import inspect
 
 
@@ -16,6 +16,13 @@ class BaseModel(object):
         self.N0 = self.init_param(y0)
         return self.fit_model(xdata, **param)
 
+    @staticmethod
+    def fit_info(x, y):
+        """ Return R^2 and p-value of linear regression between x and y
+            where x and y are array-like."""
+        slope, intercept, r_value, p_value, std_err = stats.linregress(x, y)
+        return (r_value*r_value, p_value)
+
     def fit(self, xdata, ydata, N=None, **param):
         self.N = N
         self.N0 = self.init_param(ydata[0])
@@ -23,8 +30,10 @@ class BaseModel(object):
             param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
             clasz = inspect.stack()[1][1]
             print "Best param for %s: %s" % (self.__class__.__name__, param)
-            return self.fit_model(xdata, *param)
-        return self.fit_model(xdata, **param)
+            fitted = self.fit_model(xdata, *param)
+            return (fitted, param) + self.fit_info(ydata, fitted)
+        fitted = self.fit_model(xdata, *param)
+        return (fitted, param) + self.fit_info(ydata, fitted)
 
     @abstractmethod
     def init_param(self, y0): pass

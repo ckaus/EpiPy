@@ -9,8 +9,10 @@ from epipy.ui.epipy_gui import MainWindow
 """
 EpiPy start point.
 """
+
 app = QtGui.QApplication(sys.argv)
 mainWindow = MainWindow()
 mainWindow.show()
 sys.exit(app.exec_())
+
 
