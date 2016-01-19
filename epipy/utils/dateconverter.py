@@ -16,20 +16,25 @@ def convert(array=[]):
     :type array: list
     :returns: a numpy array of days relative to the first date
     """
-
-    # work with numpy array
-    array = np.array(array)
-
-    if array.size < 1:
-        return array
-
-    # the first date for the reference
-    date1 = datetime.strptime(array[0], "%Y-%m-%d")
+    
     res = []
+        
+    try:
+        # work with numpy array
+        array = np.array(array)
 
-    for datestr in array:
-        date2 = datetime.strptime(datestr, "%Y-%m-%d")
-        d = date2 - date1
-        res.append(d.days)
+        if array.size < 1:
+            return array
+
+        # the first date for the reference
+        date1 = datetime.strptime(array[0], "%Y-%m-%d")
+
+        for datestr in array:
+            date2 = datetime.strptime(datestr, "%Y-%m-%d")
+            d = date2 - date1
+            res.append(d.days)
+            
+    except (TypeError, ValueError) as e:
+        logger.error("Dates should have the following format: YYYY-MM-DD, %s" % (e))
 
     return np.array(res)
