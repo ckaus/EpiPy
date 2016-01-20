@@ -81,16 +81,16 @@ class MainWindow(MainWindowBase, MainWindowUI):
         # ===================
 
     def open_file(self):
-        print self.info_group_box.layout().info_plain_text_edit.appendPlainText("save as")
+        pass
 
     def save(self):
-        self.info_group_box.info_plain_text_edit.appendPlainText("save")
+        pass
 
     def save_as(self):
-        self.info_group_box.info_plain_text_edit.appendPlainText("save as")
+        pass
 
     def export(self):
-        self.info_group_box.info_plain_text_edit.appendPlainText("export")
+        pass
 
     def show_fullscreen(self):
         self.show_fullscreen_action.setVisible(False)
