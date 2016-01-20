@@ -1,23 +1,27 @@
 # -*- coding: utf-8 -*-
 
 
+class Event(object):
+    ENABLE_MODEL_PARAMETER_GROUP_BOX = 1
+    ENABLE_FIT_BUTTON = 2
+    DISABLE_MODEL_PARAMETER_GROUP_BOX = 3
+    DISABLE_FIT_BUTTON = 4
+    ENABLE_ADVANCED_BUTTON = 5
+    SHOW_MODEL_PARAMETER_GROUP_BOX = 6
+    FIT_DATA = 7
+    PLOT = 8
+
+
 class MainModel(object):
     def __init__(self):
-        self.x_data = None
-        self.y_data = None
-        self.fit_data = None
-        self.population = None
-
-    def set_data_set(self, x_data, y_data, population):
-        self.x_data = x_data
-        self.y_data = y_data
-        self.population = population
-
-    def __repr__(self):
-        return '<object=%s - x_data=%s - y_data=%s - fit_data=%s - population=%s>' % (
-            self.__class__.__name__, self.x_data, self.y_data, self.fit_data, self.population)
+        self.views = []
+        self.model = None
+        self.model_group_box = None
+        self.model_parameters = None
+        self.model_class = None
+        self.fitted_data = None
+        self.plot_data = None
 
     def __str__(self):
-        header = '# FIT DATA'
-        return header + '\nFit X-Axis: %s\nFit Y-Axis: %s\nPopulation: %s' \
-                        % (self.x_data, self.fit_data, self.population)
+        return "model=%s model_group_box=%s model_class=%s model_parameters=%s fitted_data=%s" % (
+            self.model, self.model_group_box, self.model_class, self.model_parameters, self.fitted_data)

@@ -1,28 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>info_group_box</class>
- <widget class="QGroupBox" name="info_group_box">
+ <class>fit_info_group_box</class>
+ <widget class="QGroupBox" name="fit_info_group_box">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>483</width>
-    <height>371</height>
+    <width>400</width>
+    <height>438</height>
    </rect>
   </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="windowTitle">
-   <string>GroupBox</string>
+   <string>Fit Information</string>
   </property>
   <property name="title">
-   <string>Fitting Information</string>
+   <string>Fit Information</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QHBoxLayout" name="top_layout"/>
    </item>

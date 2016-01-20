@@ -3,6 +3,8 @@
 import os
 from PyQt4 import uic, QtGui
 
+from epipy.ui.model.mainmodel import Event
+
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(__file__), '')
 icon_path = os.path.join(dir_name(dir_name(dir_name(__file__))), 'resources/pictures/')
@@ -10,19 +12,28 @@ InfoGroupBoxUI, InfoGroupBoxBase = uic.loadUiType(os.path.join(folder_path, "inf
 
 
 class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
-    def __init__(self):
+    def __init__(self, controller):
         InfoGroupBoxBase.__init__(self)
         self.setupUi(self)
-        save_btn = QtGui.QPushButton(self)
-        save_icon = QtGui.QIcon(icon_path + 'save.png')
-        save_btn.setIcon(save_icon)
-        self.clear_btn = QtGui.QPushButton(self)
-        clear_icon = QtGui.QIcon(icon_path + 'clear.png')
-        self.clear_btn.setIcon(clear_icon)
-        spacer = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Expanding)
-        self.top_layout.addWidget(save_btn)
-        self.top_layout.addItem(spacer)
-        self.file_name = QtGui.QLabel('No File Name')
-        self.top_layout.addWidget(self.file_name)
-        self.top_layout.addItem(spacer)
+
+        self.controller = controller
+        self.controller.attach(self)
+
+        self.save_btn = QtGui.QPushButton()
+        self.save_icon = QtGui.QIcon(icon_path + 'save.png')
+        self.save_btn.setIcon(self.save_icon)
+        self.top_layout.addWidget(self.save_btn)
+
+        self.spacer = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Expanding)
+        self.top_layout.addItem(self.spacer)
+
+        self.clear_btn = QtGui.QPushButton()
+        self.clear_icon = QtGui.QIcon(icon_path + 'clear.png')
+        self.clear_btn.clicked.connect(self.info_plain_text_edit.clear)
+        self.clear_btn.setIcon(self.clear_icon)
         self.top_layout.addWidget(self.clear_btn)
+
+    def update(self, event):
+        if event == Event.PLOT:
+            fit_info = self.controller.get_fitted_data()
+            self.info_plain_text_edit.appendPlainText(str(fit_info))

@@ -67,5 +67,5 @@ setup(
     Operating System :: MacOS
     """
         ],
-        entry_points={'console_scripts': ['epipy_beta = epipy.main', ],},
+        entry_points={'console_scripts': ['epipy = epipy.main', ],},
 )

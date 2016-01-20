@@ -36,5 +36,5 @@ def convert(array=[]):
 
     except (TypeError, ValueError) as error:
         logger.error("Dates should have the following format: YYYY-MM-DD, %s"
-                     % (error))
+                     % error)
     return np.array(res)

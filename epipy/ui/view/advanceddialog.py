@@ -16,44 +16,42 @@ SEIRAdvancedDialogUI, SEIRAdvancedDialogBase = uic.loadUiType(os.path.join(folde
 
 
 class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
-    def __init__(self, options_controller):
+    def __init__(self, controller):
         SIRAdvancedDialogBase.__init__(self)
         self.setupUi(self)
-        self.options_controller = options_controller
+        self.controller = controller
         self.button_box.accepted.connect(self.set_selected_radio_btn)
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.options_controller.update(self, SIRsimpleGroupBox(), sir.Simple())
-
+            self.controller.set_model_group_box(SIRsimpleGroupBox(), sir.Simple())
         elif self.wbad_radio_btn.isChecked():
-            self.options_controller.update(self, SIRwbadGroupBox(), sir.WithBirthsAndDeaths())
-
+            self.controller.set_model_group_box(SIRwbadGroupBox(), sir.WithBirthsAndDeaths())
         elif self.vaccine_radio_btn.isChecked():
-            self.options_controller.update(self, SIRvaccineGroupBox(), sir.Vaccine())
+            self.controller.set_model_group_box(SIRvaccineGroupBox(), sir.Vaccine())
 
 
 class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
-    def __init__(self, options_controller):
+    def __init__(self, controller):
         SEIRAdvancedDialogBase.__init__(self)
         self.setupUi(self)
-        self.options_controller = options_controller
+        self.controller = controller
         self.button_box.accepted.connect(self.set_selected_radio_btn)
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.options_controller.update(self, SEIRsimpleGroupBox(), seir.Simple())
+            self.controller.set_model_group_box(SEIRsimpleGroupBox(), seir.Simple())
 
 
 class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
-    def __init__(self, options_controller):
+    def __init__(self, controller):
         SIRSAdvancedDialogBase.__init__(self)
         self.setupUi(self)
-        self.options_controller = options_controller
+        self.controller = controller
         self.button_box.accepted.connect(self.set_selected_radio_btn)
 
     def set_selected_radio_btn(self):
         if self.simple_radio_btn.isChecked():
-            self.options_controller.update(self, SIRSsimpleGroupBox(), sirs.Simple())
+            self.controller.set_model_group_box(SIRSsimpleGroupBox(), sirs.Simple())
         elif self.wbad_radio_btn.isChecked():
-            self.options_controller.update(self, SIRSwbadGroupBox(), sirs.WithBirthsAndDeaths())
+            self.controller.set_model_group_box(SIRSwbadGroupBox(), sirs.WithBirthsAndDeaths())

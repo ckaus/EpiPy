@@ -9,8 +9,6 @@ class BaseModel(object):
         __metaclass__ = ABCMeta
         self.N = None
         self.N0 = None
-        self.best_fit = None
-        self.quality_of_fit = None
 
     def fit_info(self, ydata_1, ydata_2):
         """ Return R^2 and p-value of linear regression between x and y
@@ -25,7 +23,6 @@ class BaseModel(object):
 
         if not param:
             param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
-            self.best_fit = param
             fitted = self.fit_model(xdata, *param)
             return (fitted, param) + self.fit_info(ydata, fitted)
 
@@ -40,5 +37,5 @@ class BaseModel(object):
             self.__class__.__name__, self.N, self.N0)
 
     def __str__(self):
-        return '%s - %s\nBest Fit: %s\nQuality Of Fit: %s' \
-               % (self.__name__, self.__class__.__name__, self.best_fit, self.quality_of_fit)
+        return '%s - %s\nPopulation: %s\nInitial Parameter; %s' \
+               % (self.__name__, self.__class__.__name__, self.N, self.N0)
