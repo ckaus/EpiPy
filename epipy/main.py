@@ -11,8 +11,7 @@ from epipy.ui.view.mainwindow import MainWindow
 EpiPy start point.
 """
 app = QtGui.QApplication(sys.argv)
-main_model = MainModel()
-main_controller = MainViewController()
-main_view = MainWindow(main_controller)
+main_view_controller = MainViewController()
+main_view = MainWindow(main_view_controller)
 main_view.show()
 sys.exit(app.exec_())

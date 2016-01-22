@@ -24,15 +24,6 @@
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
-       <widget class="QWidget" name="side_bar_widget" native="true">
-        <property name="maximumSize">
-         <size>
-          <width>430</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <layout class="QVBoxLayout" name="verticalLayout"/>
-       </widget>
       </widget>
      </widget>
     </item>

@@ -2,8 +2,7 @@
 
 import os
 from PyQt4 import uic, QtGui
-
-from epipy.ui.model.mainmodel import Event
+from epipy.ui.controller.event import Event
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(__file__), '')
@@ -35,5 +34,5 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
 
     def update(self, event):
         if event == Event.PLOT:
-            fit_info = self.controller.get_fitted_data()
+            fit_info = self.controller.get_fit_result()
             self.info_plain_text_edit.appendPlainText(str(fit_info))
