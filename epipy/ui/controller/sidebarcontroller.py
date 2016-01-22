@@ -9,10 +9,12 @@ from pyqtgraph import QtGui
 
 
 class SideBarController(BaseController):
-    def __init__(self, parent_controller):
+    def __init__(self, controller_service):
         BaseController.__init__(self)
         self.model = SideBarModel()
-        self.parent_controller = parent_controller
+
+        self.controller_service = controller_service
+        self.controller_service.add_origin(self)
         self.current_model_group_box = None
 
     def set_model(self, model):
@@ -69,7 +71,7 @@ class SideBarController(BaseController):
         self.model.fitted_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data}
         # fitted_data contains regresionline, and so on ...
         self.model.plot_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data[0]}
-        self.parent_controller.notify(Event.PLOT)
+        self.controller_service.redirect(Event.PLOT)
 
     def get_plot_data(self):
         return self.model.plot_data

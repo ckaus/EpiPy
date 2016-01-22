@@ -23,6 +23,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.setupUi(self)
         self.controller = controller
         self.controller.attach(self)
+        self.controller_service = self.controller.get_controller_service()
 
         # Menu
         self.about_dialog = AboutDialog()
@@ -53,7 +54,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.h_splitter.insertWidget(0, self.pw)
 
         # Top Right
-        self.side_bar_controller = SideBarController(self.controller)
+        self.side_bar_controller = SideBarController(self.controller_service)
         self.side_bar = SideBarWidget(self.side_bar_controller)
         self.h_splitter.insertWidget(1, self.side_bar)
 

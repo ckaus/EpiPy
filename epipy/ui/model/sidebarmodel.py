@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
+from epipy.ui.model.inputmodel import InputModel
+from epipy.ui.model.optionsmodel import OptionsModel
+
 
 class SideBarModel(object):
     def __init__(self):
-        self.model = None
-        self.epidemic_model_parameters = None
-        self.epidemic_model_class = None
-        self.fitted_data = None
+        self.options_model = OptionsModel()
+        self.input_model = InputModel()
 
-    def __str__(self):
-        return "model=%s, epidemic_model_parameters=%s, epidemic_model class=%s, fitted_data=%s" % (
-        self.model, self.epidemic_model_parameters, self.epidemic_model_class, self.fitted_data)
+    def __repr__(self):
+        return "<%s.%s - input_model=%s, options_model=%s>" % \
+               (__name__, self.__class__.__name__, self.input_model, self.options_model)
