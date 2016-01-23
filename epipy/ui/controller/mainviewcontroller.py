@@ -3,6 +3,7 @@
 
 from epipy.ui.controller.basecontroller import BaseController
 from epipy.ui.model.mainmodel import MainModel
+from epipy.ui.controller.event import Event
 
 
 class MainViewController(BaseController):
@@ -15,8 +16,9 @@ class MainViewController(BaseController):
     def get_controller_service(self):
         return self.controller_service
 
-    def set_fit_result(self, result):
-        self.model.fit_result = result
+    def set_side_bar_model(self, model):
+        self.model.side_bar_model = model
+        self.notify(Event.LOG)
 
-    def get_fit_result(self):
-        return self.model.fit_result
+    def get_side_bar_model(self):
+        return self.model.side_bar_model

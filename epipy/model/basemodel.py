@@ -30,12 +30,13 @@ class BaseModel(object):
         return (fitted, param) + self.fit_info(ydata, fitted)
 
     @abstractmethod
-    def init_param(self, y0): pass
+    def init_param(self, y0):
+        pass
 
     def __repr__(self):
         return '<object=%s - Population=%s - Initial Parameter=%s - >' % (
             self.__class__.__name__, self.N, self.N0)
 
     def __str__(self):
-        return '%s - %s\nPopulation: %s\nInitial Parameter; %s' \
+        return '%s - %s\nPopulation: %s\nInitial Parameter %s' \
                % (self.__name__, self.__class__.__name__, self.N, self.N0)

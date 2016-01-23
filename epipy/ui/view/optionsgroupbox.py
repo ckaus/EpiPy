@@ -24,7 +24,7 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.model_combo_box.currentIndexChanged['QString'].connect(self.controller.set_model)
 
     def show_advanced_dialog(self):
-        model = self.controller.get_model()
+        model = self.controller.get_epidemic_model()
         if model == 'SIR':
             self.advanced_dialog = SIRAdvancedDialog(self.controller)
         elif model == 'SEIR':

@@ -14,24 +14,23 @@ class SideBarController(BaseController):
         self.model = SideBarModel()
 
         self.controller_service = controller_service
-        self.controller_service.add_origin(self)
         self.current_model_group_box = None
 
     def set_model(self, model):
-        self.model.model = model
+        self.model.options_model.epidemic_model = model
         self.notify(Event.ENABLE_ADVANCED_BUTTON)
 
-    def get_model(self):
-        return self.model.model
+    def get_epidemic_model(self):
+        return self.model.options_model.epidemic_model
 
     def set_model_group_box(self, model_group_box, model_class):
         self.current_model_group_box = model_group_box
-        self.model.epidemic_model_class = model_class
+        self.model.options_model.epidemic_model_class = model_class
         self.notify(Event.SHOW_MODEL_PARAMETER_GROUP_BOX)
         self.notify(Event.ENABLE_FIT_BUTTON)
 
     def set_model_parameters(self, parameters):
-        self.model.epidemic_model_parameters = parameters
+        self.model.options_model.epidemic_model_parameters = parameters
 
     def get_model_parameter_group_box(self):
         return self.current_model_group_box
@@ -47,6 +46,9 @@ class SideBarController(BaseController):
             elif (widget != 0) and (type(widget) is QtGui.QDoubleSpinBox):
                 parameter_values.append(widget.value())
         return dict(zip(parameters, parameter_values))
+
+    def get_model(self):
+        return self.model
 
     def fit_data(self):
         param = self.get_model_parameters()
@@ -65,16 +67,15 @@ class SideBarController(BaseController):
         x_data = np.array(data_set_2["Time"], dtype=float)
         population = 10000
 
-        model_class = self.model.epidemic_model_class
-        params = self.model.epidemic_model_parameters
-        fitted_data = model_class.fit(x_data, y_data, N=population, **params)
-        self.model.fitted_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data}
+        model_class = self.model.options_model.epidemic_model_class
+        fitted_data = model_class.fit(x_data, y_data, N=population, **param)
+        self.model.plot_model.fitted_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data}
         # fitted_data contains regresionline, and so on ...
-        self.model.plot_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data[0]}
+        self.model.plot_model.plot_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data[0]}
         self.controller_service.redirect(Event.PLOT)
 
     def get_plot_data(self):
-        return self.model.plot_data
+        return self.model.plot_model.plot_data
 
     def reset_data(self):
         pass

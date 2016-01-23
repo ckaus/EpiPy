@@ -7,3 +7,6 @@ class InputModel(object):
 
     def __repr__(self):
         return "<%s.%s - >" % (__name__, self.__class__.__name__)
+
+    def __str__(self):
+        return ""

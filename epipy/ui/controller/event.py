@@ -8,3 +8,4 @@ class Event(object):
     ENABLE_ADVANCED_BUTTON = 3
     SHOW_MODEL_PARAMETER_GROUP_BOX = 4
     FIT_DATA = 5
+    LOG = 6

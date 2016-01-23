@@ -99,4 +99,4 @@ class MainWindow(MainWindowBase, MainWindowUI):
             file_data, fitted_data = self.side_bar_controller.get_plot_data()
             self.plot_1.setData(**file_data)
             self.plot_2.setData(**fitted_data)
-            self.controller.set_fit_result(self.side_bar_controller.model)
+            self.controller.set_side_bar_model(self.side_bar_controller.get_model())

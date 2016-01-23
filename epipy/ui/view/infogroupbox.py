@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from PyQt4 import uic, QtGui
+from PyQt4 import uic, QtGui, QtCore
 from epipy.ui.controller.event import Event
 
 dir_name = os.path.dirname
@@ -33,6 +33,7 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
         self.top_layout.addWidget(self.clear_btn)
 
     def update(self, event):
-        if event == Event.PLOT:
-            fit_info = self.controller.get_fit_result()
-            self.info_plain_text_edit.appendPlainText(str(fit_info))
+        if event == Event.LOG:
+            side_bar_model = self.controller.get_side_bar_model()
+            self.info_plain_text_edit.appendPlainText(str(side_bar_model.options_model))
+            self.info_plain_text_edit.appendPlainText(str(side_bar_model.plot_model))
