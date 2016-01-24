@@ -29,7 +29,6 @@ class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
         self.spacer = QtGui.QSpacerItem(0, 0, 0, QtGui.QSizePolicy.Expanding)
         self.layout().addItem(self.spacer)
 
-
         # Bottom
         self.side_bar_bottom_widget = QtGui.QWidget(self)
         self.side_bar_bottom_layout = QtGui.QHBoxLayout(self.side_bar_bottom_widget)
