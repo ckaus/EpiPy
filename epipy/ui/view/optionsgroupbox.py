@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from PyQt4 import QtCore, uic, QtGui
+from PyQt4 import QtCore, uic
 
 from epipy.ui.controller.event import Event
 from epipy.ui.view.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog
@@ -22,6 +22,7 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.advanced_btn.clicked.connect(self.show_advanced_dialog)
         self.model_combo_box.setItemData(0, QtCore.QVariant(0), QtCore.Qt.UserRole - 1)
         self.model_combo_box.currentIndexChanged['QString'].connect(self.controller.set_model)
+        self.setEnabled(False)
 
     def show_advanced_dialog(self):
         model = self.controller.get_epidemic_model()
@@ -34,6 +35,10 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.advanced_dialog.show()
 
     def update(self, event):
+        if event == Event.ENABLE_OPTIONS:
+            self.setEnabled(True)
+        elif event == Event.DISABLE_OPTIONS:
+            self.setEnabled(False)
         if event == Event.ENABLE_ADVANCED_BUTTON:
             if not self.advanced_btn.isEnabled():
                 self.advanced_btn.setEnabled(True)

@@ -24,7 +24,6 @@ class BaseModel(object):
         if not param:
             param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
             fitted = self.fit_model(xdata, *param)
-            return {"fitted": fitted, "parameters": param, }
             return (fitted, param) + self.fit_info(ydata, fitted)
 
         fitted = self.fit_model(xdata, **param)

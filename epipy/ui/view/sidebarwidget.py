@@ -2,9 +2,8 @@ import os
 from PyQt4 import uic, QtGui
 
 from epipy.ui.controller.sidebarcontroller import Event
-from epipy.ui.view.optionsgroupbox import OptionsGroupBox
 from epipy.ui.view.inputgroupbox import InputGroupBox
-
+from epipy.ui.view.optionsgroupbox import OptionsGroupBox
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(__file__), '')
@@ -37,7 +36,7 @@ class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
         self.fit_btn.setEnabled(False)
         self.side_bar_bottom_layout.addWidget(self.fit_btn)
         self.reset_btn = QtGui.QPushButton('Reset')
-        # connect RESET Button
+        self.reset_btn.clicked.connect(self.controller.reset_data)
         self.side_bar_bottom_layout.addWidget(self.reset_btn)
         self.reset_btn.clicked.connect(self.controller.reset_data)
         self.layout().addWidget(self.side_bar_bottom_widget)
