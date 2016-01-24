@@ -23,18 +23,16 @@ class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
         self.input_group_box = InputGroupBox(self.controller)
         self.layout().addWidget(self.input_group_box)
 
-        self.spacer = QtGui.QSpacerItem(0, 0, 0, QtGui.QSizePolicy.Expanding)
-        self.layout().addItem(self.spacer)
-
         # Center
         self.options_group_box = OptionsGroupBox(self.controller)
         self.layout().addWidget(self.options_group_box)
+        self.spacer = QtGui.QSpacerItem(0, 0, 0, QtGui.QSizePolicy.Expanding)
+        self.layout().addItem(self.spacer)
+
 
         # Bottom
         self.side_bar_bottom_widget = QtGui.QWidget(self)
         self.side_bar_bottom_layout = QtGui.QHBoxLayout(self.side_bar_bottom_widget)
-        self.spacer = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Expanding, 0)
-        self.side_bar_bottom_layout.addSpacerItem(self.spacer)
         self.fit_btn = QtGui.QPushButton('Fit')
         self.fit_btn.clicked.connect(self.controller.fit_data)
         self.fit_btn.setEnabled(False)
