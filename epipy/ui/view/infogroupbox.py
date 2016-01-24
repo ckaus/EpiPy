@@ -18,11 +18,6 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
         self.controller = controller
         self.controller.attach(self)
 
-        self.save_btn = QtGui.QPushButton()
-        self.save_icon = QtGui.QIcon(icon_path + 'save.png')
-        self.save_btn.setIcon(self.save_icon)
-        self.top_layout.addWidget(self.save_btn)
-
         self.spacer = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Expanding)
         self.top_layout.addItem(self.spacer)
 
