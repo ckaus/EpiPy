@@ -13,5 +13,4 @@ class PlotModel(object):
             self.x_data, self.y_data, self.y_fitted_data, self.regression_values)
 
     def __str__(self):
-        return "Input X-Data: %s\nInput Y-Data: %s\nFitted Y-Data: %s\nRegression Values: %s" % (
-            self.x_data, self.y_data, self.y_fitted_data, self.regression_values)
+        return "Regression Values: %s" % self.regression_values
