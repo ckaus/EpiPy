@@ -29,8 +29,8 @@ def convert(array=[]):
         # the first date for the reference
         date1 = datetime.strptime(array[0], "%Y-%m-%d")
 
-        for datestr in array:
-            date2 = datetime.strptime(datestr, "%Y-%m-%d")
+        for date in array:
+            date2 = datetime.strptime(date, "%Y-%m-%d")
             d = date2 - date1
             res.append(d.days)
 
