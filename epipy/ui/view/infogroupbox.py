@@ -34,6 +34,5 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
 
     def update(self, event):
         if event == Event.LOG:
-            side_bar_model = self.controller.get_side_bar_model()
-            self.info_plain_text_edit.appendPlainText(str(side_bar_model.options_model))
-            self.info_plain_text_edit.appendPlainText(str(side_bar_model.plot_model))
+            model = self.controller.get_model()
+            self.info_plain_text_edit.appendPlainText(str(model))

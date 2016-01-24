@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 class ControllerService(object):
     def __init__(self):
         self.target = None

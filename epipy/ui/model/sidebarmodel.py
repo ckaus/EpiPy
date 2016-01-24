@@ -16,4 +16,4 @@ class SideBarModel(object):
                (__name__, self.__class__.__name__, self.input_model, self.options_model, self.plot_model)
 
     def __str__(self):
-        return "<%s\n%s\n%s>" % (self.input_model, self.options_model, self.plot_model)
+        return "%s\n%s\n%s" % (self.input_model, self.options_model, self.plot_model)

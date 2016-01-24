@@ -13,12 +13,12 @@ class MainViewController(BaseController):
         self.controller_service = controller_service
         self.controller_service.add_target(self)
 
+    def get_model(self):
+        return self.model
+
     def get_controller_service(self):
         return self.controller_service
 
     def set_side_bar_model(self, model):
         self.model.side_bar_model = model
         self.notify(Event.LOG)
-
-    def get_side_bar_model(self):
-        return self.model.side_bar_model

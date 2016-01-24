@@ -29,9 +29,6 @@ class SideBarController(BaseController):
         self.notify(Event.SHOW_MODEL_PARAMETER_GROUP_BOX)
         self.notify(Event.ENABLE_FIT_BUTTON)
 
-    def set_model_parameters(self, parameters):
-        self.model.options_model.epidemic_model_parameters = parameters
-
     def get_model_parameter_group_box(self):
         return self.current_model_group_box
 
@@ -52,7 +49,8 @@ class SideBarController(BaseController):
 
     def fit_data(self):
         param = self.get_model_parameters()
-        self.set_model_parameters(param)
+        self.model.options_model.epidemic_model_parameters = param
+
         # ==========================
         # Data 1
         # ==========================
@@ -69,14 +67,13 @@ class SideBarController(BaseController):
 
         model_class = self.model.options_model.epidemic_model_class
         fitted_data = model_class.fit(x_data, y_data, N=population, **param)
-        self.model.plot_model.fitted_data = {'x': x_data, 'y': fitted_data}
-        print fitted_data
-        # fitted_data contains regresionline, and so on ...
-        self.model.plot_model.plot_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data[0]}
+        self.model.plot_model.x_data = x_data
+        self.model.plot_model.y_data = y_data
+        self.model.plot_model.y_fitted_data = fitted_data[0]
         self.controller_service.redirect(Event.PLOT)
 
     def get_plot_data(self):
-        return self.model.plot_model.plot_data
+        return self.model.plot_model.get_data()
 
     def reset_data(self):
         pass
