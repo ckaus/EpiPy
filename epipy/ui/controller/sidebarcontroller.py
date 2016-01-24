@@ -69,7 +69,8 @@ class SideBarController(BaseController):
 
         model_class = self.model.options_model.epidemic_model_class
         fitted_data = model_class.fit(x_data, y_data, N=population, **param)
-        self.model.plot_model.fitted_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data}
+        self.model.plot_model.fitted_data = {'x': x_data, 'y': fitted_data}
+        print fitted_data
         # fitted_data contains regresionline, and so on ...
         self.model.plot_model.plot_data = {'x': x_data, 'y': y_data}, {'x': x_data, 'y': fitted_data[0]}
         self.controller_service.redirect(Event.PLOT)
