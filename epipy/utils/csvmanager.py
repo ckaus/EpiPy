@@ -8,7 +8,7 @@ import os.path
 import logger
 
 
-def read(file_name="", seperator=";", column=[]):
+def read(file_name="", column=[]):
     """
     :param self:
     :return:
@@ -25,18 +25,20 @@ def read(file_name="", seperator=";", column=[]):
     result = {}
     try:
         # read input file
-        _file = open(file_name, "rb")
-        reader = csv.reader(_file)
-        header = reader.next()
-        # header
-        if len(column) == 0:
-            column = header
-        for h in column:
-            result[h] = []
-            # content
-        for row in reader:
-            # match content with origin header
-            [result[h].append(row[header.index(h)]) for h in column]
+        with open(file_name, 'rb') as _csvfile:
+            dialect = csv.Sniffer().sniff(_csvfile.read(), delimiters=';,')
+            _csvfile.seek(0)
+            reader = csv.reader(_csvfile, dialect)
+            header = reader.next()
+            # header
+            if len(column) == 0:
+                column = header
+            for h in column:
+                result[h] = []
+                # content
+            for row in reader:
+                # match content with origin header
+                [result[h].append(row[header.index(h)]) for h in column]
     except (csv.Error, ValueError) as e:
         logger.error("Can not read file %s, %s" % (file_name, e))
     return result
