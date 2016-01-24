@@ -22,18 +22,18 @@ def read(file_name="", seperator=";", column=[]):
     :returns: a content of csv file as *Dict*
     """
 
-    current_dir = os.path.abspath(os.path.dirname(__file__))
-    path = os.path.abspath(current_dir + "/../resources/data") + "/" + file_name
     result = {}
     try:
         # read input file
-        _file = open(path, "rb")
-        reader = csv.reader(_file, delimiter=seperator)
+        _file = open(file_name, "rb")
+        reader = csv.reader(_file)
         header = reader.next()
         # header
+        if len(column) == 0:
+            column = header
         for h in column:
             result[h] = []
-        # content
+            # content
         for row in reader:
             # match content with origin header
             [result[h].append(row[header.index(h)]) for h in column]

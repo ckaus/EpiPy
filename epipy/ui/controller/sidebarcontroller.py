@@ -6,7 +6,7 @@ from epipy.ui.controller.basecontroller import BaseController
 from epipy.ui.model.sidebarmodel import SideBarModel
 from epipy.ui.controller.event import Event
 from pyqtgraph import QtGui
-
+from epipy.utils import csvmanager
 
 class SideBarController(BaseController):
     def __init__(self, controller_service):
@@ -74,6 +74,14 @@ class SideBarController(BaseController):
 
     def get_plot_data(self):
         return self.model.plot_model.get_data()
+
+    def set_input_file(self, file_name):
+        self.model.input_model.file_name = file_name
+        print csvmanager.read(file_name, "")
+        # self.notify(Event.READ_FILE)
+
+    def get_input_file(self):
+        return self.model.input_model.file_name
 
     def reset_data(self):
         pass

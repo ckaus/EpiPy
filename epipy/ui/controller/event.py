@@ -9,3 +9,4 @@ class Event(object):
     SHOW_MODEL_PARAMETER_GROUP_BOX = 4
     FIT_DATA = 5
     LOG = 6
+    READ_FILE = 7
