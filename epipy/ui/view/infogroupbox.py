@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import os
-from PyQt4 import uic, QtGui, QtCore
+from PyQt4 import uic, QtGui
+
 from epipy.ui.controller.event import Event
 
 dir_name = os.path.dirname

@@ -82,7 +82,7 @@ class SideBarController(BaseController):
         else:
             # use user input model parameters for fitting the model
             fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population, **param)
-        if not fitted_data: # Runtime error during fitting
+        if not fitted_data:  # Runtime error during fitting
             self.notify(Event.SHOW_RUNTIME_ERROR)
             return
         # fitted model coordinates

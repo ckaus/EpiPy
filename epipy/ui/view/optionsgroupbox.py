@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from PyQt4 import QtCore, uic, QtGui
+from PyQt4 import QtCore, uic
 
 from epipy.ui.controller.event import Event
 from epipy.ui.view.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog
@@ -47,7 +47,7 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         elif event == Event.SHOW_MODEL_PARAMETER_GROUP_BOX:
             if self.layout().itemAt(3):
                 self.layout().itemAt(3).widget().setParent(None)
-            self.layout().addWidget(self.controller.get_model_parameter_group_box(), 3,0,3,3)
+            self.layout().addWidget(self.controller.get_model_parameter_group_box(), 3, 0, 3, 3)
             self.optimize_check_box.setEnabled(True)
             self.optimize_check_box.setCheckState(False)
         elif event == Event.DISABLE_PARAMETERS:

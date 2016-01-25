@@ -2,8 +2,8 @@
 
 
 from epipy.ui.controller.basecontroller import BaseController
-from epipy.ui.model.mainmodel import MainModel
 from epipy.ui.controller.event import Event
+from epipy.ui.model.mainmodel import MainModel
 
 
 class MainViewController(BaseController):

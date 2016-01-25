@@ -3,14 +3,15 @@
 import os
 from PyQt4 import uic
 
-from epipy.ui.view.aboutdialog import AboutDialog
-from epipy.ui.view.sidebarwidget import SideBarWidget
-from epipy.ui.controller.sidebarcontroller import SideBarController
-from epipy.ui.view.plotviewbox import PlotViewBox
 import pyqtgraph as pg
 from pyqtgraph.Qt import QtGui
+
 from epipy.ui.controller.event import Event
+from epipy.ui.controller.sidebarcontroller import SideBarController
+from epipy.ui.view.aboutdialog import AboutDialog
 from epipy.ui.view.infogroupbox import InfoGroupBox
+from epipy.ui.view.plotviewbox import PlotViewBox
+from epipy.ui.view.sidebarwidget import SideBarWidget
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(__file__), '')
