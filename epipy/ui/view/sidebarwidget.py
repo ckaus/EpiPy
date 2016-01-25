@@ -9,6 +9,8 @@ dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(__file__), '')
 SideBarWidgetUI, SideBarWidgetBase = uic.loadUiType(os.path.join(folder_path, "sidebarwidget.ui"))
 
+runtime_error_msg = "Fitting process raises an Error.\nIf you choose 'Optimize' please define manually parameters."
+
 
 class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
     def __init__(self, controller):
@@ -46,3 +48,7 @@ class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
             self.fit_btn.setEnabled(True)
         elif event == Event.DISABLE_FIT_BUTTON and self.fit_btn.isEnabled():
             self.fit_btn.setEnabled(False)
+        elif event == Event.SHOW_RUNTIME_ERROR:
+            QtGui.QMessageBox.critical(self,
+                                       'Runtime Error',
+                                       runtime_error_msg, QtGui.QMessageBox.Ok)

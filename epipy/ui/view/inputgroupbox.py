@@ -57,7 +57,6 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             self.data_cb.clear()
             self.population_line_edit.clear()
             self.format_check_box.setChecked(False)
-            self.format_check_box.setCheckState(False)
         elif event == Event.NO_POPULATION:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please define a population.",
