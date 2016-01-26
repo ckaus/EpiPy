@@ -7,6 +7,14 @@ from epipy.ui.model.mainmodel import MainModel
 
 
 class MainViewController(BaseController):
+    """
+    This class represents the main view controller.
+
+    :param controller_service: a controller service
+    :type controller_service: an instance of *ControllerService*
+    :returns: an instance of *MainViewController*
+    """
+
     def __init__(self, controller_service):
         BaseController.__init__(self)
         self.model = MainModel()
@@ -14,11 +22,23 @@ class MainViewController(BaseController):
         self.controller_service.add_target(self)
 
     def get_model(self):
+        """
+        :returns: an instance of *MainModel*
+        """
         return self.model
 
     def get_controller_service(self):
+        """
+        :returns: an instance of the *ControllerService*
+        """
         return self.controller_service
 
-    def set_side_bar_model(self, model):
-        self.model.side_bar_model = model
+    def set_side_bar_model(self, side_bar_model):
+        """
+        This function set the side bar model to main model and notify the plot view to logging information.
+
+        :param side_bar_model: a side bare model
+        :type side_bar_model: a instance of *SideBarModel*
+        """
+        self.model.side_bar_model = side_bar_model
         self.notify(Event.LOG)

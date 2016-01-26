@@ -1,7 +1,7 @@
 import os
 from PyQt4 import uic, QtGui
 
-from epipy.ui.controller.sidebarcontroller import Event
+from epipy.ui.controller.sidebarviewcontroller import Event
 from epipy.ui.view.inputgroupbox import InputGroupBox
 from epipy.ui.view.optionsgroupbox import OptionsGroupBox
 
@@ -49,6 +49,4 @@ class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
         elif event == Event.DISABLE_FIT_BUTTON and self.fit_btn.isEnabled():
             self.fit_btn.setEnabled(False)
         elif event == Event.SHOW_RUNTIME_ERROR:
-            QtGui.QMessageBox.critical(self,
-                                       'Runtime Error',
-                                       runtime_error_msg, QtGui.QMessageBox.Ok)
+            QtGui.QMessageBox.critical(self, 'Runtime Error', runtime_error_msg, QtGui.QMessageBox.Ok)

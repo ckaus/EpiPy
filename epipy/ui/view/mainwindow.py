@@ -7,7 +7,7 @@ import pyqtgraph as pg
 from pyqtgraph.Qt import QtGui
 
 from epipy.ui.controller.event import Event
-from epipy.ui.controller.sidebarcontroller import SideBarController
+from epipy.ui.controller.sidebarviewcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
 from epipy.ui.view.infogroupbox import InfoGroupBox
 from epipy.ui.view.plotviewbox import PlotViewBox
