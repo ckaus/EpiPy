@@ -3,13 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. include:: README.rst
+EpiPy
+=====
+
+EpiPy is a Tool for fitting epidemic models. This tool is developed for the course
+"Softwareprojekt Mobile Communication" at the Freie Universität Berlin.
 
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
+   controller
    utils
 
 
