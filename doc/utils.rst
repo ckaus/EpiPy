@@ -1,20 +1,23 @@
 utils package
 =============
 
-This package includes useful functions like logging, manage csv files.
+This module includes
 
 csvmanager
 ----------
 
 .. automodule:: utils.csvmanager
     :members:
-    :undoc-members:
-    :show-inheritance:
 
-logger
-------
+dataconverter
+-------------
 
-.. automodule:: utils.logger
+.. automodule:: utils.dateconverter
     :members:
-    :undoc-members:
-    :show-inheritance:
+
+logging
+-------
+
+.. automodule:: utils.logging
+    :members:
+

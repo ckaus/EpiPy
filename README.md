@@ -30,13 +30,15 @@ We recommend [WinPython 2.7][4], which includes all [requirements](#requirements
 ## Uninstall
 
 ### Unix
-Remove EpiPy as *root*
+Remove EpiPy as *root*:
+
 * (Developer)
-	* Remove project path in file: `/usr/local/lib/python2.7/dist-packages/easy-install.pth`
-	* `$ rm /usr/local/lib/python2.7/dist-packages/EpiPy.egg-link`
-	* `$ rm /usr/local/bin/epipy`
+    * Remove project path in file: `/usr/local/lib/python2.7/dist-packages/easy-install.pth`
+    * `$ rm /usr/local/lib/python2.7/dist-packages/EpiPy.egg-link`
+    * `$ rm /usr/local/bin/epipy`
+
 * (User)
-	* `$ pip uninstall epipy`
+    * `$ pip uninstall epipy`
 
 ### Windows
 (Developer/User): Open your `WinPython Command Prompt` and execute `$ pip uninstall epipy`.
@@ -45,12 +47,19 @@ Remove EpiPy as *root*
 ![Debian](https://github.com/ckaus/EpiPy/blob/master/doc/screenshots/epipy_alpha_debian.png "Debian")
 
 ## Literature
- * [Papers][5]
+
+* [Papers][5]
 
 ## Documentation
 Generate documentation of sources by using [Sphinx][6]:
-  * `$ cd EpiPy/doc`
-  * `$ make html`
+
+* `$ cd EpiPy/doc`
+* `$ make html`
+
+*Note:* If you edit `README.md` you can easley create the `README.rst` with:
+
+* `$ cd EpiPy`
+* `$ pandoc README.md --from markdown --to rst -s -o README.rst`
 
 ## License
 [MIT license][7]
