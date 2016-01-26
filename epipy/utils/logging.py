@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-"""This file contains functionality for printing messages to terminal with different colors."""
+"""
+This file contains functionality for printing messages to terminal with different colors.
+"""
 
 import inspect
 

@@ -1,24 +1,24 @@
 # -*- coding: utf-8 -*-
 
-""" This file contains the function for converting a date array to
-    the number of days relative to the first date. """
+"""
+This file contains the function for converting a date array to the number of days relative to the first date.
+"""
 
 import numpy as np
 from datetime import datetime
 
-from epipy.utils import logger
+from epipy.utils import logging
 
 
 def convert(array=[]):
     """
-    :param array:
-    :return:
     This function converts an array of dates to an array of relative days.
-
     :param array:
     :type array: list
+
     :returns: a numpy array of days relative to the first date
     """
+
     res = []
     try:
         # work with numpy array
@@ -35,6 +35,6 @@ def convert(array=[]):
             res.append(d.days)
 
     except (TypeError, ValueError) as error:
-        logger.error("Dates should have the following format: YYYY-MM-DD, %s"
-                     % error)
+        logging.error("Dates should have the following format: YYYY-MM-DD, %s"
+                      % error)
     return np.array(res)

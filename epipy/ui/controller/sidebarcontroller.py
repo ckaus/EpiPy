@@ -23,6 +23,8 @@ class SideBarController(BaseController):
     def set_model(self, model):
         self.model.options_model.epidemic_model = model
         self.notify(Event.ENABLE_ADVANCED_BUTTON)
+        if self.get_current_model_group_box():
+            self.notify(Event.DISABLE_PARAMETERS)
         self.notify(Event.ENABLE_OPTIMIZE)
 
     def get_epidemic_model(self):

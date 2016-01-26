@@ -1,24 +1,23 @@
 # -*- coding: utf-8 -*-
 
-"""This file contains functionality for reading a CSV file."""
+"""
+This file contains functionality for reading a CSV file.
+"""
 
 import csv
-import os.path
 
-import logger
+from epipy.utils import logging
 
 
 def read(file_name="", column=[]):
     """
-    :param self:
-    :return:
     This function read a csv file by given header.
 
     :param file_name: the file name
-    :param seperator: the CSV delimiter
+    :type file_name: str
     :param column: the columns of csv file
     :type column: list
-    :raises: *csv.Error* if CSV file is not readable
+    :raises: *csv.Error* if csv file is not readable
     :returns: a content of csv file as *Dict*
     """
 
@@ -40,5 +39,5 @@ def read(file_name="", column=[]):
                 # match content with origin header
                 [result[h].append(row[header.index(h)]) for h in column]
     except (csv.Error, ValueError) as e:
-        logger.error("Can not read file %s, %s" % (file_name, e))
+        logging.error("Can not read file %s, %s" % (file_name, e))
     return result

@@ -94,8 +94,8 @@ Generate documentation of sources by using
 -  ``$ cd EpiPy/doc``
 -  ``$ make html``
 
-*Note:* If you edit ``README.md`` you can easley create the
-``README.rst`` with:
+*Note:* If you edit ``README.md`` you can very easy create the
+``README.rst`` with ``pandoc``:
 
 -  ``$ cd EpiPy``
 -  ``$ pandoc README.md --from markdown --to rst -s -o README.rst``
