@@ -1,5 +1,5 @@
 # EpiPy
-EpiPy is a Tool for fitting epidemic models. This tool is developed for the course [Softwareprojekt Mobilkommunikation][1] at the [Freie Universität Berlin][2].
+EpiPy is a tool for fitting epidemic models. This tool is developed for the course [Softwareprojekt Mobilkommunikation][1] at the [Freie Universität Berlin][2].
 
 ## Introduction
 Epidemics have been an interesting subject to study in many disciplines. Not only in epidemiology but also in biology, mathematics, sociology, computer science and more, the study of epidemics offers many areas for application. Mathematicians over time have suggested various models to understand and foresee the development of epidemics.
