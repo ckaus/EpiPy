@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from pyqtgraph import QtGui
+from pyqtgraph import QtGui, QtCore
 
 from epipy.ui.controller.basecontroller import BaseController
 from epipy.ui.controller.event import Event
@@ -45,10 +45,14 @@ class SideBarController(BaseController):
             self.notify(Event.NO_POPULATION)
             return
 
+        data_range = self.model.input_model.data_range.split(":")
+        from_value = int(data_range[0])
+        to_value = int(data_range[1])
+
         param = self.get_model_parameters_combo_box()
         file_content = self.model.input_model.file_content
-        x_data = np.array(file_content[self.current_date_col], dtype=float)
-        y_data = np.array(file_content[self.current_data_col], dtype=float)
+        x_data = np.array(file_content[self.current_date_col][from_value:to_value], dtype=float)
+        y_data = np.array(file_content[self.current_data_col][from_value:to_value], dtype=float)
         model_class = self.model.options_model.epidemic_model_class
         fitted_data = None
         if not param:
@@ -84,6 +88,9 @@ class SideBarController(BaseController):
             self.notify(Event.SHOW_CANT_CONVERT_DATES)
         else:
             self.model.input_model.file_content[self.current_date_col] = dates
+
+    def get_data_range(self):
+        return self.model.input_model.data_range
 
     def get_epidemic_model(self):
         """
@@ -178,6 +185,18 @@ class SideBarController(BaseController):
         """
         self.current_data_col = str(value)
 
+    def set_data_range(self, value):
+        if not value:
+            return
+        try:
+            _value = value
+            from_value, to_value = _value.split(":")
+            int(from_value)
+            int(to_value)
+            self.model.input_model.data_range = value
+        except ValueError:
+            self.notify(Event.INVALID_DATA_RANGE)
+
     def set_model(self, model):
         """
         This function set a given epidemic model to the *OptionsModel*.
@@ -224,6 +243,7 @@ class SideBarController(BaseController):
         """
         self.model.input_model.file_name = file_name
         file_content = csvmanager.read(file_name)
+        self.model.input_model.data_range = "0:%s" % len(file_content.values()[0])
         self.model.input_model.file_content = file_content
         self.notify(Event.SET_FILE_CONTENT)
         self.notify(Event.ENABLE_COL_DATE_FORMAT)
