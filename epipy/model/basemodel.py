@@ -3,6 +3,8 @@
 from abc import abstractmethod, ABCMeta
 from scipy import optimize, stats
 
+from epipy.utils import logging
+
 
 class BaseModel(object):
     def __init__(self):
@@ -30,8 +32,8 @@ class BaseModel(object):
             fitted = self.fit_model(xdata, **param)
             return (fitted, param) + self.fit_info(ydata, fitted)
         except RuntimeError as error:
-            print 'Runtime Error'
-            return None
+            logging.error('Runtime Error %s' % error)
+            return
 
     @abstractmethod
     def init_param(self, y0):

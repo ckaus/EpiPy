@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from epipy.utils import logging
 
 class ControllerService(object):
     """
@@ -31,4 +32,4 @@ class ControllerService(object):
         if self.target_view:
             self.target_view.notify(event)
         else:
-            print "No target_view controller found."
+            logging.warning("No target_view controller found.")

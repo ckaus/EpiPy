@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from epipy.utils import logging
+
 
 class BaseController(object):
     """
@@ -35,7 +37,7 @@ class BaseController(object):
         try:
             self.views.remove(view)
         except ValueError as error:
-            print 'View not attached %s' % error
+            logging.warning('View not attached %s' % error)
 
     def notify(self, event):
         for view in self.views:
