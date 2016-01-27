@@ -27,6 +27,7 @@ class SideBarController(BaseController):
         self.current_model_group_box = None
         self.current_date_col = None
         self.current_data_col = None
+        self.data_input_length = 0
 
     def clear_input(self):
         """
@@ -90,6 +91,9 @@ class SideBarController(BaseController):
             self.model.input_model.file_content[self.current_date_col] = dates
 
     def get_data_range(self):
+        """
+        :returns: data range of *InputModel*
+        """
         return self.model.input_model.data_range
 
     def get_epidemic_model(self):
@@ -186,13 +190,21 @@ class SideBarController(BaseController):
         self.current_data_col = str(value)
 
     def set_data_range(self, value):
+        """
+        This function check the input data range and set data range to *InputModel*.
+
+        :param value: input data range
+        :type value: str has format from:to
+
+        :returns: *ValueError* if input data range is not valid
+        """
         if not value:
             return
         try:
             _value = value
             from_value, to_value = _value.split(":")
-            int(from_value)
-            int(to_value)
+            if int(from_value) < 0 or int(to_value) > self.data_input_length:
+                raise ValueError
             self.model.input_model.data_range = value
         except ValueError:
             self.notify(Event.INVALID_DATA_RANGE)
@@ -243,7 +255,8 @@ class SideBarController(BaseController):
         """
         self.model.input_model.file_name = file_name
         file_content = csvmanager.read(file_name)
-        self.model.input_model.data_range = "0:%s" % len(file_content.values()[0])
+        self.data_input_length = len(file_content.values()[0])
+        self.model.input_model.data_range = "0:%s" % self.data_input_length
         self.model.input_model.file_content = file_content
         self.notify(Event.SET_FILE_CONTENT)
         self.notify(Event.ENABLE_COL_DATE_FORMAT)

@@ -71,7 +71,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
                                       QtGui.QMessageBox.Ok)
         elif event == Event.INVALID_DATA_RANGE:
             QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Invalid data range. Data ramge should have format: from:to",
+                                      "Invalid data range and/or data range has not format: from:to",
                                       QtGui.QMessageBox.Ok)
             self.data_range_line_edit.setEnabled(True)
             self.data_range_check_box.setChecked(True)
