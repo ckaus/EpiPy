@@ -8,5 +8,5 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-         ui_controller
-         ui_model
+   ui_controller
+   ui_model

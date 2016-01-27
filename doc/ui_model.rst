@@ -7,28 +7,28 @@ inputmodel
 ----------
 
 .. automodule:: ui.model.inputmodel
-:members:
+    :members:
 
 mainmodel
 ---------
 
 .. automodule:: ui.model.mainmodel
-:members:
+    :members:
 
 optionsmodel
 ------------
 
 .. automodule:: ui.model.optionsmodel
-:members:
+    :members:
 
 plotmodel
 ---------
 
 .. automodule:: ui.model.plotmodel
-:members:
+    :members:
 
 sidebarmodel
 ------------
 
 .. automodule:: ui.model.sidebarmodel
-:members:
+    :members:
