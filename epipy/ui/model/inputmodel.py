@@ -2,6 +2,11 @@
 
 
 class InputModel(object):
+    """
+    This class represents an input model. It stores input file information.
+
+    :returns: an instance of *InputModel*
+    """
     def __init__(self):
         self.file_name = ''
         self.file_content = None

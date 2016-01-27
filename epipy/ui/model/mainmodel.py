@@ -2,6 +2,11 @@
 
 
 class MainModel(object):
+    """
+    This class represents the main view model. It stores information about the *SideBarModel*.
+
+    :returns: an instance of *MainModel*
+    """
     def __init__(self):
         self.side_bar_model = None
 

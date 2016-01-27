@@ -6,6 +6,12 @@ from epipy.ui.model.plotmodel import PlotModel
 
 
 class SideBarModel(object):
+    """
+    This class represents the side bar model of *SideBarWidget*. It stores information about *OptionsModel*,
+    *InputModel* and *PlotModel*
+
+    :returns: an instance of *SideBarModel*
+    """
     def __init__(self):
         self.options_model = OptionsModel()
         self.input_model = InputModel()
