@@ -7,6 +7,7 @@ class InputModel(object):
 
     :returns: an instance of *InputModel*
     """
+
     def __init__(self):
         self.file_name = ''
         self.file_content = None

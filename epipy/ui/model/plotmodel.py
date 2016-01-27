@@ -7,6 +7,7 @@ class PlotModel(object):
 
     :returns: an instance of *PlotModel*
     """
+
     def __init__(self):
         self.x_data = None
         self.y_data = None

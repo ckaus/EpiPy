@@ -12,6 +12,7 @@ class SideBarModel(object):
 
     :returns: an instance of *SideBarModel*
     """
+
     def __init__(self):
         self.options_model = OptionsModel()
         self.input_model = InputModel()

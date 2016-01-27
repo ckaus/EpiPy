@@ -7,6 +7,7 @@ class MainModel(object):
 
     :returns: an instance of *MainModel*
     """
+
     def __init__(self):
         self.side_bar_model = None
 

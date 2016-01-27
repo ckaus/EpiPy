@@ -2,12 +2,13 @@
 
 
 class OptionsModel(object):
-    def __init__(self):
-        """
-        This class represents the option group box model. It stores information about the *SideBarWidget*.
+    """
+    This class represents the option group box model. It stores information about the *SideBarWidget*.
 
-        :returns: an instance of *OptionsModel*
-        """
+    :returns: an instance of *OptionsModel*
+    """
+
+    def __init__(self):
         self.epidemic_model = None
         self.epidemic_model_class = None
         self.epidemic_model_parameters = None
