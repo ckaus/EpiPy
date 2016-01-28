@@ -2,15 +2,12 @@
 
 import os
 from PyQt4 import uic
-from epipy.ui.view.plotview2 import MatplotlibWidget
-import pyqtgraph as pg
-from pyqtgraph.Qt import QtGui
 
 from epipy.ui.controller.event import Event
 from epipy.ui.controller.sidebarviewcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
 from epipy.ui.view.infogroupbox import InfoGroupBox
-from epipy.ui.view.plotviewbox import PlotViewBox
+from epipy.ui.view.plotview import PlotView
 from epipy.ui.view.sidebarwidget import SideBarWidget
 
 dir_name = os.path.dirname
@@ -42,18 +39,8 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.about_action.triggered.connect(self.about_dialog.show)
 
         # Top Left
-        self.plot_view_2 = MatplotlibWidget(self)
-        # self.plot_view_box = PlotViewBox()
-        # self.pw = pg.PlotWidget(viewBox=self.plot_view_box, enableMenu=False)
-        # self.pw.setBackground(QtGui.QColor(255, 255, 255))
-        # self.plot_1 = self.pw.plot(symbol='o')
-        # self.plot_2 = self.pw.plot(pen="b")
-        # legend1 = pg.LegendItem()
-        # legend1.addItem(self.plot_1, "Data")
-        # legend1.addItem(self.plot_2, "Fit")
-        # legend1.setParentItem(self.plot_view_box)
-        # legend1.anchor((0, 0), (0.4, 0))
-        self.h_splitter.insertWidget(0, self.plot_view_2)
+        self.plot_view = PlotView(self)
+        self.h_splitter.insertWidget(0, self.plot_view)
 
         # Top Right
         self.side_bar_controller = SideBarController(self.controller_service)
@@ -103,5 +90,5 @@ class MainWindow(MainWindowBase, MainWindowUI):
             y_data = file_data.get('y')
             y_fitted = fitted_data.get('y_fitted')
             y_base = base_data.get('y_base')
-            self.plot_view_2.plot(x_data, y_data, y_fitted, y_base)
+            self.plot_view.plot(x_data, y_data, y_fitted, y_base)
             self.controller.set_side_bar_model(self.side_bar_controller.get_model())
