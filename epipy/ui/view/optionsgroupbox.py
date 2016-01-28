@@ -43,8 +43,8 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
             if not self.advanced_btn.isEnabled():
                 self.advanced_btn.setEnabled(True)
         elif event == Event.SHOW_MODEL_PARAMETER_GROUP_BOX:
-            if self.layout().itemAt(3):
-                self.layout().itemAt(3).widget().setParent(None)
+            if self.layout().itemAt(2):
+                self.layout().itemAt(2).widget().setParent(None)
             self.layout().addWidget(self.controller.get_current_model_parameter_group_box(), 3, 0, 3, 3)
         elif event == Event.DISABLE_PARAMETERS:
             self.controller.get_current_model_parameter_group_box().setEnabled(False)
