@@ -30,7 +30,8 @@ class BaseModel(object):
                 return (fitted, param) + self.fit_info(ydata, fitted)
 
             fitted = self.fit_model(xdata, **param)
-            return (fitted, param) + self.fit_info(ydata, fitted)
+            return (fitted, param)
+
         except RuntimeError as error:
             logging.error('Runtime Error %s' % error)
             return

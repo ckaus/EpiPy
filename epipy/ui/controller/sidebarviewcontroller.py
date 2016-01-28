@@ -52,26 +52,29 @@ class SideBarController(BaseController):
 
         param = self.get_model_parameters_combo_box()
         file_content = self.model.input_model.file_content
+
+        # time
         x_data = np.array(file_content[self.current_date_col][from_value:to_value], dtype=float)
+        # all infected values
         y_data = np.array(file_content[self.current_data_col][from_value:to_value], dtype=float)
+        # only first infected value depending on range
+        y0_data = np.array(file_content[self.current_data_col][from_value], dtype=float)
+        # using epidemic model
         model_class = self.model.options_model.epidemic_model_class
-        fitted_data = None
-        if not param:
-            # use optimize function for best fitted model
-            fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population)
-        else:
-            # use user input model parameters for fitting the model
-            fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population, **param)
-        if not fitted_data:  # Runtime error during fitting
+        # fitted model - using optimize(), we don't know the parameters for all infected!
+        fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population)
+        # base model - no optimize(), we using y0 and manual parameters for fitting model!
+        base_data = model_class.fit(x_data, [y0_data], N=self.model.input_model.population, **param)
+        # Runtime error during fitting
+        if not fitted_data or not base_data:
             self.notify(Event.SHOW_RUNTIME_ERROR)
             return
-        # fitted model coordinates
+        # time
         self.model.plot_model.x_data = x_data
         self.model.plot_model.y_data = y_data
-        # model parameters
-        self.model.options_model.epidemic_model_parameters = fitted_data[1]
-        # fitted model
+        self.model.plot_model.y_base_data = base_data[0]
         self.model.plot_model.y_fitted_data = fitted_data[0]
+        self.model.options_model.epidemic_model_parameters = fitted_data[1]
         # some regression values of fitted model
         self.model.plot_model.regression_values = {'slope': fitted_data[2], 'intercept': fitted_data[3],
                                                    'r_value**2': fitted_data[4], 'p_value': fitted_data[5],
@@ -123,9 +126,6 @@ class SideBarController(BaseController):
         parameters = []
         parameter_values = []
         group_box = self.current_model_group_box
-        if not group_box.isEnabled():
-            # optimize is choosen
-            return None
         for i in range(0, group_box.layout().count()):
             widget = group_box.layout().itemAt(i).widget()
             if (widget != 0) and (type(widget) is QtGui.QLabel):
@@ -158,19 +158,6 @@ class SideBarController(BaseController):
         """
         self.clear_input()
         self.notify(Event.DISABLE_OPTIONS)
-
-    def set_optimize(self, value):
-        """
-        This function set the optimize flag of the optimize check box and enable/disable the epidemic model parameters.
-
-        :param value: the flag
-        :type value: a bool
-        """
-        if self.current_model_group_box:
-            if value:
-                self.notify(Event.DISABLE_PARAMETERS)
-            else:
-                self.notify(Event.ENABLE_PARAMETERS)
 
     def set_date_col(self, value):
         """
@@ -220,7 +207,6 @@ class SideBarController(BaseController):
         self.notify(Event.ENABLE_ADVANCED_BUTTON)
         if self.get_current_model_parameter_group_box():
             self.notify(Event.DISABLE_PARAMETERS)
-        self.notify(Event.ENABLE_OPTIMIZE)
 
     def set_model_group_box(self, model_group_box, model_class):
         """

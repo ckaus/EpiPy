@@ -22,8 +22,6 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.advanced_btn.clicked.connect(self.show_advanced_dialog)
         self.model_combo_box.setItemData(0, QtCore.QVariant(0), QtCore.Qt.UserRole - 1)
         self.model_combo_box.currentIndexChanged['QString'].connect(self.controller.set_model)
-        self.optimize_check_box.clicked.connect(self.controller.set_optimize)
-        self.optimize_check_box.setEnabled(False)
         self.setEnabled(False)
 
     def show_advanced_dialog(self):
@@ -48,8 +46,6 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
             if self.layout().itemAt(3):
                 self.layout().itemAt(3).widget().setParent(None)
             self.layout().addWidget(self.controller.get_current_model_parameter_group_box(), 3, 0, 3, 3)
-            self.optimize_check_box.setEnabled(True)
-            self.optimize_check_box.setCheckState(False)
         elif event == Event.DISABLE_PARAMETERS:
             self.controller.get_current_model_parameter_group_box().setEnabled(False)
         elif event == Event.ENABLE_PARAMETERS:
