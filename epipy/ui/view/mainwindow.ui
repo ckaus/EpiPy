@@ -35,19 +35,13 @@
      <x>0</x>
      <y>0</y>
      <width>818</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="open_file_action"/>
-    <addaction name="separator"/>
-    <addaction name="save_action"/>
-    <addaction name="save_as_action"/>
-    <addaction name="separator"/>
-    <addaction name="export_action"/>
     <addaction name="separator"/>
     <addaction name="exit_action"/>
    </widget>
@@ -66,6 +60,8 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="help_action"/>
+    <addaction name="separator"/>
     <addaction name="about_action"/>
    </widget>
    <addaction name="menu_file"/>
@@ -156,6 +152,11 @@
   <action name="clear_information_action">
    <property name="text">
     <string>Clear Information</string>
+   </property>
+  </action>
+  <action name="help_action">
+   <property name="text">
+    <string>EpiPy Help</string>
    </property>
   </action>
  </widget>

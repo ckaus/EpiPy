@@ -6,6 +6,7 @@ from PyQt4 import uic
 from epipy.ui.controller.event import Event
 from epipy.ui.controller.sidebarviewcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
+from epipy.ui.view.helpwidget import HelpWidget
 from epipy.ui.view.infogroupbox import InfoGroupBox
 from epipy.ui.view.plotview import PlotView
 from epipy.ui.view.sidebarwidget import SideBarWidget
@@ -25,10 +26,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
 
         # Menu
         self.about_dialog = AboutDialog()
-        self.open_file_action.triggered.connect(self.open_file)
-        self.save_action.triggered.connect(self.save)
-        self.save_as_action.triggered.connect(self.save_as)
-        self.export_action.triggered.connect(self.export)
+        self.help_view = HelpWidget()
         self.exit_action.triggered.connect(self.close)
         self.show_fullscreen_action.triggered.connect(self.show_fullscreen)
         self.exit_fullscreen_action.triggered.connect(self.exit_fullscreen)
@@ -37,6 +35,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.hide_sidebar_action.triggered.connect(self.hide_sidebar)
         self.show_sidebar_action.setVisible(False)
         self.clear_information_action.triggered.connect(self.controller.clear_information)
+        self.help_action.triggered.connect(self.help_view.show)
         self.about_action.triggered.connect(self.about_dialog.show)
 
         # Top Left
@@ -51,18 +50,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
         # Bottom
         self.info_group_box = InfoGroupBox(self.controller)
         self.v_splitter.insertWidget(1, self.info_group_box)
-
-    def open_file(self):
-        pass
-
-    def save(self):
-        pass
-
-    def save_as(self):
-        pass
-
-    def export(self):
-        pass
 
     def show_fullscreen(self):
         self.show_fullscreen_action.setVisible(False)
