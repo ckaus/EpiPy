@@ -36,6 +36,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.show_sidebar_action.triggered.connect(self.show_sidebar)
         self.hide_sidebar_action.triggered.connect(self.hide_sidebar)
         self.show_sidebar_action.setVisible(False)
+        self.clear_information_action.triggered.connect(self.controller.clear_information)
         self.about_action.triggered.connect(self.about_dialog.show)
 
         # Top Left
@@ -85,10 +86,9 @@ class MainWindow(MainWindowBase, MainWindowUI):
 
     def update(self, event):
         if event == Event.PLOT:
-            file_data, fitted_data, base_data = self.side_bar_controller.get_plot_data()
+            file_data, fitted_data = self.side_bar_controller.get_plot_data()
             x_data = file_data.get('x')
             y_data = file_data.get('y')
             y_fitted = fitted_data.get('y_fitted')
-            y_base = base_data.get('y_base')
-            self.plot_view.plot(x_data, y_data, y_fitted, y_base)
+            self.plot_view.plot(x_data, y_data, y_fitted)
             self.controller.set_side_bar_model(self.side_bar_controller.get_model())

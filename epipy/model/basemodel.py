@@ -16,22 +16,19 @@ class BaseModel(object):
         """ Return R^2 and p-value of linear regression between x and y
             where x and y are array-like."""
         slope, intercept, r_value, p_value, std_err = stats.linregress(
-                ydata_1, ydata_2)
+            ydata_1, ydata_2)
         return slope, intercept, r_value ** 2, p_value, std_err
 
     def fit(self, xdata, ydata, N=None, **param):
         try:
             self.N = N
             self.N0 = self.init_param(ydata[0])
-
             if not param:
                 param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
                 fitted = self.fit_model(xdata, *param)
-                return (fitted, param) + self.fit_info(ydata, fitted)
-
-            fitted = self.fit_model(xdata, **param)
-            return (fitted, param)
-
+            else:
+                fitted = self.fit_model(xdata, **param)
+            return (fitted, param) + self.fit_info(ydata, fitted)
         except RuntimeError as error:
             logging.error('Runtime Error %s' % error)
             return

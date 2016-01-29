@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from pyqtgraph import QtGui, QtCore
+import random
+
+from pyqtgraph import QtGui
 
 from epipy.ui.controller.basecontroller import BaseController
 from epipy.ui.controller.event import Event
@@ -28,6 +30,8 @@ class SideBarController(BaseController):
         self.current_date_col = None
         self.current_data_col = None
         self.data_input_length = 0
+        self.current_data_range = None
+        self.with_param = None
 
     def clear_input(self):
         """
@@ -45,53 +49,65 @@ class SideBarController(BaseController):
         if not self.model.input_model.population:
             self.notify(Event.NO_POPULATION)
             return
+        # check validity of data range
+        try:
+            _value = self.current_data_range
+            from_value, to_value = _value.split(":")
+            if int(from_value) < 0 or int(to_value) > self.data_input_length:
+                raise ValueError
+            self.model.input_model.data_range = self.current_data_range
+        except ValueError:
+            self.notify(Event.INVALID_DATA_RANGE)
+            return
 
         data_range = self.model.input_model.data_range.split(":")
         from_value = int(data_range[0])
         to_value = int(data_range[1])
 
-        param = self.get_model_parameters_combo_box()
         file_content = self.model.input_model.file_content
+
+        if not self.is_dates_valid():
+            self.notify(Event.SHOW_CANT_CONVERT_DATES)
+            return
 
         # time
         x_data = np.array(file_content[self.current_date_col][from_value:to_value], dtype=float)
-        # all infected values
+        # all infected values in data range
         y_data = np.array(file_content[self.current_data_col][from_value:to_value], dtype=float)
-        # only first infected value depending on range
-        y0_data = np.array(file_content[self.current_data_col][from_value], dtype=float)
         # using epidemic model
         model_class = self.model.options_model.epidemic_model_class
-        # fitted model - using optimize(), we don't know the parameters for all infected!
-        fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population)
-        # base model - no optimize(), we using y0 and manual parameters for fitting model!
-        base_data = model_class.fit(x_data, [y0_data], N=self.model.input_model.population, **param)
-        # Runtime error during fitting
-        if not fitted_data or not base_data:
-            self.notify(Event.SHOW_RUNTIME_ERROR)
-            return
-        # time
+
+        if self.with_param:
+            param = self.get_model_parameters_combo_box()
+            fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population, **param)
+        else:
+            # fitted model - using optimize(), we don't know the parameters for all infected!
+            fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population)
+
         self.model.plot_model.x_data = x_data
         self.model.plot_model.y_data = y_data
-        self.model.plot_model.y_base_data = base_data[0]
         self.model.plot_model.y_fitted_data = fitted_data[0]
+        self.update_current_group_box(fitted_data[1])
         self.model.options_model.epidemic_model_parameters = fitted_data[1]
         # some regression values of fitted model
         self.model.plot_model.regression_values = {'slope': fitted_data[2], 'intercept': fitted_data[3],
                                                    'r_value**2': fitted_data[4], 'p_value': fitted_data[5],
                                                    'std_err': fitted_data[6]}
-        self.update_current_group_boxes(fitted_data[1])
         self.controller_service.redirect(Event.PLOT)
 
-    def format_date(self):
-        """
-        This function check if the  time fields of an input file needs to convert.
-        """
+    def is_dates_valid(self):
+        # check if date col contains valid dates
         dates = self.model.input_model.file_content[self.current_date_col]
-        dates = dateconverter.convert(dates)
-        if len(dates) == 0:
-            self.notify(Event.SHOW_CANT_CONVERT_DATES)
-        else:
-            self.model.input_model.file_content[self.current_date_col] = dates
+        try:
+            # select a random date and check if date has valid format
+            int(dates[random.randint(0, len(dates) - 1)])
+        except ValueError:  # try to convert date into a valid format
+            dates = dateconverter.convert(dates)
+            if len(dates) == 0:  # can not convert dates
+                return False
+            else:  # can convert dates, set converted dates
+                self.model.input_model.file_content[self.current_date_col] = dates
+        return True
 
     def get_data_range(self):
         """
@@ -178,23 +194,12 @@ class SideBarController(BaseController):
 
     def set_data_range(self, value):
         """
-        This function check the input data range and set data range to *InputModel*.
+        This function store the current input data range.
 
         :param value: input data range
         :type value: str has format from:to
-
-        :returns: *ValueError* if input data range is not valid
         """
-        if not value:
-            return
-        try:
-            _value = value
-            from_value, to_value = _value.split(":")
-            if int(from_value) < 0 or int(to_value) > self.data_input_length:
-                raise ValueError
-            self.model.input_model.data_range = value
-        except ValueError:
-            self.notify(Event.INVALID_DATA_RANGE)
+        self.current_data_range = value
 
     def set_model(self, model):
         """
@@ -205,8 +210,6 @@ class SideBarController(BaseController):
         """
         self.model.options_model.epidemic_model = model
         self.notify(Event.ENABLE_ADVANCED_BUTTON)
-        if self.get_current_model_parameter_group_box():
-            self.notify(Event.DISABLE_PARAMETERS)
 
     def set_model_group_box(self, model_group_box, model_class):
         """
@@ -220,6 +223,7 @@ class SideBarController(BaseController):
         self.current_model_group_box = model_group_box
         self.model.options_model.epidemic_model_class = model_class
         self.notify(Event.SHOW_MODEL_PARAMETER_GROUP_BOX)
+        self.notify(Event.DISABLE_PARAMETERS)
         self.notify(Event.ENABLE_FIT_BUTTON)
 
     def set_population(self, value):
@@ -248,19 +252,20 @@ class SideBarController(BaseController):
         self.notify(Event.ENABLE_COL_DATE_FORMAT)
         self.notify(Event.ENABLE_OPTIONS)
 
-    def update_current_group_boxes(self, parameters):
-        """
-        This function updates the current model parameter group boxes with given parameters.
-
-        :param parameters: the parameters
-        :type: a list of str
-        """
+    def update_current_group_box(self, parameters):
         group_box = self.get_current_model_parameter_group_box()
         if group_box.isEnabled():
             return
         spin_boxes_count = 0
         for i in range(0, group_box.layout().count()):
             widget = group_box.layout().itemAt(i).widget()
-            if (widget != 0) and (type(widget) is QtGui.QDoubleSpinBox):
+            if widget != 0 and type(widget) is QtGui.QDoubleSpinBox:
                 widget.setValue(parameters[spin_boxes_count])
                 spin_boxes_count += 1
+
+    def with_parameters(self, value):
+        self.with_param = value
+        if value:
+            self.notify(Event.ENABLE_PARAMETERS)
+        else:
+            self.notify(Event.DISABLE_PARAMETERS)

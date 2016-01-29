@@ -17,6 +17,8 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.setupUi(self)
         self.controller = controller
         self.controller.attach(self)
+        self.parameters_check_box.setEnabled(False)
+        self.parameters_check_box.stateChanged.connect(self.controller.with_parameters)
         self.advanced_dialog = None
         self.advanced_btn.setEnabled(False)
         self.advanced_btn.clicked.connect(self.show_advanced_dialog)
@@ -43,9 +45,12 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
             if not self.advanced_btn.isEnabled():
                 self.advanced_btn.setEnabled(True)
         elif event == Event.SHOW_MODEL_PARAMETER_GROUP_BOX:
-            if self.layout().itemAt(2):
-                self.layout().itemAt(2).widget().setParent(None)
-            self.layout().addWidget(self.controller.get_current_model_parameter_group_box(), 3, 0)
+            if self.parameters_check_box.isChecked():
+                self.parameters_check_box.setChecked(False)
+            self.parameters_check_box.setEnabled(True)
+            if self.layout().itemAt(3):
+                self.layout().itemAt(3).widget().deleteLater()
+            self.layout().addWidget(self.controller.get_current_model_parameter_group_box(), 3, 0, 1, 3)
         elif event == Event.DISABLE_PARAMETERS:
             self.controller.get_current_model_parameter_group_box().setEnabled(False)
         elif event == Event.ENABLE_PARAMETERS:

@@ -35,10 +35,16 @@ class MainViewController(BaseController):
 
     def set_side_bar_model(self, side_bar_model):
         """
-        This function set the side bar model to main model and notify the plot view to logging information.
+        This function set the side bar model to main model and notify the information view to print information.
 
         :param side_bar_model: a side bare model
         :type side_bar_model: a instance of *SideBarModel*
         """
         self.model.side_bar_model = side_bar_model
-        self.notify(Event.LOG)
+        self.notify(Event.PRINT_INFORMATION)
+
+    def clear_information(self):
+        """
+        This function notify the information view to clear the information.
+        """
+        self.notify(Event.CLEAR_INFORMATION)

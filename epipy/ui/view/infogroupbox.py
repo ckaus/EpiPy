@@ -22,13 +22,9 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
         self.spacer = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Expanding)
         self.top_layout.addItem(self.spacer)
 
-        self.clear_btn = QtGui.QPushButton()
-        self.clear_icon = QtGui.QIcon(icon_path + 'clear.png')
-        self.clear_btn.clicked.connect(self.info_plain_text_edit.clear)
-        self.clear_btn.setIcon(self.clear_icon)
-        self.top_layout.addWidget(self.clear_btn)
-
     def update(self, event):
-        if event == Event.LOG:
+        if event == Event.PRINT_INFORMATION:
             model = self.controller.get_model()
             self.info_plain_text_edit.appendPlainText(str(model))
+        elif event == Event.CLEAR_INFORMATION:
+            self.info_plain_text_edit.clear()

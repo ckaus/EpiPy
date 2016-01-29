@@ -7,7 +7,8 @@ from matplotlib.figure import Figure
 class PlotView(QtGui.QWidget):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
-        self.figure = Figure()
+        self.figure = Figure(facecolor=(1,1,1), tight_layout=True)
+        self.ax = self.figure.add_subplot(111)
 
         # Canvas
         self.canvas = FigureCanvas(self.figure)
@@ -24,11 +25,10 @@ class PlotView(QtGui.QWidget):
         self.vbl.addWidget(self.canvas)
         self.setLayout(self.vbl)
 
-    def plot(self, x=[], y=[], y_fitted=[], y_base=[]):
-        self.figure.clear()
-        self.ax = self.figure.add_subplot(111)
+    def plot(self, x=[], y=[], y_fitted=[]):
+        self.ax.clear()
         self.ax.grid(True)
         self.ax.plot(x, y, 'o', label='Data')
         self.ax.plot(x, y_fitted, label='Fit')
-        self.ax.plot(x, y_base, label='Base')
+        self.ax.legend()
         self.canvas.draw()
