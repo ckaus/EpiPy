@@ -208,6 +208,10 @@ class SideBarController(BaseController):
         :param model: a epidemic model
         :type model: a QString
         """
+        if self.model.options_model.epidemic_model:
+            self.notify(Event.DISABLE_PARAMETERS)
+            self.notify(Event.DISABLE_FIT_BUTTON)
+
         self.model.options_model.epidemic_model = model
         self.notify(Event.ENABLE_ADVANCED_BUTTON)
 

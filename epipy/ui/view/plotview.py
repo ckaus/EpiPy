@@ -7,7 +7,7 @@ from matplotlib.figure import Figure
 class PlotView(QtGui.QWidget):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
-        self.figure = Figure(facecolor=(1,1,1), tight_layout=True)
+        self.figure = Figure(facecolor=(1, 1, 1), tight_layout=True)
         self.ax = self.figure.add_subplot(111)
 
         # Canvas
