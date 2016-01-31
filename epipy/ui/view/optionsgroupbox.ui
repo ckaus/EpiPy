@@ -7,11 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>367</width>
-    <height>63</height>
+    <height>67</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Options</string>
+  </property>
+  <property name="toolTip">
+   <string>Options for model fitting</string>
   </property>
   <property name="title">
    <string>Options</string>
@@ -30,6 +33,9 @@
        <width>0</width>
        <height>0</height>
       </size>
+     </property>
+     <property name="toolTip">
+      <string>Select the epidemic model that you wish to fit</string>
      </property>
      <item>
       <property name="text">
@@ -61,6 +67,9 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="toolTip">
+      <string>Specify if you want to take other variables into account (birth/death rates, vaccination)</string>
+     </property>
      <property name="text">
       <string>Advanced</string>
      </property>
@@ -70,6 +79,9 @@
     <widget class="QCheckBox" name="parameters_check_box">
      <property name="enabled">
       <bool>true</bool>
+     </property>
+     <property name="toolTip">
+      <string>Check this box if you want to specify parameters (if unchecked, the model will be fitted to the data)</string>
      </property>
      <property name="text">
       <string>Parameters</string>
