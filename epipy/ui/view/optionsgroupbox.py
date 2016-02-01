@@ -52,6 +52,10 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
                 self.layout().itemAt(3).widget().deleteLater()
             self.layout().addWidget(self.controller.get_current_model_parameter_group_box(), 3, 0, 1, 3)
         elif event == Event.DISABLE_PARAMETERS:
-            self.controller.get_current_model_parameter_group_box().setEnabled(False)
+            current_model_param_gb = self.controller.get_current_model_parameter_group_box()
+            if current_model_param_gb:
+                current_model_param_gb.setEnabled(False)
         elif event == Event.ENABLE_PARAMETERS:
-            self.controller.get_current_model_parameter_group_box().setEnabled(True)
+            current_model_param_gb = self.controller.get_current_model_parameter_group_box()
+            if current_model_param_gb:
+                current_model_param_gb.setEnabled(True)
