@@ -19,16 +19,22 @@ class BaseModel(object):
             ydata_1, ydata_2)
         return slope, intercept, r_value ** 2, p_value, std_err
 
-    def fit(self, xdata, ydata, N=None, **param):
+    def fit(self, xdata, ydata, N=None, with_line_regress=True, **paramaters):
         try:
             self.N = N
             self.N0 = self.init_param(ydata[0])
-            if not param:
+            if not paramaters:
                 param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
                 fitted = self.fit_model(xdata, *param)
+                _parameters = param.tolist()
             else:
-                fitted = self.fit_model(xdata, **param)
-            return (fitted, param) + self.fit_info(ydata, fitted)
+                fitted = self.fit_model(xdata, **paramaters)
+                _parameters = paramaters.values()
+            result = (fitted, _parameters)
+            if with_line_regress:
+                return result + self.fit_info(ydata, fitted)
+            return result
+
         except RuntimeError as error:
             logging.error('Runtime Error %s' % error)
             return
