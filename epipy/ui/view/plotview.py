@@ -29,7 +29,7 @@ class PlotView(QtGui.QWidget):
         self.ax.clear()
         self.ax.grid(True)
         self.ax.plot(file_data[0], file_data[1], 'b^', label='Input Data')
-        self.ax.plot(fitted_data[0], fitted_data[1], 'bo', label='Fitted Data')
+        self.ax.plot(fitted_data[0], fitted_data[1], 'b-', label='Fitted Data')
         self.ax.plot(forecast_data[0], forecast_data[1], 'g-', label='Forecast')
         self.ax.legend()
         self.canvas.draw()
