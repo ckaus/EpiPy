@@ -70,23 +70,39 @@ class SideBarController(BaseController):
             self.notify(Event.SHOW_CANT_CONVERT_DATES)
             return
 
-        # time
-        x_data = np.array(file_content[self.current_date_col][from_value:to_value], dtype=float)
-        # all infected values in data range
-        y_data = np.array(file_content[self.current_data_col][from_value:to_value], dtype=float)
-        # using epidemic model
         model_class = self.model.options_model.epidemic_model_class
+        population = self.model.input_model.population
 
+        # x- and y-axis
+        x_data = np.array(file_content[self.current_date_col], dtype=float)
+        y_data = np.array(file_content[self.current_data_col], dtype=float)
+
+        # fitted model range
+        x_data_fit = x_data[from_value:to_value]
+        y_data_fit = y_data[from_value:to_value]
+
+        # forecast model range = time + 29(t)
+        x_data_forecast = [i for i in range(int(x_data[from_value]), int(x_data[to_value-1])+30)]
+        y_data_forecast = y_data[from_value]
+
+        param = self.get_model_parameters_combo_box()
         if self.with_param:
-            param = self.get_model_parameters_combo_box()
-            fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population, **param)
+            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population, **param)
         else:
             # fitted model - using optimize(), we don't know the parameters for all infected!
-            fitted_data = model_class.fit(x_data, y_data, N=self.model.input_model.population)
+            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population)
 
-        self.model.plot_model.x_data = x_data
-        self.model.plot_model.y_data = y_data
-        self.model.plot_model.y_fitted_data = fitted_data[0]
+        # forecast graph is based on I0 and optimized parameters
+        forecast_param = dict(zip(param.keys(), fitted_data[1]))
+        forecast = model_class.fit(x_data_forecast, [y_data_forecast], N=population, with_line_regress=False,
+                                   **forecast_param)
+
+        self.model.plot_model.x_data = x_data[from_value:to_value]
+        self.model.plot_model.y_data = y_data[from_value:to_value]
+        self.model.plot_model.x_fitted = x_data_fit
+        self.model.plot_model.y_fitted = fitted_data[0]
+        self.model.plot_model.x_forecast = x_data_forecast
+        self.model.plot_model.y_forecast = forecast[0]
         self.update_current_group_box(fitted_data[1])
         self.model.options_model.epidemic_model_parameters = fitted_data[1]
         # some regression values of fitted model

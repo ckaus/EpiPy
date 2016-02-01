@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from PyQt4 import QtCore, uic
+from PyQt4 import QtGui, QtCore, uic
 
 from epipy.ui.controller.event import Event
 from epipy.ui.view.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog

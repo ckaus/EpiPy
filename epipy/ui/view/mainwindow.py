@@ -73,9 +73,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
 
     def update(self, event):
         if event == Event.PLOT:
-            file_data, fitted_data = self.side_bar_controller.get_plot_data()
-            x_data = file_data.get('x')
-            y_data = file_data.get('y')
-            y_fitted = fitted_data.get('y_fitted')
-            self.plot_view.plot(x_data, y_data, y_fitted)
+            file_data, fitted_data, forecast_data = self.side_bar_controller.get_plot_data()
+            self.plot_view.plot(file_data, fitted_data, forecast_data)
             self.controller.set_side_bar_model(self.side_bar_controller.get_model())

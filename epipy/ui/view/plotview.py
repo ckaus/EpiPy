@@ -25,10 +25,11 @@ class PlotView(QtGui.QWidget):
         self.vbl.addWidget(self.canvas)
         self.setLayout(self.vbl)
 
-    def plot(self, x=[], y=[], y_fitted=[]):
+    def plot(self, file_data, fitted_data, forecast_data):
         self.ax.clear()
         self.ax.grid(True)
-        self.ax.plot(x, y, 'o', label='Data')
-        self.ax.plot(x, y_fitted, label='Fit')
+        self.ax.plot(file_data[0], file_data[1], 'b^', label='Input Data')
+        self.ax.plot(fitted_data[0], fitted_data[1], 'bo', label='Fitted Data')
+        self.ax.plot(forecast_data[0], forecast_data[1], 'g-', label='Forecast')
         self.ax.legend()
         self.canvas.draw()
