@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from PyQt4 import QtGui, QtCore, uic
+from PyQt4 import QtCore, uic
 
 from epipy.ui.controller.event import Event
 from epipy.ui.view.advanceddialog import SIRAdvancedDialog, SEIRAdvancedDialog, SIRSAdvancedDialog
@@ -37,25 +37,41 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.advanced_dialog.show()
 
     def update(self, event):
-        if event == Event.ENABLE_OPTIONS:
-            self.setEnabled(True)
-        elif event == Event.DISABLE_OPTIONS:
-            self.setEnabled(False)
-        if event == Event.ENABLE_ADVANCED_BUTTON:
+        print event
+        if event == Event.CHANGE_AVAILABILITY_OPTIONS:
+            if self.isEnabled():
+                self.setEnabled(False)
+            else:
+                self.setEnabled(True)
+        elif event == Event.SELECT_NEW_MODEL:
             if not self.advanced_btn.isEnabled():
                 self.advanced_btn.setEnabled(True)
-        elif event == Event.SHOW_MODEL_PARAMETER_GROUP_BOX:
-            if self.parameters_check_box.isChecked():
-                self.parameters_check_box.setChecked(False)
-            self.parameters_check_box.setEnabled(True)
+            # remove model parameter group from view if exist
             if self.layout().itemAt(3):
                 self.layout().itemAt(3).widget().deleteLater()
-            self.layout().addWidget(self.controller.get_current_model_parameter_group_box(), 3, 0, 1, 3)
-        elif event == Event.DISABLE_PARAMETERS:
-            current_model_param_gb = self.controller.get_current_model_parameter_group_box()
-            if current_model_param_gb:
-                current_model_param_gb.setEnabled(False)
-        elif event == Event.ENABLE_PARAMETERS:
-            current_model_param_gb = self.controller.get_current_model_parameter_group_box()
-            if current_model_param_gb:
-                current_model_param_gb.setEnabled(True)
+        elif event == Event.SELECT_NEW_MODEL_TYPE:
+            self.parameters_check_box.setChecked(False)
+            self.parameters_check_box.setEnabled(True)
+            # add selected model parameter group box to view, depending on model type
+            parameter_group_box = self.controller.get_current_model_parameter_group_box()
+            # remove model parameter group box from view if exist
+            possible_group_box = self.layout().itemAt(3)
+            if possible_group_box:
+                # something is on view at item(3) and
+                if type(possible_group_box.widget()) != type(parameter_group_box):
+                    # group box is not already on view
+                    # user not selected the same model type group box
+                    possible_group_box.widget().deleteLater()
+                    self.layout().addWidget(parameter_group_box, 3, 0, 1, 3)
+                    parameter_group_box.setEnabled(False)
+            else:
+                # nothing is on view at item(3)
+                self.layout().addWidget(parameter_group_box, 3, 0, 1, 3)
+                parameter_group_box.setEnabled(False)
+
+        elif event == Event.SELECT_WITH_PARAMETERS:
+            parameter_group_box = self.layout().itemAt(3).widget()
+            if not self.parameters_check_box.isChecked():
+                parameter_group_box.setEnabled(False)
+            else:
+                parameter_group_box.setEnabled(True)

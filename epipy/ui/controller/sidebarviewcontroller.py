@@ -82,7 +82,7 @@ class SideBarController(BaseController):
         y_data_fit = y_data[from_value:to_value]
 
         # forecast model range = time + 29(t)
-        x_data_forecast = [i for i in range(int(x_data[from_value]), int(x_data[to_value-1])+30)]
+        x_data_forecast = [i for i in range(int(x_data[from_value]), int(x_data[to_value - 1]) + 30)]
         y_data_forecast = y_data[from_value]
 
         param = self.get_model_parameters_combo_box()
@@ -189,7 +189,7 @@ class SideBarController(BaseController):
         This function clear the side bar components and disable the epidemic option group box.
         """
         self.clear_input()
-        self.notify(Event.DISABLE_OPTIONS)
+        self.notify(Event.CHANGE_AVAILABILITY_OPTIONS)
 
     def set_date_col(self, value):
         """
@@ -224,12 +224,9 @@ class SideBarController(BaseController):
         :param model: a epidemic model
         :type model: a QString
         """
-        if self.model.options_model.epidemic_model:
-            self.notify(Event.DISABLE_PARAMETERS)
-            self.notify(Event.DISABLE_FIT_BUTTON)
-
         self.model.options_model.epidemic_model = model
-        self.notify(Event.ENABLE_ADVANCED_BUTTON)
+        self.notify(Event.SELECT_NEW_MODEL)
+        self.notify(Event.ENABLE_FIT_BUTTON)
 
     def set_model_group_box(self, model_group_box, model_class):
         """
@@ -242,9 +239,7 @@ class SideBarController(BaseController):
         """
         self.current_model_group_box = model_group_box
         self.model.options_model.epidemic_model_class = model_class
-        self.notify(Event.SHOW_MODEL_PARAMETER_GROUP_BOX)
-        self.notify(Event.DISABLE_PARAMETERS)
-        self.notify(Event.ENABLE_FIT_BUTTON)
+        self.notify(Event.SELECT_NEW_MODEL_TYPE)
 
     def set_population(self, value):
         """
@@ -270,7 +265,7 @@ class SideBarController(BaseController):
         self.model.input_model.file_content = file_content
         self.notify(Event.SET_FILE_CONTENT)
         self.notify(Event.ENABLE_COL_DATE_FORMAT)
-        self.notify(Event.ENABLE_OPTIONS)
+        self.notify(Event.CHANGE_AVAILABILITY_OPTIONS)
 
     def update_current_group_box(self, parameters):
         group_box = self.get_current_model_parameter_group_box()
@@ -285,7 +280,4 @@ class SideBarController(BaseController):
 
     def with_parameters(self, value):
         self.with_param = value
-        if value:
-            self.notify(Event.ENABLE_PARAMETERS)
-        else:
-            self.notify(Event.DISABLE_PARAMETERS)
+        self.notify(Event.SELECT_WITH_PARAMETERS)
