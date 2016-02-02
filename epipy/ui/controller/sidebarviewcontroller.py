@@ -50,12 +50,21 @@ class SideBarController(BaseController):
             self.notify(Event.NO_POPULATION)
             return
         # check validity of data range
+        _value = self.current_data_range
         try:
-            _value = self.current_data_range
             from_value, to_value = _value.split(":")
-            if int(from_value) < 0 or int(to_value) > self.data_input_length:
+            # check if values contains minus, because
+            # a cast of a value -1 to an integer returns 1
+            if from_value.contains('-') or to_value.contains('-'):
                 raise ValueError
-            self.model.input_model.data_range = self.current_data_range
+
+            from_value = int(from_value)
+            to_value = int(to_value)
+
+            if from_value < 0 or from_value >= to_value or to_value > self.data_input_length:
+                raise ValueError
+            else:
+                self.model.input_model.data_range = self.current_data_range
         except ValueError:
             self.notify(Event.INVALID_DATA_RANGE)
             return
@@ -248,8 +257,13 @@ class SideBarController(BaseController):
         :param value: the population of a data set
         :type value: a QString
         """
-        if value:
-            self.model.input_model.population = int(value)
+        try:
+            if value.contains('-'):
+                raise ValueError
+            if not value.isEmpty():
+                self.model.input_model.population = int(value)
+        except ValueError:
+            self.notify(Event.INVALID_POPULATION)
 
     def set_input_file(self, file_name):
         """

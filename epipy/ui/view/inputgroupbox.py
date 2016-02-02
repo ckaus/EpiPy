@@ -63,3 +63,8 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid data range and/or data range has not format: from:to",
                                       QtGui.QMessageBox.Ok)
+        elif event == Event.INVALID_POPULATION:
+            QtGui.QMessageBox.warning(self, 'Warning',
+                                      "Invalid population. Value must be greater than 0.",
+                                      QtGui.QMessageBox.Ok)
+
