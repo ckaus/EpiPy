@@ -18,6 +18,9 @@ class PlotModel(object):
         self.regression_values = None
 
     def get_data(self):
+        """
+        :returns: the plottable graphs
+        """
         return [self.x_data, self.y_data], [self.x_fitted, self.y_fitted], [self.x_forecast, self.y_forecast]
 
     def __repr__(self):

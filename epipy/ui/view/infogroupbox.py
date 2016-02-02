@@ -12,6 +12,14 @@ InfoGroupBoxUI, InfoGroupBoxBase = uic.loadUiType(os.path.join(folder_path, "inf
 
 
 class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
+    """
+    This class represents the information group box for printing information.
+
+    :param controller: the used controller
+    :type controller: *MainViewController*
+
+    :returns: an instance of *InfoGroupBox*
+    """
     def __init__(self, controller):
         InfoGroupBoxBase.__init__(self)
         self.setupUi(self)
@@ -23,6 +31,12 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
         self.top_layout.addItem(self.spacer)
 
     def update(self, event):
+        """
+        This function updates the view with content.
+
+        :param event: an occurred event
+        :type event: an *Event*
+        """
         if event == Event.PRINT_INFORMATION:
             model = self.controller.get_model()
             self.info_plain_text_edit.appendPlainText(str(model))

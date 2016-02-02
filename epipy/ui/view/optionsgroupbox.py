@@ -12,6 +12,14 @@ OptionsGroupBoxUI, OptionsGroupBoxBase = uic.loadUiType(os.path.join(folder_path
 
 
 class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
+    """
+    This class represents the options group box for a model.
+
+    :param controller: the used controller
+    :type controller: *SideBarViewController*
+
+    :returns: an instance of *OptionsGroupBox*
+    """
     def __init__(self, controller):
         OptionsGroupBoxBase.__init__(self)
         self.setupUi(self)
@@ -27,6 +35,9 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.setEnabled(False)
 
     def show_advanced_dialog(self):
+        """
+        This function shows the advanced dialog of a selected model.
+        """
         model = self.controller.get_epidemic_model()
         if model == 'SIR':
             self.advanced_dialog = SIRAdvancedDialog(self.controller)
@@ -37,6 +48,13 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.advanced_dialog.show()
 
     def update(self, event):
+        """
+        This function updates the view with content and change availability of
+        GUI components.
+
+        :param event: an occurred event
+        :type event: an *Event*
+        """
         if event == Event.CHANGE_AVAILABILITY_OPTIONS:
             if self.isEnabled():
                 self.setEnabled(False)

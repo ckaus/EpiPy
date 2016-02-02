@@ -9,6 +9,11 @@ HelpWidgetUI, HelpWidgetBase = uic.loadUiType(os.path.join(folder_path, "helpwid
 
 
 class HelpWidget(HelpWidgetBase, HelpWidgetUI):
+    """
+    This class represents the Help widget.
+
+    :returns: an instance of *HelpWidget*
+    """
     def __init__(self):
         HelpWidgetBase.__init__(self)
         self.setupUi(self)

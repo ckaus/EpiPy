@@ -2,8 +2,7 @@
 
 import numpy as np
 import random
-
-from pyqtgraph import QtGui
+from PyQt4 import QtGui
 
 from epipy.ui.controller.basecontroller import BaseController
 from epipy.ui.controller.event import Event
@@ -11,14 +10,15 @@ from epipy.ui.model.sidebarmodel import SideBarModel
 from epipy.utils import csvmanager, dateconverter
 
 
-class SideBarController(BaseController):
+class SideBarViewController(BaseController):
     """
-    This class represents a controller for notify and operating on views.
+    This class represents a controller for notify views which are added
+    to *SideBarWidget*. The controller include the logic of attached views.
 
     :param controller_service: a controller service
     :type controller_service: an instance of *ControllerService*
 
-    :returns: an instance of *SideBarController*
+    :returns: an instance of *SideBarViewController*
     """
 
     def __init__(self, controller_service):
@@ -35,7 +35,7 @@ class SideBarController(BaseController):
 
     def clear_input(self):
         """
-        This function clear all input components on side bar view.
+        This function clears all input components on side bar view.
         """
         self.model.input_model.file_name = None
         self.model.input_model.file_content = None
@@ -44,7 +44,7 @@ class SideBarController(BaseController):
 
     def fit_data(self):
         """
-        This function collect content from side bar view and start fitting based on collected content.
+        This function collects content from side bar view and start fitting based on collected content.
         """
         if not self.model.input_model.population:
             self.notify(Event.NO_POPULATION)
@@ -121,7 +121,11 @@ class SideBarController(BaseController):
         self.controller_service.redirect(Event.PLOT)
 
     def is_dates_valid(self):
-        # check if date col contains valid dates
+        """
+        This function checks if date column contains valid dates.
+
+        :returns: true if dates are valid, false are not
+        """
         dates = self.model.input_model.file_content[self.current_date_col]
         try:
             # select a random date and check if date has valid format
@@ -160,7 +164,7 @@ class SideBarController(BaseController):
 
     def get_model_parameters_combo_box(self):
         """
-        This function collect data from epidemic model parameter group box.
+        This function collects data from epidemic model parameter group box.
 
         :returns: dict of epidemic model parameters
         """
@@ -202,24 +206,25 @@ class SideBarController(BaseController):
 
     def set_date_col(self, value):
         """
-        This function set the selected date column.
+        This function sets the selected date column.
+
         :param value: a selected date column
-        :type value: a QString
+        :type value: a *QString*
         """
         self.current_date_col = str(value)
 
     def set_data_col(self, value):
         """
-        This function set the selected data column.
+        This function sets the selected data column.
 
         :param value: a selected data column
-        :type value: a QString
+        :type value: a *QString*
         """
         self.current_data_col = str(value)
 
     def set_data_range(self, value):
         """
-        This function store the current input data range.
+        This function stores the current input data range.
 
         :param value: input data range
         :type value: str has format from:to
@@ -228,10 +233,10 @@ class SideBarController(BaseController):
 
     def set_model(self, model):
         """
-        This function set a given epidemic model to the *OptionsModel*.
+        This function sets a given epidemic model to the *OptionsModel*.
 
         :param model: a epidemic model
-        :type model: a QString
+        :type model: a *QString*
         """
         self.model.options_model.epidemic_model = model
         self.notify(Event.SELECT_NEW_MODEL)
@@ -239,10 +244,10 @@ class SideBarController(BaseController):
 
     def set_model_group_box(self, model_group_box, model_class):
         """
-        This function set a given model group box and model class.
+        This function sets a given model group box and model class.
 
         :param model_group_box: a model group box
-        :type model_group_box: a QGroupBox
+        :type model_group_box: a *QGroupBox*
         :param model_class: a model class
         :type model_class: a *BaseModel*
         """
@@ -255,7 +260,7 @@ class SideBarController(BaseController):
         This function set a given value as population of a data set to the *InputModel*.
 
         :param value: the population of a data set
-        :type value: a QString
+        :type value: a *QString*
         """
         try:
             if value.contains('-'):
@@ -282,6 +287,12 @@ class SideBarController(BaseController):
         self.notify(Event.CHANGE_AVAILABILITY_OPTIONS)
 
     def update_current_group_box(self, parameters):
+        """
+        This function updates the current parameter group box of a showing model.
+
+        :param parameters: model parameters
+        :type parameters: array
+        """
         group_box = self.get_current_model_parameter_group_box()
         if group_box.isEnabled():
             return
@@ -293,5 +304,12 @@ class SideBarController(BaseController):
                 spin_boxes_count += 1
 
     def with_parameters(self, value):
+        """
+        This function notify the *OptionsGroupBox* view to enable/disable
+        showing parameter group box of a model.
+
+        :param value: status of the parameter checkbox
+        :type value: bool
+        """
         self.with_param = value
         self.notify(Event.SELECT_WITH_PARAMETERS)
