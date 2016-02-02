@@ -45,9 +45,8 @@ setup(
         keywords="epidemic models",
         url="https://github.com/ckaus/EpiPy",
         packages=find_packages(exclude=["tests"]),
-        package_data={"epipy": ["resources/ui/*", "resources/data/*", "resources/pictures/*"]},
+        package_data={"epipy": ["resources/ui/*", "resources/data/*"]},
         long_description=read('README.md'),
-        install_requires=['pyqtgraph'],
         classifiers=[
             """\
     Development Status :: 3 - Alpha
