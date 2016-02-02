@@ -24,6 +24,7 @@ class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
 
     :returns: an instance of *SIRAdvancedDialog*
     """
+
     def __init__(self, controller):
         SIRAdvancedDialogBase.__init__(self)
         self.setupUi(self)
@@ -52,6 +53,7 @@ class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
 
     :returns: an instance of *SEIRAdvancedDialog*
     """
+
     def __init__(self, controller):
         SEIRAdvancedDialogBase.__init__(self)
         self.setupUi(self)
@@ -76,6 +78,7 @@ class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
 
     :returns: an instance of *SIRSAdvancedDialog*
     """
+
     def __init__(self, controller):
         SIRSAdvancedDialogBase.__init__(self)
         self.setupUi(self)

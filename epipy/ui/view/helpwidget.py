@@ -14,6 +14,7 @@ class HelpWidget(HelpWidgetBase, HelpWidgetUI):
 
     :returns: an instance of *HelpWidget*
     """
+
     def __init__(self):
         HelpWidgetBase.__init__(self)
         self.setupUi(self)

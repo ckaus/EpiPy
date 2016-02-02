@@ -14,6 +14,7 @@ class SEIRsimpleGroupBox(SEIRsimpleGroupBoxBase, SEIRsimpleGroupBoxUI):
 
     :returns: an instance of *SEIRsimpleGroupBox*
     """
+
     def __init__(self):
         SEIRsimpleGroupBoxBase.__init__(self)
         self.setupUi(self)

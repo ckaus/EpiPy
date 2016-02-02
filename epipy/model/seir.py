@@ -9,6 +9,7 @@ class SEIR(BaseModel):
     """
     This class represents an abstract model for SEIR Models.
     """
+
     def __init__(self):
         BaseModel.__init__(self)
         self.__name__ = 'SEIR'
@@ -33,6 +34,7 @@ class Simple(SEIR):
     """
     This class represents the SEIR Simple Model
     """
+
     def __init__(self):
         SEIR.__init__(self)
 

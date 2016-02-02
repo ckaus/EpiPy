@@ -14,7 +14,7 @@ class SIRsimpleGroupBox(SIRsimpleGroupBoxBase, SIRsimpleGroupBoxUI):
     """
     This class represents the SIR Simple group box.
 
-    :returns: an instance of *SIRsimpleGroupBox
+    :returns: an instance of *SIRsimpleGroupBox*
     """
 
     def __init__(self):

@@ -10,3 +10,4 @@ Contents:
 
    ui_controller
    ui_model
+   ui_view

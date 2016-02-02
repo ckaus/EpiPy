@@ -20,6 +20,7 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
 
     :returns: an instance of *OptionsGroupBox*
     """
+
     def __init__(self, controller):
         OptionsGroupBoxBase.__init__(self)
         self.setupUi(self)

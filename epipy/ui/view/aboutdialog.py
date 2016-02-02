@@ -14,6 +14,7 @@ class AboutDialog(AboutDialogBase, AboutDialogUI):
 
     :returns: an instance of *AboutDialog*
     """
+
     def __init__(self):
         AboutDialogBase.__init__(self)
         self.setupUi(self)

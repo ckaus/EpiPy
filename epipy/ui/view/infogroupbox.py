@@ -20,6 +20,7 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
 
     :returns: an instance of *InfoGroupBox*
     """
+
     def __init__(self, controller):
         InfoGroupBoxBase.__init__(self)
         self.setupUi(self)
