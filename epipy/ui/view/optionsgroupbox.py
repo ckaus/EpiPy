@@ -37,7 +37,6 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         self.advanced_dialog.show()
 
     def update(self, event):
-        print event
         if event == Event.CHANGE_AVAILABILITY_OPTIONS:
             if self.isEnabled():
                 self.setEnabled(False)
