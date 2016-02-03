@@ -4,11 +4,11 @@ from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 
-class PlotView(QtGui.QWidget):
+class PlotWidget(QtGui.QWidget):
     """
     This class represents the plot view for plotting graphs.
 
-    :returns: an instance of *PlotView*
+    :returns: an instance of *PlotWidget*
     """
 
     def __init__(self, parent=None):

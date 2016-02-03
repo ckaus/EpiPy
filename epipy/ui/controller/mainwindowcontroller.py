@@ -6,14 +6,14 @@ from epipy.ui.controller.event import Event
 from epipy.ui.model.mainmodel import MainModel
 
 
-class MainViewController(BaseController):
+class MainWindowController(BaseController):
     """
     This class represents the main view controller.
 
     :param controller_service: a controller service
     :type controller_service: an instance of *ControllerService*
 
-    :returns: an instance of *MainViewController*
+    :returns: an instance of *MainWindowController*
     """
 
     def __init__(self, controller_service):

@@ -16,7 +16,7 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
     This class represents the options group box for a model.
 
     :param controller: the used controller
-    :type controller: *SideBarViewController*
+    :type controller: *SideBarController*
 
     :returns: an instance of *OptionsGroupBox*
     """

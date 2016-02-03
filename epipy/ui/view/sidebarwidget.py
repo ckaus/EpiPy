@@ -1,7 +1,7 @@
 import os
 from PyQt4 import uic, QtGui
 
-from epipy.ui.controller.sidebarviewcontroller import Event
+from epipy.ui.controller.sidebarcontroller import Event
 from epipy.ui.view.inputgroupbox import InputGroupBox
 from epipy.ui.view.optionsgroupbox import OptionsGroupBox
 
@@ -17,7 +17,7 @@ class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
     This class represents the side bar widget.
 
     :param controller: the used controller
-    :type controller: *SideBarViewController*
+    :type controller: *SideBarController*
 
     :returns: an instance of *SideBarWidget*
     """

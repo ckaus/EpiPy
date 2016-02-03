@@ -20,7 +20,7 @@ class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
     This class represents the SIR advanced dialog.
 
     :param controller: the used controller
-    :type controller: *SideBarViewController*
+    :type controller: *SideBarController*
 
     :returns: an instance of *SIRAdvancedDialog*
     """
@@ -49,7 +49,7 @@ class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
     This class represents the SEIR advanced dialog.
 
     :param controller: the used controller
-    :type controller: *SideBarViewController*
+    :type controller: *SideBarController*
 
     :returns: an instance of *SEIRAdvancedDialog*
     """
@@ -74,7 +74,7 @@ class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
     This class represents the SIRS advanced dialog.
 
     :param controller: the used controller
-    :type controller: *SideBarViewController*
+    :type controller: *SideBarController*
 
     :returns: an instance of *SIRSAdvancedDialog*
     """

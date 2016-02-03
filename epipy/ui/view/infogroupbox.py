@@ -16,7 +16,7 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
     This class represents the information group box for printing information.
 
     :param controller: the used controller
-    :type controller: *MainViewController*
+    :type controller: *MainWindowController*
 
     :returns: an instance of *InfoGroupBox*
     """

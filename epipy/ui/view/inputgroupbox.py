@@ -15,7 +15,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
     This class represents the input group box for files.
 
     :param controller: the used controller
-    :type controller: *SideBarViewController*
+    :type controller: *SideBarController*
 
     :returns: an instance of *InputGroupBox*
     """

@@ -4,11 +4,11 @@ import os
 from PyQt4 import uic
 
 from epipy.ui.controller.event import Event
-from epipy.ui.controller.sidebarviewcontroller import SideBarViewController
+from epipy.ui.controller.sidebarcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
 from epipy.ui.view.helpwidget import HelpWidget
 from epipy.ui.view.infogroupbox import InfoGroupBox
-from epipy.ui.view.plotview import PlotView
+from epipy.ui.view.plotwidget import PlotWidget
 from epipy.ui.view.sidebarwidget import SideBarWidget
 
 dir_name = os.path.dirname
@@ -21,7 +21,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
     This class represents the main window.
 
     :param controller: the used controller
-    :type controller: *MainViewController*
+    :type controller: *MainWindowController*
 
     :returns: an instance of *MainWindow*
     """
@@ -37,8 +37,8 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.about_dialog = AboutDialog()
         self.help_view = HelpWidget()
         self.exit_action.triggered.connect(self.close)
-        self.show_fullscreen_action.triggered.connect(self.show_fullscreen)
-        self.exit_fullscreen_action.triggered.connect(self.exit_fullscreen)
+        self.show_fullscreen_action.triggered.connect(self.show_full_screen)
+        self.exit_fullscreen_action.triggered.connect(self.exit_full_screen)
         self.exit_fullscreen_action.setVisible(False)
         self.show_sidebar_action.triggered.connect(self.show_sidebar)
         self.hide_sidebar_action.triggered.connect(self.hide_sidebar)
@@ -48,11 +48,11 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.about_action.triggered.connect(self.about_dialog.show)
 
         # Top Left
-        self.plot_view = PlotView(self)
+        self.plot_view = PlotWidget(self)
         self.h_splitter.insertWidget(0, self.plot_view)
 
         # Top Right
-        self.side_bar_controller = SideBarViewController(self.controller_service)
+        self.side_bar_controller = SideBarController(self.controller_service)
         self.side_bar = SideBarWidget(self.side_bar_controller)
         self.h_splitter.insertWidget(1, self.side_bar)
 
@@ -60,7 +60,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.info_group_box = InfoGroupBox(self.controller)
         self.v_splitter.insertWidget(1, self.info_group_box)
 
-    def show_fullscreen(self):
+    def show_full_screen(self):
         """
         This function enable the full screen mode of this view.
         """
@@ -68,7 +68,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.exit_fullscreen_action.setVisible(True)
         self.showFullScreen()
 
-    def exit_fullscreen(self):
+    def exit_full_screen(self):
         """
         This function disable the full screen mode of this view.
         """
