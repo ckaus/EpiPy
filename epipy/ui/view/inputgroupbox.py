@@ -15,7 +15,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
     This class represents the input group box for files.
 
     :param controller: the used controller
-    :type controller: *SideBarController*
+    :type controller: *SideBarViewController*
 
     :returns: an instance of *InputGroupBox*
     """
@@ -31,6 +31,8 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
         self.data_range_line_edit.textChanged.connect(self.controller.set_data_range)
         self.population_line_edit.setValidator(QtGui.QIntValidator(self))
         self.population_line_edit.textChanged.connect(self.controller.set_population)
+        self.population_slider.valueChanged[int].connect(self.controller.set_population_from_slider)
+        self.data_percentage_spin_box.valueChanged.connect(self.controller.set_data_percentage)
 
     def open_file(self):
         """
@@ -63,7 +65,8 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             self.data_cb.setEnabled(True)
             self.population_line_edit.setEnabled(True)
             self.data_range_line_edit.setEnabled(True)
-
+            self.population_slider.setEnabled(True)
+            self.data_percentage_spin_box.setEnabled(True)
         elif event == Event.SHOW_CANT_CONVERT_DATES:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please make sure you have selected a 'Date' column.\n"
@@ -75,6 +78,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             self.data_cb.clear()
             self.data_range_line_edit.clear()
             self.population_line_edit.clear()
+            self.data_percentage_spin_box.clear()
         elif event == Event.NO_POPULATION:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please define a population.",
@@ -86,4 +90,10 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
         elif event == Event.INVALID_POPULATION:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid population. Value must be greater than 0.",
+                                      QtGui.QMessageBox.Ok)
+        elif event == Event.UPDATE_POPULATION_FIELD:
+            self.population_line_edit.setText(str(self.controller.model.input_model.population))
+        elif event == Event.INVALID_DATA_PERCENTAGE:
+            QtGui.QMessageBox.warning(self, 'Warning',
+                                      "Invalid data percentage. Please enter a number between 1 and 100\n",
                                       QtGui.QMessageBox.Ok)

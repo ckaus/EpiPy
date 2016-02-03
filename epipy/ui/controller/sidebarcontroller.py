@@ -18,7 +18,7 @@ class SideBarController(BaseController):
     :param controller_service: a controller service
     :type controller_service: an instance of *ControllerService*
 
-    :returns: an instance of *SideBarController*
+    :returns: an instance of *SideBarViewController*
     """
 
     def __init__(self, controller_service):
@@ -32,6 +32,7 @@ class SideBarController(BaseController):
         self.data_input_length = 0
         self.current_data_range = None
         self.with_param = None
+        self.data_percentage = 100
 
     def clear_input(self):
         """
@@ -40,6 +41,7 @@ class SideBarController(BaseController):
         self.model.input_model.file_name = None
         self.model.input_model.file_content = None
         self.model.input_model.population = None
+        self.data_percentage = 100
         self.notify(Event.CLEAR_INPUT)
 
     def fit_data(self):
@@ -96,10 +98,10 @@ class SideBarController(BaseController):
 
         param = self.get_model_parameters_combo_box()
         if self.with_param:
-            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population, **param)
+            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population, percentage=100, **param)
         else:
             # fitted model - using optimize(), we don't know the parameters for all infected!
-            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population)
+            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population, percentage=self.data_percentage)
 
         # forecast graph is based on I0 and optimized parameters
         forecast_param = dict(zip(param.keys(), fitted_data[1]))
@@ -270,9 +272,19 @@ class SideBarController(BaseController):
         except ValueError:
             self.notify(Event.INVALID_POPULATION)
 
+    def set_population_from_slider(self, value):
+        """
+        This function set a given value from the slider as population of a data set to the *InputModel*.
+
+        :param value: the population of a data set
+        :type value: an int
+        """
+        self.model.input_model.population = value
+        self.notify(Event.UPDATE_POPULATION_FIELD)
+
     def set_input_file(self, file_name):
         """
-        This function set a given file name to the *InputModel*.
+        This function sets a given file name to the *InputModel*.
 
         :param file_name: a file name
         :type file_name: a str
@@ -285,6 +297,19 @@ class SideBarController(BaseController):
         self.notify(Event.SET_FILE_CONTENT)
         self.notify(Event.ENABLE_COL_DATE_FORMAT)
         self.notify(Event.CHANGE_AVAILABILITY_OPTIONS)
+
+    def set_data_percentage(self, percentage):
+        """
+        This function sets the percentage of data used in the fitting process.
+
+        :param percentage: percentage of the data
+        :type percentage: double from (0, 100]
+        """
+
+        if percentage > 0 and percentage <= 100:
+            self.data_percentage = percentage
+        else:
+            self.notify(Event.INVALID_DATA_PERCENTAGE)
 
     def update_current_group_box(self, parameters):
         """
