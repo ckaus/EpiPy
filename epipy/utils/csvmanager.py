@@ -22,7 +22,6 @@ def read(file_name="", column=[]):
     :returns: a content of csv file as *Dict*
     """
 
-<<<<<<< HEAD
     result = {}
     try:
         # read input file
@@ -40,26 +39,6 @@ def read(file_name="", column=[]):
             for row in reader:
                 # match content with origin header
                 [result[h].append(row[header.index(h)]) for h in column]
-=======
-    current_dir = os.path.abspath(os.path.dirname(__file__))
-    #path = os.path.abspath(current_dir + "/../resources/data") + "/" + file_name
-    path = file_name
-    result = {}
-    try:
-        # read input file
-        _file = open(path, "rb")
-        reader = csv.reader(_file, delimiter=seperator)
-        header = reader.next()
-        # header
-        if not column:
-            column = header
-        for h in column:
-            result[h] = []
-        # content
-        for row in reader:
-            # match content with origin header
-            [result[h].append(row[header.index(h)]) for h in column]
->>>>>>> origin/yena
     except (csv.Error, ValueError) as e:
         logging.error("Can not read file %s, %s" % (file_name, e))
     return result
