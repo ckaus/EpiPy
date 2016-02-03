@@ -2,8 +2,12 @@
 
 from abc import abstractmethod, ABCMeta
 from scipy import optimize, stats
+<<<<<<< HEAD
 
 from epipy.utils import logging
+=======
+import inspect
+>>>>>>> origin/yena
 
 
 class BaseModel(object):

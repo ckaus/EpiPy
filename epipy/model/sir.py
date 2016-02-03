@@ -35,6 +35,10 @@ class Simple(SIR):
 
     def __init__(self):
         SIR.__init__(self)
+        
+    @staticmethod
+    def param():
+        return ["beta", "gamma"]
 
     def model(self, y, x, beta, gamma):
         """
