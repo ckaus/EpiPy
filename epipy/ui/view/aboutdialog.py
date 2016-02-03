@@ -9,6 +9,12 @@ AboutDialogUI, AboutDialogBase = uic.loadUiType(os.path.join(folder_path, "about
 
 
 class AboutDialog(AboutDialogBase, AboutDialogUI):
+    """
+    This class represents the about dialog.
+
+    :returns: an instance of *AboutDialog*
+    """
+
     def __init__(self):
         AboutDialogBase.__init__(self)
         self.setupUi(self)

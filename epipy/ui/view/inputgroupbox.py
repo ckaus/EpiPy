@@ -2,6 +2,7 @@
 
 import os
 from PyQt4 import uic, QtGui
+
 from epipy.ui.controller.event import Event
 
 dir_name = os.path.dirname
@@ -10,6 +11,15 @@ InputGroupBoxUI, InputGroupBoxBase = uic.loadUiType(os.path.join(folder_path, "i
 
 
 class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
+    """
+    This class represents the input group box for files.
+
+    :param controller: the used controller
+    :type controller: *SideBarController*
+
+    :returns: an instance of *InputGroupBox*
+    """
+
     def __init__(self, controller):
         InputGroupBoxBase.__init__(self)
         self.setupUi(self)
@@ -23,6 +33,9 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
         self.population_line_edit.textChanged.connect(self.controller.set_population)
 
     def open_file(self):
+        """
+        This functions reads a local CSV file.
+        """
         file_name = QtGui.QFileDialog.getOpenFileName(self, "Open CSV file", filter="CSV file (*.csv);;All Files (*.*)")
         if file_name:
             # clear input boxes just in case something was configure before
@@ -34,6 +47,13 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             self.controller.set_input_file(file_name)
 
     def update(self, event):
+        """
+        This function updates the view with content and change availability of
+        GUI components.
+
+        :param event: an occurred event
+        :type event: an *Event*
+        """
         if event == Event.SET_FILE_CONTENT:
             self.date_cb.addItems(self.controller.get_file_header())
             self.data_cb.addItems(self.controller.get_file_header())
@@ -62,4 +82,8 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
         elif event == Event.INVALID_DATA_RANGE:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid data range and/or data range has not format: from:to",
+                                      QtGui.QMessageBox.Ok)
+        elif event == Event.INVALID_POPULATION:
+            QtGui.QMessageBox.warning(self, 'Warning',
+                                      "Invalid population. Value must be greater than 0.",
                                       QtGui.QMessageBox.Ok)

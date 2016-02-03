@@ -4,11 +4,11 @@ import os
 from PyQt4 import uic
 
 from epipy.ui.controller.event import Event
-from epipy.ui.controller.sidebarviewcontroller import SideBarController
+from epipy.ui.controller.sidebarcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
 from epipy.ui.view.helpwidget import HelpWidget
 from epipy.ui.view.infogroupbox import InfoGroupBox
-from epipy.ui.view.plotview import PlotView
+from epipy.ui.view.plotwidget import PlotWidget
 from epipy.ui.view.sidebarwidget import SideBarWidget
 
 dir_name = os.path.dirname
@@ -17,6 +17,15 @@ MainWindowUI, MainWindowBase = uic.loadUiType(os.path.join(folder_path, "mainwin
 
 
 class MainWindow(MainWindowBase, MainWindowUI):
+    """
+    This class represents the main window.
+
+    :param controller: the used controller
+    :type controller: *MainWindowController*
+
+    :returns: an instance of *MainWindow*
+    """
+
     def __init__(self, controller):
         MainWindowBase.__init__(self)
         self.setupUi(self)
@@ -28,8 +37,8 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.about_dialog = AboutDialog()
         self.help_view = HelpWidget()
         self.exit_action.triggered.connect(self.close)
-        self.show_fullscreen_action.triggered.connect(self.show_fullscreen)
-        self.exit_fullscreen_action.triggered.connect(self.exit_fullscreen)
+        self.show_fullscreen_action.triggered.connect(self.show_full_screen)
+        self.exit_fullscreen_action.triggered.connect(self.exit_full_screen)
         self.exit_fullscreen_action.setVisible(False)
         self.show_sidebar_action.triggered.connect(self.show_sidebar)
         self.hide_sidebar_action.triggered.connect(self.hide_sidebar)
@@ -39,7 +48,7 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.about_action.triggered.connect(self.about_dialog.show)
 
         # Top Left
-        self.plot_view = PlotView(self)
+        self.plot_view = PlotWidget(self)
         self.h_splitter.insertWidget(0, self.plot_view)
 
         # Top Right
@@ -51,31 +60,46 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.info_group_box = InfoGroupBox(self.controller)
         self.v_splitter.insertWidget(1, self.info_group_box)
 
-    def show_fullscreen(self):
+    def show_full_screen(self):
+        """
+        This function enable the full screen mode of this view.
+        """
         self.show_fullscreen_action.setVisible(False)
         self.exit_fullscreen_action.setVisible(True)
         self.showFullScreen()
 
-    def exit_fullscreen(self):
+    def exit_full_screen(self):
+        """
+        This function disable the full screen mode of this view.
+        """
         self.show_fullscreen_action.setVisible(True)
         self.exit_fullscreen_action.setVisible(False)
         self.showNormal()
 
     def show_sidebar(self):
+        """
+        This function shows the side bar view.
+        """
         self.h_splitter.widget(1).setVisible(True)
         self.show_sidebar_action.setVisible(False)
         self.hide_sidebar_action.setVisible(True)
 
     def hide_sidebar(self):
+        """
+        This function hides the side bar view.
+        """
         self.h_splitter.widget(1).setVisible(False)
         self.show_sidebar_action.setVisible(True)
         self.hide_sidebar_action.setVisible(False)
 
     def update(self, event):
+        """
+        This function updates the view updates the plotted graph.
+
+        :param event: an occurred event
+        :type event: an *Event*
+        """
         if event == Event.PLOT:
-            file_data, fitted_data = self.side_bar_controller.get_plot_data()
-            x_data = file_data.get('x')
-            y_data = file_data.get('y')
-            y_fitted = fitted_data.get('y_fitted')
-            self.plot_view.plot(x_data, y_data, y_fitted)
+            file_data, fitted_data, forecast_data = self.side_bar_controller.get_plot_data()
+            self.plot_view.plot(file_data, fitted_data, forecast_data)
             self.controller.set_side_bar_model(self.side_bar_controller.get_model())

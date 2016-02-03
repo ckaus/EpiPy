@@ -7,28 +7,63 @@ from epipy.utils import logging
 
 
 class BaseModel(object):
+    """
+    This class represents an abstract model for epidemic models.
+    """
+
     def __init__(self):
         __metaclass__ = ABCMeta
         self.N = None
         self.N0 = None
 
-    def fit_info(self, ydata_1, ydata_2):
-        """ Return R^2 and p-value of linear regression between x and y
-            where x and y are array-like."""
+    def _line_regression(self, y_data_1, y_data_2):
+        """
+        This function trigger a calculation of a regression line.
+        Return R^2 and p-value of linear regression between x and y
+        where x and y are array-like.
+
+        :param y_data_1: data on y-axis
+        :type y_data_1: a list
+        :param y_data_2: data on y-axis
+        :type y_data_1: a list
+        :returns: see scipy.stats.stats.linregress
+        """
         slope, intercept, r_value, p_value, std_err = stats.linregress(
-            ydata_1, ydata_2)
+            y_data_1, y_data_2)
         return slope, intercept, r_value ** 2, p_value, std_err
 
-    def fit(self, xdata, ydata, N=None, **param):
+    def fit(self, x_data, y_data, N=None, with_line_regress=True, **parameters):
+        """
+        This function fit a given data set (x_data, y_data) with on an epidemic model.
+
+        :param x_data: data on x-axis
+        :type x_data: list
+        :param y_data: data on y-axis
+        :type y_data: list
+        :param N: population
+        :type N: int
+        :param with_line_regress: with line regression
+        :type with_line_regress: bool
+        :param parameters: model parameters
+        :type parameters: mapping of values
+        :return: the y-fitted-data as list, used parameters, in case of
+        with line regression some regression information between y-data and y-fitted-data
+        """
         try:
             self.N = N
-            self.N0 = self.init_param(ydata[0])
-            if not param:
-                param, pcov = optimize.curve_fit(self.fit_model, xdata, ydata)
-                fitted = self.fit_model(xdata, *param)
+            self.N0 = self.init_param(y_data[0])
+            if not parameters:
+                param, pcov = optimize.curve_fit(self.fit_model, x_data, y_data)
+                fitted = self.fit_model(x_data, *param)
+                _parameters = param.tolist()
             else:
-                fitted = self.fit_model(xdata, **param)
-            return (fitted, param) + self.fit_info(ydata, fitted)
+                fitted = self.fit_model(x_data, **parameters)
+                _parameters = parameters.values()
+            result = (fitted, _parameters)
+            if with_line_regress:
+                return result + self._line_regression(y_data, fitted)
+            return result
+
         except RuntimeError as error:
             logging.error('Runtime Error %s' % error)
             return

@@ -6,13 +6,14 @@ from epipy.ui.controller.event import Event
 from epipy.ui.model.mainmodel import MainModel
 
 
-class MainViewController(BaseController):
+class MainWindowController(BaseController):
     """
     This class represents the main view controller.
 
     :param controller_service: a controller service
     :type controller_service: an instance of *ControllerService*
-    :returns: an instance of *MainViewController*
+
+    :returns: an instance of *MainWindowController*
     """
 
     def __init__(self, controller_service):
@@ -35,16 +36,16 @@ class MainViewController(BaseController):
 
     def set_side_bar_model(self, side_bar_model):
         """
-        This function set the side bar model to main model and notify the information view to print information.
+        This function sets the side bar model to main model and notify the information view to print information.
 
         :param side_bar_model: a side bare model
-        :type side_bar_model: a instance of *SideBarModel*
+        :type side_bar_model: an instance of *SideBarModel*
         """
         self.model.side_bar_model = side_bar_model
         self.notify(Event.PRINT_INFORMATION)
 
     def clear_information(self):
         """
-        This function notify the information view to clear the information.
+        This function notifies the information view to clear the information.
         """
         self.notify(Event.CLEAR_INFORMATION)

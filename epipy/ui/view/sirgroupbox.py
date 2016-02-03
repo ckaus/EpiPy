@@ -11,18 +11,36 @@ SIRvaccineGroupBoxBase, SIRvaccineGroupBoxUI = uic.loadUiType(os.path.join(folde
 
 
 class SIRsimpleGroupBox(SIRsimpleGroupBoxBase, SIRsimpleGroupBoxUI):
+    """
+    This class represents the SIR Simple group box.
+
+    :returns: an instance of *SIRsimpleGroupBox*
+    """
+
     def __init__(self):
         SIRsimpleGroupBoxBase.__init__(self)
         self.setupUi(self)
 
 
 class SIRwbadGroupBox(SIRwbadGroupBoxBase, SIRwbadGroupBoxUI):
+    """
+    This class represents the SIR with deaths and births group box.
+
+    :returns: an instance of *SIRwbadGroupBox*
+    """
+
     def __init__(self):
         SIRwbadGroupBoxBase.__init__(self)
         self.setupUi(self)
 
 
 class SIRvaccineGroupBox(SIRvaccineGroupBoxBase, SIRvaccineGroupBoxUI):
+    """
+    This class represents the SIR Vaccine group box.
+
+    :returns: an instance of *SIRvaccineGroupBox*
+    """
+
     def __init__(self):
         SIRwbadGroupBoxBase.__init__(self)
         self.setupUi(self)

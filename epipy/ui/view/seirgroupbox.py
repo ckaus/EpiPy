@@ -9,6 +9,12 @@ SEIRsimpleGroupBoxUI, SEIRsimpleGroupBoxBase = uic.loadUiType(os.path.join(folde
 
 
 class SEIRsimpleGroupBox(SEIRsimpleGroupBoxBase, SEIRsimpleGroupBoxUI):
+    """
+    This class represents the SEIR Simple group box.
+
+    :returns: an instance of *SEIRsimpleGroupBox*
+    """
+
     def __init__(self):
         SEIRsimpleGroupBoxBase.__init__(self)
         self.setupUi(self)

@@ -1,7 +1,7 @@
 import os
 from PyQt4 import uic, QtGui
 
-from epipy.ui.controller.sidebarviewcontroller import Event
+from epipy.ui.controller.sidebarcontroller import Event
 from epipy.ui.view.inputgroupbox import InputGroupBox
 from epipy.ui.view.optionsgroupbox import OptionsGroupBox
 
@@ -13,6 +13,15 @@ runtime_error_msg = "Fitting process raises an Error."
 
 
 class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
+    """
+    This class represents the side bar widget.
+
+    :param controller: the used controller
+    :type controller: *SideBarController*
+
+    :returns: an instance of *SideBarWidget*
+    """
+
     def __init__(self, controller):
         SideBarWidgetBase.__init__(self)
         self.setupUi(self)
@@ -44,6 +53,12 @@ class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
         self.layout().addWidget(self.side_bar_bottom_widget)
 
     def update(self, event):
+        """
+        This function change the availability of GUI components.
+
+        :param event: an occurred event
+        :type event: an *Event*
+        """
         if event == Event.ENABLE_FIT_BUTTON:
             self.fit_btn.setEnabled(True)
         elif event == Event.DISABLE_FIT_BUTTON and self.fit_btn.isEnabled():
