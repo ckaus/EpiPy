@@ -2,6 +2,9 @@
 
 from abc import abstractmethod, ABCMeta
 from scipy import optimize, stats
+from inspect import getargspec
+from random import uniform
+from numpy import inf, sqrt, diag
 
 from epipy.utils import logging
 
@@ -32,7 +35,7 @@ class BaseModel(object):
             y_data_1, y_data_2)
         return slope, intercept, r_value ** 2, p_value, std_err
 
-    def fit(self, x_data, y_data, N=None, with_line_regress=True, **parameters):
+    def fit(self, x_data, y_data, N=None, with_line_regress=True, percentage=100, **parameters):
         """
         This function fit a given data set (x_data, y_data) with on an epidemic model.
 
@@ -53,7 +56,8 @@ class BaseModel(object):
             self.N = N
             self.N0 = self.init_param(y_data[0])
             if not parameters:
-                param, pcov = optimize.curve_fit(self.fit_model, x_data, y_data)
+                param, pcov = self.iterate_fit(self.fit_model,
+                    x_data[:len(x_data)*percentage/100], y_data[:len(y_data)*percentage/100])
                 fitted = self.fit_model(x_data, *param)
                 _parameters = param.tolist()
             else:
@@ -67,6 +71,28 @@ class BaseModel(object):
         except RuntimeError as error:
             logging.error('Runtime Error %s' % error)
             return
+
+    def iterate_fit(self, model, x_data, y_data):
+        """
+        This function repeats the fitting with random initial guesses for parameters.
+        
+        :param model: model function of an epidemic model class
+        :type model: function
+        :param x_data: data on x-axis
+        :type x_data: list
+        :param y_data: data on y-axis
+        :type y_data: list
+        :return: the set of parameters of the best fit
+        """
+        results = []
+        args, _, _, values = getargspec(self.model)
+        paramsize = len(args) - 3
+        for n in range(10):
+            param, pcov = optimize.curve_fit(model, x_data, y_data, p0=[uniform(0.,1.) for x in range(paramsize)], bounds=(0,inf), max_nfev=1000)
+            fitted = self.fit_model(x_data, *param)
+            quality = self._line_regression(y_data, fitted)[2] ** 2
+            results.append(((param,pcov), quality))
+        return sorted(results, key=lambda x: x[1], reverse=True)[0][0]
 
     @abstractmethod
     def init_param(self, y0):

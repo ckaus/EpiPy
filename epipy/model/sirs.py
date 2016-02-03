@@ -37,6 +37,10 @@ class Simple(SIRS):
     def __init__(self):
         SIRS.__init__(self)
 
+    @staticmethod
+    def param():
+        return ["beta", "gamma", "mu"]
+
     def model(self, y, x, beta, gamma, mu):
         """
         This function defines the SIRS Simple Model.

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>290</width>
+    <width>320</width>
     <height>244</height>
    </rect>
   </property>
@@ -20,6 +20,33 @@
    <string>Input</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="4" column="0">
+    <widget class="QLabel" name="population_label">
+     <property name="toolTip">
+      <string>Specify the total number of population</string>
+     </property>
+     <property name="text">
+      <string>Population</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QComboBox" name="date_cb">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel" name="data_range_label">
+     <property name="toolTip">
+      <string>(Optional) Limit the range of input data</string>
+     </property>
+     <property name="text">
+      <string>Data Range</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0">
     <widget class="QLabel" name="file_label">
      <property name="toolTip">
@@ -30,6 +57,16 @@
      </property>
     </widget>
    </item>
+   <item row="4" column="1">
+    <widget class="QLineEdit" name="population_line_edit">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="placeholderText">
+      <string/>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="0">
     <widget class="QLabel" name="data_label">
      <property name="toolTip">
@@ -37,16 +74,6 @@
      </property>
      <property name="text">
       <string>Data Col.</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
-    <widget class="QLabel" name="population_label">
-     <property name="toolTip">
-      <string>Specify the total number of population</string>
-     </property>
-     <property name="text">
-      <string>Population</string>
      </property>
     </widget>
    </item>
@@ -69,43 +96,6 @@
      </property>
      <property name="readOnly">
       <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="date_label">
-     <property name="toolTip">
-      <string>Select the time column in your data</string>
-     </property>
-     <property name="text">
-      <string>Date Col.</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QComboBox" name="date_cb">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QLineEdit" name="population_line_edit">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="placeholderText">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="data_range_label">
-     <property name="toolTip">
-      <string>(Optional) Limit the range of input data</string>
-     </property>
-     <property name="text">
-      <string>Data Range</string>
      </property>
     </widget>
    </item>
@@ -138,10 +128,61 @@
      </property>
     </widget>
    </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="date_label">
+     <property name="toolTip">
+      <string>Select the time column in your data</string>
+     </property>
+     <property name="text">
+      <string>Date Col.</string>
+     </property>
+    </widget>
+   </item>
    <item row="2" column="1">
     <widget class="QComboBox" name="data_cb">
      <property name="enabled">
       <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QDoubleSpinBox" name="data_percentage_spin_box">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Please specify the percentage of data to be used for fitting.</string>
+     </property>
+     <property name="minimum">
+      <double>0.000000000000000</double>
+     </property>
+     <property name="maximum">
+      <double>100.000000000000000</double>
+     </property>
+     <property name="singleStep">
+      <double>1.000000000000000</double>
+     </property>
+     <property name="value">
+      <double>100.000000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="0" colspan="3">
+    <widget class="QSlider" name="population_slider">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>You can use the slider to adjust the population quickly </string>
+     </property>
+     <property name="minimum">
+      <number>1</number>
+     </property>
+     <property name="maximum">
+      <number>10000000</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>
