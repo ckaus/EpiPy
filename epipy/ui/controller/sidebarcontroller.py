@@ -10,7 +10,7 @@ from epipy.ui.model.sidebarmodel import SideBarModel
 from epipy.utils import csvmanager, dateconverter
 
 
-class SideBarViewController(BaseController):
+class SideBarController(BaseController):
     """
     This class represents a controller for notify views which are added
     to *SideBarWidget*. The controller include the logic of attached views.
@@ -18,7 +18,7 @@ class SideBarViewController(BaseController):
     :param controller_service: a controller service
     :type controller_service: an instance of *ControllerService*
 
-    :returns: an instance of *SideBarViewController*
+    :returns: an instance of *SideBarController*
     """
 
     def __init__(self, controller_service):

@@ -12,7 +12,7 @@ EpiPy is a Tool for fitting epidemic models. This tool is developed for the cour
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    model
    ui
