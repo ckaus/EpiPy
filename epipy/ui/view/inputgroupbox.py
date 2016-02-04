@@ -79,6 +79,10 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             self.data_range_line_edit.clear()
             self.population_line_edit.clear()
             self.data_percentage_spin_box.clear()
+        elif event == Event.UPDATE_POPULATION_FIELD:
+            self.population_line_edit.setText(str(self.controller.model.input_model.population))
+        elif event == Event.UPDATE_POPULATION_SLIDER:
+            self.population_slider.setValue(self.controller.model.input_model.population)
         elif event == Event.NO_POPULATION:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please define a population.",
@@ -91,8 +95,6 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid population. Value must be greater than 0.",
                                       QtGui.QMessageBox.Ok)
-        elif event == Event.UPDATE_POPULATION_FIELD:
-            self.population_line_edit.setText(str(self.controller.model.input_model.population))
         elif event == Event.INVALID_DATA_PERCENTAGE:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid data percentage. Please enter a number between 1 and 100\n",
