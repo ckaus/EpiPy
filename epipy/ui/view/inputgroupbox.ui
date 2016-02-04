@@ -154,16 +154,16 @@
       <string>Please specify the percentage of data to be used for fitting.</string>
      </property>
      <property name="minimum">
-      <double>0.000000000000000</double>
+      <double>0.0</double>
      </property>
      <property name="maximum">
-      <double>100.000000000000000</double>
+      <double>100.0</double>
      </property>
      <property name="singleStep">
-      <double>1.000000000000000</double>
+      <double>1.0</double>
      </property>
      <property name="value">
-      <double>100.000000000000000</double>
+      <double>100.0</double>
      </property>
     </widget>
    </item>
@@ -179,7 +179,7 @@
       <number>1</number>
      </property>
      <property name="maximum">
-      <number>10000000</number>
+      <number>1000000</number>
      </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>

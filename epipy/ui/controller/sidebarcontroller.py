@@ -269,6 +269,7 @@ class SideBarController(BaseController):
                 raise ValueError
             if not value.isEmpty():
                 self.model.input_model.population = int(value)
+                self.notify(Event.UPDATE_POPULATION_SLIDER)
         except ValueError:
             self.notify(Event.INVALID_POPULATION)
 
