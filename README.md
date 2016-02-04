@@ -7,10 +7,18 @@ Epidemics have been an interesting subject to study in many disciplines. Not onl
 Several tools are available that can simulate epidemics and generate data with given parameter for an epidemic model. However, there is yet no tool for easy fitting of epidemic models. EpiPy simplifies the fitting of various models to data and aims to help you understand different epidemics models. It offers a range of possibilities for you to explore.
 
 ## Installation
-Requirements: Python 2.7, NumPy, matplotlib, SciPy, PyQt4
+Requirements: Python 2.7, NumPy 1.10.4, matplotlib 1.4.2, SciPy 0.17.0, PyQt4
+### Libraries
+
+**With Pip**: `$ pip install -r requirements.txt`
+
+or
+
+**With OS package system**: Please follow the install instructions on [SciPy][7].
 
 Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
 
+### EpiPy
 ### Unix
 1. Navigate to `EpiPy/`.
 2. Install EpiPy as *root*:
@@ -18,10 +26,11 @@ Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
 	* (User) `$ pip install .`
 3. EpiPy is now available in terminal `$ epipy` .
 
-### Windows
-We recommend [WinPython 2.7][3].
+### Windows (Not tested)
 
-1. Open your `WinPython Command Prompt` and navigate to `EpiPy/`.
+We recommend ???.
+
+1. Open your `???` and navigate to `EpiPy/`.
 2. Install EpiPy:
 	* (Developer) `$ pip install -e .`
 	* (User) `$ pip install .`
@@ -57,3 +66,4 @@ Take a look into our [wiki][4] and / or generate the documentation of the source
 [4]: https://github.com/ckaus/EpiPy/wiki "wiki"
 [5]: http://sphinx-doc.org/ "Sphinx"
 [6]: https://github.com/ckaus/EpiPy/blob/master/LICENSE "MIT license"
+[7]: http://www.scipy.org/install.html
