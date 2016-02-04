@@ -2,6 +2,7 @@
 
 import os
 import sys
+from distutils.version import StrictVersion
 
 try:
     from setuptools import setup, find_packages
@@ -30,6 +31,9 @@ except ImportError:
 
 if sys.version_info[:2] > (2, 7):
     raise RuntimeError("Python version 2.6, 2.7 required.")
+
+if StrictVersion(scipy.__version__) < StrictVersion('0.17.0'):
+    raise RuntimeError("Scipy version 0.17 or later required.")
 
 
 def read(fname):
