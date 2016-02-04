@@ -8,25 +8,29 @@ Several tools are available that can simulate epidemics and generate data with g
 
 ## Installation
 Requirements: Python 2.7, NumPy 1.10.4, matplotlib 1.4.2, SciPy 0.17.0, PyQt4
-### Libraries
 
-**With Pip**: `$ pip install -r requirements.txt`
+**Step 1**
+
+*With Pip*: `$ pip install -r requirements.txt`
 
 or
 
-**With OS package system**: Please follow the install instructions on [SciPy][7].
+*With OS package system*: Please follow the install instructions on [SciPy][7].
+
+**Step 2**
 
 Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
 
-### EpiPy
-### Unix
+*Unix*
+
 1. Navigate to `EpiPy/`.
+
 2. Install EpiPy as *root*:
 	* (Developer) `$ pip install -e .`
 	* (User) `$ pip install .`
 3. EpiPy is now available in terminal `$ epipy` .
 
-### Windows (Not tested)
+*Windows (Not tested)*
 
 We recommend ???.
 
