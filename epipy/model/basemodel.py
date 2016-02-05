@@ -36,7 +36,7 @@ class BaseModel(object):
             y_data_1, y_data_2)
         return slope, intercept, r_value ** 2, p_value, std_err
 
-    def fit(self, x_data, y_data, N=None, with_line_regress=True, percentage=100, **parameters):
+    def fit(self, x_data, y_data, N=None, with_line_regress=True, **parameters):
         """
         This function fit a given data set (x_data, y_data) with on an epidemic model.
 
@@ -48,8 +48,6 @@ class BaseModel(object):
         :type N: int
         :param with_line_regress: with line regression
         :type with_line_regress: bool
-        :param percentage: % of input values
-        :type percentage: int
         :param parameters: model parameters
         :type parameters: mapping of values
 
@@ -60,9 +58,7 @@ class BaseModel(object):
             self.N = N
             self.N0 = self.init_param(y_data[0])
             if not parameters:
-                fitted, param_pcov, line_regression = self.iterate_fit(self.fit_model,
-                                                                       x_data[:len(x_data) * percentage / 100],
-                                                                       y_data[:len(y_data) * percentage / 100])
+                fitted, param_pcov, line_regression = self.iterate_fit(self.fit_model, x_data, y_data)
                 _parameters = param_pcov[0].tolist()
                 return fitted, _parameters, line_regression
             else:
@@ -92,7 +88,8 @@ class BaseModel(object):
         args, _, _, values = getargspec(self.model)
         param_size = len(args) - 3
         for n in range(10):
-            param, pcov = optimize.curve_fit(model, x_data, y_data, p0=[uniform(0., 1.) for x in range(param_size)], bounds=(0, inf), max_nfev=1000)
+            param, pcov = optimize.curve_fit(model, x_data, y_data, p0=[uniform(0., 1.) for x in range(param_size)],
+                                             bounds=(0, inf), max_nfev=1000)
             fitted = self.fit_model(x_data, *param)
             line_regression = self._line_regression(y_data, fitted)
             results.append((fitted, (param, pcov), line_regression))

@@ -72,6 +72,9 @@ class SideBarController(BaseController):
         # fitted model range
         x_data_fit = x_data[from_value:to_value]
         y_data_fit = y_data[from_value:to_value]
+        # with percentage
+        x_data_fit = x_data_fit[:len(x_data_fit) * self.data_percentage / 100]
+        y_data_fit = y_data_fit[:len(y_data_fit) * self.data_percentage / 100]
 
         # forecast model range = time + 29(t)
         x_data_forecast = [i for i in range(int(x_data[from_value]), int(x_data[to_value - 1]) + 30)]
@@ -79,23 +82,22 @@ class SideBarController(BaseController):
 
         param = self.get_model_parameters_combo_box()
         if self.with_param:
-            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population, percentage=100, **param)
+            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population, **param)
         else:
             # fitted model - using optimize(), we don't know the parameters for all infected!
-            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population, percentage=self.data_percentage)
+            fitted_data = model_class.fit(x_data_fit, y_data_fit, N=population)
 
         # forecast graph is based on I0 and optimized parameters
         forecast_param = dict(zip(param.keys(), fitted_data[1]))
         forecast = model_class.fit(x_data_forecast, [y_data_forecast], N=population, with_line_regress=False,
                                    **forecast_param)
 
-        self.model.plot_model.set_data(x_data[from_value:to_value], y_data[from_value:to_value],
-                                       x_data_fit, fitted_data[0], x_data_forecast, forecast[0],
+        self.model.plot_model.set_data(x_data, y_data, x_data_fit, fitted_data[0], x_data_forecast, forecast[0],
                                        {'slope': fitted_data[2][0], 'intercept': fitted_data[2][1],
                                         'r_value**2': fitted_data[2][2], 'p_value': fitted_data[2][3],
                                         'std_err': fitted_data[2][4]})
 
-        self.model.options_model.epidemic_model_parameters = fitted_data[1]
+        self.update_current_group_box(fitted_data[1])
         self.controller_service.redirect(Event.PLOT)
 
     def is_data_range_valid(self):
@@ -305,13 +307,9 @@ class SideBarController(BaseController):
         This function sets the percentage of data used in the fitting process.
 
         :param percentage: percentage of the data
-        :type percentage: double from (0, 100]
+        :type percentage: float from (0, 100]
         """
-
-        if percentage > 0 and percentage <= 100:
-            self.data_percentage = percentage
-        else:
-            self.notify(Event.INVALID_DATA_PERCENTAGE)
+        self.data_percentage = percentage
 
     def update_current_group_box(self, parameters):
         """
@@ -323,6 +321,8 @@ class SideBarController(BaseController):
         group_box = self.get_current_model_parameter_group_box()
         if group_box.isEnabled():
             return
+
+        self.model.options_model.epidemic_model_parameters = parameters
         spin_boxes_count = 0
         for i in range(0, group_box.layout().count()):
             widget = group_box.layout().itemAt(i).widget()
