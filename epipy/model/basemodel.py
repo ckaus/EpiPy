@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from abc import abstractmethod, ABCMeta
-from scipy import optimize, stats
 from inspect import getargspec
+from numpy import inf
 from random import uniform
-from numpy import inf, sqrt, diag
+from scipy import optimize, stats
 
 from epipy.utils import logging
 
@@ -29,6 +29,7 @@ class BaseModel(object):
         :type y_data_1: a list
         :param y_data_2: data on y-axis
         :type y_data_1: a list
+
         :returns: see scipy.stats.stats.linregress
         """
         slope, intercept, r_value, p_value, std_err = stats.linregress(
@@ -47,8 +48,11 @@ class BaseModel(object):
         :type N: int
         :param with_line_regress: with line regression
         :type with_line_regress: bool
+        :param percentage: % of input values
+        :type percentage: int
         :param parameters: model parameters
         :type parameters: mapping of values
+
         :return: the y-fitted-data as list, used parameters, in case of
         with line regression some regression information between y-data and y-fitted-data
         """
@@ -56,17 +60,16 @@ class BaseModel(object):
             self.N = N
             self.N0 = self.init_param(y_data[0])
             if not parameters:
-                param, pcov = self.iterate_fit(self.fit_model,
-                    x_data[:len(x_data)*percentage/100], y_data[:len(y_data)*percentage/100])
-                fitted = self.fit_model(x_data, *param)
-                _parameters = param.tolist()
+                fitted, param_pcov, line_regression = self.iterate_fit(self.fit_model,
+                                                                       x_data[:len(x_data) * percentage / 100],
+                                                                       y_data[:len(y_data) * percentage / 100])
+                _parameters = param_pcov[0].tolist()
+                return fitted, _parameters, line_regression
             else:
                 fitted = self.fit_model(x_data, **parameters)
-                _parameters = parameters.values()
-            result = (fitted, _parameters)
-            if with_line_regress:
-                return result + self._line_regression(y_data, fitted)
-            return result
+                if with_line_regress:
+                    return fitted, parameters.values(), self._line_regression(y_data, fitted)
+                return fitted, parameters.values()
 
         except RuntimeError as error:
             logging.error('Runtime Error %s' % error)
@@ -82,17 +85,20 @@ class BaseModel(object):
         :type x_data: list
         :param y_data: data on y-axis
         :type y_data: list
-        :return: the set of parameters of the best fit
+
+        :returns: the set of parameters of the best fit
         """
         results = []
         args, _, _, values = getargspec(self.model)
-        paramsize = len(args) - 3
+        param_size = len(args) - 3
+        p0 = [uniform(0., 1.) for x in range(param_size)]
         for n in range(10):
-            param, pcov = optimize.curve_fit(model, x_data, y_data, p0=[uniform(0.,1.) for x in range(paramsize)], bounds=(0,inf), max_nfev=1000)
+            param, pcov = optimize.curve_fit(model, x_data, y_data, p0=p0, bounds=(0, inf), max_nfev=1000)
             fitted = self.fit_model(x_data, *param)
-            quality = self._line_regression(y_data, fitted)[2] ** 2
-            results.append(((param,pcov), quality))
-        return sorted(results, key=lambda x: x[1], reverse=True)[0][0]
+            line_regression = self._line_regression(y_data, fitted)
+            results.append((fitted, (param, pcov), line_regression))
+            # sort fitted models by qualities and return best fitted model
+        return sorted(results, key=lambda x: x[2][2], reverse=True)[0]
 
     @abstractmethod
     def init_param(self, y0):

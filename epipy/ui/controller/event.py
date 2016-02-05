@@ -5,6 +5,7 @@ class Event(object):
     """
     This static class represents an enum for events.
     """
+    
     PLOT = 0
     ENABLE_FIT_BUTTON = 1
     DISABLE_FIT_BUTTON = 2

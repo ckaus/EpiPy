@@ -17,6 +17,15 @@ class PlotModel(object):
         self.y_forecast = None
         self.regression_values = None
 
+    def set_data(self, x_data, y_data, x_fitted, y_fitted, x_forecast, y_forecast, regression_values):
+        self.x_data = x_data
+        self.y_data = y_data
+        self.x_fitted = x_fitted
+        self.y_fitted = y_fitted
+        self.x_forecast = x_forecast
+        self.y_forecast = y_forecast
+        self.regression_values = regression_values
+
     def get_data(self):
         """
         :returns: the plottable graphs

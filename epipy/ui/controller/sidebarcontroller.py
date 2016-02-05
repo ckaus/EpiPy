@@ -7,6 +7,7 @@ from PyQt4 import QtGui
 from epipy.ui.controller.basecontroller import BaseController
 from epipy.ui.controller.event import Event
 from epipy.ui.model.sidebarmodel import SideBarModel
+
 from epipy.utils import csvmanager, dateconverter
 
 
@@ -18,7 +19,7 @@ class SideBarController(BaseController):
     :param controller_service: a controller service
     :type controller_service: an instance of *ControllerService*
 
-    :returns: an instance of *SideBarViewController*
+    :returns: an instance of *SideBarController*
     """
 
     def __init__(self, controller_service):
@@ -38,6 +39,7 @@ class SideBarController(BaseController):
         """
         This function clears all input components on side bar view.
         """
+
         self.model.input_model.file_name = None
         self.model.input_model.file_content = None
         self.model.input_model.population = None
@@ -48,39 +50,19 @@ class SideBarController(BaseController):
         """
         This function collects content from side bar view and start fitting based on collected content.
         """
-        if not self.model.input_model.population:
-            self.notify(Event.NO_POPULATION)
-            return
-        # check validity of data range
-        _value = self.current_data_range
-        try:
-            from_value, to_value = _value.split(":")
-            # check if values contains minus, because
-            # a cast of a value -1 to an integer returns 1
-            if from_value.contains('-') or to_value.contains('-'):
-                raise ValueError
 
-            from_value = int(from_value)
-            to_value = int(to_value)
-
-            if from_value < 0 or from_value >= to_value or to_value > self.data_input_length:
-                raise ValueError
-            else:
-                self.model.input_model.data_range = self.current_data_range
-        except ValueError:
-            self.notify(Event.INVALID_DATA_RANGE)
+        error_event = self.validate_input_data()
+        if error_event:
+            self.notify(error_event)
             return
+
+        self.model.input_model.data_range = self.current_data_range
 
         data_range = self.model.input_model.data_range.split(":")
         from_value = int(data_range[0])
         to_value = int(data_range[1])
 
         file_content = self.model.input_model.file_content
-
-        if not self.is_dates_valid():
-            self.notify(Event.SHOW_CANT_CONVERT_DATES)
-            return
-
         model_class = self.model.options_model.epidemic_model_class
         population = self.model.input_model.population
 
@@ -108,25 +90,44 @@ class SideBarController(BaseController):
         forecast = model_class.fit(x_data_forecast, [y_data_forecast], N=population, with_line_regress=False,
                                    **forecast_param)
 
-        self.model.plot_model.x_data = x_data[from_value:to_value]
-        self.model.plot_model.y_data = y_data[from_value:to_value]
-        self.model.plot_model.x_fitted = x_data_fit
-        self.model.plot_model.y_fitted = fitted_data[0]
-        self.model.plot_model.x_forecast = x_data_forecast
-        self.model.plot_model.y_forecast = forecast[0]
-        self.update_current_group_box(fitted_data[1])
+        self.model.plot_model.set_data(x_data[from_value:to_value], y_data[from_value:to_value],
+                                       x_data_fit, fitted_data[0], x_data_forecast, forecast[0],
+                                       {'slope': fitted_data[2][0], 'intercept': fitted_data[2][1],
+                                        'r_value**2': fitted_data[2][2], 'p_value': fitted_data[2][3],
+                                        'std_err': fitted_data[2][4]})
+
         self.model.options_model.epidemic_model_parameters = fitted_data[1]
-        # some regression values of fitted model
-        self.model.plot_model.regression_values = {'slope': fitted_data[2], 'intercept': fitted_data[3],
-                                                   'r_value**2': fitted_data[4], 'p_value': fitted_data[5],
-                                                   'std_err': fitted_data[6]}
         self.controller_service.redirect(Event.PLOT)
+
+    def is_data_range_valid(self):
+        """
+        This function check validity of data input range.
+
+        :returns: True if data range is valid, False if not valid
+        """
+
+        _value = self.current_data_range
+        try:
+            from_value, to_value = _value.split(":")
+            # check if values contains minus, because
+            # a cast of a value -1 to an integer returns 1
+            if from_value.contains('-') or to_value.contains('-'):
+                raise ValueError
+
+            from_value = int(from_value)
+            to_value = int(to_value)
+
+            if from_value < 0 or from_value >= to_value or to_value > self.data_input_length:
+                raise ValueError
+            return True
+        except ValueError:
+            return False
 
     def is_dates_valid(self):
         """
-        This function checks if date column contains valid dates.
+        This function checks if date column contains valid dates and convert these dates.
 
-        :returns: true if dates are valid, false are not
+        :returns: True if dates are valid, False if not valid
         """
         dates = self.model.input_model.file_content[self.current_date_col]
         try:
@@ -136,8 +137,8 @@ class SideBarController(BaseController):
             dates = dateconverter.convert(dates)
             if len(dates) == 0:  # can not convert dates
                 return False
-            else:  # can convert dates, set converted dates
-                self.model.input_model.file_content[self.current_date_col] = dates
+            # can convert dates, replace dates
+            self.model.input_model.file_content[self.current_date_col] = dates
         return True
 
     def get_data_range(self):
@@ -328,6 +329,22 @@ class SideBarController(BaseController):
             if widget != 0 and type(widget) is QtGui.QDoubleSpinBox:
                 widget.setValue(parameters[spin_boxes_count])
                 spin_boxes_count += 1
+
+    def validate_input_data(self):
+        """
+        This function starts validation of input group box.
+
+        :returns: None if valid, *Event* if not valid
+        """
+        if not self.model.input_model.population:
+            return Event.NO_POPULATION
+
+        if not self.is_data_range_valid():
+            return Event.INVALID_DATA_RANGE
+
+        if not self.is_dates_valid():
+            return Event.SHOW_CANT_CONVERT_DATES
+        return
 
     def with_parameters(self, value):
         """
