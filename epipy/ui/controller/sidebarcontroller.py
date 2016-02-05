@@ -7,7 +7,6 @@ from PyQt4 import QtGui
 from epipy.ui.controller.basecontroller import BaseController
 from epipy.ui.controller.event import Event
 from epipy.ui.model.sidebarmodel import SideBarModel
-
 from epipy.utils import csvmanager, dateconverter
 
 
@@ -243,7 +242,7 @@ class SideBarController(BaseController):
         """
         self.model.options_model.epidemic_model = model
         self.notify(Event.SELECT_NEW_MODEL)
-        self.notify(Event.ENABLE_FIT_BUTTON)
+        self.notify(Event.DISABLE_FIT_BUTTON)
 
     def set_model_group_box(self, model_group_box, model_class):
         """
@@ -257,6 +256,7 @@ class SideBarController(BaseController):
         self.current_model_group_box = model_group_box
         self.model.options_model.epidemic_model_class = model_class
         self.notify(Event.SELECT_NEW_MODEL_TYPE)
+        self.notify(Event.ENABLE_FIT_BUTTON)
 
     def set_population(self, value):
         """

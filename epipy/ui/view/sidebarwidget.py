@@ -61,7 +61,7 @@ class SideBarWidget(SideBarWidgetBase, SideBarWidgetUI):
         """
         if event == Event.ENABLE_FIT_BUTTON:
             self.fit_btn.setEnabled(True)
-        elif event == Event.DISABLE_FIT_BUTTON and self.fit_btn.isEnabled():
+        elif event == Event.DISABLE_FIT_BUTTON:
             self.fit_btn.setEnabled(False)
         elif event == Event.SHOW_RUNTIME_ERROR:
             QtGui.QMessageBox.critical(self, 'Runtime Error', runtime_error_msg, QtGui.QMessageBox.Ok)

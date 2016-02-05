@@ -67,9 +67,11 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
             # remove model parameter group from view if exist
             if self.layout().itemAt(3):
                 self.layout().itemAt(3).widget().deleteLater()
-        elif event == Event.SELECT_NEW_MODEL_TYPE:
             self.parameters_check_box.setChecked(False)
+            self.parameters_check_box.setEnabled(False)
+        elif event == Event.SELECT_NEW_MODEL_TYPE:
             self.parameters_check_box.setEnabled(True)
+            self.parameters_check_box.setChecked(False)
             # add selected model parameter group box to view, depending on model type
             parameter_group_box = self.controller.get_current_model_parameter_group_box()
             # remove model parameter group box from view if exist
@@ -88,8 +90,9 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
                 parameter_group_box.setEnabled(False)
 
         elif event == Event.SELECT_WITH_PARAMETERS:
-            parameter_group_box = self.layout().itemAt(3).widget()
-            if not self.parameters_check_box.isChecked():
-                parameter_group_box.setEnabled(False)
-            else:
-                parameter_group_box.setEnabled(True)
+            possible_group_box = self.layout().itemAt(3)
+            if possible_group_box:
+                if not self.parameters_check_box.isChecked():
+                    possible_group_box.widget().setEnabled(False)
+                else:
+                    possible_group_box.widget().setEnabled(True)
