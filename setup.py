@@ -21,7 +21,7 @@ setup(
     keywords="epidemic models",
     url="https://github.com/ckaus/EpiPy",
     packages=find_packages(exclude=["tests"]),
-    package_data={"epipy": ["resources/ui/*", "resources/data/*"]},
+    package_data={"epipy": ["resources/data/*"]},
     long_description=read('README.md'),
     classifiers=[
         """\
