@@ -91,9 +91,8 @@ class BaseModel(object):
         results = []
         args, _, _, values = getargspec(self.model)
         param_size = len(args) - 3
-        p0 = [uniform(0., 1.) for x in range(param_size)]
         for n in range(10):
-            param, pcov = optimize.curve_fit(model, x_data, y_data, p0=p0, bounds=(0, inf), max_nfev=1000)
+            param, pcov = optimize.curve_fit(model, x_data, y_data, p0=[uniform(0., 1.) for x in range(param_size)], bounds=(0, inf), max_nfev=1000)
             fitted = self.fit_model(x_data, *param)
             line_regression = self._line_regression(y_data, fitted)
             results.append((fitted, (param, pcov), line_regression))
