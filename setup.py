@@ -1,49 +1,21 @@
 #!/usr/bin/env python
 
 import os
-import sys
-from distutils.version import StrictVersion
 
 try:
     from setuptools import setup, find_packages
-except ImportError:
-    raise ImportError("Install setup tools")
-
-try:
     import PyQt4
-except ImportError:
-    raise ImportError("Install PyQt4")
-
-try:
-    import numpy as np
-except ImportError:
-    raise ImportError("Install Numpy")
-
-try:
-    import matplotlib
-except ImportError:
-    raise ImportError("Install matplotlib")
-
-try:
-    import scipy
-except ImportError:
-    raise ImportError("Install scipy")
-
-if sys.version_info[:2] > (2, 7):
-    raise RuntimeError("Python version 2.6, 2.7 required.")
-
-if StrictVersion(scipy.__version__) < StrictVersion('0.17.0'):
-    raise RuntimeError("Scipy version 0.17 or later required.")
+except ImportError as error:
+    raise ImportError(error)
 
 
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
+def read(file_name):
+    return open(os.path.join(os.path.dirname(__file__), file_name)).read()
 
 setup(
     name="EpiPy",
     version="0.1",
-    author="ckaus",
+    author="ckaus, malbert, yenarhee",
     description="A Tool for fitting epidemic models.",
     license="MIT",
     keywords="epidemic models",
