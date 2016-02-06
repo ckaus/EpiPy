@@ -7,38 +7,33 @@ Epidemics have been an interesting subject to study in many disciplines. Not onl
 Several tools are available that can simulate epidemics and generate data with given parameter for an epidemic model. However, there is yet no tool for easy fitting of epidemic models. EpiPy simplifies the fitting of various models to data and aims to help you understand different epidemics models. It offers a range of possibilities for you to explore.
 
 ## Installation
+
+### Windows
+
+Requirements:
+
+* [Python 2.7.11](https://www.python.org/downloads/release/python-2711/)
+* [Cython-0.23.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython)
+* [matplotlib-1.5.1-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib)
+* [numpy-1.10.4+mkl-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
+* [scipy-0.17.0-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
+* [PyQt4-4.11.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4)
+
+
+1. Navigate to `install-packages` and execute `EpiPy-0.1.win-amd64.msi`
+2. EpiPy is now available in terminal `$ epipy` .
+
+### Unix
+
 Requirements: Python 2.7, NumPy 1.10.4, matplotlib 1.4.2, SciPy 0.17.0, PyQt4
 
-**Step 1**
-
-*With Pip*: `$ pip install -r requirements.txt`
-
-or
-
-*With OS package system*: Please follow the install instructions on [SciPy][7].
-
-**Step 2**
-
-Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
-
-*Unix*
-
-1. Navigate to `EpiPy/`.
-
-2. Install EpiPy as *root*:
+1. Install with Pip: `$ pip install -r requirements.txt` *or* follow the install instructions on [SciPy][7].
+2. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
+3. Navigate to `EpiPy/`.
+4. Install EpiPy as *root*:
 	* (Developer) `$ pip install -e .`
 	* (User) `$ pip install .`
-3. EpiPy is now available in terminal `$ epipy` .
-
-*Windows (Not tested)*
-
-We recommend ???.
-
-1. Open your `???` and navigate to `EpiPy/`.
-2. Install EpiPy:
-	* (Developer) `$ pip install -e .`
-	* (User) `$ pip install .`
-3. EpiPy is now available in terminal `$ epipy` .
+5. EpiPy is now available in terminal `$ epipy` .
 
 ## Features
 
