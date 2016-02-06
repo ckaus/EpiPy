@@ -12,6 +12,7 @@ except ImportError as error:
 def read(file_name):
     return open(os.path.join(os.path.dirname(__file__), file_name)).read()
 
+
 setup(
     name="EpiPy",
     version="0.1",
@@ -21,7 +22,7 @@ setup(
     keywords="epidemic models",
     url="https://github.com/ckaus/EpiPy",
     packages=find_packages(exclude=["tests"]),
-    package_data={"epipy": ["resources/data/*"]},
+    package_data={"epipy": ["ui/view/*.ui", "resources/data/*"]},
     long_description=read('README.md'),
     classifiers=[
         """\
