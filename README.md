@@ -13,14 +13,14 @@ Several tools are available that can simulate epidemics and generate data with g
 Requirements:
 
 * [Python 2.7.11](https://www.python.org/downloads/release/python-2711/)
-* [Cython-0.23.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#cython)
 * [matplotlib-1.5.1-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib)
 * [numpy-1.10.4+mkl-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
 * [scipy-0.17.0-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
 * [PyQt4-4.11.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4)
 
+1. Install all needed libraries with Pip.
 1. Navigate to `install_packages` and execute `EpiPy-0.1.win-amd64.msi`
-2. EpiPy is now available in terminal `$ epipy` .
+2. EpiPy is now available in `C:\Python27\Scripts\`.
 
 ### Unix
 
