@@ -19,7 +19,6 @@ Requirements:
 * [scipy-0.17.0-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
 * [PyQt4-4.11.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4)
 
-
 1. Navigate to `install-packages` and execute `EpiPy-0.1.win-amd64.msi`
 2. EpiPy is now available in terminal `$ epipy` .
 
