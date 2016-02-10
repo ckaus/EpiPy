@@ -47,8 +47,6 @@ Requirements: Python 2.7, NumPy 1.10.4, matplotlib 1.4.2, SciPy 0.17.0, PyQt 4.1
  * **S**usceptible **E**xposed **I**nfected **R**ecovered
    * Simple
 
-## Screenshots
-
 ## Documentation
 Take a look into our [wiki][4] and / or generate the documentation of the sources by using [Sphinx][5].
 
