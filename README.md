@@ -17,17 +17,18 @@ Requirements:
 * [numpy-1.10.4+mkl-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
 * [scipy-0.17.0-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
 * [PyQt4-4.11.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4)
+* [EpiPy-0.1.win-amd64.msi](https://github.com/ckaus/EpiPy/tree/master/install_packages)
 
 1. Install all needed libraries with Pip.
-2. Navigate to `install_packages` and execute `EpiPy-0.1.win-amd64.msi`
+2. Install `EpiPy-0.1.win-amd64.msi`
 3. EpiPy is now available in `C:\Python27\Scripts\`.
 
 ### Unix
 
 Requirements: Python 2.7, PyQt 4.11 [for Debian jessie](https://packages.debian.org/jessie/pyqt4-dev-tools)
 
-1. Install with Pip: `$ pip install -r requirements.txt` *or* follow the install instructions on [SciPy][7].
-2. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
+1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
+2. Install with Pip: `$ pip install -r requirements.txt` *or* follow the install instructions on [SciPy][7].
 3. Navigate to `EpiPy/`.
 4. Install EpiPy as *root*:
 	* (Developer) `$ pip install -e .`
