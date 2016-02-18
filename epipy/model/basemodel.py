@@ -51,7 +51,7 @@ class BaseModel(object):
         :param parameters: model parameters
         :type parameters: mapping of values
 
-        :return: the y-fitted-data as list, used parameters, in case of
+        :returns: the y-fitted-data as list, used parameters, in case of
         with line regression some regression information between y-data and y-fitted-data
         """
         try:
