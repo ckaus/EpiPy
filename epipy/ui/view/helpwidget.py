@@ -28,6 +28,13 @@ class HelpWidget(QtGui.QWidget):
         self.setLayout(layout)
 
     def change_manual_page(self, value):
+        """
+        This function change the displayed manual page.
+
+        :param value: the index of selected manual page
+        :type value: int
+        """
+
         if value == 0:
             self.web_view.load(QtCore.QUrl(os.path.join(folder_path + 'resources/manual', "manual.htm")))
         elif value == 1:
