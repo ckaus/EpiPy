@@ -25,8 +25,7 @@ Requirements:
 
 ### Unix
 
-Requirements: Python 2.7, PyQt 4.11 [for Debian jessie](https://packages.debian.org/jessie/pyqt4-dev-tools)
-
+Requirements: Python 2.7, PyQt 4.11 [for Debian jessie](https://packages.debian.org/jessie/python-qt4)
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
 2. Install with Pip: `$ pip install -r requirements.txt` *or* follow the install instructions on [SciPy][7].
 3. Navigate to `EpiPy/`.
