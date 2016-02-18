@@ -17,7 +17,18 @@ class HelpWidget(QtGui.QWidget):
     def __init__(self):
         QtGui.QWidget.__init__(self)
         layout = QtGui.QVBoxLayout()
-        web_view = QtWebKit.QWebView()
-        web_view.load(QtCore.QUrl(os.path.join(folder_path + 'resources', "manual.htm")))
-        layout.addWidget(web_view)
+        menu_cb = QtGui.QComboBox()
+        menu_cb.addItem(QtCore.QString('GUI Components'))
+        menu_cb.addItem(QtCore.QString('Example: Fit Data'))
+        menu_cb.currentIndexChanged['int'].connect(self.change_manual_page)
+        layout.addWidget(menu_cb)
+        self.web_view = QtWebKit.QWebView()
+        self.change_manual_page(0)
+        layout.addWidget(self.web_view)
         self.setLayout(layout)
+
+    def change_manual_page(self, value):
+        if value == 0:
+            self.web_view.load(QtCore.QUrl(os.path.join(folder_path + 'resources/manual', "manual.htm")))
+        elif value == 1:
+            self.web_view.load(QtCore.QUrl(os.path.join(folder_path + 'resources/manual', "example.htm")))
