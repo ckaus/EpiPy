@@ -9,6 +9,12 @@ EpiPy
 EpiPy is a Tool for fitting epidemic models. This tool is developed for the course
 "Softwareprojekt Mobile Communication" at the Freie Universität Berlin.
 
+.. image:: class_diagram.png
+    :width: 400px
+    :align: center
+    :height: 200px
+    :alt: Class diagram of EpiPy
+
 Contents:
 
 .. toctree::

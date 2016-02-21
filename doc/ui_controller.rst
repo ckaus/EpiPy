@@ -21,15 +21,15 @@ controllerservice
 .. automodule:: ui.controller.controllerservice
     :members:
 
-mainviewcontroller
-------------------
+mainwindowcontroller
+--------------------
 
-.. automodule:: ui.controller.mainviewcontroller
+.. automodule:: ui.controller.mainwindowcontroller
     :members:
 
-sidebarviewcontroller
----------------------
+sidebarcontroller
+-----------------
 
-.. automodule:: ui.controller.sidebarviewcontroller
+.. automodule:: ui.controller.sidebarcontroller
     :members:
 

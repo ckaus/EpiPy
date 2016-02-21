@@ -10,10 +10,10 @@ aboutdialog
 .. automodule:: ui.view.aboutdialog
     :members:
 
-plotview
---------
+plotwidget
+----------
 
-.. automodule:: ui.view.plotview
+.. automodule:: ui.view.plotwidget
     :members:
 
 sirsgroupbox
@@ -38,12 +38,6 @@ seirgroupbox
 ------------
 
 .. automodule:: ui.view.seirgroupbox
-    :members:
-
-helpwidget
-----------
-
-.. automodule:: ui.view.helpwidget
     :members:
 
 mainwindow
