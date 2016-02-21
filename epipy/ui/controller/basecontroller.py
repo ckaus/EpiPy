@@ -32,6 +32,7 @@ class BaseController(object):
 
         :param view: a view
         :param view: a *QWidget*
+
         :raises: *ValueError* when view was not attached
         """
         try:

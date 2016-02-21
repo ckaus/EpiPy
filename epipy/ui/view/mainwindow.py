@@ -6,7 +6,6 @@ from PyQt4 import uic
 from epipy.ui.controller.event import Event
 from epipy.ui.controller.sidebarcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
-from epipy.ui.view.helpwidget import HelpWidget
 from epipy.ui.view.infogroupbox import InfoGroupBox
 from epipy.ui.view.plotwidget import PlotWidget
 from epipy.ui.view.sidebarwidget import SideBarWidget
@@ -35,7 +34,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
 
         # Menu
         self.about_dialog = AboutDialog()
-        self.help_view = HelpWidget()
         self.exit_action.triggered.connect(self.close)
         self.show_fullscreen_action.triggered.connect(self.show_full_screen)
         self.exit_fullscreen_action.triggered.connect(self.exit_full_screen)
@@ -44,7 +42,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.hide_sidebar_action.triggered.connect(self.hide_sidebar)
         self.show_sidebar_action.setVisible(False)
         self.clear_information_action.triggered.connect(self.controller.clear_information)
-        self.help_action.triggered.connect(self.help_view.show)
         self.about_action.triggered.connect(self.about_dialog.show)
 
         # Top Left

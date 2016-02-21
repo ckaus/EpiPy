@@ -52,7 +52,8 @@ class BaseModel(object):
         :type parameters: mapping of values
 
         :returns: the y-fitted-data as list, used parameters, in case of
-        with line regression some regression information between y-data and y-fitted-data
+            with line regression some regression information between
+            y-data and y-fitted-data
         """
         try:
             self.N = N
@@ -74,7 +75,7 @@ class BaseModel(object):
     def iterate_fit(self, model, x_data, y_data):
         """
         This function repeats the fitting with random initial guesses for parameters.
-        
+
         :param model: model function of an epidemic model class
         :type model: function
         :param x_data: data on x-axis

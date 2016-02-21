@@ -18,9 +18,6 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <layout class="QHBoxLayout" name="top_layout"/>
-   </item>
-   <item>
     <widget class="QPlainTextEdit" name="info_plain_text_edit">
      <property name="lineWrapMode">
       <enum>QPlainTextEdit::WidgetWidth</enum>

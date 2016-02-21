@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from PyQt4 import uic, QtGui
+from PyQt4 import uic
 
 from epipy.ui.controller.event import Event
 
@@ -27,9 +27,6 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
 
         self.controller = controller
         self.controller.attach(self)
-
-        self.spacer = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Expanding)
-        self.top_layout.addItem(self.spacer)
 
     def update(self, event):
         """
