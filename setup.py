@@ -15,7 +15,7 @@ def read(file_name):
 
 setup(
     name="EpiPy",
-    version="0.1",
+    version="1.0",
     author="ckaus, mitalbert, yenarhee",
     description="A Tool for fitting epidemic models.",
     license="MIT",
