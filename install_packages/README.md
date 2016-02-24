@@ -15,10 +15,11 @@ Requirements:
 3. EpiPy is now available in `C:\Python27\Scripts\`.
 
 ## Debian/Ubuntu
-
 Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >= 0.17.0, matplotlib >= 1.4.2
 
 **With installation package (.deb)**
+
+**WARNING** The librariy libstrc++6 delete libre office core and all depending packages and could break your package dependencies on Debian. Please install **From sources**. 
 
 Requirements:
 
