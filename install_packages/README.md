@@ -9,7 +9,6 @@ Requirements:
 * [numpy-1.10.4+mkl-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
 * [scipy-0.17.0-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
 * [PyQt4-4.11.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4)
-* [EpiPy-0.1.win-amd64.msi](https://github.com/ckaus/EpiPy/tree/master/install_packages)
 
 1. Install all needed libraries with Pip.
 2. Install `EpiPy-1.1.win-amd64.msi`
