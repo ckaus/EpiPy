@@ -11,7 +11,7 @@ Requirements:
 * [PyQt4-4.11.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4)
 
 1. Install all needed libraries with Pip.
-2. Install `EpiPy-1.1.win-amd64.msi`
+2. Install `EpiPy-1.0.win-amd64.msi`
 3. EpiPy is now available in `C:\Python27\Scripts\`.
 
 ## Debian/Ubuntu
