@@ -17,5 +17,3 @@ main_view_controller = MainWindowController(controller_service)
 main_view = MainWindow(main_view_controller)
 main_view.show()
 sys.exit(app.exec_())
-
-

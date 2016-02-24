@@ -8,32 +8,7 @@ Several tools are available that can simulate epidemics and generate data with g
 
 ## Installation
 
-### Windows
-
-Requirements:
-
-* [Python 2.7.11](https://www.python.org/downloads/release/python-2711/)
-* [matplotlib-1.5.1-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib)
-* [numpy-1.10.4+mkl-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy)
-* [scipy-0.17.0-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy)
-* [PyQt4-4.11.4-cp27-none-win_amd64.whl](http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4)
-* [EpiPy-0.1.win-amd64.msi](https://github.com/ckaus/EpiPy/tree/master/install_packages)
-
-1. Install all needed libraries with Pip.
-2. Install `EpiPy-0.1.win-amd64.msi`
-3. EpiPy is now available in `C:\Python27\Scripts\`.
-
-### Unix
-
-Requirements: Python 2.7, PyQt 4.11 [for Debian jessie](https://packages.debian.org/jessie/python-qt4)
-
-1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
-2. Install with Pip: `$ pip install -r requirements.txt` *or* follow the install instructions on [SciPy][7].
-3. Navigate to `EpiPy/`.
-4. Install EpiPy as *root*:
-	* (Developer) `$ pip install -e .`
-	* (User) `$ pip install .`
-5. EpiPy is now available in terminal `$ epipy` .
+The installation instructions can be found [here][8].
 
 ## Features
 
@@ -49,10 +24,9 @@ Requirements: Python 2.7, PyQt 4.11 [for Debian jessie](https://packages.debian.
    * Simple
 
 ## Documentation
-Take a look into our [wiki][4] and / or generate the documentation of the sources by using [Sphinx][5].
+Take a look into our [wiki][4] and / or generate the documentation of the sources with [Sphinx][5].
 
-* `$ cd EpiPy/doc`
-* `$ make html`
+* `$ cd EpiPy/doc/ && make html`
 
 ## License
 [MIT][6] license
@@ -64,3 +38,4 @@ Take a look into our [wiki][4] and / or generate the documentation of the source
 [5]: http://sphinx-doc.org/ "Sphinx"
 [6]: https://github.com/ckaus/EpiPy/blob/master/LICENSE "MIT license"
 [7]: http://www.scipy.org/install.html
+[8]: https://github.com/ckaus/EpiPy/blob/master/install_packages "Installation of EpiPy"

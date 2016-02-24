@@ -43,5 +43,5 @@ Operating System :: Unix
 Operating System :: MacOS
 """
     ],
-    entry_points={'console_scripts': ['epipy = epipy.main', ],},
+    entry_points={'console_scripts': ['epipy = epipy.main:main', ],},
 )
