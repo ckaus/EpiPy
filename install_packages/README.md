@@ -12,7 +12,7 @@ Requirements:
 * [EpiPy-0.1.win-amd64.msi](https://github.com/ckaus/EpiPy/tree/master/install_packages)
 
 1. Install all needed libraries with Pip.
-2. Install `EpiPy-0.1.win-amd64.msi`
+2. Install `EpiPy-1.1.win-amd64.msi`
 3. EpiPy is now available in `C:\Python27\Scripts\`.
 
 ## Debian/Ubuntu
