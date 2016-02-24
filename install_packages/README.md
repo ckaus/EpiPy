@@ -20,9 +20,9 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >= 0.17.0, mat
 1. Install needed libraries as *root*:
  * `apt-get install python python-dev python-qt4 python-pip libatlas-base-dev gcc gfortran g++`
  * `pip install cython`
-2. Install SciPy from sources: 
+2. Install SciPy from sources  (take a while): 
  * `git clone https://github.com/scipy/scipy.git`
- * `cd scipy`, `git clean -xdf`, as *root*: `python setup.py install` (take a while)
+ * `cd scipy`, `git clean -xdf`, as *root*: `python setup.py install`
 3. Install EpiPy as *root*:
  * With .deb package: `epipy-1.0_all.deb` *or*
  * With [PyPi](http://pypi.python.org/pypi/epipy_fub): `$ pip install epipy_fub`
