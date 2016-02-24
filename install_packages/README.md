@@ -19,17 +19,14 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >= 0.17.0, mat
 
 **With installation package (.deb)**
 
-**!!!WARNING 24.02.16!!!** The library libstdc++6 delete libre office core and all depending packages and could break your package dependencies on Debian. Please install EpiPy **From sources**. 
-
-Requirements:
-
-* [gcc-5-base](https://packages.debian.org/stretch/gcc-5-base)
-* [libstdc++6](https://packages.debian.org/stretch/libstdc++6)
-* [python-numpy](https://packages.debian.org/stretch/python-numpy)
-* [python-scipy](https://packages.debian.org/stretch/python-scipy)
-
-1. Install all needed packages.
-2. Install `epipy-1.0_all.deb`
+1. Install as *root*: `apt-get install python python-dev python-pip libatlas-base-dev gcc gfortran g++`
+2. Install as *root*: `pip install cython`
+3. Clone SciPy: `git clone https://github.com/scipy/scipy.git`
+4. Compile SciPy (take a while): 
+ * `cd scipy`
+ * `git clean -xdf`
+ * As *root*: `python setup.py install`
+5. Install `epipy-1.0_all.deb`
 
 **From sources**
 
