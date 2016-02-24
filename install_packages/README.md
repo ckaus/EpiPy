@@ -19,7 +19,7 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >= 0.17.0, mat
 
 **With installation package (.deb)**
 
-**!!!WARNING 24.02.16!!!** The librariy libstdc++6 delete libre office core and all depending packages and could break your package dependencies on Debian. Please install **From sources**. 
+**!!!WARNING 24.02.16!!!** The library libstdc++6 delete libre office core and all depending packages and could break your package dependencies on Debian. Please install **From sources**. 
 
 Requirements:
 
