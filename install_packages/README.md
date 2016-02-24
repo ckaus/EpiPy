@@ -35,7 +35,7 @@ Requirements:
 
 1. Clone EpiPy: `$ git clone git@github.com:ckaus/EpiPy.git`.
 2. Install as *root*:
-    * `$ apt-get install python-dev python-qt4 pkg-config libfreetype6-dev libatlas-base-dev gcc gfortran g++`
+    * `$ apt-get install python python-pip python-dev python-qt4 pkg-config libfreetype6-dev libatlas-base-dev gcc gfortran g++`
     * `$ pip install -r requirements.txt`
 3. Navigate to `EpiPy/` and install as *root*: `$ pip install .`
 4. EpiPy is now available in terminal: `$ epipy` .
