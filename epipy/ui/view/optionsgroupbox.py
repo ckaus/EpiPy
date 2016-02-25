@@ -56,11 +56,10 @@ class OptionsGroupBox(OptionsGroupBoxBase, OptionsGroupBoxUI):
         :param event: an occurred event
         :type event: an *Event*
         """
-        if event == Event.CHANGE_AVAILABILITY_OPTIONS:
-            if self.isEnabled():
-                self.setEnabled(False)
-            else:
-                self.setEnabled(True)
+        if event == Event.ENABLE_OPTIONS_GROUP_BOX:
+            self.setEnabled(True)
+        elif event == Event.DISABLE_OPTIONS_GROUP_BOX:
+            self.setEnabled(False)
         elif event == Event.SELECT_NEW_MODEL:
             if not self.advanced_btn.isEnabled():
                 self.advanced_btn.setEnabled(True)

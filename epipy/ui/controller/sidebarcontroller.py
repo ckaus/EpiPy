@@ -32,7 +32,8 @@ class SideBarController(BaseController):
         self.data_input_length = 0
         self.current_data_range = None
         self.with_param = None
-        self.data_percentage = 100
+        self.data_percentage = 100.00
+        self.options_group_box_is_enable = False
 
     def clear_input(self):
         """
@@ -41,8 +42,8 @@ class SideBarController(BaseController):
 
         self.model.input_model.file_name = None
         self.model.input_model.file_content = None
-        self.model.input_model.population = None
-        self.data_percentage = 100
+        self.model.input_model.population = '1'
+        self.data_percentage = 100.00
         self.notify(Event.CLEAR_INPUT)
 
     def fit_data(self):
@@ -63,7 +64,7 @@ class SideBarController(BaseController):
 
         file_content = self.model.input_model.file_content
         model_class = self.model.options_model.epidemic_model_class
-        population = self.model.input_model.population
+        population = int(self.model.input_model.population)
 
         # x- and y-axis
         x_data = np.array(file_content[self.current_date_col], dtype=float)
@@ -195,6 +196,12 @@ class SideBarController(BaseController):
         """
         return self.model.plot_model.get_data()
 
+    def get_population(self):
+        """
+        :returns: the population
+        """
+        return self.model.input_model.population
+
     def get_file_header(self):
         """
         :returns: the input csv file header
@@ -206,7 +213,7 @@ class SideBarController(BaseController):
         This function clear the side bar components and disable the epidemic option group box.
         """
         self.clear_input()
-        self.notify(Event.CHANGE_AVAILABILITY_OPTIONS)
+        self.notify(Event.DISABLE_OPTIONS_GROUP_BOX)
 
     def set_date_col(self, value):
         """
@@ -268,13 +275,17 @@ class SideBarController(BaseController):
         :type value: a *QString*
         """
         try:
-            if value.contains('-'):
+            if not int(value) or not int(value) > 0:
+                self.model.input_model = '1'
                 raise ValueError
-            if not value.isEmpty():
-                self.model.input_model.population = int(value)
+            else:
+                print type(value)
+                self.model.input_model.population = value
                 self.notify(Event.UPDATE_POPULATION_SLIDER)
+                self.notify(Event.ENABLE_OPTIONS_GROUP_BOX)
         except ValueError:
             self.notify(Event.INVALID_POPULATION)
+            self.notify(Event.UPDATE_POPULATION_FIELD)
 
     def set_population_from_slider(self, value):
         """
@@ -283,7 +294,7 @@ class SideBarController(BaseController):
         :param value: the population of a data set
         :type value: an int
         """
-        self.model.input_model.population = value
+        self.model.input_model.population = str(value)
         self.notify(Event.UPDATE_POPULATION_FIELD)
 
     def set_input_file(self, file_name):
@@ -295,12 +306,12 @@ class SideBarController(BaseController):
         """
         self.model.input_model.file_name = file_name
         file_content = csvmanager.read(file_name)
-        self.data_input_length = len(file_content.values()[0])
+        self.data_input_length = len(file_content[0].values()[0])
         self.model.input_model.data_range = "0:%s" % self.data_input_length
-        self.model.input_model.file_content = file_content
+        self.model.input_model.file_content = file_content[0]
+        self.model.input_model.population = '1'
         self.notify(Event.SET_FILE_CONTENT)
         self.notify(Event.ENABLE_COL_DATE_FORMAT)
-        self.notify(Event.CHANGE_AVAILABILITY_OPTIONS)
 
     def set_data_percentage(self, percentage):
         """
@@ -336,9 +347,6 @@ class SideBarController(BaseController):
 
         :returns: None if valid, *Event* if not valid
         """
-        if not self.model.input_model.population:
-            return Event.NO_POPULATION
-
         if not self.is_data_range_valid():
             return Event.INVALID_DATA_RANGE
 

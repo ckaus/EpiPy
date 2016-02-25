@@ -60,6 +60,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             self.date_cb.addItems(self.controller.get_file_header())
             self.data_cb.addItems(self.controller.get_file_header())
             self.data_range_line_edit.setText(self.controller.get_data_range())
+            self.population_line_edit.setText(self.controller.get_population())
         elif event == Event.ENABLE_COL_DATE_FORMAT:
             self.date_cb.setEnabled(True)
             self.data_cb.setEnabled(True)
@@ -77,12 +78,11 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             self.date_cb.clear()
             self.data_cb.clear()
             self.data_range_line_edit.clear()
-            self.population_line_edit.clear()
-            self.data_percentage_spin_box.clear()
+            self.data_percentage_spin_box.setValue(100)
         elif event == Event.UPDATE_POPULATION_FIELD:
-            self.population_line_edit.setText(str(self.controller.model.input_model.population))
+            self.population_line_edit.setText(self.controller.model.input_model.population)
         elif event == Event.UPDATE_POPULATION_SLIDER:
-            self.population_slider.setValue(self.controller.model.input_model.population)
+            self.population_slider.setValue(int(self.controller.model.input_model.population))
         elif event == Event.NO_POPULATION:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please define a population.",
@@ -93,7 +93,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
                                       QtGui.QMessageBox.Ok)
         elif event == Event.INVALID_POPULATION:
             QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Invalid population. Value must be greater than 0.",
+                                      "Invalid population. Value must be greater than 0. Reset to 1.",
                                       QtGui.QMessageBox.Ok)
         elif event == Event.INVALID_DATA_PERCENTAGE:
             QtGui.QMessageBox.warning(self, 'Warning',
