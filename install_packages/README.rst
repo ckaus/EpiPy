@@ -26,8 +26,7 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 1. Install as *root*:
 
 - `Numpy https://packages.debian.org/stretch/python-numpy`__
-- ``apt-get install python python-dev python-qt4 python-matplotlib python-pip libatlas-base-dev gcc gfortran g++``
-
+- ``apt-get install python-qt4 python-matplotlib python-pip libatlas-base-dev gcc gfortran g++``
 2. Install as *root*: ``pip install cython``
 3. Clone SciPy: ``git clone https://github.com/scipy/scipy.git``
 4. Compile SciPy (will take some time):
