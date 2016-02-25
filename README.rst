@@ -32,17 +32,20 @@ The installation instructions can be found
 Features
 --------
 
--  Fitting epidemic data
--  Plotting epidemic data and fitted epidemic model
--  Manual and optimized manipulation epidemic model parameters
--  Using different epidemic models:
--  **S**\ usceptible **I**\ nfected **R**\ ecovered
- -  Simple, With births and deaths, With Vaccine
--  **S**\ usceptible **I**\ nfected **R**\ ecovered **S**\ usceptible
- -  Simple, With births and deaths
--  **S**\ usceptible **E**\ xposed **I**\ nfected **R**\ ecovered
- -  Simple
+* Fitting epidemic data
+* Plotting epidemic data and fitted epidemic model
+* Manual and optimized manipulation epidemic model parameters
+* Using different epidemic models:
+* **S**\ usceptible **I**\ nfected **R**\ ecovered
 
+  -  Simple, With births and deaths, With Vaccine
+* **S**\ usceptible **I**\ nfected **R**\ ecovered **S**\ usceptible
+
+  - Simple, With births and deaths
+* **S**\ usceptible **E**\ xposed **I**\ nfected **R**\ ecovered
+
+  - Simple
+  
 Documentation
 -------------
 
