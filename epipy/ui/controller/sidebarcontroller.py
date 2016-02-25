@@ -279,7 +279,6 @@ class SideBarController(BaseController):
                 self.model.input_model = '1'
                 raise ValueError
             else:
-                print type(value)
                 self.model.input_model.population = value
                 self.notify(Event.UPDATE_POPULATION_SLIDER)
                 self.notify(Event.ENABLE_OPTIONS_GROUP_BOX)
