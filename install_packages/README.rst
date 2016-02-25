@@ -35,6 +35,6 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
    -  ``git clean -xdf``
    -  As *root*: ``python setup.py install``
 
-5. Download ``epipy-1.0_all.deb`` and install *root*: ``apt-get install epipy-1.0_all.deb``
+5. Download ``epipy-1.0_all.deb`` and install as *root*: ``apt-get install epipy-1.0_all.deb``
 6. EpiPy is now available in terminal: ``$ epipy``
 
