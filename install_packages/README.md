@@ -19,7 +19,8 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >= 0.17.0, mat
 
 1. Install needed libraries as *root*:
  * `apt-get install python-qt4 python-numpy python-scipy python-matplotlib python-pip`
- * `pip install numpy --upgrade scipy --upgrade`
+ * `pip install numpy --upgrade`
+ * `pip install scipy --upgrade`
 2. Install EpiPy as *root*:
  * With .deb package: `epipy-1.0_all.deb` *or*
  * With [PyPi](http://pypi.python.org/pypi/epipy_fub): `$ pip install epipy_fub`
