@@ -32,7 +32,7 @@ The installation instructions can be found
 Features
 --------
 
-* Fitting epidemic data
+* Fitting epidemic `data<https://github.com/ckaus/EpiPy/blob/master/epipy/resources/data>`__
 * Plotting epidemic data and fitted epidemic model
 * Manual and optimized manipulation epidemic model parameters
 * Using different epidemic models:

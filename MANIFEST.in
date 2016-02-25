@@ -1,0 +1,1 @@
+include LICENSE MANIFEST.in README.rst epipy/ui/view/*.ui requirements.txt
