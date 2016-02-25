@@ -1,1 +1,5 @@
-include LICENSE MANIFEST.in README.rst epipy/ui/view/*.ui requirements.txt
+include MANIFEST.in
+include README.rst
+include epipy.desktop
+recursive-include epipy ui/view/*.ui resources/images/epipy-logo.png
+recursive-exclude epipy test install_packages
