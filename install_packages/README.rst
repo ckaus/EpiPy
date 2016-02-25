@@ -31,11 +31,10 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 3. Clone SciPy: ``git clone https://github.com/scipy/scipy.git``
 4. Compile SciPy (will take some time):
 
--  ``cd scipy``
--  ``git clean -xdf``
--  As *root*: ``python setup.py install``
+   -  ``cd scipy``
+   -  ``git clean -xdf``
+   -  As *root*: ``python setup.py install``
 
-5. Install EpiPy as *root*: ``epipy-1.0_all.deb`` *or*
-
+5. Install EpiPy as *root*: ``epipy-1.0_all.deb``
 6. EpiPy is now available in terminal: ``$ epipy``
 
