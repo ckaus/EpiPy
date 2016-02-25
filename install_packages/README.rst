@@ -6,8 +6,7 @@ Windows
 
 Requirements:
 
--  `Python
-   2.7.11 <https://www.python.org/downloads/release/python-2711/>`__
+-  `Python 2.7.11 <https://www.python.org/downloads/release/python-2711/>`__
 -  `matplotlib-1.5.1-cp27-none-win\_amd64.whl <http://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib>`__
 -  `numpy-1.10.4+mkl-cp27-none-win\_amd64.whl <http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy>`__
 -  `scipy-0.17.0-cp27-none-win\_amd64.whl <http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy>`__
@@ -25,8 +24,9 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 
 1. Install as *root*:
 
-- `Numpy <https://packages.debian.org/stretch/python-numpy>`__
-- ``apt-get install python-dev python-qt4 python-matplotlib python-pip libatlas-base-dev gcc gfortran g++``
+   - `Numpy <https://packages.debian.org/stretch/python-numpy>`__
+   - ``apt-get install python-dev python-qt4 python-matplotlib python-pip libatlas-base-dev gcc gfortran g++``
+
 2. Install as *root*: ``pip install cython``
 3. Clone SciPy: ``git clone https://github.com/scipy/scipy.git``
 4. Compile SciPy (will take some time):
