@@ -58,11 +58,8 @@ Take a look into our `wiki <https://github.com/ckaus/EpiPy/wiki>`__ and
 Screenshots
 -----------
 
-.. image:: https://github.com/ckaus/EpiPy/blob/master/epipy/resources/images/screenshot_windows.png
-   :width: 200px
-   :align: center
-   :height: 100px
-   :alt: alternate text
+Some screenshots can be found
+`here <https://github.com/ckaus/EpiPy/blob/master/epipy/resources/images>`__.
 
 License
 -------
