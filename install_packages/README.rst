@@ -7,14 +7,14 @@ Windows
 Requirements:
 
 -  `Python 2.7.11 <https://www.python.org/downloads/release/python-2711/>`__
--  `matplotlib-1.5.1-cp27-none-win\_amd64.whl <http://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib>`__
 -  `numpy-1.10.4+mkl-cp27-none-win\_amd64.whl <http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy>`__
+-  `matplotlib-1.5.1-cp27-none-win\_amd64.whl <http://www.lfd.uci.edu/~gohlke/pythonlibs/#matplotlib>`__
 -  `scipy-0.17.0-cp27-none-win\_amd64.whl <http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy>`__
 -  `PyQt4-4.11.4-cp27-none-win\_amd64.whl <http://www.lfd.uci.edu/~gohlke/pythonlibs/#pyqt4>`__
 
-1. Install all needed libraries with Pip.
-2. Install ``EpiPy-1.0.win-amd64.msi``
-3. EpiPy is now available in ``C:\Python27\Scripts\``.
+1. Install all needed libraries in list order with Pip.
+2. Install ``EpiPy-0.0.1.win-amd64.msi``
+3. EpiPy is now available in command line and ``C:\Python27\Scripts\epipy.exe``.
 
 Debian/Ubuntu
 -------------
@@ -31,11 +31,10 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 3. Clone SciPy: ``git clone https://github.com/scipy/scipy.git``
 4. Compile SciPy (will take some minutes):
 
-   -  Make sure you haven't install scipy before: ``sudo apt-get remove python-scipy`` 
    -  ``cd scipy``
    -  ``git clean -xdf``
    -  ``sudo python setup.py install``
 
-5. Download and install: ``python-epipy_0.0.1-1_all.deb``
-6. EpiPy is now available via menu and terminal: ``$ epipy``
+5. Download and install: ``wget https://github.com/ckaus/EpiPy/blob/master/install_packages/epipy_0.0.1-1_all.deb``
+6. EpiPy is now available in menu and terminal: ``$ epipy``
 
