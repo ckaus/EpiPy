@@ -29,7 +29,7 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 
 2. Install: ``sudo pip install cython``
 3. Clone SciPy: ``git clone https://github.com/scipy/scipy.git``
-4. Compile SciPy (will take some time):
+4. Compile SciPy (will take some minutes):
 
    -  Make sure you haven't install scipy before: ``sudo apt-get remove python-scipy`` 
    -  ``cd scipy``
