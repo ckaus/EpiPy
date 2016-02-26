@@ -93,7 +93,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
                                       QtGui.QMessageBox.Ok)
         elif event == Event.INVALID_POPULATION:
             QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Invalid population. Value must be greater than 0. Reset to 1.",
+                                      "Invalid population. Value must be greater than 0.",
                                       QtGui.QMessageBox.Ok)
         elif event == Event.INVALID_DATA_PERCENTAGE:
             QtGui.QMessageBox.warning(self, 'Warning',
