@@ -68,7 +68,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             self.data_range_line_edit.setEnabled(True)
             self.population_slider.setEnabled(True)
             self.data_percentage_spin_box.setEnabled(True)
-        elif event == Event.SHOW_CANT_CONVERT_DATES:
+        elif event == Event.CANT_CONVERT_DATES:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please make sure you have selected a 'Date' column.\n"
                                       "Dates should have the following format: YYYY-MM-DD.",
@@ -100,4 +100,8 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
         elif event == Event.INVALID_DATA_PERCENTAGE:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid data percentage. Please enter a number between 1 and 100.",
+                                      QtGui.QMessageBox.Ok)
+        elif event == Event.INVALID_DATA:
+            QtGui.QMessageBox.warning(self, 'Warning',
+                                      "Data should be numbers like 1 or 1.0.",
                                       QtGui.QMessageBox.Ok)

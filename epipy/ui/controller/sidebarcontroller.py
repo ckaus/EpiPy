@@ -50,11 +50,9 @@ class SideBarController(BaseController):
         This function collects content from side bar view and start fitting based on collected content.
         """
 
-        error_event = self.validate_input_data()
-        if error_event:
-            self.notify(error_event)
+        is_valid = self.validate_input_data()
+        if not is_valid:
             return
-
         self.model.input_model.data_range = self.current_data_range
 
         data_range = self.model.input_model.data_range.split(":")
@@ -124,6 +122,19 @@ class SideBarController(BaseController):
         except ValueError:
             return False
 
+    def is_data_valid(self):
+        """
+        This function checks if data column contains valid data.
+
+        :returns: True if data are valid, False if not valid
+        """
+        data = self.model.input_model.file_content[self.current_data_col]
+        try:
+            np.array(data, dtype=float)
+        except ValueError:
+            return False
+        return True
+
     def is_dates_valid(self):
         """
         This function checks if date column contains valid dates and convert these dates.
@@ -132,8 +143,7 @@ class SideBarController(BaseController):
         """
         dates = self.model.input_model.file_content[self.current_date_col]
         try:
-            # select a random date and check if date has valid format
-            int(dates[random.randint(0, len(dates) - 1)])
+            np.array(dates, dtype=int)
         except ValueError:  # try to convert date into a valid format
             dates = dateconverter.convert(dates)
             if len(dates) == 0:  # can not convert dates
@@ -346,11 +356,17 @@ class SideBarController(BaseController):
         :returns: None if valid, *Event* if not valid
         """
         if not self.is_data_range_valid():
-            return Event.INVALID_DATA_RANGE
+            self.notify(Event.INVALID_DATA_RANGE)
+            return False
 
         if not self.is_dates_valid():
-            return Event.SHOW_CANT_CONVERT_DATES
-        return
+            self.notify(Event.CANT_CONVERT_DATES)
+            return False
+
+        if not self.is_data_valid():
+            self.notify(Event.INVALID_DATA)
+            return False
+        return True
 
     def with_parameters(self, value):
         """
