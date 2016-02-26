@@ -33,7 +33,7 @@
       </font>
      </property>
      <property name="text">
-      <string>EpiPy 1.0</string>
+      <string>EpiPy 0.0.1</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
