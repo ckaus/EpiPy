@@ -25,7 +25,7 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 1. Install:
 
    - `NumPy <https://packages.debian.org/stretch/python-numpy>`__
-   - ``sudo apt-get install python-dev python-qt4 python-matplotlib python-pip libatlas-base-dev gcc gfortran g++``
+   - ``sudo apt-get install python-dev python-pip libatlas-base-dev gcc gfortran g++``
 
 2. Install: ``sudo pip install cython``
 3. Clone SciPy: ``git clone https://github.com/scipy/scipy.git``
@@ -36,6 +36,6 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
    -  ``git clean -xdf``
    -  ``sudo python setup.py install``
 
-5. Download ``epipy-1.0_all.deb`` and install: ``sudo apt-get install epipy-1.0_all.deb``
+5. Download and install: ``python-epipy_0.0.1-1_all.deb``
 6. EpiPy is now available via menu and terminal: ``$ epipy``
 
