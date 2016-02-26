@@ -1,5 +1,5 @@
 include MANIFEST.in
 include README.rst
 include epipy.desktop
+include requirements.txt
 recursive-include epipy ui/view/*.ui resources/images/epipy-logo.png
-recursive-exclude epipy tests/* install_packages/* resources/data/*

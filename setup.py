@@ -36,7 +36,7 @@ setup(
     to explore.
     ''',
     license='MIT',
-    packages=find_packages(),
+    packages=find_packages(exclude=['epipy/tests', 'epipy/resources/data']),
     include_package_data=True,
     install_requires=[
         'numpy>=1.10.4',
