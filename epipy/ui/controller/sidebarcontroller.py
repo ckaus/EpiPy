@@ -32,7 +32,7 @@ class SideBarController(BaseController):
         self.data_input_length = 0
         self.current_data_range = None
         self.with_param = None
-        self.data_percentage = 100.00
+        self.data_percentage = 100
         self.options_group_box_is_enable = False
 
     def clear_input(self):
@@ -42,7 +42,6 @@ class SideBarController(BaseController):
 
         self.model.input_model.file_name = None
         self.model.input_model.file_content = None
-        self.model.input_model.population = '1'
         self.data_percentage = 100.00
         self.notify(Event.CLEAR_INPUT)
 
@@ -74,8 +73,8 @@ class SideBarController(BaseController):
         x_data_fit = x_data[from_value:to_value]
         y_data_fit = y_data[from_value:to_value]
         # with percentage
-        x_data_fit = x_data_fit[:len(x_data_fit) * self.data_percentage / 100]
-        y_data_fit = y_data_fit[:len(y_data_fit) * self.data_percentage / 100]
+        x_data_fit = x_data_fit[:len(x_data_fit) * int(self.data_percentage) / 100]
+        y_data_fit = y_data_fit[:len(y_data_fit) * int(self.data_percentage) / 100]
 
         # forecast model range = time + 29(t)
         x_data_forecast = [i for i in range(int(x_data[from_value]), int(x_data[to_value - 1]) + 30)]
