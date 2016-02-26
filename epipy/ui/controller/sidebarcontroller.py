@@ -274,8 +274,8 @@ class SideBarController(BaseController):
         :type value: a *QString*
         """
         try:
-            if not int(value) or not int(value) > 0:
-                self.model.input_model = '1'
+            if not value:
+                self.model.input_model.population = '1'
                 raise ValueError
             else:
                 self.model.input_model.population = value
@@ -302,11 +302,11 @@ class SideBarController(BaseController):
         :param file_name: a file name
         :type file_name: a str
         """
-        self.model.input_model.file_name = file_name
         file_content = csvmanager.read(file_name)
-        self.data_input_length = len(file_content[0].values()[0])
-        self.model.input_model.data_range = "0:%s" % self.data_input_length
-        self.model.input_model.file_content = file_content[0]
+        self.model.input_model.file_name = file_name
+        self.data_input_length = len(file_content.values()[0])
+        self.model.input_model.data_range = '0:%s' % self.data_input_length
+        self.model.input_model.file_content = file_content
         self.model.input_model.population = '1'
         self.notify(Event.SET_FILE_CONTENT)
         self.notify(Event.ENABLE_COL_DATE_FORMAT)

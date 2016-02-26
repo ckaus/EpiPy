@@ -22,7 +22,6 @@ def read(file_name="", column=[]):
     :returns: a content of csv file as *Dict*
     """
 
-    success = False
     result = {}
     try:
         # read input file
@@ -40,7 +39,6 @@ def read(file_name="", column=[]):
             for row in reader:
                 # match content with origin header
                 [result[h].append(row[header.index(h)]) for h in column]
-            success = True
     except (csv.Error, ValueError) as e:
         logging.error("Can not read file %s, %s" % (file_name, e))
-    return result, success
+    return result

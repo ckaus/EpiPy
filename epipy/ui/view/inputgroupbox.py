@@ -95,7 +95,9 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid population. Value must be greater than 0.",
                                       QtGui.QMessageBox.Ok)
+            self.population_line_edit.setText('1')
+            self.population_slider.setValue(1)
         elif event == Event.INVALID_DATA_PERCENTAGE:
             QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Invalid data percentage. Please enter a number between 1 and 100\n",
+                                      "Invalid data percentage. Please enter a number between 1 and 100.",
                                       QtGui.QMessageBox.Ok)
