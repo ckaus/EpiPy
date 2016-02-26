@@ -60,8 +60,6 @@
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="help_action"/>
-    <addaction name="separator"/>
     <addaction name="about_action"/>
    </widget>
    <addaction name="menu_file"/>
