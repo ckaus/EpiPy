@@ -71,7 +71,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
         elif event == Event.SHOW_CANT_CONVERT_DATES:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please make sure you have selected a 'Date' column.\n"
-                                      "Dates should have the following format: YYYY-MM-DD\n",
+                                      "Dates should have the following format: YYYY-MM-DD.",
                                       QtGui.QMessageBox.Ok)
         elif event == Event.CLEAR_INPUT:
             self.input_file_text_field.clear()
