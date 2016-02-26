@@ -22,7 +22,7 @@ Debian/Ubuntu
 Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 0.17.0, matplotlib >= 1.4.2
 
-1. Install as *root*:
+1. Install:
 
    - `NumPy <https://packages.debian.org/stretch/python-numpy>`__
    - ``sudo apt-get install python-dev python-qt4 python-matplotlib python-pip libatlas-base-dev gcc gfortran g++``
