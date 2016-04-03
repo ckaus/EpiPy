@@ -35,11 +35,11 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
    -  ``git clean -xdf``
    -  ``sudo python setup.py install``
 
-5. Download and install: ``wget https://github.com/ckaus/EpiPy/blob/master/install_packages/epipy_0.0.1-1_all.deb``
+5. Download and install: ``wget https://github.com/ckaus/EpiPy/blob/master/install_packages/epipy_0.0.1-1_all.deb`` or 
+   optional build from source - Requirements: stdeb >=0.8.5
+   -  Navigate to main folder ``EpiPy/`` 
+   -  Execute: ``python setup.py --command-packages=stdeb.command bdist_deb``
+   -  DEB-package is now available in ``EpiPy/deb_dist`` 
+
 6. EpiPy is now available in menu and terminal: ``$ epipy``
 
-Optional: Build from source - Requirements: stdeb >=0.8.5
-
-1. Navigate to main folder ``EpiPy/`` 
-2. Execute: ``python setup.py --command-packages=stdeb.command bdist_deb``
-3. DEB-package is now available in ``EpiPy/deb_dist`` 
