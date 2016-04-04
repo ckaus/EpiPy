@@ -22,6 +22,8 @@ Debian/Ubuntu
 Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 0.17.0, matplotlib >= 1.4.2
 
+Note: Make sure you haven't installed python-scipy before. The official stable package ``python-scipy`` for Debian Jessie is 0.14.0-2. EpiPy need SciPy 0.17.0 or higher!
+
 1. Install:
 
    - `NumPy <https://packages.debian.org/stretch/python-numpy>`__

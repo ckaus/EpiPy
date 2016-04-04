@@ -4,12 +4,17 @@
 try:
     from setuptools import setup, find_packages
     from PyQt4 import QtCore
+    import scipy
+
+    if scipy.__version__ < '0.17.0':
+        raise ImportError('Expect SciPy 0.17.0 or higher')
 
     if QtCore.QT_VERSION_STR < '4.8.6':
         raise ImportError('Expect PyQt4 4.8.6 or higher')
 
 except ImportError as error:
     raise ImportError(error)
+    exit()
 
 setup(
     name='EpiPy',
