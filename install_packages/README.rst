@@ -45,7 +45,7 @@ Build from sources (Debian/Ubuntu)
 ----------------------------------
 
 Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
-0.17.0, matplotlib >= 1.4.2, `EpiPylib <https://github.com/ckaus/epipylib/blob/v0.1/examples/fit.py>`__ >= 0.1
+0.17.0, matplotlib >= 1.4.2, `EpiPylib <https://github.com/ckaus/epipylib>`__ >= 0.1
 
 -  Navigate to main folder ``EpiPy/``
 -  Execute: ``python setup.py --command-packages=stdeb.command bdist_deb``
