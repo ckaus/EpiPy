@@ -25,28 +25,34 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
         self.setupUi(self)
         self.controller = controller
         self.controller.attach(self)
+        self.model = self.controller.get_model().get_input_model()
+
         self.open_file_btn.clicked.connect(self.open_file)
-        self.date_cb.currentIndexChanged['QString'].connect(self.controller.set_date_col)
-        self.data_cb.currentIndexChanged['QString'].connect(self.controller.set_data_col)
-        self.data_range_line_edit.textChanged.connect(self.controller.set_data_range)
+        self.date_cb.currentIndexChanged['QString'].connect(self.model.set_date_col_title)
+        self.data_cb.currentIndexChanged['QString'].connect(self.model.set_data_col_title)
         self.population_line_edit.setValidator(QtGui.QIntValidator(self))
-        self.population_line_edit.textChanged.connect(self.controller.set_population)
-        self.population_slider.valueChanged[int].connect(self.controller.set_population_from_slider)
-        self.data_percentage_spin_box.valueChanged.connect(self.controller.set_data_percentage)
+        self.population_line_edit.textChanged.connect(self.population_text_changed)
+        self.population_slider.valueChanged[int].connect(self.population_slider_changed)
 
     def open_file(self):
-        """
-        This functions reads a local CSV file.
-        """
-        file_name = QtGui.QFileDialog.getOpenFileName(self, "Open CSV file", filter="CSV file (*.csv);;All Files (*.*)")
-        if file_name:
-            # clear input boxes just in case something was configure before
-            if self.input_file_text_field.text():
-                self.controller.clear_input()
+        file_name = QtGui.QFileDialog.getOpenFileName(self,
+                                                      "Open CSV file",
+                                                      filter="CSV file (*.csv);;All Files (*.*)")
+        self.controller.read_file(file_name)
 
-            self.input_file_text_field.clear()
-            self.input_file_text_field.setText(file_name)
-            self.controller.set_input_file(file_name)
+    def population_slider_changed(self, value):
+        self.population_line_edit.setText(str(value))
+
+    def population_text_changed(self, value):
+        self.population_slider.setValue(int(value))
+
+    def switch_availability_components(self, is_available):
+        self.date_cb.setEnabled(is_available)
+        self.data_cb.setEnabled(is_available)
+        self.population_line_edit.setEnabled(is_available)
+        self.data_range_line_edit.setEnabled(is_available)
+        self.population_slider.setEnabled(is_available)
+        self.data_percentage_spin_box.setEnabled(is_available)
 
     def update(self, event):
         """
@@ -56,33 +62,29 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
         :param event: an occurred event
         :type event: an *Event*
         """
-        if event == Event.SET_FILE_CONTENT:
-            self.date_cb.addItems(self.controller.get_file_header())
-            self.data_cb.addItems(self.controller.get_file_header())
-            self.data_range_line_edit.setText(self.controller.get_data_range())
-            self.population_line_edit.setText(self.controller.get_population())
-        elif event == Event.ENABLE_COL_DATE_FORMAT:
-            self.date_cb.setEnabled(True)
-            self.data_cb.setEnabled(True)
-            self.population_line_edit.setEnabled(True)
-            self.data_range_line_edit.setEnabled(True)
-            self.population_slider.setEnabled(True)
-            self.data_percentage_spin_box.setEnabled(True)
+        if event == Event.SUCCESS_READ_FILE:
+            self.switch_availability_components(True)
+            self.input_file_text_field.setText(self.model.file_name)
+            self.date_cb.clear()
+            self.date_cb.addItems(self.model.file_content.keys())
+            self.data_cb.clear()
+            self.data_cb.addItems(self.model.file_content.keys())
+            self.data_range_line_edit.setText(self.model.data_range)
+            self.population_line_edit.setText(self.model.population)
+            self.data_percentage_spin_box.setValue(self.model.data_percentage)
+        elif event == Event.RESET:
+            self.input_file_text_field.clear()
+            self.date_cb.clear()
+            self.data_cb.clear()
+            self.data_range_line_edit.clear()
+            self.data_percentage_spin_box.setValue(100.00)
+            self.switch_availability_components(False)
         elif event == Event.CANT_CONVERT_DATES:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please make sure you have selected a 'Date' column.\n"
                                       "Dates should have the following format: YYYY-MM-DD.",
                                       QtGui.QMessageBox.Ok)
-        elif event == Event.CLEAR_INPUT:
-            self.input_file_text_field.clear()
-            self.date_cb.clear()
-            self.data_cb.clear()
-            self.data_range_line_edit.clear()
-            self.data_percentage_spin_box.setValue(100)
-        elif event == Event.UPDATE_POPULATION_FIELD:
-            self.population_line_edit.setText(self.controller.model.input_model.population)
-        elif event == Event.UPDATE_POPULATION_SLIDER:
-            self.population_slider.setValue(int(self.controller.model.input_model.population))
+
         elif event == Event.NO_POPULATION:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Please define a population.",
@@ -95,8 +97,7 @@ class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid population. Value must be greater than 0.",
                                       QtGui.QMessageBox.Ok)
-            self.population_line_edit.setText('1')
-            self.population_slider.setValue(1)
+            self.population_text_changed('1')
         elif event == Event.INVALID_DATA_PERCENTAGE:
             QtGui.QMessageBox.warning(self, 'Warning',
                                       "Invalid data percentage. Please enter a number between 1 and 100.",

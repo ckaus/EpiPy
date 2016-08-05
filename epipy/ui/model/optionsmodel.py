@@ -12,12 +12,22 @@ class OptionsModel(object):
         self.epidemic_model = None
         self.epidemic_model_class = None
         self.epidemic_model_parameters = None
+        self.with_parameters = None
 
     def __repr__(self):
-        return "<%s.%s - epidemic_model=%s, epidemic_model_class=%s, epidemic_model_parameters=%s>" % (
-            __name__, self.__class__.__name__, self.epidemic_model, self.epidemic_model_class,
-            self.epidemic_model_parameters)
+        return "<%r.%r - " \
+               "epidemic_model=%r, " \
+               "epidemic_model_class=%r, " \
+               "epidemic_model_parameters=%r, " \
+               "with_parameters=%r>" % (__name__,
+                                        self.__class__.__name__,
+                                        self.epidemic_model,
+                                        self.epidemic_model_class,
+                                        self.epidemic_model_parameters,
+                                        self.with_parameters)
 
     def __str__(self):
-        return "Model: %s\nModel Parameters: %s" % (
-            self.epidemic_model_class, self.epidemic_model_parameters)
+        return "Model: %s - %s\n" \
+               "Model Parameters: %s" % (self.epidemic_model_class.__name__,
+                                         self.epidemic_model.__name__,
+                                         self.epidemic_model_parameters)

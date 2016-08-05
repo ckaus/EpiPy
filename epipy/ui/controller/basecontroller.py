@@ -12,9 +12,13 @@ class BaseController(object):
     :returns: an instance of *BaseController*
     """
 
-    def __init__(self):
-        self.model = None
+    def __init__(self, parent=None, model=None):
+        self.model = model
         self.views = []
+        self.parent = parent
+
+    def get_model(self):
+        return self.model
 
     def attach(self, view):
         """
@@ -25,6 +29,8 @@ class BaseController(object):
         """
         if view not in self.views:
             self.views.append(view)
+        else:
+            logging.warning('%s attached already' % view)
 
     def detach(self, view):
         """
@@ -37,6 +43,7 @@ class BaseController(object):
         """
         try:
             self.views.remove(view)
+            logging.info('View:%s removed' % view)
         except ValueError as error:
             logging.warning('View not attached %s' % error)
 

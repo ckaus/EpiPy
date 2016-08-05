@@ -3,6 +3,8 @@ from matplotlib.backends.backend_qt4 import NavigationToolbar2QT as NavigationTo
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
+from epipy.ui.controller.event import Event
+
 
 class PlotWidget(QtGui.QWidget):
     """
@@ -11,9 +13,13 @@ class PlotWidget(QtGui.QWidget):
     :returns: an instance of *PlotWidget*
     """
 
-    def __init__(self, parent=None):
+    def __init__(self, parent, controller):
         QtGui.QWidget.__init__(self, parent)
         self.figure = Figure(facecolor=(1, 1, 1), tight_layout=True)
+        self.controller = controller
+        self.controller.attach(self)
+        self.model = self.controller.get_model().get_plot_model()
+
         self.ax = self.figure.add_subplot(111)
 
         # Canvas
@@ -31,21 +37,16 @@ class PlotWidget(QtGui.QWidget):
         self.vbl.addWidget(self.canvas)
         self.setLayout(self.vbl)
 
-    def plot(self, file_data, fitted_data, forecast_data):
+    def update(self, event):
         """
         This function plot given data sets on plot view.
-
-        :param file_data: contain file data
-        :type file_data: array
-        :param fitted_data: contain fitted data
-        :type fitted_data: array
-        :param forecast_data: contain forecast data
-        :type forecast_data: array
         """
-        self.ax.clear()
-        self.ax.grid(True)
-        self.ax.plot(file_data[0], file_data[1], 'b^', label='Input Data')
-        self.ax.plot(fitted_data[0], fitted_data[1], 'b-', label='Fitted Data')
-        self.ax.plot(forecast_data[0], forecast_data[1], 'g-', label='Forecast')
-        self.ax.legend()
-        self.canvas.draw()
+        if event == Event.PLOT:
+            x_data_file, y_data_file = self.model.get_data()
+            x_data_fitted, y_data_fitted = self.model.get_fitted()
+            self.ax.clear()
+            self.ax.grid(True)
+            self.ax.plot(x_data_file, y_data_file, 'b^', label='Input Data')
+            self.ax.plot(x_data_fitted, y_data_fitted, 'b-', label='Fitted Data')
+            self.ax.legend()
+            self.canvas.draw()

@@ -4,6 +4,7 @@ import os
 from PyQt4 import uic
 
 from epipy.ui.controller.event import Event
+from epipy.ui.model.infomodel import InfoModel
 
 dir_name = os.path.dirname
 folder_path = os.path.join(dir_name(__file__), '')
@@ -27,6 +28,7 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
 
         self.controller = controller
         self.controller.attach(self)
+        self.model = self.controller.get_model().get_info_model()
 
     def update(self, event):
         """
@@ -35,8 +37,9 @@ class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
         :param event: an occurred event
         :type event: an *Event*
         """
+
         if event == Event.PRINT_INFORMATION:
-            model = self.controller.get_model()
-            self.info_plain_text_edit.appendPlainText(str(model))
+            self.info_plain_text_edit.appendPlainText(str(self.model))
+            self.info_plain_text_edit.appendPlainText('\n')
         elif event == Event.CLEAR_INFORMATION:
             self.info_plain_text_edit.clear()

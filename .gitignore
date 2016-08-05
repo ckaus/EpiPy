@@ -5,5 +5,4 @@ __pycache__/
 *.egg-info/
 doc/_build/
 *.tar.gz/
-
 *.py[cod]

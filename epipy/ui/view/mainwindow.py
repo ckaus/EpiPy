@@ -3,7 +3,6 @@
 import os
 from PyQt4 import uic
 
-from epipy.ui.controller.event import Event
 from epipy.ui.controller.sidebarcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
 from epipy.ui.view.infogroupbox import InfoGroupBox
@@ -30,7 +29,6 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.setupUi(self)
         self.controller = controller
         self.controller.attach(self)
-        self.controller_service = self.controller.get_controller_service()
 
         # Menu
         self.about_dialog = AboutDialog()
@@ -41,16 +39,15 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.show_sidebar_action.triggered.connect(self.show_sidebar)
         self.hide_sidebar_action.triggered.connect(self.hide_sidebar)
         self.show_sidebar_action.setVisible(False)
-        self.clear_information_action.triggered.connect(self.controller.clear_information)
+        self.clear_information_action.triggered.connect(controller.clear_information)
         self.about_action.triggered.connect(self.about_dialog.show)
 
         # Top Left
-        self.plot_view = PlotWidget(self)
+        self.plot_view = PlotWidget(self, self.controller)
         self.h_splitter.insertWidget(0, self.plot_view)
 
         # Top Right
-        self.side_bar_controller = SideBarController(self.controller_service)
-        self.side_bar = SideBarWidget(self.side_bar_controller)
+        self.side_bar = SideBarWidget(SideBarController(self.controller))
         self.h_splitter.insertWidget(1, self.side_bar)
 
         # Bottom
@@ -89,14 +86,4 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.show_sidebar_action.setVisible(True)
         self.hide_sidebar_action.setVisible(False)
 
-    def update(self, event):
-        """
-        This function updates the view updates the plotted graph.
-
-        :param event: an occurred event
-        :type event: an *Event*
-        """
-        if event == Event.PLOT:
-            file_data, fitted_data, forecast_data = self.side_bar_controller.get_plot_data()
-            self.plot_view.plot(file_data, fitted_data, forecast_data)
-            self.controller.set_side_bar_model(self.side_bar_controller.get_model())
+    def update(self, event): pass

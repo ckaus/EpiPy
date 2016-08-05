@@ -13,28 +13,37 @@ class PlotModel(object):
         self.y_data = None
         self.x_fitted = None
         self.y_fitted = None
-        self.x_forecast = None
-        self.y_forecast = None
         self.regression_values = None
 
-    def set_data(self, x_data, y_data, x_fitted, y_fitted, x_forecast, y_forecast, regression_values):
+    def set_data(self, x_data, y_data, x_fitted, y_fitted, regression_values):
         self.x_data = x_data
         self.y_data = y_data
         self.x_fitted = x_fitted
         self.y_fitted = y_fitted
-        self.x_forecast = x_forecast
-        self.y_forecast = y_forecast
         self.regression_values = regression_values
 
     def get_data(self):
         """
         :returns: the plottable graphs
         """
-        return [self.x_data, self.y_data], [self.x_fitted, self.y_fitted], [self.x_forecast, self.y_forecast]
+        return [self.x_data, self.y_data]
+
+    def get_fitted(self):
+        return [self.x_fitted, self.y_fitted]
 
     def __repr__(self):
-        return "<x_fitted=%s, y_fitted=%s regression_values=%s>" % (
-            self.x_fitted, self.y_fitted, self.regression_values)
+        return "<%r.%r - " \
+               "x_data=%r, " \
+               "y_data=%r, " \
+               "x_fitted=%r, " \
+               "y_fitted=%r, " \
+               "regression_values=%r>" % (__name__,
+                                          self.__class__.__name__,
+                                          self.x_data,
+                                          self.y_data,
+                                          self.x_fitted,
+                                          self.y_fitted,
+                                          self.regression_values)
 
     def __str__(self):
         return "Regression Values: %s" % self.regression_values
