@@ -1,13 +1,7 @@
 controller package
 ==================
 
-This module includes the user interface controller. Each controller can send events to the depending views.
-
-event
------
-
-.. automodule:: ui.controller.event
-    :members:
+This package includes the user interface controller. Each controller can send events to the depending views.
 
 basecontroller
 --------------
@@ -15,10 +9,10 @@ basecontroller
 .. automodule:: ui.controller.basecontroller
     :members:
 
-controllerservice
------------------
+event
+-----
 
-.. automodule:: ui.controller.controllerservice
+.. automodule:: ui.controller.event
     :members:
 
 mainwindowcontroller

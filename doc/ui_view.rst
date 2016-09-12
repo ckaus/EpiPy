@@ -1,7 +1,7 @@
 view package
 ============
 
-This module includes the user interface views.
+This package includes the user interface views.
 
 
 aboutdialog
@@ -10,22 +10,16 @@ aboutdialog
 .. automodule:: ui.view.aboutdialog
     :members:
 
-plotwidget
-----------
-
-.. automodule:: ui.view.plotwidget
-    :members:
-
-sirsgroupbox
-------------
-
-.. automodule:: ui.view.sirsgroupbox
-    :members:
-
 advanceddialog
 --------------
 
 .. automodule:: ui.view.advanceddialog
+    :members:
+
+infogroupbox
+------------
+
+.. automodule:: ui.view.infogroupbox
     :members:
 
 inputgroupbox
@@ -34,29 +28,10 @@ inputgroupbox
 .. automodule:: ui.view.inputgroupbox
     :members:
 
-seirgroupbox
-------------
-
-.. automodule:: ui.view.seirgroupbox
-    :members:
-
 mainwindow
 ----------
 
 .. automodule:: ui.view.mainwindow
-    :members:
-
-sidebarwidget
--------------
-
-.. automodule:: ui.view.sidebarwidget
-    :members:
-
-
-infogroupbox
-------------
-
-.. automodule:: ui.view.infogroupbox
     :members:
 
 optionsgroupbox
@@ -65,8 +40,34 @@ optionsgroupbox
 .. automodule:: ui.view.optionsgroupbox
     :members:
 
+plotwidget
+----------
+
+.. automodule:: ui.view.plotwidget
+    :members:
+
+
+seirgroupbox
+------------
+
+.. automodule:: ui.view.seirgroupbox
+    :members:
+
+
+sidebarwidget
+-------------
+
+.. automodule:: ui.view.sidebarwidget
+    :members:
+
 sirgroupbox
 -----------
 
 .. automodule:: ui.view.sirgroupbox
+    :members:
+
+sirsgroupbox
+------------
+
+.. automodule:: ui.view.sirsgroupbox
     :members:

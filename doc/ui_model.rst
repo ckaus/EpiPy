@@ -1,7 +1,13 @@
 model package
 =============
 
-This module includes the user interface controller. Each controller can send events to the depending views.
+This package includes the user interface controller. Each controller can send events to the depending views.
+
+infomodel
+---------
+
+.. automodule:: ui.model.infomodel
+    :members:
 
 inputmodel
 ----------

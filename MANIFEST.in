@@ -1,6 +1,6 @@
 include MANIFEST.in
-include README.rst
-include epipy.desktop
+include README.md
 include requirements.txt
 recursive-include epipy ui/view/*.ui
-recursive-include epipy resources/images/epipy-logo.png
+recursive-include epipy resources/epipy-logo.png
+recursive-include epipy resources/epipy.desktop

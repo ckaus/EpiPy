@@ -18,11 +18,11 @@ except ImportError as error:
 
 setup(
     name='EpiPy',
-    version='0.0.1',
+    version='1.0',
     url='https://github.com/ckaus/EpiPy',
     author='ckaus, mitalbert, yenarhee',
     author_email='christian.kaus@fu-berlin.de',
-    description='A Tool for fitting epidemic models.',
+    description='Python tool for fitting epidemic models.',
     long_description='''
     EpiPy is a tool for fitting epidemic models. This tool is developed for the course Softwareprojekt
     Mobilkommunikation at the Freie Universität Berlin.
@@ -41,16 +41,17 @@ setup(
     to explore.
     ''',
     license='MIT',
-    packages=find_packages(exclude=['epipy/tests', 'epipy/resources/data']),
+    packages=find_packages(),
     include_package_data=True,
     install_requires=[
         'numpy>=1.10.4',
         'scipy>=0.17.0',
-        'matplotlib>=1.4.2'
+        'matplotlib>=1.4.2',
+        'epipylib>=0.1'
     ],
-    entry_points={'console_scripts': ['epipy = epipy.main:main', ],},
+    entry_points={'console_scripts': ['epipy = epipy.main:main', ], },
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: X11 Applications :: Qt',
         'Intended Audience :: Developers',
         'Intended Audience :: Education',

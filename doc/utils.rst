@@ -1,7 +1,7 @@
 utils package
 =============
 
-This module includes
+This module includes utilities.
 
 csvmanager
 ----------
@@ -20,4 +20,3 @@ logging
 
 .. automodule:: utils.logging
     :members:
-
