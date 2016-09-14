@@ -4,15 +4,37 @@ EpiPy is a tool for fitting epidemic models. This tool is developed for
 the course [Softwareprojekt Mobilkommunikation](http://www.mi.fu-berlin.de/inf/groups/ag-tech/teaching/2015-16_WS/P_19308912_Softwareprojekt_Mobilkommunikation/index.html)
 at the [Freie Universität Berlin](http://www.fu-berlin.de/en/index.html).
 
+## Table Of Contents:
+
+[1. Features](https://github.com/ckaus/EpiPy#features)
+
+[2. Installation](https://github.com/ckaus/EpiPy#installation)
+
+  [2.1. Windows](https://github.com/ckaus/EpiPy#windows)
+
+  [2.2 Debian/Ubuntu](https://github.com/ckaus/EpiPy#debianubuntu)
+
+  [2.3 Build From Sources (Debian/Ubuntu)](https://github.com/ckaus/EpiPy#build-from-sources-debianubuntu)
+
+[3. Documentation](https://github.com/ckaus/EpiPy#documentation)
+
+[4. Data Sets](https://github.com/ckaus/EpiPy#data-sets)
+
+  [4.1 Generated Data Sets](https://github.com/ckaus/EpiPy#generated-data-sets)
+
+  [4.2. Real Data Sets](https://github.com/ckaus/EpiPy#real-data-sets)
+
+[5. License](https://github.com/ckaus/EpiPy#license)
+
 ## Features
 
 * Fitting epidemic data
 * Plotting epidemic data and fitted epidemic model
 * Manual and optimized manipulation epidemic model parameters
 * Using different epidemic models:
-* **S**usceptible **I**nfected **R**ecovered (Simple, With births and deaths, With Vaccine)
-* **S**usceptible **I**nfected **R**ecovered **S**usceptible (Simple, With births and deaths)
-* **S**usceptible **E**xposed **I**nfected **R**ecovered (Simple
+  * **S**usceptible **I**nfected **R**ecovered (Simple, With births and deaths, With Vaccine)
+  * **S**usceptible **I**nfected **R**ecovered **S**usceptible (Simple, With births and deaths)
+  * **S**usceptible **E**xposed **I**nfected **R**ecovered (Simple)
 
 ## Installation
 
@@ -59,9 +81,10 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >=
 
 ## Documentation
 
-Take a look on our [Project Website](http://ckaus.github.io/EpiPy/) and / or generate the documentation with [Sphinx](http://sphinx-doc.org/).
-
-*  `$ cd EpiPy/doc/ && make html`
+* [Project Website](http://ckaus.github.io/EpiPy/)
+* [Wiki](https://github.com/ckaus/EpiPy/wiki)
+* Source code documentation with [Sphinx](http://sphinx-doc.org/).
+  * `$ cd EpiPy/doc/ && make html`
 
 ## Data Sets
 
@@ -69,13 +92,13 @@ Take a look on our [Project Website](http://ckaus.github.io/EpiPy/) and / or gen
 * http://opendata.stackexchange.com/questions/3484/2014-ebola-outbreak-dataset
 * http://www.cdc.gov/flu/weekly/nchs.htm
 
-## Generated Data Sets
+### Generated Data Sets
 
 * [data2.csv](http://userpage.fu-berlin.de/kies88/epipy/data/data2.csv): produced by R codes (beta=0.5, gamma=0.1)
 * [data3.csv](http://userpage.fu-berlin.de/kies88/epipy/data/data3.csv): produced by epimodel (beta=0.5, gamma=0.1)
 * [data4.csv](http://userpage.fu-berlin.de/kies88/epipy/data/data4.csv): produced by R codes (beta=0.7, gamma=0.2)
 
-## Real Data Sets
+### Real Data Sets
 
 * [australia_dengue.csv](http://userpage.fu-berlin.de/kies88/epipy/data/australia_dengue.csv)
 Department of Health, National Notifiable Diseases Surveillance System, Australia,
