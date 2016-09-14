@@ -12,7 +12,7 @@ at the [Freie Universität Berlin](http://www.fu-berlin.de/en/index.html).
 
   [2.1. Windows](https://github.com/ckaus/EpiPy#windows)
 
-  [2.2 Debian/Ubuntu](https://github.com/ckaus/EpiPy#debianubuntu)
+  [2.2. Debian/Ubuntu](https://github.com/ckaus/EpiPy#debianubuntu)
 
   [2.3 Build From Sources (Debian/Ubuntu)](https://github.com/ckaus/EpiPy#build-from-sources-debianubuntu)
 
@@ -20,7 +20,7 @@ at the [Freie Universität Berlin](http://www.fu-berlin.de/en/index.html).
 
 [4. Data Sets](https://github.com/ckaus/EpiPy#data-sets)
 
-  [4.1 Generated Data Sets](https://github.com/ckaus/EpiPy#generated-data-sets)
+  [4.1. Generated Data Sets](https://github.com/ckaus/EpiPy#generated-data-sets)
 
   [4.2. Real Data Sets](https://github.com/ckaus/EpiPy#real-data-sets)
 
