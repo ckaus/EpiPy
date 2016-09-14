@@ -67,7 +67,7 @@ Requirements: Python 2.7, PyQt4 >= 4.11.2, NumPy >= 0.10.4, SciPy >= 0.17.0, mat
 4. Compile SciPy (will take some minutes):
   * `$ cd scipy && git clean -xdf`
   * `$ sudo python setup.py install`
-5. Download and install [epipy_0.0.1-1_all.deb](http://userpage.fu-berlin.de/kies88/epipy/epipy_0.0.1-1_all.deb)
+5. Download and install [epipy_0.0.1-1_all.deb](http://userpage.fu-berlin.de/kies88/epipy/packages/epipy_0.0.1-1_all.deb)
 6. EpiPy is now available in menu and terminal: `$ epipy`
 
 ### Build From Sources (Debian/Ubuntu)
