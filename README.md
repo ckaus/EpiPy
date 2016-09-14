@@ -14,7 +14,7 @@ at the [Freie Universität Berlin](http://www.fu-berlin.de/en/index.html).
 
   [2.2. Debian/Ubuntu](https://github.com/ckaus/EpiPy#debianubuntu)
 
-  [2.3 Build From Sources (Debian/Ubuntu)](https://github.com/ckaus/EpiPy#build-from-sources-debianubuntu)
+  [2.3. Build From Sources (Debian/Ubuntu)](https://github.com/ckaus/EpiPy#build-from-sources-debianubuntu)
 
 [3. Documentation](https://github.com/ckaus/EpiPy#documentation)
 
