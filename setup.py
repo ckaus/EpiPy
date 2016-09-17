@@ -4,13 +4,9 @@
 try:
     from setuptools import setup, find_packages
     from PyQt4 import QtCore
-    import scipy
-
-    if scipy.__version__ < '0.17.0':
-        raise ImportError('Expect SciPy 0.17.0 or higher')
 
     if QtCore.QT_VERSION_STR < '4.8.6':
-        raise ImportError('Expect PyQt4 4.8.6 or higher')
+        raise ImportError('Expect PyQt4 4.8.6 or higher.')
 
 except ImportError as error:
     raise ImportError(error)
@@ -44,10 +40,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        'numpy>=1.10.4',
-        'scipy>=0.17.0',
-        'matplotlib>=1.4.2',
-        'epipylib>=0.1'
+        'epipylib>=0.1',
+        'matplotlib==1.4.2'
     ],
     entry_points={'console_scripts': ['epipy = epipy.main:main', ], },
     classifiers=[
