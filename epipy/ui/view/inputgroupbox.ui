@@ -33,7 +33,7 @@
    <item row="1" column="1">
     <widget class="QComboBox" name="date_cb">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -60,7 +60,10 @@
    <item row="4" column="1">
     <widget class="QLineEdit" name="population_line_edit">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string/>
      </property>
      <property name="placeholderText">
       <string/>
@@ -102,7 +105,7 @@
    <item row="3" column="1">
     <widget class="QLineEdit" name="data_range_line_edit">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="toolTip">
       <string>(begin time):(end time)</string>
@@ -141,14 +144,14 @@
    <item row="2" column="1">
     <widget class="QComboBox" name="data_cb">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
     </widget>
    </item>
    <item row="3" column="2">
     <widget class="QDoubleSpinBox" name="data_percentage_spin_box">
      <property name="enabled">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="toolTip">
       <string>Please specify the percentage of data to be used for fitting.</string>
@@ -161,28 +164,6 @@
      </property>
      <property name="singleStep">
       <double>1.000000000000000</double>
-     </property>
-     <property name="value">
-      <double>100.000000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" colspan="3">
-    <widget class="QSlider" name="population_slider">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="toolTip">
-      <string>You can use the slider to adjust the population quickly </string>
-     </property>
-     <property name="minimum">
-      <number>1</number>
-     </property>
-     <property name="maximum">
-      <number>1000000</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
      </property>
     </widget>
    </item>

@@ -1,20 +1,16 @@
 # -*- coding: utf-8 -*-
 
-import os
-from PyQt4 import uic
-
-dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(__file__), '')
-SEIRsimpleGroupBoxUI, SEIRsimpleGroupBoxBase = uic.loadUiType(os.path.join(folder_path, "seirsimplegroupbox.ui"))
+from PyQt4 import QtGui, uic
+from PyQt4.uic import loadUi
+from epipy.ui.view import cwd
 
 
-class SEIRsimpleGroupBox(SEIRsimpleGroupBoxBase, SEIRsimpleGroupBoxUI):
-    """
-    This class represents the SEIR Simple group box.
+class SEIRsimpleGroupBox(QtGui.QDialog):
+    """This class represents the SEIR Simple group box.
 
     :returns: an instance of *SEIRsimpleGroupBox*
     """
 
     def __init__(self):
-        SEIRsimpleGroupBoxBase.__init__(self)
-        self.setupUi(self)
+        super(SEIRSsimpleGroupBox, self).__init__()
+        loadUi(cwd + '/seirssimplegroupbox.ui', self)

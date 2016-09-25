@@ -1,98 +1,83 @@
 # -*- coding: utf-8 -*-
 
-import os
-from PyQt4 import uic
+from PyQt4 import QtGui, uic
+from PyQt4.uic import loadUi
+from epipy.ui.view import cwd
 from epipylib.model import sir, sirs, seir
-
-from epipy.ui.view.seirgroupbox import SEIRsimpleGroupBox
-from epipy.ui.view.sirgroupbox import SIRsimpleGroupBox, SIRwbadGroupBox, SIRvaccineGroupBox
-from epipy.ui.view.sirsgroupbox import SIRSsimpleGroupBox, SIRSwbadGroupBox
-
-dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(__file__), '')
-SIRAdvancedDialogUI, SIRAdvancedDialogBase = uic.loadUiType(os.path.join(folder_path, "siradvanceddialog.ui"))
-SIRSAdvancedDialogUI, SIRSAdvancedDialogBase = uic.loadUiType(os.path.join(folder_path, "sirsadvanceddialog.ui"))
-SEIRAdvancedDialogUI, SEIRAdvancedDialogBase = uic.loadUiType(os.path.join(folder_path, "seiradvanceddialog.ui"))
+from epipy.ui.view.sirgroupbox import *
+from epipy.ui.view.seirgroupbox import *
+from epipy.ui.view.sirsgroupbox import *
 
 
-class SIRAdvancedDialog(SIRAdvancedDialogBase, SIRAdvancedDialogUI):
-    """
-    This class represents the SIR advanced dialog.
+class SIRAdvancedDialog(QtGui.QDialog):
+    """This class represents the SIR advanced dialog.
+
+    :returns: an instance of *SIRAdvancedDialog*
     """
 
-    def __init__(self, controller):
-        """
-        :param controller: the used controller
-        :type controller: *SideBarController*
-        :returns: an instance of *SIRAdvancedDialog*
-        """
-        SIRAdvancedDialogBase.__init__(self)
-        self.setupUi(self)
-        self.controller = controller
-        self.button_box.accepted.connect(self.set_selected_radio_btn)
+    def __init__(self):
+        super(SIRAdvancedDialog, self).__init__()
+        loadUi(cwd + '/siradvanceddialog.ui', self)
 
-    def set_selected_radio_btn(self):
+    def get_selected_model(self):
+        """Returns the correct model group box and model based
+        on selection.
+
+        :returns: the model groupbox, model module and model
+        :rtype: tuple(*QGroupbox*, Module, Func)
+        """
         if self.simple_radio_btn.isChecked():
-            self.controller.set_options_model(SIRsimpleGroupBox(), sir, sir.simple)
+            return SIRsimpleGroupBox(), sir, sir.simple
         elif self.wbad_radio_btn.isChecked():
-            self.controller.set_options_model(SIRwbadGroupBox(), sir, sir.wbad)
+            return SIRwbadGroupBox(), sir, sir.wbad
         elif self.vaccine_radio_btn.isChecked():
-            self.controller.set_options_model(SIRvaccineGroupBox(), sir, sir.vaccine)
+            return SIRvaccineGroupBox(), sir, sir.vaccine
+        return None, None, None
 
 
-class SEIRAdvancedDialog(SEIRAdvancedDialogBase, SEIRAdvancedDialogUI):
+class SEIRAdvancedDialog(QtGui.QDialog):
     """
     This class represents the SEIR advanced dialog.
-
-    :param controller: the used controller
-    :type controller: *SideBarController*
 
     :returns: an instance of *SEIRAdvancedDialog*
     """
 
-    def __init__(self, controller):
-        """
+    def __init__(self):
+        super(SEIRAdvancedDialog, self).__init__()
+        loadUi(cwd + '/seiradvanceddialog.ui', self)
 
-        :param controller:
-        """
-        SEIRAdvancedDialogBase.__init__(self)
-        self.setupUi(self)
-        self.controller = controller
-        self.button_box.accepted.connect(self.set_selected_radio_btn)
+    def get_selection(self):
+        """Returns the correct model group box and model based
+        on selection.
 
-    def set_selected_radio_btn(self):
+        :returns: the model groupbox, model module and model
+        :rtype: tuple(*QGroupbox*, Module, Func)
         """
-        This function adds a selected model type, contains of view and model class,
-        to the controller.
-        """
-
         if self.simple_radio_btn.isChecked():
-            self.controller.set_options_model(SEIRsimpleGroupBox(), seir, seir.simple)
+            return SEIRsimpleGroupBox(), seir, seir.simple
+        return None, None, None
 
 
-class SIRSAdvancedDialog(SIRSAdvancedDialogBase, SIRSAdvancedDialogUI):
+class SIRSAdvancedDialog(QtGui.QDialog):
     """
     This class represents the SIRS advanced dialog.
-
-    :param controller: the used controller
-    :type controller: *SideBarController*
 
     :returns: an instance of *SIRSAdvancedDialog*
     """
 
     def __init__(self, controller):
-        SIRSAdvancedDialogBase.__init__(self)
-        self.setupUi(self)
-        self.controller = controller
-        self.button_box.accepted.connect(self.set_selected_radio_btn)
+        super(SIRSAdvancedDialog, self).__init__()
+        loadUi(cwd + '/sirsadvanceddialog.ui', self)
 
-    def set_selected_radio_btn(self):
-        """
-        This function adds a selected model type, contains of view and model class,
-        to the controller.
-        """
+    def get_selection(self):
+        """Returns the correct model group box and model based
+        on selection.
 
+        :returns: the model groupbox, model module and model
+        :rtype: tuple(*QGroupbox*, Module, Func)
+        """
         if self.simple_radio_btn.isChecked():
-            self.controller.set_options_model(SIRSsimpleGroupBox(), sirs, sirs.simple)
+            return SIRSsimpleGroupBox(), sirs, sirs.simple
         elif self.wbad_radio_btn.isChecked():
-            self.controller.set_options_model(SIRSwbadGroupBox(), sirs, sirs.wbad)
+            return SIRSwbadGroupBox(), sirs, sirs.wbad
+        return None, None, None

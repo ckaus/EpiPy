@@ -1,108 +1,118 @@
 # -*- coding: utf-8 -*-
 
-import os
-from PyQt4 import uic, QtGui
-
-from epipy.ui.controller.event import Event
-
-dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(__file__), '')
-InputGroupBoxUI, InputGroupBoxBase = uic.loadUiType(os.path.join(folder_path, "inputgroupbox.ui"))
+from PyQt4 import QtCore, QtGui, uic
+from PyQt4.uic import loadUi
+from epipy.ui.view import cwd
 
 
-class InputGroupBox(InputGroupBoxBase, InputGroupBoxUI):
-    """
-    This class represents the input group box for files.
-
-    :param controller: the used controller
-    :type controller: *SideBarViewController*
+class InputGroupBox(QtGui.QGroupBox):
+    """This class represents the input group box of *SideBarWidget*.
 
     :returns: an instance of *InputGroupBox*
     """
 
-    def __init__(self, controller):
-        InputGroupBoxBase.__init__(self)
-        self.setupUi(self)
-        self.controller = controller
-        self.controller.attach(self)
-        self.model = self.controller.get_model().get_input_model()
+    def __init__(self):
+        super(InputGroupBox, self).__init__()
+        loadUi(cwd + '/inputgroupbox.ui', self)
 
-        self.open_file_btn.clicked.connect(self.open_file)
-        self.date_cb.currentIndexChanged['QString'].connect(self.model.set_date_col_title)
-        self.data_cb.currentIndexChanged['QString'].connect(self.model.set_data_col_title)
-        self.population_line_edit.setValidator(QtGui.QIntValidator(self))
-        self.population_line_edit.textChanged.connect(self.population_text_changed)
-        self.population_slider.valueChanged[int].connect(self.population_slider_changed)
+        self.population_line_edit.setValidator(QtGui.QDoubleValidator(self))
+        self.population_line_edit.setMaxLength(10)  # 10 Billion - 1
+        regex_validator = QtGui.QRegExpValidator(self)
+        regex_validator.setRegExp(QtCore.QRegExp('[0-9]{1,4}:[0-9]{1,4}'))
+        self.data_range_line_edit.setValidator(regex_validator)
+        self.data_percentage_spin_box.clear()
+
+    def clear(self):
+        """Clears the *InputGroupBox*."""
+        self.input_file_text_field.clear()
+        self.date_cb.clear()
+        self.data_cb.clear()
+        self.population_line_edit.clear()
+        self.data_range_line_edit.clear()
+        self.data_percentage_spin_box.clear()
+
+    def get_data_percentage(self):
+        """Returns the percentage of data range.
+
+        :returns: the percentage of data range
+        :rtype: float
+        """
+        return self.data_percentage_spin_box.value()
+
+    def get_data_range(self):
+        """Returns the data range of selected CSV file.
+        Data range has the format from:to.
+
+        :returns: data range of selected CSV file
+        :rtype: str
+        """
+        return str(self.data_range_line_edit.text())
+
+    def get_population(self):
+        """Returns the population.
+
+        :returns: the population of input data
+        :rtype: int
+        """
+        return int(self.population_line_edit.text())
+
+    def get_selected_data_cb_text(self):
+        """Returns the selected data column
+
+        :returns: selected data column
+        :rtype: str
+        """
+        return str(self.data_cb.currentText())
+
+    def get_selected_date_cb_text(self):
+        """Returns selected date column
+
+        :returns: selected date column
+        :rtype: str
+        """
+        return str(self.date_cb.currentText())
 
     def open_file(self):
-        file_name = QtGui.QFileDialog.getOpenFileName(self,
-                                                      "Open CSV file",
-                                                      filter="CSV file (*.csv);;All Files (*.*)")
-        self.controller.read_file(file_name)
+        """Shows an open file dialog.
 
-    def population_slider_changed(self, value):
-        self.population_line_edit.setText(str(value))
-
-    def population_text_changed(self, value):
-        self.population_slider.setValue(int(value))
-
-    def switch_availability_components(self, is_available):
-        self.date_cb.setEnabled(is_available)
-        self.data_cb.setEnabled(is_available)
-        self.population_line_edit.setEnabled(is_available)
-        self.data_range_line_edit.setEnabled(is_available)
-        self.population_slider.setEnabled(is_available)
-        self.data_percentage_spin_box.setEnabled(is_available)
-
-    def update(self, event):
+        :returns: the file name of the selected CSV file.
+        :rtype: str
         """
-        This function updates the view with content and change availability of
-        GUI components.
+        filter = 'CSV file (*.csv);;All Files (*.*)'
+        return str(QtGui.QFileDialog.getOpenFileName(self, 'Open CSV file',
+                                                     filter=filter))
 
-        :param event: an occurred event
-        :type event: an *Event*
+    def show_notification(self, text):
+        """Shows a notification warning window *QMessageBox*.
+
+        :param text: the showing text
+        :type text: str
         """
-        if event == Event.SUCCESS_READ_FILE:
-            self.switch_availability_components(True)
-            self.input_file_text_field.setText(self.model.file_name)
-            self.date_cb.clear()
-            self.date_cb.addItems(self.model.file_content.keys())
-            self.data_cb.clear()
-            self.data_cb.addItems(self.model.file_content.keys())
-            self.data_range_line_edit.setText(self.model.data_range)
-            self.population_line_edit.setText(self.model.population)
-            self.data_percentage_spin_box.setValue(self.model.data_percentage)
-        elif event == Event.RESET:
-            self.input_file_text_field.clear()
-            self.date_cb.clear()
-            self.data_cb.clear()
-            self.data_range_line_edit.clear()
-            self.data_percentage_spin_box.setValue(100.00)
-            self.switch_availability_components(False)
-        elif event == Event.CANT_CONVERT_DATES:
-            QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Please make sure you have selected a 'Date' column.\n"
-                                      "Dates should have the following format: YYYY-MM-DD.",
-                                      QtGui.QMessageBox.Ok)
+        QtGui.QMessageBox.warning(self, 'Warning', text,
+                                  QtGui.QMessageBox.Ok)
 
-        elif event == Event.NO_POPULATION:
-            QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Please define a population.",
-                                      QtGui.QMessageBox.Ok)
-        elif event == Event.INVALID_DATA_RANGE:
-            QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Invalid data range and/or data range has not format: from:to",
-                                      QtGui.QMessageBox.Ok)
-        elif event == Event.INVALID_POPULATION:
-            QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Invalid population. Value must be greater than 0.",
-                                      QtGui.QMessageBox.Ok)
-            self.population_text_changed('1')
-        elif event == Event.INVALID_DATA_PERCENTAGE:
-            QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Invalid data percentage. Please enter a number between 1 and 100.",
-                                      QtGui.QMessageBox.Ok)
-        elif event == Event.INVALID_DATA:
-            QtGui.QMessageBox.warning(self, 'Warning',
-                                      "Data should be numbers like 1 or 1.0.",
-                                      QtGui.QMessageBox.Ok)
+    def update(self, file_name, date_cb_title, data_cb_title, data_range,
+               data_percentage, population):
+        """Updates the *InputGroupBox* view.
+
+        :param file_name: the file name
+        :type file_name: str
+        :param date_cb_title: the CSV file header
+        :type date_cb_title: list
+        :param data_cb_title: the CSV file header
+        :type data_cb_title: list
+        :param data_range: the file data range
+        :type data_range: str
+        :param data_percentage: the file data range percentage
+        :type data_percentage: float
+        :param population: the population
+        :type population: int
+        """
+        self.input_file_text_field.setText(file_name)
+        self.date_cb.clear()
+        self.date_cb.addItems(date_cb_title)
+        self.data_cb.clear()
+        self.data_cb.addItems(data_cb_title)
+        self.data_range_line_edit.setText(data_range)
+        self.data_percentage_spin_box.setValue(data_percentage)
+        self.population_line_edit.setText(str(population))

@@ -3,7 +3,6 @@ view package
 
 This package includes the user interface views.
 
-
 aboutdialog
 -----------
 

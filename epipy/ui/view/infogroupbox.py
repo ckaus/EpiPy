@@ -1,45 +1,25 @@
 # -*- coding: utf-8 -*-
 
-import os
-from PyQt4 import uic
-
-from epipy.ui.controller.event import Event
-from epipy.ui.model.infomodel import InfoModel
-
-dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(__file__), '')
-icon_path = os.path.join(dir_name(dir_name(dir_name(__file__))), 'resources/pictures/')
-InfoGroupBoxUI, InfoGroupBoxBase = uic.loadUiType(os.path.join(folder_path, "infogroupbox.ui"))
+from PyQt4 import QtGui, uic
+from PyQt4.uic import loadUi
+from epipy.ui.view import cwd
 
 
-class InfoGroupBox(InfoGroupBoxBase, InfoGroupBoxUI):
-    """
-    This class represents the information group box for printing information.
-
-    :param controller: the used controller
-    :type controller: *MainWindowController*
+class InfoGroupBox(QtGui.QGroupBox):
+    """This class represents the info group box of *MainWindow*.
 
     :returns: an instance of *InfoGroupBox*
     """
 
-    def __init__(self, controller):
-        InfoGroupBoxBase.__init__(self)
-        self.setupUi(self)
+    def __init__(self):
+        super(InfoGroupBox, self).__init__()
+        loadUi(cwd + '/infogroupbox.ui', self)
 
-        self.controller = controller
-        self.controller.attach(self)
-        self.model = self.controller.get_model().get_info_model()
+    def set_info(self, text):
+        """Output given text on the *InfoGroupBox*.
 
-    def update(self, event):
+        :param text: the output text
+        :type text: str
         """
-        This function updates the view with content.
-
-        :param event: an occurred event
-        :type event: an *Event*
-        """
-
-        if event == Event.PRINT_INFORMATION:
-            self.info_plain_text_edit.appendPlainText(str(self.model))
-            self.info_plain_text_edit.appendPlainText('\n')
-        elif event == Event.CLEAR_INFORMATION:
-            self.info_plain_text_edit.clear()
+        self.info_plain_text_edit.appendPlainText(text)
+        self.info_plain_text_edit.appendPlainText('\n')

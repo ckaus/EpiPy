@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 
-import os
-from PyQt4 import uic
-
-dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(__file__), '')
-AboutDialogUI, AboutDialogBase = uic.loadUiType(os.path.join(folder_path, "aboutdialog.ui"))
+from PyQt4 import QtGui, uic
+from PyQt4.uic import loadUi
+from epipy.ui.view import cwd
+from epipy import __version__, __description__, __author__
 
 
-class AboutDialog(AboutDialogBase, AboutDialogUI):
-    """
-    This class represents the about dialog.
+class AboutDialog(QtGui.QDialog):
+    """This class represents the about dialog.
 
     :returns: an instance of *AboutDialog*
     """
 
     def __init__(self):
-        AboutDialogBase.__init__(self)
-        self.setupUi(self)
+        super(AboutDialog, self).__init__()
+        loadUi(cwd + '/aboutdialog.ui', self)
+
+        text = 'EpiPy - ' + __version__ + '\n' +\
+               'Description: ' + __description__ + '\n' +\
+               'Authors: ' + __author__
+        self.text_label.setText(text)
         self.close_btn.clicked.connect(self.close)

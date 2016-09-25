@@ -1,23 +1,22 @@
 # -*- coding: utf-8 -*-
 
-"""
-This file contains functionality for printing messages to terminal with different colors.
+"""This file contains functionality for printing messages to terminal
+with different colors.
 """
 
 import inspect
 
 
 class _Color:
-    ERROR = '\033[91m'  # red
-    INFO = '\033[94m'  # blue
-    NORMAL = '\033[0m'  # default
-    SUCCESS = '\033[92m'  # green
-    WARNING = '\033[93m'  # yellow
+    ERROR = '\033[91m'  # Red
+    INFO = '\033[94m'  # Blue
+    NORMAL = '\033[0m'  # Default
+    SUCCESS = '\033[92m'  # Green
+    WARNING = '\033[93m'  # Yellow
 
 
 def error(msg):
-    """
-    This function print an error.
+    """Print error message.
 
     :param msg: a messages
     :type msg: str
@@ -31,8 +30,7 @@ def error(msg):
 
 
 def info(msg):
-    """
-    This function print an information.
+    """Print information message.
 
     :param msg: a messages
     :type msg: str
@@ -41,8 +39,7 @@ def info(msg):
 
 
 def success(msg):
-    """
-    This function print a success.
+    """Print success message.
 
     :param msg: a messages
     :type msg: str
@@ -51,8 +48,7 @@ def success(msg):
 
 
 def warning(msg):
-    """
-    This function print a warning.
+    """Print a warning.
 
     :param msg: a messages
     :type msg: str

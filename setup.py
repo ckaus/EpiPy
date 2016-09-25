@@ -1,27 +1,34 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-try:
-    from setuptools import setup, find_packages
-    from PyQt4 import QtCore
+from setuptools import setup, find_packages
+from epipy import __version__, __author__, __author_email__, \
+    __maintainer__, __maintainer_email__, __description__
 
-    if QtCore.QT_VERSION_STR < '4.8.6':
-        raise ImportError('Expect PyQt4 4.8.6 or higher.')
+try:
+    from PyQt4.Qt import PYQT_VERSION_STR
+
+    if int(PYQT_VERSION_STR.replace('.', '')) < 486:
+        raise ImportError('''Expect PyQt4 4.8.6 or higher''')
 
 except ImportError as error:
     raise ImportError(error)
     exit()
 
+with open('requirements.txt') as f:
+    requirements = f.readlines()
+
 setup(
-    name='EpiPy',
-    version='1.0',
-    url='https://github.com/ckaus/EpiPy',
-    author='ckaus, mitalbert, yenarhee',
-    author_email='christian.kaus@fu-berlin.de',
-    description='Python tool for fitting epidemic models.',
-    long_description='''
-    EpiPy is a tool for fitting epidemic models. This tool is developed for the course Softwareprojekt
-    Mobilkommunikation at the Freie Universität Berlin.
+    name='epipy',
+    version=__version__,
+    author=__author__,
+    author_email=__author_email__,
+    maintainer=__maintainer__,
+    maintainer_email=__maintainer_email__,
+    description=__description__,
+    long_description='''EpiPy is a tool for fitting epidemic models.
+    This tool is developed for the course Softwareprojekt Mobilkommunikation
+    at the Freie Universität Berlin.
 
     Epidemics have been an interesting subject to study in many disciplines.
     Not only in epidemiology but also in biology, mathematics, sociology,
@@ -36,13 +43,14 @@ setup(
     different epidemics models. It offers a range of possibilities for you
     to explore.
     ''',
-    license='MIT',
-    packages=find_packages(),
+    keywords='epidemic',
+    url='https://github.com/ckaus/EpiPy',
+    packages=find_packages(exclude=['doc', 'datasets']),
     include_package_data=True,
-    install_requires=[
-        'epipylib>=0.1',
-        'matplotlib==1.4.2'
-    ],
+    install_requires=requirements,
+    zip_safe=False,
+    license='MIT License',
+    platforms='Linux',
     entry_points={'console_scripts': ['epipy = epipy.main:main', ], },
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -52,10 +60,6 @@ setup(
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        'Operating System :: MacOS',
-        'Operating System :: MacOS :: MacOS X',
-        'Operating System :: Microsoft',
-        'Operating System :: Microsoft :: Windows :: Windows 7',
         'Operating System :: POSIX',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python',

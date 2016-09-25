@@ -1,35 +1,42 @@
 # -*- coding: utf-8 -*-
 
+from epipy.ui.view.mainwindow import MainWindow
+from epipy.ui.view.aboutdialog import AboutDialog
+from epipy.ui.view.plotwidget import PlotWidget
+from epipy.ui.view.infogroupbox import InfoGroupBox
+from epipy.ui.controller.sidebarcontroller import SideBarController
 
-from epipy.ui.controller.basecontroller import BaseController
-from epipy.ui.controller.event import Event
-from epipy.ui.model.mainmodel import MainModel
 
-
-class MainWindowController(BaseController):
-    """
-    This class represents the main view controller.
+class MainWindowController(object):
+    """This class represents the controller of *MainWindow*.
 
     :returns: an instance of *MainWindowController*
     """
 
-    def __init__(self, parent=None):
-        BaseController.__init__(self, parent, MainModel())
+    def __init__(self):
+        self.view = MainWindow()
+        self.side_bar_controller = SideBarController(self)
+        self.view.h_splitter.insertWidget(1, self.side_bar_controller.view)
 
-    def set_plot_data(self, x_data, y_data, x_fitted, y_fitted, regression_values):
-        self.model.plot_model.set_data(x_data, y_data, x_fitted, y_fitted, regression_values)
-        self.notify(Event.PLOT)
+    def plot_data(self, x_data_1, y_data_1, x_data_2, y_data_2):
+        """Sends plot data to *PlotWidget*.
+
+        :param x_data_1: X-axis data for plot 1
+        :type x_data_1: array_like
+        :param y_data_1: Y-axis data for plot 1
+        :type y_data_1: array_like
+        :param x_data_2: X-axis data for plot 2
+        :type x_data_2: array_like
+        :param y_data_2: Y-axis data for plot 2
+        :type y_data_2: array_like
+        """
+        self.view.plot_view.plot(x_data_1, y_data_1, x_data_2, y_data_2)
 
     def set_info_text(self, text):
-        self.model.info_model.text = str(self.model.plot_model) + text
-        self.notify(Event.PRINT_INFORMATION)
+        """Send output information to *InfoGroupBox*.
 
-    def get_plot_data(self):
-        p_model = self.model.plot_model
-        return p_model.get_data(), p_model.get_fitted()
+        :param text: the output information
+        :type text: str
+        """
 
-    def get_info_text(self):
-        self.model.info_model.get_text()
-
-    def clear_information(self):
-        self.notify(Event.CLEAR_INFORMATION)
+        self.view.info_group_box.set_info(text)

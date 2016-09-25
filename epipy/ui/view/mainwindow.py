@@ -1,34 +1,24 @@
 # -*- coding: utf-8 -*-
 
-import os
-from PyQt4 import uic
-
+from PyQt4 import QtGui, uic
+from PyQt4.uic import loadUi
+from epipy.ui.view import cwd
 from epipy.ui.controller.sidebarcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
 from epipy.ui.view.infogroupbox import InfoGroupBox
 from epipy.ui.view.plotwidget import PlotWidget
 from epipy.ui.view.sidebarwidget import SideBarWidget
 
-dir_name = os.path.dirname
-folder_path = os.path.join(dir_name(__file__), '')
-MainWindowUI, MainWindowBase = uic.loadUiType(os.path.join(folder_path, "mainwindow.ui"))
 
-
-class MainWindow(MainWindowBase, MainWindowUI):
-    """
-    This class represents the main window.
-
-    :param controller: the used controller
-    :type controller: *MainWindowController*
+class MainWindow(QtGui.QMainWindow):
+    """This class represents the main window.
 
     :returns: an instance of *MainWindow*
     """
 
-    def __init__(self, controller):
-        MainWindowBase.__init__(self)
-        self.setupUi(self)
-        self.controller = controller
-        self.controller.attach(self)
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        loadUi(cwd + '/mainwindow.ui', self)
 
         # Menu
         self.about_dialog = AboutDialog()
@@ -39,51 +29,36 @@ class MainWindow(MainWindowBase, MainWindowUI):
         self.show_sidebar_action.triggered.connect(self.show_sidebar)
         self.hide_sidebar_action.triggered.connect(self.hide_sidebar)
         self.show_sidebar_action.setVisible(False)
-        self.clear_information_action.triggered.connect(controller.clear_information)
         self.about_action.triggered.connect(self.about_dialog.show)
 
         # Top Left
-        self.plot_view = PlotWidget(self, self.controller)
+        self.plot_view = PlotWidget()
         self.h_splitter.insertWidget(0, self.plot_view)
 
-        # Top Right
-        self.side_bar = SideBarWidget(SideBarController(self.controller))
-        self.h_splitter.insertWidget(1, self.side_bar)
-
         # Bottom
-        self.info_group_box = InfoGroupBox(self.controller)
+        self.info_group_box = InfoGroupBox()
         self.v_splitter.insertWidget(1, self.info_group_box)
 
-    def show_full_screen(self):
-        """
-        This function enable the full screen mode of this view.
-        """
-        self.show_fullscreen_action.setVisible(False)
-        self.exit_fullscreen_action.setVisible(True)
-        self.showFullScreen()
-
     def exit_full_screen(self):
-        """
-        This function disable the full screen mode of this view.
-        """
+        """Stops full screen mode of *MainWindow*."""
         self.show_fullscreen_action.setVisible(True)
         self.exit_fullscreen_action.setVisible(False)
         self.showNormal()
 
-    def show_sidebar(self):
-        """
-        This function shows the side bar view.
-        """
-        self.h_splitter.widget(1).setVisible(True)
-        self.show_sidebar_action.setVisible(False)
-        self.hide_sidebar_action.setVisible(True)
-
     def hide_sidebar(self):
-        """
-        This function hides the side bar view.
-        """
+        """Hides the side bar view."""
         self.h_splitter.widget(1).setVisible(False)
         self.show_sidebar_action.setVisible(True)
         self.hide_sidebar_action.setVisible(False)
 
-    def update(self, event): pass
+    def show_full_screen(self):
+        """Executes the full screen mode of *MainWindow*."""
+        self.show_fullscreen_action.setVisible(False)
+        self.exit_fullscreen_action.setVisible(True)
+        self.showFullScreen()
+
+    def show_sidebar(self):
+        """Shows the side bar view."""
+        self.h_splitter.widget(1).setVisible(True)
+        self.show_sidebar_action.setVisible(False)
+        self.hide_sidebar_action.setVisible(True)
