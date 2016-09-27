@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import numpy as np
-from epipylib.core.fit import fit
+from epipy.lib.core.fit import fit
 from epipy.ui.view import Notification
 from epipy.utils import csvmanager, dateconverter
 from epipy.ui.model.sidebarmodel import SideBarModel

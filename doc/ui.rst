@@ -1,5 +1,5 @@
-ui package
-==========
+epipy.ui package
+================
 
 This module includes the user interface.
 

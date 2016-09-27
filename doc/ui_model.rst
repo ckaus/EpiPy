@@ -1,5 +1,5 @@
-model package
-=============
+epipy.ui.model package
+======================
 
 This package includes the user interface controller.
 

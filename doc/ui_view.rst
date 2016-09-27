@@ -1,5 +1,5 @@
-view package
-============
+epipy.ui.view package
+=====================
 
 This package includes the user interface views.
 

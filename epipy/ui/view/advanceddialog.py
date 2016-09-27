@@ -3,10 +3,10 @@
 from PyQt4 import QtGui, uic
 from PyQt4.uic import loadUi
 from epipy.ui.view import cwd
-from epipylib.model import sir, sirs, seir
 from epipy.ui.view.sirgroupbox import *
 from epipy.ui.view.seirgroupbox import *
 from epipy.ui.view.sirsgroupbox import *
+from epipy.lib.model import sir, sirs, seir
 
 
 class SIRAdvancedDialog(QtGui.QDialog):

@@ -1,5 +1,5 @@
-controller package
-==================
+epipy.ui.controller package
+===========================
 
 This package includes the user interface controller.
 

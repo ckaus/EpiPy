@@ -3,7 +3,6 @@
 """This file contains functionality for reading a CSV file."""
 
 import csv
-
 from epipy.utils import logging
 
 
@@ -14,12 +13,14 @@ def read(file_name='', column=[]):
     :type file_name: str
     :param column: the columns of CSV file
     :type column: list
-    :raises: *csv.Error* or *ValueError* if CSV file is not readable
+    :raises: *IOError*, *csv.Error* or *ValueError* if CSV file is not readable
 
     :returns: a content of CSV file
     :rtype: dict
     """
     result = {}
+    if not file_name:
+        return result
     try:
         # Read input file
         with open(file_name, 'rb') as _csvfile:
@@ -36,7 +37,7 @@ def read(file_name='', column=[]):
             for row in reader:
                 # Match content with origin header
                 [result[h].append(row[header.index(h)]) for h in column]
-    except (csv.Error, ValueError) as e:
-        logging.error("Can not read file %s, %s" % (file_name, e))
+    except (IOError, csv.Error, ValueError) as e:
+        logging.error('%s' % e)
         return {}
     return result

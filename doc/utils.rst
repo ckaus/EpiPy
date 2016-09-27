@@ -1,5 +1,5 @@
-utils package
-=============
+epipy.utils package
+===================
 
 This module includes utilities.
 
