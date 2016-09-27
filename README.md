@@ -18,9 +18,9 @@ PyQt4 based GUI for
 Fitting functions:
 
 * Manual and optimized manipulation epidemic model parameters
-  * **S**\usceptible **I**\nfected **R**\ecovered (Simple, With births and deaths, With Vaccine)
-  * **S**\usceptible **I**\nfected **R**\ecovered **S**\usceptible (Simple, With births and deaths)
- * **S**\usceptible **E**\xposed **I**\nfected **R**\ecovered (Simple)
+  * **S**usceptible **I**nfected **R**ecovered (Simple, With births and deaths, With Vaccine)
+  * **S**usceptible **I**nfected **R**ecovered **S**usceptible (Simple, With births and deaths)
+  * **S**usceptible **E**xposed **I**nfected **R**ecovered (Simple)
 
 ## Documentation
 
