@@ -3,7 +3,6 @@ include INSTALL.md
 include CHANGELOG
 include LICENSE
 include MANIFEST.in
-include epipy-logo.png
 include requirements.txt
 recursive-include epipy *.py *.ui
 prune datasets
