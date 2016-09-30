@@ -4,4 +4,4 @@ epipy (1.0.0) RELEASED; urgency=medium
   * Optimize the whole project by outsourcing the fitting
     functionality into epipylib.
 
- -- ckaus <christian.kaus@hotmail.de>  Mon, 12 Sep 2016 12:00:00 +0200
+ -- ckaus <kiasu_wc3@hotmail.de>  Mon, 12 Sep 2016 12:00:00 +0200
