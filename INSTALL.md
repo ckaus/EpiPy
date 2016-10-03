@@ -4,9 +4,10 @@ Donwload EpiPy from our [website](http://ckaus.github.io/EpiPy/).
 
 ## Build .deb-Package
 
+Requirements: dpkg-buildpackage
+
 ```bash
-$ bash build.sh epipy -deb -c
-$ bash build.sh epipy -deb -b
+$ bash build.sh epipy
 $ cd build/
 $ sudo dpkg -i *.deb
 ```
