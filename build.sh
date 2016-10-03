@@ -5,7 +5,7 @@
 # Last change: 2016-10-03
 # Version: 0.1.1
 # Requirements: dpkg-buildpackage
-# Description: Create/build a .deb-Package from python package.
+# Description: Create and build a .deb-Package from python package.
 ################################################################################
 Help () {
   echo 'Usage: bash '$(basename $0)' <source-path>'
@@ -69,7 +69,7 @@ if [ $# -eq 0 ] || [ ! -d $1 ]; then
   Help
 fi
 ################################################################################
-# Createa and build .deb package in ./build/
+# Create and build .deb package in ./build/
 ################################################################################
 PROJ_DIR=$(pwd)
 SRC_DIR=$1
@@ -95,7 +95,7 @@ HOMEPAGE=$(python setup.py --url)
 DEPENDS=$(Translate_req $(cat $SOURCE.egg-info/requires.txt))
 # source directory must have the format <sourcepackage>-<upstreamversion>
 mv $BUILD_PATH/$SOURCE $BUILD_PATH/$SOURCE-$VERSION
-
+# debian/control"
 echo "Source: $SOURCE
 Section: science
 Priority: optional
