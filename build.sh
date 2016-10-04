@@ -2,8 +2,8 @@
 ################################################################################
 # File: build.sh
 # Author: ckaus
-# Last change: 2016-10-03
-# Version: 0.1.1
+# Last change: 2016-10-04
+# Version: 0.1.2
 # Requirements: dpkg-buildpackage
 # Description: Create and build a .deb-Package from python package.
 ################################################################################
