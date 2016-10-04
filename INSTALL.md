@@ -1,5 +1,7 @@
 # Installation
 
+Requirements: Pip, NumPy, SciPy, matplotlib, PyQt4
+
 Donwload EpiPy from our [website](http://ckaus.github.io/EpiPy/).
 
 ## Build .deb-Package
@@ -14,10 +16,8 @@ $ sudo dpkg -i *.deb
 
 ## With Pip
 
-Requirements: Pip (>= 1.5. 2)
-
 ```bash
-$ sudo apt-get install python-qt4 python-pip
+$ sudo apt-get install python-qt4
 $ sudo pip install -r requirements.txt
 ```
 

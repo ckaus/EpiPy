@@ -96,7 +96,7 @@ DEPENDS=$(Translate_req $(cat $SOURCE.egg-info/requires.txt))
 # source directory must have the format <sourcepackage>-<upstreamversion>
 mv $BUILD_PATH/$SOURCE $BUILD_PATH/$SOURCE-$VERSION
 # debian/control"
-echo "Source: $SOURCE
+echo -e "Source: $SOURCE
 Section: science
 Priority: optional
 Maintainer: $MAINTAINER <$MAINTAINER_EMAIL>
@@ -108,8 +108,8 @@ Homepage: $HOMEPAGE
 Package: $SRC_DIR
 Architecture: all
 Homepage: $HOMEPAGE
-Depends: $DEPENDS
-Description: $DESCRIPTION" >> "$BUILD_PATH/debian/control"
+Depends: $DEPENDS, python-qt4
+Description: $DESCRIPTION\n ${DESCRIPTION_LONG}" >> "$BUILD_PATH/debian/control"
 # debian/changelog
 cp "CHANGELOG" "$BUILD_PATH/debian/changelog"
 # debian/watch
@@ -136,3 +136,4 @@ dpkg-buildpackage -A -uc
 # Move .deb and .changes to build path
 mv "$PROJ_DIR/${SOURCE}_${VERSION}_all.deb" $BUILD_PATH
 mv "$PROJ_DIR/${SOURCE}_${VERSION}_all.changes" $BUILD_PATH
+lintian ${SOURCE}_${VERSION}_all.deb

@@ -26,23 +26,29 @@ setup(
     maintainer=__maintainer__,
     maintainer_email=__maintainer_email__,
     description=__description__,
-    long_description='''EpiPy is a tool for fitting epidemic models.
-    This tool is developed for the course Softwareprojekt Mobilkommunikation
-    at the Freie Universität Berlin.
-
-    Epidemics have been an interesting subject to study in many disciplines.
-    Not only in epidemiology but also in biology, mathematics, sociology,
-    computer science and more, the study of epidemics offers many areas for
-    application. Mathematicians over time have suggested various models to
-    understand and foresee the development of epidemics.
-
-    Several tools are available that can simulate epidemics and generate
-    data with given parameter for an epidemic model. However, there is yet
-    no tool for easy fitting of epidemic models. EpiPy simplifies the
-    fitting of various models to data and aims to help you understand
-    different epidemics models. It offers a range of possibilities for you
-    to explore.
-    ''',
+    long_description='''This tool is developed for the course Softwareprojekt
+ Mobilkommunikation at the Freie Universität Berlin.
+ .
+ Epidemics have been an interesting subject to study in many disciplines. Not
+ only in epidemiology but also in biology, mathematics, sociology, computer
+ science and more, the study of epidemics offers many areas for application.
+ Mathematicians over time have suggested various models to understand and
+ foresee the development of epidemics.
+ .
+ Several tools are available that can simulate epidemics and generate data with
+ given parameter for an epidemic model. However, there is yet no tool for easy
+ fitting of epidemic models. EpiPy simplifies the fitting of various models to
+ data and aims to help you understand different epidemics models. It offers a
+ range of possibilities for you
+ to explore.
+ .
+ EpiPy support plotting epidemic data and fitted epidemic model.
+ .
+ Supported epidemic models:
+  - SIR (Simple, With births and deaths, With Vaccine)
+  - SIRS (Simple, With births and deaths)
+  - SEIR (Simple)
+  ''',
     keywords='epidemic',
     url='https://github.com/ckaus/EpiPy',
     packages=find_packages(exclude=['doc', 'datasets']),
