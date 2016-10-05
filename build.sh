@@ -107,7 +107,6 @@ Homepage: $HOMEPAGE
 
 Package: $SRC_DIR
 Architecture: all
-Homepage: $HOMEPAGE
 Depends: $DEPENDS, python-qt4
 Description: $DESCRIPTION\n ${DESCRIPTION_LONG}" >> "$BUILD_PATH/debian/control"
 # debian/changelog
