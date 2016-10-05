@@ -68,6 +68,10 @@ Translate_req ()
 if [ $# -eq 0 ] || [ ! -d $1 ]; then
   Help
 fi
+
+echo "Sorr, $0 is broken. Update will follow as soon as possible.\
+Please install with Pip."
+exit
 ################################################################################
 # Create and build .deb package in ./build/
 ################################################################################
