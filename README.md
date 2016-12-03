@@ -7,7 +7,7 @@ at the [Freie Universität Berlin](http://www.fu-berlin.de/en/index.html)
 * [Features](https://github.com/ckaus/EpiPy#features)
 * [Documentation](https://github.com/ckaus/EpiPy#documentation)
 * [Installation](https://github.com/ckaus/EpiPy/blob/master/INSTALL.md)
-* [Data Sets](https://github.com/ckaus/EpiPy/blobl/master/datasets/Readme.md)
+* [Data Sets](https://github.com/ckaus/EpiPy/blob/master/datasets/Readme.rst)
 * [Changelog](https://github.com/ckaus/EpiPy/blob/master/CHANGELOG)
 * [License](https://github.com/ckaus/EpiPy#license)
 
