@@ -1,9 +1,2 @@
-include README.md
-include INSTALL.md
-include CHANGELOG
-include LICENSE
-include MANIFEST.in
-include requirements.txt
-recursive-include epipy *.py *.ui
-prune datasets
-prune doc
+recursive-include epipy *.py
+recursive-include epipy/ui/view *.ui
