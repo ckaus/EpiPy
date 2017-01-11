@@ -4,6 +4,7 @@ EpiPy is a tool for fitting epidemic models. This tool is developed for the cour
 at the [Freie Universität Berlin](http://www.fu-berlin.de/en/index.html)
 
 **Table Of Contents**
+
 * [Features](https://github.com/ckaus/EpiPy#features)
 * [Documentation](https://github.com/ckaus/EpiPy#documentation)
 * [Installation](https://github.com/ckaus/EpiPy/blob/master/INSTALL.md)
