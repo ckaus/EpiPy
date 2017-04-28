@@ -1,6 +1,6 @@
 # Installation
 
-Requirements: Pip, NumPy, SciPy, matplotlib, PyQt4 libfreetype6-dev
+Requirements: Pip, NumPy, SciPy, matplotlib, PyQt4, libfreetype6-dev
 
 Donwload EpiPy from our [website](http://ckaus.github.io/EpiPy/).
 
