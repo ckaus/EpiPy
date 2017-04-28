@@ -29,6 +29,7 @@ def fit(model, xdata, N0, ydata=None, params=None, iter=10):
 
     def fit_odeint(xdata, *params):
         return integrate.odeint(model, N0, xdata, args=((N,) + params))[:, 1]
+
     # static fit - Fit a given epidemic model based on parameters.
     if params:
         return fit_odeint(xdata, *params), np.array(params), None

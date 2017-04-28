@@ -6,7 +6,7 @@ from epipy.ui.view import Notification
 from epipy.utils import csvmanager, dateconverter
 from epipy.ui.model.sidebarmodel import SideBarModel
 from epipy.ui.view.sidebarwidget import SideBarWidget
-from epipy.ui.view.advanceddialog import SIRAdvancedDialog,\
+from epipy.ui.view.advanceddialog import SIRAdvancedDialog, \
     SEIRAdvancedDialog, SIRSAdvancedDialog
 
 
@@ -48,7 +48,7 @@ class SideBarController(object):
             return  # no file was selected, do nothing
 
         if not file_content:
-            self.view.options_group_box.warning(Notification.INVALID_DATA)
+            self.view.options_group_box.show_notification(Notification.INVALID_DATA)
 
         model.file_name = file_name
         model.file_content = file_content
@@ -108,10 +108,10 @@ class SideBarController(object):
         N0 = om.epidemic_model_class.init_model(N=im.population,
                                                 y0=y_data[-1])
         if om.with_parameters:
-            fitted_data, param, corr_coef = fit(model=epi_model,
-                                                N0=N0,
-                                                xdata=x_data,
-                                                params=(epi_model_param))
+            y_data_fit, param, corr_coef = fit(model=epi_model,
+                                               N0=N0,
+                                               xdata=x_data,
+                                               params=(epi_model_param))
 
         else:
             y_data_fit, param, corr_coef = fit(model=epi_model,
@@ -132,7 +132,7 @@ class SideBarController(object):
 
     def set_options_model(self):
         """Sets selected epidemic model information from *AdvancedDialog*."""
-        param_group_box, epidemic_model_class, epidemic_model =\
+        param_group_box, epidemic_model_class, epidemic_model = \
             self.advanced_dialog.get_selected_model()
         self.view.options_group_box.add_parameter_group_box(param_group_box)
         self.model.options_model.epidemic_model = epidemic_model
@@ -154,7 +154,7 @@ class SideBarController(object):
             self.advanced_dialog.button_box.accepted.connect(
                 self.set_options_model)
         else:
-            self.view.options_group_box.warning(Notification.NO_MODEL)
+            self.view.options_group_box.show_notification(Notification.NO_MODEL)
 
     def update_input_model(self):
         """Updates the *InputModel* with information from *InputGroupBox*.
@@ -181,7 +181,7 @@ class SideBarController(object):
 
         data_range = str(view.get_data_range())
         if not data_range or data_range.startswith(':'):
-            view.show_notification(NO_DATA_RANGE)
+            view.show_notification(Notification.NO_DATA_RANGE)
             return False
         from_value = int(data_range.split(":")[0])
         to_value = int(data_range.split(":")[1])

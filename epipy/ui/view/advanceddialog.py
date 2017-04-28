@@ -46,7 +46,7 @@ class SEIRAdvancedDialog(QtGui.QDialog):
         super(SEIRAdvancedDialog, self).__init__()
         loadUi(cwd + '/seiradvanceddialog.ui', self)
 
-    def get_selection(self):
+    def get_selected_model(self):
         """Returns the correct model group box and model based
         on selection.
 
@@ -65,11 +65,11 @@ class SIRSAdvancedDialog(QtGui.QDialog):
     :returns: an instance of *SIRSAdvancedDialog*
     """
 
-    def __init__(self, controller):
+    def __init__(self):
         super(SIRSAdvancedDialog, self).__init__()
         loadUi(cwd + '/sirsadvanceddialog.ui', self)
 
-    def get_selection(self):
+    def get_selected_model(self):
         """Returns the correct model group box and model based
         on selection.
 

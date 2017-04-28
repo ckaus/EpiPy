@@ -16,8 +16,8 @@ class AboutDialog(QtGui.QDialog):
         super(AboutDialog, self).__init__()
         loadUi(cwd + '/aboutdialog.ui', self)
 
-        text = 'EpiPy - ' + __version__ + '\n' +\
-               'Description: ' + __description__ + '\n' +\
+        text = 'EpiPy - ' + __version__ + '\n' + \
+               'Description: ' + __description__ + '\n' + \
                'Authors: ' + __author__
         self.text_label.setText(text)
         self.close_btn.clicked.connect(self.close)

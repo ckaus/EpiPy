@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtGui, QtCore
-from matplotlib.backends.backend_qt4\
+from matplotlib.backends.backend_qt4 \
     import NavigationToolbar2QT as NavigationToolbar
-from matplotlib.backends.backend_qt4agg import\
+from matplotlib.backends.backend_qt4agg import \
     FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
@@ -14,7 +14,7 @@ class PlotWidget(QtGui.QWidget):
     :returns: an instance of *PlotWidget*
     """
 
-    def __init__(self,):
+    def __init__(self, ):
         QtGui.QWidget.__init__(self)
         self.figure = Figure(facecolor=(1, 1, 1), tight_layout=True)
 
