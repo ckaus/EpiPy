@@ -14,7 +14,7 @@ class PlotWidget(QtGui.QWidget):
     :returns: an instance of *PlotWidget*
     """
 
-    def __init__(self, ):
+    def __init__(self):
         QtGui.QWidget.__init__(self)
         self.figure = Figure(facecolor=(1, 1, 1), tight_layout=True)
 
