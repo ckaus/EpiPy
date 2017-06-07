@@ -132,24 +132,14 @@
     <string>Show Fullscreen</string>
    </property>
   </action>
-  <action name="actionNormalscreen">
-   <property name="text">
-    <string>Normalscreen</string>
-   </property>
-  </action>
   <action name="exit_fullscreen_action">
    <property name="text">
     <string>Exit Fullscreen</string>
    </property>
   </action>
-  <action name="actionClear_Informations">
-   <property name="text">
-    <string>Clear Informations</string>
-   </property>
-  </action>
   <action name="clear_information_action">
    <property name="text">
-    <string>Clear Information</string>
+    <string>Clear Fit Information</string>
    </property>
   </action>
   <action name="help_action">

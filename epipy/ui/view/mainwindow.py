@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtGui, uic
+from PyQt4 import QtGui
 from PyQt4.uic import loadUi
 from epipy.ui.view import cwd
-from epipy.ui.controller.sidebarcontroller import SideBarController
 from epipy.ui.view.aboutdialog import AboutDialog
 from epipy.ui.view.infogroupbox import InfoGroupBox
 from epipy.ui.view.plotwidget import PlotWidget
-from epipy.ui.view.sidebarwidget import SideBarWidget
 
 
 class MainWindow(QtGui.QMainWindow):
@@ -23,6 +21,7 @@ class MainWindow(QtGui.QMainWindow):
         # Menu
         self.about_dialog = AboutDialog()
         self.exit_action.triggered.connect(self.close)
+        self.clear_information_action.triggered.connect(self.clear_information)
         self.show_fullscreen_action.triggered.connect(self.show_full_screen)
         self.exit_fullscreen_action.triggered.connect(self.exit_full_screen)
         self.exit_fullscreen_action.setVisible(False)
@@ -39,6 +38,10 @@ class MainWindow(QtGui.QMainWindow):
         self.info_group_box = InfoGroupBox()
         self.v_splitter.insertWidget(1, self.info_group_box)
 
+    def clear_information(self):
+        """Clears the information of *InfoGroupBox*"""
+        self.info_group_box.info_plain_text_edit.clear()
+
     def exit_full_screen(self):
         """Stops full screen mode of *MainWindow*."""
         self.show_fullscreen_action.setVisible(True)
@@ -50,6 +53,15 @@ class MainWindow(QtGui.QMainWindow):
         self.h_splitter.widget(1).setVisible(False)
         self.show_sidebar_action.setVisible(True)
         self.hide_sidebar_action.setVisible(False)
+
+    def show_notification_information(self, text):
+        """Shows a notification window *QMessageBox*.
+
+        :param text: the showing text
+        :type text: str
+        """
+        QtGui.QMessageBox.information(self, 'Information', text,
+                                      QtGui.QMessageBox.Ok)
 
     def show_full_screen(self):
         """Executes the full screen mode of *MainWindow*."""
