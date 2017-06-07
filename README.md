@@ -62,7 +62,7 @@ Fitting functions:
 
 ## Screenshots
 
-![EpiPy Debian](https://github.com/ckaus/EpiPy/blob/master/EpiPyDebian.png)
+![EpiPy Debian](https://github.com/ckaus/EpiPy/blob/master/screenshot/EpiPyDebian.png)
 
 ## Documentation
 
