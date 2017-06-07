@@ -14,7 +14,7 @@ class SideBarController(object):
     """This class represents the controller of *SideBarWidget*.
 
     :param: parent: the parent controller
-    :type parent: *MainWIndowsController*
+    :type parent: *MainWindowController*
 
     :returns: an instance of *SideBarController*
     """
@@ -104,14 +104,13 @@ class SideBarController(object):
 
         om = self.model.options_model
         epi_model = om.epidemic_model
-        epi_model_param = om.epidemic_model_parameters.values()
         N0 = om.epidemic_model_class.init_model(N=im.population,
                                                 y0=y_data[-1])
         if om.with_parameters:
             y_data_fit, param, corr_coef = fit(model=epi_model,
                                                N0=N0,
                                                xdata=x_data,
-                                               params=(epi_model_param))
+                                               params=(om.epidemic_model_parameters.values()))
 
         else:
             y_data_fit, param, corr_coef = fit(model=epi_model,
@@ -124,6 +123,9 @@ class SideBarController(object):
         self.parent.set_info_text(str(self.model))
         self.parent.plot_data(x_data, y_data,
                               x_data, y_data_fit)
+
+        self.parent.view.show_notification_information\
+            ("Fit process done, for details see 'Fit Information' Window.")
 
     def reset(self):
         """Resets *SideBarWidget* and create new *SideBarModel*."""
