@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from epipy.ui.view.mainwindow import MainWindow
-from epipy.ui.view.aboutdialog import AboutDialog
-from epipy.ui.view.plotwidget import PlotWidget
-from epipy.ui.view.infogroupbox import InfoGroupBox
 from epipy.ui.controller.sidebarcontroller import SideBarController
 
 
