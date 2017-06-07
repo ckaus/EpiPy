@@ -28,11 +28,14 @@ mathematics, sociology, computer science and more, the study of epidemics offers
 Mathematicians over time have suggested various models to understand and foresee the development of epidemics.
 
 For example, SIR model is defined by the following equations:
+
 ![SIR Model](http://i.imgur.com/rdFWsJJ.png)
+
 where β is the rate of infection and ɣ the rate of recovery.
 
 If we solve the equations and plot against time, we get three curves representing the numbers of susceptibles, infected,
 and recovered respectively. The shape of the graph depends on the parameters β, ɣ, S0 and I0.
+
 ![Graph of SIR Model](http://i.imgur.com/Y7TMSUk.png)
 
 ### Parameter Estimation
@@ -63,6 +66,15 @@ Fitting functions:
 ## Screenshots
 
 ![EpiPy Debian](https://github.com/ckaus/EpiPy/blob/master/screenshot/EpiPyDebian.png)
+
+## Install
+
+```bash
+$ git clone git@github.com:ckaus/EpiPy.git
+$ cd EpiPy && sudo pip install .
+# Run
+$ epipy
+```
 
 ## Documentation
 
