@@ -11,7 +11,7 @@ at the [Freie Universität Berlin](http://www.fu-berlin.de/en/index.html)
 * [Installation](https://github.com/ckaus/EpiPy/blob/master/INSTALL.md)
 * [Data Sets](https://github.com/ckaus/EpiPy/blob/master/datasets/README.rst)
 * [Changelog](https://github.com/ckaus/EpiPy/blob/master/CHANGELOG)
-* [License](https://github.com/ckaus/EpiPy/blob/master/LICENSE)
+* [License](https://github.com/ckaus/EpiPy#license)
 
 ## Features
 
@@ -37,3 +37,7 @@ Fitting functions:
 ```bash
 cd EpiPy/doc/ && make html
 ```
+
+## License
+
+[MIT license](https://github.com/ckaus/EpiPy/blob/master/LICENSE)
