@@ -2,6 +2,8 @@
 
 """The (S)usceptible (I)nfected (R)ecovered Model."""
 
+__name__ = "(S)usceptible (I)nfected (R)ecovered Model"
+
 
 def init_model(N, y0):
     """Initialize the SIR model.
