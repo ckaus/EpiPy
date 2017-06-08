@@ -31,7 +31,6 @@ Fitting functions:
 
 ## Documentation
 
-* [Project Website](http://ckaus.github.io/EpiPy/)
 * Source code documentation with [Sphinx](http://sphinx-doc.org/)
 
 ```bash
