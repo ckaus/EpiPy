@@ -11,7 +11,6 @@ $ sudo apt-get install python-qt4 libfreetype6-dev
 $ cd <PATH/TO/FOLDER/>
 $ sudo pip install -r requirements.txt
 $ sudo pip install .
-$ sudo python -m pip install --upgrade numpy
 ```
 
 ## How to run?
